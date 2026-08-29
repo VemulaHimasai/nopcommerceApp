@@ -1,8 +1,11 @@
-
-import pytest
 import os
+import pytest
 from selenium import webdriver
 
+
+# =========================================================
+# BROWSER FIXTURE
+# =========================================================
 
 @pytest.fixture()
 def setup(browser):
@@ -33,7 +36,6 @@ def setup(browser):
         options.add_argument("--proxy-server=direct://")
         options.add_argument("--proxy-bypass-list=*")
 
-        # Chrome download settings
         prefs = {
             "download.default_directory": download_dir,
             "download.prompt_for_download": False,
@@ -46,7 +48,6 @@ def setup(browser):
             prefs
         )
 
-        # Start Chrome
         driver = webdriver.Chrome(
             options=options
         )
@@ -69,7 +70,11 @@ def setup(browser):
 
         options = webdriver.FirefoxOptions()
 
+        # Accept localhost/self-signed certificate
         options.accept_insecure_certs = True
+
+        # Explicitly enable downloads
+        options.enable_downloads = True
 
         # =================================================
         # Disable proxy
@@ -81,11 +86,11 @@ def setup(browser):
         )
 
         # =================================================
-        # Download directory
+        # DOWNLOAD DIRECTORY
         # =================================================
 
         options.set_preference(
-            "browser.download.folderlist",
+            "browser.download.folderList",
             2
         )
 
@@ -100,7 +105,7 @@ def setup(browser):
         )
 
         # =================================================
-        # Disable download dialogs
+        # DOWNLOAD BEHAVIOR
         # =================================================
 
         options.set_preference(
@@ -110,16 +115,6 @@ def setup(browser):
 
         options.set_preference(
             "browser.download.manager.focusWhenStarting",
-            False
-        )
-
-        options.set_preference(
-            "browser.download.always_ask_before_handling_new_types",
-            False
-        )
-
-        options.set_preference(
-            "browser.helperApps.alwaysAsk.force",
             False
         )
 
@@ -134,51 +129,54 @@ def setup(browser):
         )
 
         # =================================================
+        # IMPORTANT
+        # Do not ask what to do with downloaded files
+        # =================================================
+
+        options.set_preference(
+            "browser.helperApps.alwaysAsk.force",
+            False
+        )
+
+        options.set_preference(
+            "browser.download.always_ask_before_handling_new_types",
+            False
+        )
+
+        # =================================================
         # MIME TYPES
         # =================================================
 
-        mime_types = [
+        mime_types = ",".join([
 
-            # ---------------------------------------------
             # XML
-            # ---------------------------------------------
-
             "application/xml",
             "text/xml",
             "application/xhtml+xml",
 
-            # ---------------------------------------------
             # Excel
-            # ---------------------------------------------
-
             "application/vnd.ms-excel",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 
-            # ---------------------------------------------
             # Generic download
-            # ---------------------------------------------
-
             "application/octet-stream",
             "application/force-download",
             "binary/octet-stream",
             "application/download",
             "application/x-download",
 
-            # ---------------------------------------------
             # CSV
-            # ---------------------------------------------
-
             "text/csv",
             "application/csv"
-        ]
+        ])
 
         options.set_preference(
             "browser.helperApps.neverAsk.saveToDisk",
-            ",".join(mime_types)
+            mime_types
         )
 
         # =================================================
-        # Do not open downloaded files inside Firefox
+        # Prevent Firefox from opening files internally
         # =================================================
 
         options.set_preference(
@@ -186,17 +184,14 @@ def setup(browser):
             ""
         )
 
-        # =================================================
         # Disable PDF viewer
-        # =================================================
-
         options.set_preference(
             "pdfjs.disabled",
             True
         )
 
         # =================================================
-        # Start Firefox
+        # START FIREFOX
         # =================================================
 
         driver = webdriver.Firefox(
@@ -213,9 +208,7 @@ def setup(browser):
 
         driver.quit()
 
-
-
-# =====================================================
+    # =====================================================
     # EDGE
     # =====================================================
 
@@ -225,11 +218,9 @@ def setup(browser):
 
         options.accept_insecure_certs = True
 
-        # Disable proxy
         options.add_argument("--proxy-server=direct://")
         options.add_argument("--proxy-bypass-list=*")
 
-        # Edge download settings
         prefs = {
             "download.default_directory": download_dir,
             "download.prompt_for_download": False,
@@ -242,7 +233,6 @@ def setup(browser):
             prefs
         )
 
-        # Start Edge
         driver = webdriver.Edge(
             options=options
         )
@@ -301,7 +291,6 @@ def pytest_metadata(metadata):
     metadata["Module Name"] = "Customers"
     metadata["Tester"] = "Himasai"
 
-    # Remove unnecessary information
     metadata.pop(
         "JAVA_HOME",
         None

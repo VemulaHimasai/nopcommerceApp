@@ -25,7 +25,10 @@ class Test_ExportSelectedCustomers_XML_007:
         )
 
         self.driver = setup
+        print("Application URL:", self.baseURL)
         self.driver.get(self.baseURL)
+        print("Current URL:", self.driver.current_url)
+        print("Page title:", self.driver.title)
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
 

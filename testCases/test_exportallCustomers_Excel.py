@@ -25,8 +25,11 @@ class Test_ExportAllCustomers_Excel_008:
         )
 
         self.driver = setup
+        print("Application URL:", self.baseURL)
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
+        print("Current URL:", self.driver.current_url)
+        print("Page title:", self.driver.title)
         self.driver.implicitly_wait(10)
 
         # Download directory
