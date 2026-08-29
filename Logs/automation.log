@@ -1,0 +1,2325 @@
+08/24/2026 06:47:10 PM: INFO: ********Test_001_Login********
+08/24/2026 06:47:10 PM: INFO: ********Verify Home Page Title********
+08/24/2026 06:47:14 PM: INFO: ********Home Page Title test is passed********
+08/24/2026 06:47:18 PM: INFO: ********Verify Login Test********
+08/24/2026 06:47:24 PM: INFO: ********Login test Passed********
+08/24/2026 07:07:28 PM: INFO: ********Test_001_Login********
+08/24/2026 07:07:28 PM: INFO: ********Verify Home Page Title********
+08/24/2026 07:07:32 PM: INFO: ********Home Page Title test is passed********
+08/24/2026 07:07:36 PM: INFO: ********Verify Login Test********
+08/24/2026 07:07:43 PM: INFO: ********Login test Passed********
+08/24/2026 07:14:25 PM: INFO: ********Test_001_Login********
+08/24/2026 07:14:25 PM: INFO: ********Verify Home Page Title********
+08/24/2026 07:14:27 PM: INFO: ********Home Page Title test is passed********
+08/24/2026 07:14:46 PM: INFO: ********Verify Login Test********
+08/24/2026 07:14:52 PM: INFO: ********Login test Passed********
+08/24/2026 07:22:33 PM: INFO: ********Test_001_Login********
+08/24/2026 07:22:33 PM: INFO: ********Verify Home Page Title********
+08/24/2026 07:22:37 PM: INFO: ********Home Page Title test is passed********
+08/24/2026 07:22:41 PM: INFO: ********Verify Login Test********
+08/24/2026 07:22:49 PM: INFO: ********Login test Passed********
+08/24/2026 08:25:25 PM: INFO: ********Test_001_Login********
+08/24/2026 08:25:25 PM: INFO: ********Verify Home Page Title********
+08/24/2026 08:25:27 PM: INFO: ********Verify Login Test********
+08/24/2026 08:25:28 PM: INFO: ********Home Page Title test is passed********
+08/24/2026 08:25:36 PM: INFO: ********Login test Passed********
+08/24/2026 08:40:16 PM: INFO: ********Test_001_Login********
+08/24/2026 08:40:16 PM: INFO: ********Verify Home Page Title********
+08/24/2026 08:40:16 PM: INFO: ********Verify Login Test********
+08/24/2026 08:40:20 PM: INFO: ********Home Page Title test is passed********
+08/24/2026 08:40:23 PM: INFO: ********Login test Passed********
+08/24/2026 10:04:32 PM: INFO: **********Test_002_DDT_Login********
+08/24/2026 10:04:32 PM: INFO: ********Verify Login DDT Test********
+08/24/2026 10:06:59 PM: INFO: **********Test_002_DDT_Login********
+08/24/2026 10:06:59 PM: INFO: ********Verify Login DDT Test********
+08/24/2026 10:07:09 PM: INFO: *****Test Passed****
+08/24/2026 10:07:10 PM: INFO: ****Login DDT Test Passed****
+08/25/2026 08:48:54 AM: INFO: **********Test_002_DDT_Login********
+08/25/2026 08:48:54 AM: INFO: ********Verify Login DDT Test********
+08/25/2026 08:49:04 AM: INFO: *****Test Passed****
+08/25/2026 08:52:07 AM: INFO: **********Test_002_DDT_Login********
+08/25/2026 08:52:07 AM: INFO: ********Verify Login DDT Test********
+08/25/2026 08:52:13 AM: INFO: Row 2: *****Test Passed*****
+08/25/2026 08:52:15 AM: ERROR: Row 3: *****Test Failed*****
+08/25/2026 09:15:04 AM: INFO: **********Test_002_DDT_Login********
+08/25/2026 09:15:04 AM: INFO: ********Verify Login DDT Test********
+08/25/2026 09:15:10 AM: INFO: Row 2: *****Test Passed*****
+08/25/2026 09:18:40 AM: INFO: **********Test_002_DDT_Login********
+08/25/2026 09:18:40 AM: INFO: ********Verify Login DDT Test********
+08/25/2026 09:18:48 AM: INFO: Row 2: *****Test Passed*****
+08/25/2026 09:18:52 AM: INFO: Row 3: *****Test Passed*****
+08/25/2026 09:18:55 AM: INFO: Row 4: *****Test Passed*****
+08/25/2026 09:18:59 AM: INFO: Row 5: *****Test Passed*****
+08/25/2026 09:19:02 AM: INFO: Row 6: *****Test Passed*****
+08/25/2026 09:19:02 AM: INFO: ****Login DDT Test Passed****
+08/25/2026 09:19:03 AM: INFO: ****End of Login DDT Test****
+08/25/2026 09:19:03 AM: INFO: *****Completed TC_LoginDDT_002******
+08/25/2026 05:55:37 PM: INFO: **********Test_003_AddCustomer**********
+08/25/2026 05:55:45 PM: INFO: *********Login Successful**********
+08/25/2026 05:55:45 PM: INFO: *****Starting Add Customer Test*******
+08/25/2026 05:55:47 PM: INFO: ********Providing customer info**********
+08/25/2026 06:03:56 PM: INFO: **********Test_003_AddCustomer**********
+08/25/2026 06:04:02 PM: INFO: *********Login Successful**********
+08/25/2026 06:04:02 PM: INFO: *****Starting Add Customer Test*******
+08/25/2026 06:04:06 PM: INFO: ********Providing customer info**********
+08/25/2026 06:06:48 PM: INFO: **********Test_003_AddCustomer**********
+08/25/2026 06:06:53 PM: INFO: *********Login Successful**********
+08/25/2026 06:06:53 PM: INFO: *****Starting Add Customer Test*******
+08/25/2026 06:06:57 PM: INFO: ********Providing customer info**********
+08/25/2026 06:25:23 PM: INFO: **********Test_003_AddCustomer**********
+08/25/2026 06:25:29 PM: INFO: *********Login Successful**********
+08/25/2026 06:25:29 PM: INFO: *****Starting Add Customer Test*******
+08/25/2026 06:25:32 PM: INFO: ********Providing customer info**********
+08/25/2026 06:25:38 PM: INFO: ********Saving customer info**********
+08/25/2026 06:25:38 PM: INFO: ********Add customer validation*********
+08/25/2026 06:25:39 PM: INFO: ********Add customer test passed**********
+08/25/2026 06:25:39 PM: INFO: ******Ending Add Customer Test*******
+08/25/2026 06:29:27 PM: INFO: **********Test_003_AddCustomer**********
+08/25/2026 06:29:34 PM: INFO: *********Login Successful**********
+08/25/2026 06:29:34 PM: INFO: *****Starting Add Customer Test*******
+08/25/2026 06:29:36 PM: INFO: ********Providing customer info**********
+08/25/2026 06:29:41 PM: INFO: ********Saving customer info**********
+08/25/2026 06:29:41 PM: INFO: ********Add customer validation*********
+08/25/2026 06:29:42 PM: INFO: ********Add customer test passed**********
+08/25/2026 06:29:43 PM: INFO: ******Ending Add Customer Test*******
+08/25/2026 08:22:47 PM: INFO: *******SearchCustomerByEmail_004*********
+08/25/2026 08:22:56 PM: INFO: ***********Login Successful**********
+08/25/2026 08:22:56 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/25/2026 08:22:57 PM: INFO: ******** searching customer by emailID***********
+08/25/2026 08:23:02 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/25/2026 08:28:26 PM: INFO: *******SearchCustomerByName_005*********
+08/25/2026 08:28:30 PM: INFO: ***********Login Successful**********
+08/25/2026 08:28:30 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/25/2026 08:28:34 PM: INFO: ******** searching customer by Name***********
+08/25/2026 08:28:38 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/25/2026 08:29:30 PM: INFO: *******SearchCustomerByName_005*********
+08/25/2026 08:29:35 PM: INFO: ***********Login Successful**********
+08/25/2026 08:29:35 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/25/2026 08:29:38 PM: INFO: ******** searching customer by Name***********
+08/25/2026 08:29:41 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/25/2026 08:38:42 PM: INFO: *******SearchCustomerByEmail_004*********
+08/25/2026 08:38:47 PM: INFO: ***********Login Successful**********
+08/25/2026 08:38:47 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/25/2026 08:38:50 PM: INFO: ******** searching customer by emailID***********
+08/25/2026 08:38:54 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/25/2026 08:40:06 PM: INFO: *******SearchCustomerByName_005*********
+08/25/2026 08:40:13 PM: INFO: ***********Login Successful**********
+08/25/2026 08:40:13 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/25/2026 08:40:14 PM: INFO: ******** searching customer by Name***********
+08/25/2026 08:40:18 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/25/2026 08:46:43 PM: INFO: **********Test_003_AddCustomer**********
+08/25/2026 08:46:48 PM: INFO: *********Login Successful**********
+08/25/2026 08:46:48 PM: INFO: *****Starting Add Customer Test*******
+08/25/2026 08:46:51 PM: INFO: ********Providing customer info**********
+08/25/2026 08:46:56 PM: INFO: ********Saving customer info**********
+08/25/2026 08:46:56 PM: INFO: ********Add customer validation*********
+08/25/2026 08:46:57 PM: INFO: ********Add customer test passed**********
+08/25/2026 08:46:57 PM: INFO: ******Ending Add Customer Test*******
+08/25/2026 10:18:03 PM: INFO: *******Exporting All Customers*******
+08/25/2026 10:18:11 PM: INFO: *******Login Successful*****
+08/25/2026 10:18:11 PM: INFO: ******Starting Export All Customers*******
+08/25/2026 10:18:13 PM: INFO: ******Scroll to Customers table and perform******
+08/25/2026 10:23:29 PM: INFO: **********Test_003_AddCustomer**********
+08/25/2026 10:23:34 PM: INFO: *********Login Successful**********
+08/25/2026 10:23:34 PM: INFO: *****Starting Add Customer Test*******
+08/25/2026 10:23:38 PM: INFO: ********Providing customer info**********
+08/25/2026 10:23:43 PM: INFO: ********Saving customer info**********
+08/25/2026 10:23:43 PM: INFO: ********Add customer validation*********
+08/25/2026 10:23:43 PM: INFO: ********Add customer test passed**********
+08/25/2026 10:23:44 PM: INFO: ******Ending Add Customer Test*******
+08/25/2026 10:24:44 PM: INFO: *******Exporting All Customers*******
+08/25/2026 10:24:51 PM: INFO: *******Login Successful*****
+08/25/2026 10:24:51 PM: INFO: ******Starting Export All Customers*******
+08/25/2026 10:24:53 PM: INFO: ******Scroll to Customers table and perform******
+08/25/2026 10:27:17 PM: INFO: *******Exporting All Customers*******
+08/25/2026 10:27:24 PM: INFO: *******Login Successful*****
+08/25/2026 10:27:24 PM: INFO: ******Starting Export All Customers*******
+08/25/2026 10:27:25 PM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 08:39:17 AM: INFO: *******Exporting All Customers*******
+08/26/2026 08:39:23 AM: INFO: *******Login Successful*****
+08/26/2026 08:39:23 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 08:39:29 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 08:41:31 AM: INFO: *******Exporting All Customers*******
+08/26/2026 08:41:35 AM: INFO: *******Login Successful*****
+08/26/2026 08:41:35 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 08:41:38 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 08:45:08 AM: INFO: *******Exporting All Customers*******
+08/26/2026 08:45:16 AM: INFO: *******Login Successful*****
+08/26/2026 08:45:16 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 08:45:17 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 08:47:55 AM: INFO: *******Exporting All Customers*******
+08/26/2026 08:47:59 AM: INFO: *******Login Successful*****
+08/26/2026 08:47:59 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 08:48:02 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 09:28:26 AM: INFO: *******Exporting All Customers*******
+08/26/2026 09:28:31 AM: INFO: *******Login Successful*****
+08/26/2026 09:28:31 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 09:28:35 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 09:38:42 AM: INFO: *******Exporting All Customers*******
+08/26/2026 09:38:49 AM: INFO: *******Login Successful*****
+08/26/2026 09:38:49 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 09:38:50 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 09:38:53 AM: INFO: ******* Export All Customers Completed *******
+08/26/2026 10:39:31 AM: INFO: *******Exporting All Customers*******
+08/26/2026 10:39:38 AM: INFO: *******Login Successful*****
+08/26/2026 10:39:38 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 10:39:39 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 10:44:37 AM: INFO: *******Exporting All Customers*******
+08/26/2026 10:44:43 AM: INFO: *******Login Successful*****
+08/26/2026 10:44:43 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 10:44:45 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 10:44:48 AM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 10:44:48 AM: INFO: ******* Export All Customers Completed *******
+08/26/2026 10:51:52 AM: INFO: *******Exporting All Customers*******
+08/26/2026 10:51:58 AM: INFO: *******Login Successful*****
+08/26/2026 10:51:58 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 10:52:01 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 10:52:03 AM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 10:52:03 AM: INFO: ******* Export All Customers Completed *******
+08/26/2026 11:01:38 AM: INFO: *******Exporting All Customers*******
+08/26/2026 11:01:44 AM: INFO: *******Login Successful*****
+08/26/2026 11:01:44 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 11:01:46 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 11:01:53 AM: INFO: ******* Export All Customers Completed *******
+08/26/2026 11:29:18 AM: INFO: *******Exporting All Customers*******
+08/26/2026 11:29:25 AM: INFO: *******Login Successful*****
+08/26/2026 11:29:25 AM: INFO: ******Starting Export All Customers*******
+08/26/2026 11:29:26 AM: INFO: ******Scroll to Customers table and perform******
+08/26/2026 11:29:28 AM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 11:29:29 AM: INFO: ******* Export All Customers Completed *******
+08/26/2026 11:34:53 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/26/2026 11:35:00 AM: INFO: ******* Login Successful *****
+08/26/2026 11:35:00 AM: INFO: ****** Navigating to Customers ******
+08/26/2026 11:35:02 AM: INFO: ****** Customers page opened ******
+08/26/2026 11:35:04 AM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 11:35:06 AM: INFO: ******* Export Selected Customers XML Completed *******
+08/26/2026 11:38:33 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/26/2026 11:38:37 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 11:38:39 AM: INFO: ******* Login Successful *****
+08/26/2026 11:38:39 AM: INFO: ****** Navigating to Customers ******
+08/26/2026 11:38:42 AM: INFO: ****** Customers page opened ******
+08/26/2026 11:38:44 AM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 11:38:45 AM: INFO: ******* Export Selected XML button clicked *******
+08/26/2026 11:38:50 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/26/2026 11:38:50 AM: INFO: ******* XML File Verification Successful *******
+08/26/2026 11:51:53 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/26/2026 11:51:56 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 11:52:02 AM: INFO: ******* Login Successful *****
+08/26/2026 11:52:02 AM: INFO: ****** Navigating to Customers ******
+08/26/2026 11:52:03 AM: INFO: ****** Customers page opened ******
+08/26/2026 11:52:05 AM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 11:52:07 AM: INFO: ******* Export Selected XML button clicked *******
+08/26/2026 11:52:09 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/26/2026 11:52:09 AM: INFO: ******* XML File Verification Successful *******
+08/26/2026 11:55:27 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/26/2026 11:55:33 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 11:55:33 AM: INFO: ******* Login Successful *****
+08/26/2026 11:55:33 AM: INFO: ****** Navigating to Customers ******
+08/26/2026 11:55:36 AM: INFO: ****** Customers page opened ******
+08/26/2026 11:55:39 AM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 11:55:40 AM: INFO: ******* Export Selected XML button clicked *******
+08/26/2026 11:55:42 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/26/2026 11:55:42 AM: INFO: ******* XML File Verification Successful *******
+08/26/2026 12:11:43 PM: INFO: ******* Exporting All Customers to XML *******
+08/26/2026 12:11:46 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 12:11:48 PM: INFO: ******* Login Successful *****
+08/26/2026 12:11:48 PM: INFO: ****** Starting Export All Customers *******
+08/26/2026 12:11:51 PM: INFO: ****** Customers page opened ******
+08/26/2026 12:11:54 PM: INFO: ******* Export All Customers XML button clicked *******
+08/26/2026 12:11:57 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/26/2026 12:11:57 PM: INFO: ******* XML File Verification Successful *******
+08/26/2026 02:29:56 PM: INFO: ******* Exporting All Customers to Excel *******
+08/26/2026 02:30:03 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 02:30:08 PM: INFO: ******* Login Successful *****
+08/26/2026 02:30:08 PM: INFO: ****** Starting Export All Customers *******
+08/26/2026 02:30:10 PM: INFO: ****** Customers page opened ******
+08/26/2026 02:30:14 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/26/2026 02:30:16 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/26/2026 02:30:16 PM: INFO: ******* Excel File Verification Successful *******
+08/26/2026 02:37:32 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/26/2026 02:37:36 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 02:37:38 PM: INFO: ******* Login Successful *****
+08/26/2026 02:37:38 PM: INFO: ****** Navigating to Customers ******
+08/26/2026 02:37:41 PM: INFO: ****** Customers page opened ******
+08/26/2026 02:37:43 PM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 02:37:45 PM: INFO: ******* Export Selected Excel button clicked *******
+08/26/2026 02:37:48 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/26/2026 02:37:48 PM: INFO: ******* Excel File Verification Successful *******
+08/26/2026 04:39:06 PM: INFO: ******* Editing Customer *******
+08/26/2026 04:39:15 PM: INFO: ******* Login Successful *****
+08/26/2026 04:39:18 PM: INFO: ******* Customers page opened *******
+08/26/2026 04:39:21 PM: INFO: ******* Edit Customer button clicked *******
+08/26/2026 04:39:24 PM: INFO: ******* Edit Customer page opened successfully *******
+08/26/2026 04:55:56 PM: INFO: ******* Editing Customer *******
+08/26/2026 04:56:02 PM: INFO: ******* Login Successful *****
+08/26/2026 04:56:05 PM: INFO: ******* Customers page opened *******
+08/26/2026 04:56:08 PM: INFO: ******* Edit Customer button clicked *******
+08/26/2026 04:56:11 PM: INFO: ******* Edit Customer page opened successfully *******
+08/26/2026 04:56:12 PM: INFO: ********* Edit Customer test passed **********
+08/26/2026 04:56:13 PM: INFO: ****** Ending Edit Customer Test *******
+08/26/2026 05:07:49 PM: INFO: **********Test_003_AddCustomer**********
+08/26/2026 05:07:55 PM: INFO: *********Login Successful**********
+08/26/2026 05:07:55 PM: INFO: *****Starting Add Customer Test*******
+08/26/2026 05:08:00 PM: INFO: ********Providing customer info**********
+08/26/2026 05:08:14 PM: INFO: ********Saving customer info**********
+08/26/2026 05:08:14 PM: INFO: ********Add customer validation*********
+08/26/2026 05:08:15 PM: INFO: ********Add customer test passed**********
+08/26/2026 05:08:16 PM: INFO: ******Ending Add Customer Test*******
+08/26/2026 06:04:42 PM: INFO: ******* Deleting Customer *******
+08/26/2026 06:04:50 PM: INFO: ******* Login Successful *****
+08/26/2026 06:04:51 PM: INFO: ******* Customers page opened *******
+08/26/2026 06:04:55 PM: INFO: ******* Edit Customer button clicked *******
+08/26/2026 06:04:57 PM: INFO: ******* Edit Customer page opened successfully *******
+08/26/2026 06:04:57 PM: INFO: ******* Delete Customer button clicked *******
+08/26/2026 06:04:59 PM: INFO: ******* Delete confirmation accepted *******
+08/26/2026 06:04:59 PM: INFO: ********* Delete Customer test passed **********
+08/26/2026 06:05:00 PM: INFO: ****** Ending Delete Customer Test *******
+08/26/2026 08:19:33 PM: INFO: **********Test_003_AddCustomer**********
+08/26/2026 08:19:41 PM: INFO: *********Login Successful**********
+08/26/2026 08:19:41 PM: INFO: *****Starting Add Customer Test*******
+08/26/2026 08:19:43 PM: INFO: ********Providing customer info**********
+08/26/2026 08:19:49 PM: INFO: ********Saving customer info**********
+08/26/2026 08:19:49 PM: INFO: ********Add customer validation*********
+08/26/2026 08:19:50 PM: INFO: ********Add customer test passed**********
+08/26/2026 08:19:50 PM: INFO: ******Ending Add Customer Test*******
+08/26/2026 08:19:54 PM: INFO: ********Verify Login Test********
+08/26/2026 08:20:00 PM: INFO: ********Login test Passed********
+08/26/2026 08:40:07 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/26/2026 08:40:11 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 08:40:13 PM: INFO: ******* Login Successful *****
+08/26/2026 08:40:13 PM: INFO: ****** Navigating to Customers ******
+08/26/2026 08:40:14 PM: INFO: ****** Customers page opened ******
+08/26/2026 08:40:17 PM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 08:40:18 PM: INFO: ******* Export Selected XML button clicked *******
+08/26/2026 08:40:19 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/26/2026 08:40:19 PM: INFO: ******* XML File Verification Successful *******
+08/26/2026 09:05:41 PM: INFO: **********Test_003_AddCustomer**********
+08/26/2026 09:05:45 PM: INFO: *********Login Successful**********
+08/26/2026 09:05:45 PM: INFO: *****Starting Add Customer Test*******
+08/26/2026 09:05:49 PM: INFO: ********Providing customer info**********
+08/26/2026 09:05:54 PM: INFO: ********Saving customer info**********
+08/26/2026 09:05:54 PM: INFO: ********Add customer validation*********
+08/26/2026 09:05:54 PM: INFO: ********Add customer test passed**********
+08/26/2026 09:05:55 PM: INFO: ******Ending Add Customer Test*******
+08/26/2026 09:05:59 PM: INFO: ********Verify Login Test********
+08/26/2026 09:06:05 PM: INFO: ********Login test Passed********
+08/26/2026 09:33:31 PM: INFO: ******* Deleting Customer *******
+08/26/2026 09:33:39 PM: INFO: ******* Login Successful *****
+08/26/2026 09:33:40 PM: INFO: ******* Customers page opened *******
+08/26/2026 09:33:44 PM: INFO: ******* Edit Customer button clicked *******
+08/26/2026 09:33:46 PM: INFO: ******* Edit Customer page opened successfully *******
+08/26/2026 09:33:46 PM: INFO: ******* Delete Customer button clicked *******
+08/26/2026 09:33:47 PM: INFO: ******* Delete confirmation accepted *******
+08/26/2026 09:33:48 PM: INFO: ********* Delete Customer test passed **********
+08/26/2026 09:33:49 PM: INFO: ****** Ending Delete Customer Test *******
+08/26/2026 09:33:53 PM: INFO: ******* Editing Customer *******
+08/26/2026 09:33:57 PM: INFO: ******* Login Successful *****
+08/26/2026 09:33:59 PM: INFO: ******* Customers page opened *******
+08/26/2026 09:34:02 PM: INFO: ******* Edit Customer button clicked *******
+08/26/2026 09:34:05 PM: INFO: ******* Edit Customer page opened successfully *******
+08/26/2026 09:34:07 PM: INFO: ********* Edit Customer test passed **********
+08/26/2026 09:34:07 PM: INFO: ****** Ending Edit Customer Test *******
+08/26/2026 09:34:11 PM: INFO: ******* Exporting All Customers to Excel *******
+08/26/2026 09:34:14 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 09:34:15 PM: INFO: ******* Login Successful *****
+08/26/2026 09:34:15 PM: INFO: ****** Starting Export All Customers *******
+08/26/2026 09:34:18 PM: INFO: ****** Customers page opened ******
+08/26/2026 09:34:22 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/26/2026 09:34:24 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/26/2026 09:34:24 PM: INFO: ******* Excel File Verification Successful *******
+08/26/2026 09:34:28 PM: INFO: ******* Exporting All Customers to XML *******
+08/26/2026 09:34:32 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 09:34:32 PM: INFO: ******* Login Successful *****
+08/26/2026 09:34:32 PM: INFO: ****** Starting Export All Customers *******
+08/26/2026 09:34:37 PM: INFO: ****** Customers page opened ******
+08/26/2026 09:34:40 PM: INFO: ******* Export All Customers XML button clicked *******
+08/26/2026 09:34:44 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/26/2026 09:34:44 PM: INFO: ******* XML File Verification Successful *******
+08/26/2026 09:34:50 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/26/2026 09:34:52 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 09:34:53 PM: INFO: ******* Login Successful *****
+08/26/2026 09:34:53 PM: INFO: ****** Navigating to Customers ******
+08/26/2026 09:34:56 PM: INFO: ****** Customers page opened ******
+08/26/2026 09:34:58 PM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 09:35:00 PM: INFO: ******* Export Selected Excel button clicked *******
+08/26/2026 09:35:01 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/26/2026 09:35:01 PM: INFO: ******* Excel File Verification Successful *******
+08/26/2026 09:35:05 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/26/2026 09:35:09 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/26/2026 09:35:10 PM: INFO: ******* Login Successful *****
+08/26/2026 09:35:10 PM: INFO: ****** Navigating to Customers ******
+08/26/2026 09:35:13 PM: INFO: ****** Customers page opened ******
+08/26/2026 09:35:15 PM: INFO: ******* Customers Selected Successfully *******
+08/26/2026 09:35:16 PM: INFO: ******* Export Selected XML button clicked *******
+08/26/2026 09:35:20 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/26/2026 09:35:20 PM: INFO: ******* XML File Verification Successful *******
+08/26/2026 09:35:25 PM: INFO: ********Test_001_Login********
+08/26/2026 09:35:25 PM: INFO: ********Verify Home Page Title********
+08/26/2026 09:35:29 PM: INFO: ********Home Page Title test is passed********
+08/26/2026 09:35:33 PM: INFO: ********Verify Login Test********
+08/26/2026 09:35:39 PM: INFO: ********Login test Passed********
+08/26/2026 09:35:43 PM: INFO: **********Test_002_DDT_Login********
+08/26/2026 09:35:43 PM: INFO: ********Verify Login DDT Test********
+08/26/2026 09:35:49 PM: INFO: Row 2: *****Test Passed*****
+08/26/2026 09:35:53 PM: INFO: Row 3: *****Test Passed*****
+08/26/2026 09:35:55 PM: INFO: Row 4: *****Test Passed*****
+08/26/2026 09:35:59 PM: INFO: Row 5: *****Test Passed*****
+08/26/2026 09:36:02 PM: INFO: Row 6: *****Test Passed*****
+08/26/2026 09:36:02 PM: INFO: ****Login DDT Test Passed****
+08/26/2026 09:36:02 PM: INFO: ****End of Login DDT Test****
+08/26/2026 09:36:02 PM: INFO: *****Completed TC_LoginDDT_002******
+08/26/2026 09:36:07 PM: INFO: *******SearchCustomerByEmail_004*********
+08/26/2026 09:36:11 PM: INFO: ***********Login Successful**********
+08/26/2026 09:36:11 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/26/2026 09:36:14 PM: INFO: ******** searching customer by emailID***********
+08/26/2026 09:36:18 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/26/2026 09:36:22 PM: INFO: *******SearchCustomerByName_005*********
+08/26/2026 09:36:26 PM: INFO: ***********Login Successful**********
+08/26/2026 09:36:26 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/26/2026 09:36:28 PM: INFO: ******** searching customer by Name***********
+08/26/2026 09:36:32 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/27/2026 08:27:39 AM: INFO: ******* Deleting Customer *******
+08/27/2026 08:27:46 AM: INFO: ******* Login Successful *****
+08/27/2026 08:27:49 AM: INFO: ******* Customers page opened *******
+08/27/2026 08:27:52 AM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 08:27:54 AM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 08:27:54 AM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 08:27:56 AM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 08:27:57 AM: INFO: ********* Delete Customer test passed **********
+08/27/2026 08:27:57 AM: INFO: ****** Ending Delete Customer Test *******
+08/27/2026 08:28:02 AM: INFO: ******* Editing Customer *******
+08/27/2026 08:28:07 AM: INFO: ******* Login Successful *****
+08/27/2026 08:28:09 AM: INFO: ******* Customers page opened *******
+08/27/2026 08:28:13 AM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 08:28:15 AM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 08:28:17 AM: INFO: ********* Edit Customer test passed **********
+08/27/2026 08:28:17 AM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 08:28:24 AM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 08:28:28 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 08:28:30 AM: INFO: ******* Login Successful *****
+08/27/2026 08:28:30 AM: INFO: ****** Starting Export All Customers *******
+08/27/2026 08:28:32 AM: INFO: ****** Customers page opened ******
+08/27/2026 08:28:36 AM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 08:28:37 AM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 08:28:37 AM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 08:28:43 AM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 08:28:47 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 08:28:48 AM: INFO: ******* Login Successful *****
+08/27/2026 08:28:48 AM: INFO: ****** Starting Export All Customers *******
+08/27/2026 08:28:52 AM: INFO: ****** Customers page opened ******
+08/27/2026 08:28:56 AM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 08:29:00 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 08:29:00 AM: INFO: ******* XML File Verification Successful *******
+08/27/2026 08:29:06 AM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 08:29:09 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 08:29:11 AM: INFO: ******* Login Successful *****
+08/27/2026 08:29:11 AM: INFO: ****** Navigating to Customers ******
+08/27/2026 08:29:13 AM: INFO: ****** Customers page opened ******
+08/27/2026 08:29:16 AM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 08:29:17 AM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 08:29:18 AM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 08:29:18 AM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 08:29:25 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 08:29:28 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 08:29:31 AM: INFO: ******* Login Successful *****
+08/27/2026 08:29:31 AM: INFO: ****** Navigating to Customers ******
+08/27/2026 08:29:33 AM: INFO: ****** Customers page opened ******
+08/27/2026 08:29:35 AM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 08:29:36 AM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 08:29:37 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 08:29:37 AM: INFO: ******* XML File Verification Successful *******
+08/27/2026 08:29:44 AM: INFO: ********Test_001_Login********
+08/27/2026 08:29:44 AM: INFO: ********Verify Home Page Title********
+08/27/2026 08:29:48 AM: INFO: ********Home Page Title test is passed********
+08/27/2026 08:29:52 AM: INFO: ********Verify Login Test********
+08/27/2026 08:29:58 AM: INFO: ********Login test Passed********
+08/27/2026 08:30:03 AM: INFO: **********Test_002_DDT_Login********
+08/27/2026 08:30:03 AM: INFO: ********Verify Login DDT Test********
+08/27/2026 08:30:11 AM: INFO: Row 2: *****Test Passed*****
+08/27/2026 08:30:15 AM: INFO: Row 3: *****Test Passed*****
+08/27/2026 08:30:18 AM: INFO: Row 4: *****Test Passed*****
+08/27/2026 08:30:21 AM: INFO: Row 5: *****Test Passed*****
+08/27/2026 08:30:24 AM: INFO: Row 6: *****Test Passed*****
+08/27/2026 08:30:24 AM: INFO: ****Login DDT Test Passed****
+08/27/2026 08:30:25 AM: INFO: ****End of Login DDT Test****
+08/27/2026 08:30:25 AM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 08:30:29 AM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 08:30:33 AM: INFO: ***********Login Successful**********
+08/27/2026 08:30:33 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 08:30:36 AM: INFO: ******** searching customer by emailID***********
+08/27/2026 08:30:39 AM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/27/2026 08:30:43 AM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 08:30:47 AM: INFO: ***********Login Successful**********
+08/27/2026 08:30:47 AM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 08:30:50 AM: INFO: ******** searching customer by Name***********
+08/27/2026 08:30:53 AM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/27/2026 08:34:15 AM: INFO: ********Verify Login Test********
+08/27/2026 08:34:21 AM: INFO: ********Login test Passed********
+08/27/2026 08:38:10 AM: INFO: ******* Deleting Customer *******
+08/27/2026 08:38:15 AM: INFO: ******* Login Successful *****
+08/27/2026 08:38:17 AM: INFO: ******* Customers page opened *******
+08/27/2026 08:38:21 AM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 08:38:23 AM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 08:38:23 AM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 08:38:24 AM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 08:38:25 AM: INFO: ********* Delete Customer test passed **********
+08/27/2026 08:38:25 AM: INFO: ****** Ending Delete Customer Test *******
+08/27/2026 08:38:29 AM: INFO: ******* Editing Customer *******
+08/27/2026 08:38:34 AM: INFO: ******* Login Successful *****
+08/27/2026 08:38:36 AM: INFO: ******* Customers page opened *******
+08/27/2026 08:38:39 AM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 08:38:41 AM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 08:38:43 AM: INFO: ********* Edit Customer test passed **********
+08/27/2026 08:38:43 AM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 08:38:47 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 08:38:51 AM: INFO: *********Login Successful**********
+08/27/2026 08:38:51 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 08:38:54 AM: INFO: ********Providing customer info**********
+08/27/2026 08:39:06 AM: INFO: ********Saving customer info**********
+08/27/2026 08:39:06 AM: INFO: ********Add customer validation*********
+08/27/2026 08:39:06 AM: INFO: ********Add customer test passed**********
+08/27/2026 08:39:07 AM: INFO: ******Ending Add Customer Test*******
+08/27/2026 08:39:11 AM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 08:39:15 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 08:39:15 AM: INFO: ******* Login Successful *****
+08/27/2026 08:39:15 AM: INFO: ****** Starting Export All Customers *******
+08/27/2026 08:39:18 AM: INFO: ****** Customers page opened ******
+08/27/2026 08:39:22 AM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 08:39:25 AM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 08:39:25 AM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 08:39:30 AM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 08:39:33 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 08:39:35 AM: INFO: ******* Login Successful *****
+08/27/2026 08:39:35 AM: INFO: ****** Starting Export All Customers *******
+08/27/2026 08:39:36 AM: INFO: ****** Customers page opened ******
+08/27/2026 08:39:40 AM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 08:39:41 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 08:39:41 AM: INFO: ******* XML File Verification Successful *******
+08/27/2026 08:39:45 AM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 08:39:48 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 08:39:49 AM: INFO: ******* Login Successful *****
+08/27/2026 08:39:49 AM: INFO: ****** Navigating to Customers ******
+08/27/2026 08:39:51 AM: INFO: ****** Customers page opened ******
+08/27/2026 08:39:54 AM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 08:39:55 AM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 08:39:59 AM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 08:39:59 AM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 08:40:04 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 08:40:07 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 08:40:08 AM: INFO: ******* Login Successful *****
+08/27/2026 08:40:08 AM: INFO: ****** Navigating to Customers ******
+08/27/2026 08:40:10 AM: INFO: ****** Customers page opened ******
+08/27/2026 08:40:13 AM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 08:40:15 AM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 08:40:16 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 08:40:16 AM: INFO: ******* XML File Verification Successful *******
+08/27/2026 08:40:20 AM: INFO: ********Test_001_Login********
+08/27/2026 08:40:20 AM: INFO: ********Verify Home Page Title********
+08/27/2026 08:40:23 AM: INFO: ********Home Page Title test is passed********
+08/27/2026 08:40:27 AM: INFO: ********Verify Login Test********
+08/27/2026 08:40:32 AM: INFO: ********Login test Passed********
+08/27/2026 08:40:37 AM: INFO: **********Test_002_DDT_Login********
+08/27/2026 08:40:37 AM: INFO: ********Verify Login DDT Test********
+08/27/2026 08:40:43 AM: INFO: Row 2: *****Test Passed*****
+08/27/2026 08:40:46 AM: INFO: Row 3: *****Test Passed*****
+08/27/2026 08:40:49 AM: INFO: Row 4: *****Test Passed*****
+08/27/2026 08:40:52 AM: INFO: Row 5: *****Test Passed*****
+08/27/2026 08:40:56 AM: INFO: Row 6: *****Test Passed*****
+08/27/2026 08:40:56 AM: INFO: ****Login DDT Test Passed****
+08/27/2026 08:40:56 AM: INFO: ****End of Login DDT Test****
+08/27/2026 08:40:56 AM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 08:41:00 AM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 08:41:05 AM: INFO: ***********Login Successful**********
+08/27/2026 08:41:05 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 08:41:08 AM: INFO: ******** searching customer by emailID***********
+08/27/2026 08:41:11 AM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/27/2026 08:41:15 AM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 08:41:19 AM: INFO: ***********Login Successful**********
+08/27/2026 08:41:19 AM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 08:41:22 AM: INFO: ******** searching customer by Name***********
+08/27/2026 08:41:26 AM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/27/2026 08:55:20 AM: WARNING: Error sending stats to Plausible: error sending request for url (https://plausible.io/api/event)
+08/27/2026 08:55:32 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 08:55:39 AM: INFO: *********Login Successful**********
+08/27/2026 08:55:39 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 08:56:10 AM: INFO: ********Verify Login Test********
+08/27/2026 08:56:16 AM: INFO: ********Login test Passed********
+08/27/2026 09:07:29 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 09:07:39 AM: INFO: *********Login Successful**********
+08/27/2026 09:07:39 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 09:07:46 AM: INFO: ********Providing customer info**********
+08/27/2026 09:07:50 AM: INFO: ********Saving customer info**********
+08/27/2026 09:07:50 AM: INFO: ********Add customer validation*********
+08/27/2026 09:07:51 AM: INFO: ********Add customer test passed**********
+08/27/2026 09:07:53 AM: INFO: ******Ending Add Customer Test*******
+08/27/2026 09:08:05 AM: INFO: ********Verify Login Test********
+08/27/2026 09:08:12 AM: INFO: ********Login test Passed********
+08/27/2026 09:11:32 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 09:11:36 AM: INFO: *********Login Successful**********
+08/27/2026 09:11:36 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 09:11:39 AM: INFO: ********Providing customer info**********
+08/27/2026 09:11:44 AM: INFO: ********Saving customer info**********
+08/27/2026 09:11:44 AM: INFO: ********Add customer validation*********
+08/27/2026 09:11:44 AM: INFO: ********Add customer test passed**********
+08/27/2026 09:11:45 AM: INFO: ******Ending Add Customer Test*******
+08/27/2026 09:11:49 AM: INFO: ********Verify Login Test********
+08/27/2026 09:11:53 AM: INFO: ********Login test Passed********
+08/27/2026 09:12:08 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 09:12:14 AM: INFO: *********Login Successful**********
+08/27/2026 09:12:14 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 09:12:30 AM: INFO: ********Verify Login Test********
+08/27/2026 09:12:37 AM: INFO: ********Login test Passed********
+08/27/2026 09:16:36 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 09:16:42 AM: INFO: *********Login Successful**********
+08/27/2026 09:16:42 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 09:16:57 AM: INFO: ********Verify Login Test********
+08/27/2026 09:17:02 AM: INFO: ********Login test Passed********
+08/27/2026 09:17:18 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 09:17:25 AM: INFO: *********Login Successful**********
+08/27/2026 09:17:25 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 09:17:50 AM: INFO: ********Verify Login Test********
+08/27/2026 09:17:57 AM: INFO: ********Login test Passed********
+08/27/2026 10:17:34 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 10:17:40 AM: INFO: *********Login Successful**********
+08/27/2026 10:17:40 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 10:17:42 AM: INFO: ********Providing customer info**********
+08/27/2026 10:17:48 AM: INFO: ********Verify Login Test********
+08/27/2026 10:17:53 AM: INFO: ********Login test Passed********
+08/27/2026 10:18:13 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 10:18:23 AM: INFO: *********Login Successful**********
+08/27/2026 10:18:23 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 10:18:28 AM: INFO: ********Providing customer info**********
+08/27/2026 10:19:02 AM: INFO: ********Verify Login Test********
+08/27/2026 10:19:08 AM: INFO: ********Login test Passed********
+08/27/2026 10:52:26 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 10:52:30 AM: INFO: *********Login Successful**********
+08/27/2026 10:52:30 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 10:52:33 AM: INFO: ********Providing customer info**********
+08/27/2026 10:52:38 AM: INFO: ********Verify Login Test********
+08/27/2026 10:52:43 AM: INFO: ********Login test Passed********
+08/27/2026 10:53:00 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 10:53:08 AM: INFO: *********Login Successful**********
+08/27/2026 10:53:08 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 10:53:45 AM: INFO: ********Verify Login Test********
+08/27/2026 10:53:52 AM: INFO: ********Login test Passed********
+08/27/2026 11:41:58 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:42:03 AM: INFO: *********Login Successful**********
+08/27/2026 11:42:03 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:42:05 AM: INFO: ********Providing customer info**********
+08/27/2026 11:42:11 AM: INFO: ********Verify Login Test********
+08/27/2026 11:42:16 AM: INFO: ********Login test Passed********
+08/27/2026 11:42:33 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:42:40 AM: INFO: *********Login Successful**********
+08/27/2026 11:42:40 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:42:43 AM: INFO: ********Providing customer info**********
+08/27/2026 11:42:59 AM: INFO: ********Verify Login Test********
+08/27/2026 11:43:03 AM: INFO: ********Login test Passed********
+08/27/2026 11:45:37 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:45:42 AM: INFO: *********Login Successful**********
+08/27/2026 11:45:42 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:45:44 AM: INFO: ********Providing customer info**********
+08/27/2026 11:45:51 AM: INFO: ********Verify Login Test********
+08/27/2026 11:45:56 AM: INFO: ********Login test Passed********
+08/27/2026 11:46:19 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:46:31 AM: INFO: *********Login Successful**********
+08/27/2026 11:46:31 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:46:38 AM: INFO: ********Providing customer info**********
+08/27/2026 11:46:54 AM: INFO: ********Verify Login Test********
+08/27/2026 11:47:01 AM: INFO: ********Login test Passed********
+08/27/2026 11:49:44 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:49:48 AM: INFO: *********Login Successful**********
+08/27/2026 11:49:48 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:49:52 AM: INFO: ********Providing customer info**********
+08/27/2026 11:49:58 AM: INFO: ********Verify Login Test********
+08/27/2026 11:50:03 AM: INFO: ********Login test Passed********
+08/27/2026 11:50:18 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:50:26 AM: INFO: *********Login Successful**********
+08/27/2026 11:50:26 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:50:56 AM: INFO: ********Verify Login Test********
+08/27/2026 11:51:02 AM: INFO: ********Login test Passed********
+08/27/2026 11:53:35 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:53:41 AM: INFO: *********Login Successful**********
+08/27/2026 11:53:41 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:53:44 AM: INFO: ********Providing customer info**********
+08/27/2026 11:53:49 AM: INFO: ********Verify Login Test********
+08/27/2026 11:53:54 AM: INFO: ********Login test Passed********
+08/27/2026 11:54:09 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:54:20 AM: INFO: *********Login Successful**********
+08/27/2026 11:54:20 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:55:01 AM: INFO: ********Verify Login Test********
+08/27/2026 11:55:06 AM: INFO: ********Login test Passed********
+08/27/2026 11:55:26 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:55:30 AM: INFO: *********Login Successful**********
+08/27/2026 11:55:30 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:55:34 AM: INFO: ********Providing customer info**********
+08/27/2026 11:55:36 AM: INFO: ********Saving customer info**********
+08/27/2026 11:55:36 AM: INFO: ********Add customer validation*********
+08/27/2026 11:55:37 AM: ERROR: ********Add customer test failed**********
+08/27/2026 11:55:41 AM: INFO: ********Verify Login Test********
+08/27/2026 11:55:46 AM: INFO: ********Login test Passed********
+08/27/2026 11:56:01 AM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 11:56:07 AM: INFO: *********Login Successful**********
+08/27/2026 11:56:07 AM: INFO: *****Starting Add Customer Test*******
+08/27/2026 11:56:23 AM: INFO: ********Verify Login Test********
+08/27/2026 11:56:29 AM: INFO: ********Login test Passed********
+08/27/2026 12:01:25 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:01:29 PM: INFO: *********Login Successful**********
+08/27/2026 12:01:29 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:01:33 PM: INFO: ********Providing customer info**********
+08/27/2026 12:01:35 PM: INFO: ********Saving customer info**********
+08/27/2026 12:01:35 PM: INFO: ********Add customer validation*********
+08/27/2026 12:01:35 PM: ERROR: ********Add customer test failed**********
+08/27/2026 12:01:40 PM: INFO: ********Verify Login Test********
+08/27/2026 12:01:44 PM: INFO: ********Login test Passed********
+08/27/2026 12:01:59 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:02:09 PM: INFO: *********Login Successful**********
+08/27/2026 12:02:09 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:02:45 PM: INFO: ********Verify Login Test********
+08/27/2026 12:02:50 PM: INFO: ********Login test Passed********
+08/27/2026 12:05:00 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:05:04 PM: INFO: *********Login Successful**********
+08/27/2026 12:05:04 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:05:08 PM: INFO: ********Providing customer info**********
+08/27/2026 12:05:10 PM: INFO: ********Saving customer info**********
+08/27/2026 12:05:10 PM: INFO: ********Add customer validation*********
+08/27/2026 12:05:31 PM: ERROR: ********Add customer test failed********** Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff6dbfaabb5+151b5]
+	chromedriver!GetHandleVerifier [0x7ff6dbfaac10+15210]
+	chromedriver!(No symbol) [0x7ff6dbad5d6d]
+	chromedriver!(No symbol) [0x7ff6dbb31289]
+	chromedriver!(No symbol) [0x7ff6dbb3158c]
+	chromedriver!(No symbol) [0x7ff6dbb82027]
+	chromedriver!(No symbol) [0x7ff6dbb7ec0b]
+	chromedriver!(No symbol) [0x7ff6dbb237cc]
+	chromedriver!(No symbol) [0x7ff6dbb246f3]
+	chromedriver!GetHandleVerifier [0x7ff6dc5cb79b+635d9b]
+	chromedriver!GetHandleVerifier [0x7ff6dc5c5ac6+6300c6]
+	chromedriver!GetHandleVerifier [0x7ff6dc5ebcee+6562ee]
+	chromedriver!GetHandleVerifier [0x7ff6dbfc8ffe+335fe]
+	chromedriver!GetHandleVerifier [0x7ff6dbfd147c+3ba7c]
+	chromedriver!GetHandleVerifier [0x7ff6dbfb4d64+1f364]
+	chromedriver!GetHandleVerifier [0x7ff6dbfb4ef4+1f4f4]
+	chromedriver!GetHandleVerifier [0x7ff6dbf97d97+2397]
+	KERNEL32!BaseThreadInitThunk [0x7fff5b037374+14]
+	ntdll!RtlUserThreadStart [0x7fff5ca7cc91+21]
+
+08/27/2026 12:05:31 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 12:05:35 PM: INFO: ********Verify Login Test********
+08/27/2026 12:05:41 PM: INFO: ********Login test Passed********
+08/27/2026 12:05:58 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:06:02 PM: INFO: *********Login Successful**********
+08/27/2026 12:06:02 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:06:07 PM: INFO: ********Providing customer info**********
+08/27/2026 12:06:10 PM: INFO: ********Saving customer info**********
+08/27/2026 12:06:10 PM: INFO: ********Add customer validation*********
+08/27/2026 12:06:31 PM: ERROR: ********Add customer test failed********** Message: 
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:169:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:538:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:137:16
+
+08/27/2026 12:06:33 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 12:06:47 PM: INFO: ********Verify Login Test********
+08/27/2026 12:06:54 PM: INFO: ********Login test Passed********
+08/27/2026 12:34:37 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:34:40 PM: INFO: *********Login Successful**********
+08/27/2026 12:34:40 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:34:45 PM: INFO: ********Providing customer info**********
+08/27/2026 12:34:47 PM: INFO: ********Saving customer info**********
+08/27/2026 12:34:47 PM: INFO: ********Add customer validation*********
+08/27/2026 12:34:48 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 12:34:48 PM: INFO: ********Add customer test passed**********
+08/27/2026 12:34:48 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 12:34:52 PM: INFO: ********Verify Login Test********
+08/27/2026 12:34:57 PM: INFO: ********Login test Passed********
+08/27/2026 12:35:13 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:35:19 PM: INFO: *********Login Successful**********
+08/27/2026 12:35:19 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:35:58 PM: INFO: ********Verify Login Test********
+08/27/2026 12:36:03 PM: INFO: ********Login test Passed********
+08/27/2026 12:45:29 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:45:36 PM: INFO: *********Login Successful**********
+08/27/2026 12:45:36 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:48:58 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:49:04 PM: INFO: *********Login Successful**********
+08/27/2026 12:49:04 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:53:01 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:53:06 PM: INFO: *********Login Successful**********
+08/27/2026 12:53:06 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:53:10 PM: INFO: ********Providing customer info**********
+08/27/2026 12:53:12 PM: INFO: ********Saving customer info**********
+08/27/2026 12:53:12 PM: INFO: ********Add customer validation*********
+08/27/2026 12:53:13 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 12:53:13 PM: INFO: ********Add customer test passed**********
+08/27/2026 12:53:15 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 12:54:36 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:54:40 PM: INFO: *********Login Successful**********
+08/27/2026 12:54:40 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:54:43 PM: INFO: ********Providing customer info**********
+08/27/2026 12:54:45 PM: INFO: ********Saving customer info**********
+08/27/2026 12:54:45 PM: INFO: ********Add customer validation*********
+08/27/2026 12:54:45 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 12:54:45 PM: INFO: ********Add customer test passed**********
+08/27/2026 12:54:46 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 12:54:50 PM: INFO: ********Verify Login Test********
+08/27/2026 12:54:55 PM: INFO: ********Login test Passed********
+08/27/2026 12:55:09 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 12:55:14 PM: INFO: *********Login Successful**********
+08/27/2026 12:55:14 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 12:55:17 PM: INFO: ********Providing customer info**********
+08/27/2026 12:55:20 PM: INFO: ********Saving customer info**********
+08/27/2026 12:55:20 PM: INFO: ********Add customer validation*********
+08/27/2026 12:55:20 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 12:55:20 PM: INFO: ********Add customer test passed**********
+08/27/2026 12:55:22 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 12:55:34 PM: INFO: ********Verify Login Test********
+08/27/2026 12:55:39 PM: INFO: ********Login test Passed********
+08/27/2026 01:00:29 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 01:00:32 PM: INFO: *********Login Successful**********
+08/27/2026 01:00:32 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 01:00:36 PM: INFO: ********Providing customer info**********
+08/27/2026 01:00:38 PM: INFO: ********Saving customer info**********
+08/27/2026 01:00:38 PM: INFO: ********Add customer validation*********
+08/27/2026 01:00:38 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 01:00:38 PM: INFO: ********Add customer test passed**********
+08/27/2026 01:00:39 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 01:00:42 PM: INFO: ********Verify Login Test********
+08/27/2026 01:00:47 PM: INFO: ********Login test Passed********
+08/27/2026 01:01:02 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 01:01:08 PM: INFO: *********Login Successful**********
+08/27/2026 01:01:08 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 01:01:12 PM: INFO: ********Providing customer info**********
+08/27/2026 01:01:15 PM: INFO: ********Saving customer info**********
+08/27/2026 01:01:15 PM: INFO: ********Add customer validation*********
+08/27/2026 01:01:15 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 01:01:15 PM: INFO: ********Add customer test passed**********
+08/27/2026 01:01:17 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 01:01:28 PM: INFO: ********Verify Login Test********
+08/27/2026 01:01:33 PM: INFO: ********Login test Passed********
+08/27/2026 01:14:42 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 01:14:47 PM: INFO: *********Login Successful**********
+08/27/2026 01:14:47 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 01:14:50 PM: INFO: ********Providing customer info**********
+08/27/2026 01:14:52 PM: INFO: ********Saving customer info**********
+08/27/2026 01:14:52 PM: INFO: ********Add customer validation*********
+08/27/2026 01:14:53 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 01:14:53 PM: INFO: ********Add customer test passed**********
+08/27/2026 01:14:53 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 01:14:58 PM: INFO: ********Verify Login Test********
+08/27/2026 01:15:03 PM: INFO: ********Login test Passed********
+08/27/2026 01:15:19 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 01:15:25 PM: INFO: *********Login Successful**********
+08/27/2026 01:15:25 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 01:15:40 PM: INFO: ********Providing customer info**********
+08/27/2026 01:15:44 PM: INFO: ********Saving customer info**********
+08/27/2026 01:15:44 PM: INFO: ********Add customer validation*********
+08/27/2026 01:15:45 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 01:15:45 PM: INFO: ********Add customer test passed**********
+08/27/2026 01:15:48 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 01:16:00 PM: INFO: ********Verify Login Test********
+08/27/2026 01:16:05 PM: INFO: ********Login test Passed********
+08/27/2026 02:00:11 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 02:00:17 PM: INFO: *********Login Successful**********
+08/27/2026 02:00:17 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 02:00:19 PM: INFO: ********Providing customer info**********
+08/27/2026 02:00:23 PM: INFO: ********Saving customer info**********
+08/27/2026 02:00:23 PM: INFO: ********Add customer validation*********
+08/27/2026 02:00:23 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 02:00:23 PM: INFO: ********Add customer test passed**********
+08/27/2026 02:00:24 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 02:00:28 PM: INFO: ********Verify Login Test********
+08/27/2026 02:00:33 PM: INFO: ********Login test Passed********
+08/27/2026 02:00:51 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 02:00:58 PM: INFO: *********Login Successful**********
+08/27/2026 02:00:58 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 02:01:02 PM: INFO: ********Providing customer info**********
+08/27/2026 02:01:04 PM: INFO: ********Saving customer info**********
+08/27/2026 02:01:04 PM: INFO: ********Add customer validation*********
+08/27/2026 02:01:05 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 02:01:05 PM: INFO: ********Add customer test passed**********
+08/27/2026 02:01:06 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 02:01:20 PM: INFO: ********Verify Login Test********
+08/27/2026 02:01:25 PM: INFO: ********Login test Passed********
+08/27/2026 02:03:54 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 02:03:59 PM: INFO: *********Login Successful**********
+08/27/2026 02:03:59 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 02:04:02 PM: INFO: ********Providing customer info**********
+08/27/2026 02:04:04 PM: INFO: ********Saving customer info**********
+08/27/2026 02:04:04 PM: INFO: ********Add customer validation*********
+08/27/2026 02:04:05 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 02:04:05 PM: INFO: ********Add customer test passed**********
+08/27/2026 02:04:05 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 02:04:10 PM: INFO: ********Verify Login Test********
+08/27/2026 02:04:15 PM: INFO: ********Login test Passed********
+08/27/2026 02:04:33 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 02:04:38 PM: INFO: *********Login Successful**********
+08/27/2026 02:04:38 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 02:04:45 PM: INFO: ********Providing customer info**********
+08/27/2026 02:04:48 PM: INFO: ********Saving customer info**********
+08/27/2026 02:04:48 PM: INFO: ********Add customer validation*********
+08/27/2026 02:04:48 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 02:04:48 PM: INFO: ********Add customer test passed**********
+08/27/2026 02:04:50 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 02:05:03 PM: INFO: ********Verify Login Test********
+08/27/2026 02:05:09 PM: INFO: ********Login test Passed********
+08/27/2026 02:18:39 PM: INFO: ******* Deleting Customer *******
+08/27/2026 02:18:44 PM: INFO: ******* Login Successful *****
+08/27/2026 02:18:48 PM: INFO: ******* Customers page opened *******
+08/27/2026 02:18:51 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 02:18:53 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 02:18:53 PM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 02:18:54 PM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 02:18:55 PM: INFO: ********* Delete Customer test passed **********
+08/27/2026 02:18:55 PM: INFO: ****** Ending Delete Customer Test *******
+08/27/2026 02:19:00 PM: INFO: ******* Editing Customer *******
+08/27/2026 02:19:06 PM: INFO: ******* Login Successful *****
+08/27/2026 02:19:08 PM: INFO: ******* Customers page opened *******
+08/27/2026 02:19:11 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 02:19:13 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 02:19:15 PM: INFO: ********* Edit Customer test passed **********
+08/27/2026 02:19:16 PM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 02:19:20 PM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 02:19:24 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 02:19:25 PM: INFO: ******* Login Successful *****
+08/27/2026 02:19:25 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 02:19:27 PM: INFO: ****** Customers page opened ******
+08/27/2026 02:19:31 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 02:19:33 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 02:19:33 PM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 02:19:39 PM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 02:19:42 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 02:19:43 PM: INFO: ******* Login Successful *****
+08/27/2026 02:19:43 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 02:19:47 PM: INFO: ****** Customers page opened ******
+08/27/2026 02:19:53 PM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 02:19:57 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 02:19:57 PM: INFO: ******* XML File Verification Successful *******
+08/27/2026 02:20:06 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 02:20:08 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 02:20:11 PM: INFO: ******* Login Successful *****
+08/27/2026 02:20:11 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 02:20:14 PM: INFO: ****** Customers page opened ******
+08/27/2026 02:20:17 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 02:20:18 PM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 02:20:23 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 02:20:23 PM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 02:20:29 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 02:20:32 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 02:20:33 PM: INFO: ******* Login Successful *****
+08/27/2026 02:20:33 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 02:20:35 PM: INFO: ****** Customers page opened ******
+08/27/2026 02:20:38 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 02:20:39 PM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 02:20:41 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 02:20:41 PM: INFO: ******* XML File Verification Successful *******
+08/27/2026 02:20:46 PM: INFO: ********Test_001_Login********
+08/27/2026 02:20:46 PM: INFO: ********Verify Home Page Title********
+08/27/2026 02:20:49 PM: INFO: ********Home Page Title test is passed********
+08/27/2026 02:20:54 PM: INFO: ********Verify Login Test********
+08/27/2026 02:20:59 PM: INFO: ********Login test Passed********
+08/27/2026 02:21:06 PM: INFO: **********Test_002_DDT_Login********
+08/27/2026 02:21:06 PM: INFO: ********Verify Login DDT Test********
+08/27/2026 02:21:12 PM: INFO: Row 2: *****Test Passed*****
+08/27/2026 02:21:17 PM: INFO: Row 3: *****Test Passed*****
+08/27/2026 02:21:21 PM: INFO: Row 4: *****Test Passed*****
+08/27/2026 02:21:24 PM: INFO: Row 5: *****Test Passed*****
+08/27/2026 02:21:27 PM: INFO: Row 6: *****Test Passed*****
+08/27/2026 02:21:27 PM: INFO: ****Login DDT Test Passed****
+08/27/2026 02:21:27 PM: INFO: ****End of Login DDT Test****
+08/27/2026 02:21:27 PM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 02:21:31 PM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 02:21:35 PM: INFO: ***********Login Successful**********
+08/27/2026 02:21:35 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 02:21:38 PM: INFO: ******** searching customer by emailID***********
+08/27/2026 02:21:41 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/27/2026 02:21:47 PM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 02:21:52 PM: INFO: ***********Login Successful**********
+08/27/2026 02:21:52 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 02:21:55 PM: INFO: ******** searching customer by Name***********
+08/27/2026 02:21:58 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/27/2026 02:22:19 PM: INFO: ******* Deleting Customer *******
+08/27/2026 02:22:25 PM: INFO: ******* Login Successful *****
+08/27/2026 02:22:26 PM: INFO: ******* Customers page opened *******
+08/27/2026 02:22:29 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 02:22:31 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 02:22:31 PM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 02:22:32 PM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 02:22:33 PM: INFO: ********* Delete Customer test passed **********
+08/27/2026 02:22:36 PM: INFO: ****** Ending Delete Customer Test *******
+08/27/2026 02:22:49 PM: INFO: ******* Editing Customer *******
+08/27/2026 02:22:53 PM: INFO: ******* Login Successful *****
+08/27/2026 02:22:56 PM: INFO: ******* Customers page opened *******
+08/27/2026 02:22:59 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 02:23:01 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 02:23:03 PM: INFO: ********* Edit Customer test passed **********
+08/27/2026 02:23:05 PM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 02:23:16 PM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 02:23:17 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 02:23:20 PM: INFO: ******* Login Successful *****
+08/27/2026 02:23:20 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 02:23:23 PM: INFO: ****** Customers page opened ******
+08/27/2026 02:23:32 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 02:24:16 PM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 02:24:18 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 02:24:20 PM: INFO: ******* Login Successful *****
+08/27/2026 02:24:20 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 02:24:24 PM: INFO: ****** Customers page opened ******
+08/27/2026 02:24:32 PM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 02:25:16 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 02:25:18 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 02:25:20 PM: INFO: ******* Login Successful *****
+08/27/2026 02:25:20 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 02:25:24 PM: INFO: ****** Customers page opened ******
+08/27/2026 02:25:26 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 02:25:33 PM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 02:26:19 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 02:26:21 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 02:26:24 PM: INFO: ******* Login Successful *****
+08/27/2026 02:26:24 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 02:26:26 PM: INFO: ****** Customers page opened ******
+08/27/2026 02:26:28 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 02:26:35 PM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 02:27:19 PM: INFO: ********Test_001_Login********
+08/27/2026 02:27:19 PM: INFO: ********Verify Home Page Title********
+08/27/2026 02:27:21 PM: INFO: ********Home Page Title test is passed********
+08/27/2026 02:27:35 PM: INFO: ********Verify Login Test********
+08/27/2026 02:27:39 PM: INFO: ********Login test Passed********
+08/27/2026 02:27:53 PM: INFO: **********Test_002_DDT_Login********
+08/27/2026 02:27:53 PM: INFO: ********Verify Login DDT Test********
+08/27/2026 02:28:00 PM: INFO: Row 2: *****Test Passed*****
+08/27/2026 02:28:05 PM: INFO: Row 3: *****Test Passed*****
+08/27/2026 02:28:08 PM: INFO: Row 4: *****Test Passed*****
+08/27/2026 02:28:11 PM: INFO: Row 5: *****Test Passed*****
+08/27/2026 02:28:14 PM: INFO: Row 6: *****Test Passed*****
+08/27/2026 02:28:14 PM: INFO: ****Login DDT Test Passed****
+08/27/2026 02:28:16 PM: INFO: ****End of Login DDT Test****
+08/27/2026 02:28:16 PM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 02:28:28 PM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 02:28:36 PM: INFO: ***********Login Successful**********
+08/27/2026 02:28:36 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 02:28:38 PM: INFO: ******** searching customer by emailID***********
+08/27/2026 02:28:43 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/27/2026 02:28:56 PM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 02:29:03 PM: INFO: ***********Login Successful**********
+08/27/2026 02:29:03 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 02:29:07 PM: INFO: ******** searching customer by Name***********
+08/27/2026 02:29:11 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/27/2026 03:55:31 PM: INFO: ******* Deleting Customer *******
+08/27/2026 03:55:41 PM: INFO: ******* Login Successful *****
+08/27/2026 03:55:42 PM: INFO: ******* Customers page opened *******
+08/27/2026 03:55:46 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 03:55:48 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 03:55:48 PM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 03:55:49 PM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 03:55:49 PM: INFO: ********* Delete Customer test passed **********
+08/27/2026 03:55:50 PM: INFO: ****** Ending Delete Customer Test *******
+08/27/2026 03:55:54 PM: INFO: ******* Editing Customer *******
+08/27/2026 03:55:59 PM: INFO: ******* Login Successful *****
+08/27/2026 03:56:02 PM: INFO: ******* Customers page opened *******
+08/27/2026 03:56:06 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 03:56:08 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 03:56:10 PM: INFO: ********* Edit Customer test passed **********
+08/27/2026 03:56:10 PM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 03:56:16 PM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 03:56:20 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 03:56:20 PM: INFO: ******* Login Successful *****
+08/27/2026 03:56:20 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 03:56:23 PM: INFO: ****** Customers page opened ******
+08/27/2026 03:56:27 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 03:56:28 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 03:56:28 PM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 03:56:32 PM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 03:56:37 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 03:56:38 PM: INFO: ******* Login Successful *****
+08/27/2026 03:56:38 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 03:56:40 PM: INFO: ****** Customers page opened ******
+08/27/2026 03:56:44 PM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 03:56:45 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 03:56:45 PM: INFO: ******* XML File Verification Successful *******
+08/27/2026 03:56:50 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 03:56:54 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 03:56:56 PM: INFO: ******* Login Successful *****
+08/27/2026 03:56:56 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 03:57:00 PM: INFO: ****** Customers page opened ******
+08/27/2026 03:57:02 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 03:57:04 PM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 03:57:07 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 03:57:07 PM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 03:57:14 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 03:57:17 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 03:57:18 PM: INFO: ******* Login Successful *****
+08/27/2026 03:57:18 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 03:57:20 PM: INFO: ****** Customers page opened ******
+08/27/2026 03:57:23 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 03:57:24 PM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 03:57:28 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 03:57:28 PM: INFO: ******* XML File Verification Successful *******
+08/27/2026 03:57:32 PM: INFO: ********Test_001_Login********
+08/27/2026 03:57:32 PM: INFO: ********Verify Home Page Title********
+08/27/2026 03:57:35 PM: INFO: ********Home Page Title test is passed********
+08/27/2026 03:57:40 PM: INFO: ********Verify Login Test********
+08/27/2026 03:57:46 PM: INFO: ********Login test Passed********
+08/27/2026 03:57:52 PM: INFO: **********Test_002_DDT_Login********
+08/27/2026 03:57:52 PM: INFO: ********Verify Login DDT Test********
+08/27/2026 03:58:01 PM: INFO: Row 2: *****Test Passed*****
+08/27/2026 03:58:04 PM: INFO: Row 3: *****Test Passed*****
+08/27/2026 03:58:08 PM: INFO: Row 4: *****Test Passed*****
+08/27/2026 03:58:12 PM: INFO: Row 5: *****Test Passed*****
+08/27/2026 03:58:15 PM: INFO: Row 6: *****Test Passed*****
+08/27/2026 03:58:15 PM: INFO: ****Login DDT Test Passed****
+08/27/2026 03:58:15 PM: INFO: ****End of Login DDT Test****
+08/27/2026 03:58:15 PM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 03:58:20 PM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 03:58:26 PM: INFO: ***********Login Successful**********
+08/27/2026 03:58:26 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 03:58:27 PM: INFO: ******** searching customer by emailID***********
+08/27/2026 03:58:31 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/27/2026 03:58:35 PM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 03:58:41 PM: INFO: ***********Login Successful**********
+08/27/2026 03:58:41 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 03:58:43 PM: INFO: ******** searching customer by Name***********
+08/27/2026 03:58:46 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/27/2026 03:59:05 PM: INFO: ******* Deleting Customer *******
+08/27/2026 03:59:10 PM: INFO: ******* Login Successful *****
+08/27/2026 03:59:15 PM: INFO: ******* Customers page opened *******
+08/27/2026 03:59:17 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 03:59:19 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 03:59:20 PM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 03:59:21 PM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 03:59:21 PM: INFO: ********* Delete Customer test passed **********
+08/27/2026 03:59:25 PM: INFO: ****** Ending Delete Customer Test *******
+08/27/2026 03:59:37 PM: INFO: ******* Editing Customer *******
+08/27/2026 03:59:43 PM: INFO: ******* Login Successful *****
+08/27/2026 03:59:45 PM: INFO: ******* Customers page opened *******
+08/27/2026 03:59:48 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 03:59:50 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 03:59:51 PM: INFO: ********* Edit Customer test passed **********
+08/27/2026 03:59:54 PM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 04:00:05 PM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 04:00:08 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 04:00:13 PM: INFO: ******* Login Successful *****
+08/27/2026 04:00:13 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 04:00:16 PM: INFO: ****** Customers page opened ******
+08/27/2026 04:00:24 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 04:01:10 PM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 04:01:13 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 04:01:17 PM: INFO: ******* Login Successful *****
+08/27/2026 04:01:17 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 04:01:19 PM: INFO: ****** Customers page opened ******
+08/27/2026 04:01:27 PM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 04:02:11 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 04:02:15 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 04:02:18 PM: INFO: ******* Login Successful *****
+08/27/2026 04:02:18 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 04:02:20 PM: INFO: ****** Customers page opened ******
+08/27/2026 04:02:22 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 04:02:28 PM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 04:03:13 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 04:03:16 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 04:03:18 PM: INFO: ******* Login Successful *****
+08/27/2026 04:03:18 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 04:03:22 PM: INFO: ****** Customers page opened ******
+08/27/2026 04:03:24 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 04:03:31 PM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 04:04:19 PM: INFO: ********Test_001_Login********
+08/27/2026 04:04:19 PM: INFO: ********Verify Home Page Title********
+08/27/2026 04:04:21 PM: INFO: ********Home Page Title test is passed********
+08/27/2026 04:04:38 PM: INFO: ********Verify Login Test********
+08/27/2026 04:04:45 PM: INFO: ********Login test Passed********
+08/27/2026 04:04:59 PM: INFO: **********Test_002_DDT_Login********
+08/27/2026 04:04:59 PM: INFO: ********Verify Login DDT Test********
+08/27/2026 04:05:08 PM: INFO: Row 2: *****Test Passed*****
+08/27/2026 04:05:12 PM: INFO: Row 3: *****Test Passed*****
+08/27/2026 04:05:15 PM: INFO: Row 4: *****Test Passed*****
+08/27/2026 04:05:18 PM: INFO: Row 5: *****Test Passed*****
+08/27/2026 04:05:21 PM: INFO: Row 6: *****Test Passed*****
+08/27/2026 04:05:21 PM: INFO: ****Login DDT Test Passed****
+08/27/2026 04:05:23 PM: INFO: ****End of Login DDT Test****
+08/27/2026 04:05:23 PM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 04:05:35 PM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 04:05:41 PM: INFO: ***********Login Successful**********
+08/27/2026 04:05:41 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 04:05:43 PM: INFO: ******** searching customer by emailID***********
+08/27/2026 04:06:01 PM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 04:06:08 PM: INFO: ***********Login Successful**********
+08/27/2026 04:06:08 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 04:06:10 PM: INFO: ******** searching customer by Name***********
+08/27/2026 06:03:47 PM: INFO: ******* Deleting Customer *******
+08/27/2026 06:03:57 PM: INFO: ******* Login Successful *****
+08/27/2026 06:03:59 PM: INFO: ******* Customers page opened *******
+08/27/2026 06:04:03 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 06:04:05 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 06:04:05 PM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 06:04:07 PM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 06:04:07 PM: INFO: ********* Delete Customer test passed **********
+08/27/2026 06:04:08 PM: INFO: ****** Ending Delete Customer Test *******
+08/27/2026 06:04:15 PM: INFO: ******* Editing Customer *******
+08/27/2026 06:04:22 PM: INFO: ******* Login Successful *****
+08/27/2026 06:04:23 PM: INFO: ******* Customers page opened *******
+08/27/2026 06:04:26 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 06:04:28 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 06:04:30 PM: INFO: ********* Edit Customer test passed **********
+08/27/2026 06:04:32 PM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 06:04:37 PM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 06:04:40 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:04:41 PM: INFO: ******* Login Successful *****
+08/27/2026 06:04:41 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 06:04:43 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:04:47 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 06:04:50 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 06:04:50 PM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 06:04:58 PM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 06:05:00 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:05:01 PM: INFO: ******* Login Successful *****
+08/27/2026 06:05:01 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 06:05:04 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:05:07 PM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 06:05:11 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 06:05:11 PM: INFO: ******* XML File Verification Successful *******
+08/27/2026 06:05:16 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 06:05:19 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:05:20 PM: INFO: ******* Login Successful *****
+08/27/2026 06:05:20 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 06:05:23 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:05:25 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 06:05:26 PM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 06:05:27 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 06:05:27 PM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 06:05:34 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 06:05:37 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:05:38 PM: INFO: ******* Login Successful *****
+08/27/2026 06:05:38 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 06:05:40 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:05:43 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 06:05:44 PM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 06:05:46 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 06:05:46 PM: INFO: ******* XML File Verification Successful *******
+08/27/2026 06:05:53 PM: INFO: ********Test_001_Login********
+08/27/2026 06:05:53 PM: INFO: ********Verify Home Page Title********
+08/27/2026 06:05:56 PM: INFO: ********Home Page Title test is passed********
+08/27/2026 06:06:00 PM: INFO: ********Verify Login Test********
+08/27/2026 06:06:06 PM: INFO: ********Login test Passed********
+08/27/2026 06:06:10 PM: INFO: **********Test_002_DDT_Login********
+08/27/2026 06:06:10 PM: INFO: ********Verify Login DDT Test********
+08/27/2026 06:06:17 PM: INFO: Row 2: *****Test Passed*****
+08/27/2026 06:06:20 PM: INFO: Row 3: *****Test Passed*****
+08/27/2026 06:06:23 PM: INFO: Row 4: *****Test Passed*****
+08/27/2026 06:06:26 PM: INFO: Row 5: *****Test Passed*****
+08/27/2026 06:06:29 PM: INFO: Row 6: *****Test Passed*****
+08/27/2026 06:06:29 PM: INFO: ****Login DDT Test Passed****
+08/27/2026 06:06:30 PM: INFO: ****End of Login DDT Test****
+08/27/2026 06:06:30 PM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 06:06:34 PM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 06:06:38 PM: INFO: ***********Login Successful**********
+08/27/2026 06:06:38 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 06:06:41 PM: INFO: ******** searching customer by emailID***********
+08/27/2026 06:06:49 PM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 06:06:53 PM: INFO: ***********Login Successful**********
+08/27/2026 06:06:53 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 06:06:56 PM: INFO: ******** searching customer by Name***********
+08/27/2026 06:07:26 PM: INFO: ******* Deleting Customer *******
+08/27/2026 06:07:45 PM: INFO: ******* Login Successful *****
+08/27/2026 06:07:49 PM: INFO: ******* Customers page opened *******
+08/27/2026 06:07:52 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 06:07:54 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 06:07:54 PM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 06:07:56 PM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 06:07:57 PM: INFO: ********* Delete Customer test passed **********
+08/27/2026 06:07:59 PM: INFO: ****** Ending Delete Customer Test *******
+08/27/2026 06:08:15 PM: INFO: ******* Editing Customer *******
+08/27/2026 06:08:24 PM: INFO: ******* Login Successful *****
+08/27/2026 06:08:30 PM: INFO: ******* Customers page opened *******
+08/27/2026 06:08:33 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 06:08:35 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 06:08:37 PM: INFO: ********* Edit Customer test passed **********
+08/27/2026 06:08:39 PM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 06:08:53 PM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 06:08:55 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:08:58 PM: INFO: ******* Login Successful *****
+08/27/2026 06:08:58 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 06:09:00 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:09:08 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 06:09:53 PM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 06:09:56 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:10:00 PM: INFO: ******* Login Successful *****
+08/27/2026 06:10:00 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 06:10:02 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:10:10 PM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 06:10:53 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 06:10:56 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:10:59 PM: INFO: ******* Login Successful *****
+08/27/2026 06:10:59 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 06:11:00 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:11:02 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 06:11:09 PM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 06:11:52 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 06:11:56 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:11:59 PM: INFO: ******* Login Successful *****
+08/27/2026 06:11:59 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 06:12:00 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:12:03 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 06:12:09 PM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 06:12:53 PM: INFO: ********Test_001_Login********
+08/27/2026 06:12:53 PM: INFO: ********Verify Home Page Title********
+08/27/2026 06:12:55 PM: INFO: ********Home Page Title test is passed********
+08/27/2026 06:13:08 PM: INFO: ********Verify Login Test********
+08/27/2026 06:13:13 PM: INFO: ********Login test Passed********
+08/27/2026 06:13:26 PM: INFO: **********Test_002_DDT_Login********
+08/27/2026 06:13:26 PM: INFO: ********Verify Login DDT Test********
+08/27/2026 06:13:33 PM: INFO: Row 2: *****Test Passed*****
+08/27/2026 06:13:37 PM: INFO: Row 3: *****Test Passed*****
+08/27/2026 06:13:40 PM: INFO: Row 4: *****Test Passed*****
+08/27/2026 06:13:43 PM: INFO: Row 5: *****Test Passed*****
+08/27/2026 06:13:46 PM: INFO: Row 6: *****Test Passed*****
+08/27/2026 06:13:46 PM: INFO: ****Login DDT Test Passed****
+08/27/2026 06:13:47 PM: INFO: ****End of Login DDT Test****
+08/27/2026 06:13:47 PM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 06:13:58 PM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 06:14:05 PM: INFO: ***********Login Successful**********
+08/27/2026 06:14:05 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 06:14:09 PM: INFO: ******** searching customer by emailID***********
+08/27/2026 06:14:24 PM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 06:14:31 PM: INFO: ***********Login Successful**********
+08/27/2026 06:14:31 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 06:14:32 PM: INFO: ******** searching customer by Name***********
+08/27/2026 06:16:23 PM: INFO: ******* Deleting Customer *******
+08/27/2026 06:16:27 PM: INFO: ******* Login Successful *****
+08/27/2026 06:16:29 PM: INFO: ******* Customers page opened *******
+08/27/2026 06:16:33 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 06:16:35 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 06:16:35 PM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 06:16:37 PM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 06:16:38 PM: ERROR: ********* Delete Customer test failed **********
+08/27/2026 06:16:42 PM: INFO: ******* Editing Customer *******
+08/27/2026 06:16:50 PM: INFO: ******* Login Successful *****
+08/27/2026 06:16:51 PM: INFO: ******* Customers page opened *******
+08/27/2026 06:16:55 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 06:16:57 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 06:17:00 PM: INFO: ********* Edit Customer test passed **********
+08/27/2026 06:17:00 PM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 06:17:05 PM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 06:17:08 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:17:09 PM: INFO: ******* Login Successful *****
+08/27/2026 06:17:09 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 06:17:12 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:17:15 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 06:17:16 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 06:17:16 PM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 06:17:21 PM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 06:17:24 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:17:25 PM: INFO: ******* Login Successful *****
+08/27/2026 06:17:25 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 06:17:28 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:17:31 PM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 06:17:32 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 06:17:32 PM: INFO: ******* XML File Verification Successful *******
+08/27/2026 06:17:36 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 06:17:39 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:17:42 PM: INFO: ******* Login Successful *****
+08/27/2026 06:17:42 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 06:17:44 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:17:47 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 06:17:49 PM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 06:17:51 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/27/2026 06:17:51 PM: INFO: ******* Excel File Verification Successful *******
+08/27/2026 06:17:55 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 06:17:58 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:17:59 PM: INFO: ******* Login Successful *****
+08/27/2026 06:17:59 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 06:18:01 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:18:04 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 06:18:05 PM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 06:18:06 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/27/2026 06:18:06 PM: INFO: ******* XML File Verification Successful *******
+08/27/2026 06:18:13 PM: INFO: ********Test_001_Login********
+08/27/2026 06:18:13 PM: INFO: ********Verify Home Page Title********
+08/27/2026 06:18:16 PM: INFO: ********Home Page Title test is passed********
+08/27/2026 06:18:20 PM: INFO: ********Verify Login Test********
+08/27/2026 06:18:25 PM: INFO: ********Login test Passed********
+08/27/2026 06:18:31 PM: INFO: **********Test_002_DDT_Login********
+08/27/2026 06:18:31 PM: INFO: ********Verify Login DDT Test********
+08/27/2026 06:18:37 PM: INFO: Row 2: *****Test Passed*****
+08/27/2026 06:18:40 PM: INFO: Row 3: *****Test Passed*****
+08/27/2026 06:18:43 PM: INFO: Row 4: *****Test Passed*****
+08/27/2026 06:18:46 PM: INFO: Row 5: *****Test Passed*****
+08/27/2026 06:18:49 PM: INFO: Row 6: *****Test Passed*****
+08/27/2026 06:18:49 PM: INFO: ****Login DDT Test Passed****
+08/27/2026 06:18:50 PM: INFO: ****End of Login DDT Test****
+08/27/2026 06:18:50 PM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 06:18:54 PM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 06:18:59 PM: INFO: ***********Login Successful**********
+08/27/2026 06:18:59 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 06:19:00 PM: INFO: ******** searching customer by emailID***********
+08/27/2026 06:19:18 PM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 06:19:22 PM: INFO: ***********Login Successful**********
+08/27/2026 06:19:22 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 06:19:24 PM: INFO: ******** searching customer by Name***********
+08/27/2026 06:19:44 PM: INFO: ******* Deleting Customer *******
+08/27/2026 06:19:51 PM: INFO: ******* Login Successful *****
+08/27/2026 06:19:53 PM: INFO: ******* Customers page opened *******
+08/27/2026 06:19:56 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 06:19:58 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 06:19:58 PM: INFO: ******* Delete Customer button clicked *******
+08/27/2026 06:19:59 PM: INFO: ******* Delete confirmation accepted *******
+08/27/2026 06:20:00 PM: ERROR: ********* Delete Customer test failed **********
+08/27/2026 06:20:13 PM: INFO: ******* Editing Customer *******
+08/27/2026 06:20:19 PM: INFO: ******* Login Successful *****
+08/27/2026 06:20:21 PM: INFO: ******* Customers page opened *******
+08/27/2026 06:20:23 PM: INFO: ******* Edit Customer button clicked *******
+08/27/2026 06:20:25 PM: INFO: ******* Edit Customer page opened successfully *******
+08/27/2026 06:20:27 PM: INFO: ********* Edit Customer test passed **********
+08/27/2026 06:20:29 PM: INFO: ****** Ending Edit Customer Test *******
+08/27/2026 06:20:40 PM: INFO: ******* Exporting All Customers to Excel *******
+08/27/2026 06:20:42 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:20:45 PM: INFO: ******* Login Successful *****
+08/27/2026 06:20:45 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 06:20:47 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:20:55 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/27/2026 06:21:38 PM: INFO: ******* Exporting All Customers to XML *******
+08/27/2026 06:21:41 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:21:44 PM: INFO: ******* Login Successful *****
+08/27/2026 06:21:44 PM: INFO: ****** Starting Export All Customers *******
+08/27/2026 06:21:46 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:21:54 PM: INFO: ******* Export All Customers XML button clicked *******
+08/27/2026 06:22:38 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/27/2026 06:22:40 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:22:44 PM: INFO: ******* Login Successful *****
+08/27/2026 06:22:44 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 06:22:46 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:22:48 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 06:22:54 PM: INFO: ******* Export Selected Excel button clicked *******
+08/27/2026 06:23:38 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/27/2026 06:23:40 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/27/2026 06:23:43 PM: INFO: ******* Login Successful *****
+08/27/2026 06:23:43 PM: INFO: ****** Navigating to Customers ******
+08/27/2026 06:23:46 PM: INFO: ****** Customers page opened ******
+08/27/2026 06:23:48 PM: INFO: ******* Customers Selected Successfully *******
+08/27/2026 06:23:54 PM: INFO: ******* Export Selected XML button clicked *******
+08/27/2026 06:24:38 PM: INFO: ********Test_001_Login********
+08/27/2026 06:24:38 PM: INFO: ********Verify Home Page Title********
+08/27/2026 06:24:39 PM: INFO: ********Home Page Title test is passed********
+08/27/2026 06:24:56 PM: INFO: ********Verify Login Test********
+08/27/2026 06:25:01 PM: INFO: ********Login test Passed********
+08/27/2026 06:25:21 PM: INFO: **********Test_002_DDT_Login********
+08/27/2026 06:25:21 PM: INFO: ********Verify Login DDT Test********
+08/27/2026 06:25:27 PM: INFO: Row 2: *****Test Passed*****
+08/27/2026 06:25:31 PM: INFO: Row 3: *****Test Passed*****
+08/27/2026 06:25:34 PM: INFO: Row 4: *****Test Passed*****
+08/27/2026 06:25:37 PM: INFO: Row 5: *****Test Passed*****
+08/27/2026 06:25:40 PM: INFO: Row 6: *****Test Passed*****
+08/27/2026 06:25:40 PM: INFO: ****Login DDT Test Passed****
+08/27/2026 06:25:42 PM: INFO: ****End of Login DDT Test****
+08/27/2026 06:25:42 PM: INFO: *****Completed TC_LoginDDT_002******
+08/27/2026 06:25:53 PM: INFO: *******SearchCustomerByEmail_004*********
+08/27/2026 06:26:00 PM: INFO: ***********Login Successful**********
+08/27/2026 06:26:00 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/27/2026 06:26:03 PM: INFO: ******** searching customer by emailID***********
+08/27/2026 06:26:23 PM: INFO: *******SearchCustomerByName_005*********
+08/27/2026 06:26:28 PM: INFO: ***********Login Successful**********
+08/27/2026 06:26:28 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/27/2026 06:26:30 PM: INFO: ******** searching customer by Name***********
+08/27/2026 06:30:41 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 06:30:45 PM: INFO: *********Login Successful**********
+08/27/2026 06:30:45 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 06:30:50 PM: INFO: ********Providing customer info**********
+08/27/2026 06:30:52 PM: INFO: ********Saving customer info**********
+08/27/2026 06:30:52 PM: INFO: ********Add customer validation*********
+08/27/2026 06:30:53 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 06:30:53 PM: INFO: ********Add customer test passed**********
+08/27/2026 06:30:53 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 06:35:56 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 06:36:01 PM: INFO: *********Login Successful**********
+08/27/2026 06:36:01 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 06:36:04 PM: INFO: ********Providing customer info**********
+08/27/2026 06:38:47 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 06:38:53 PM: INFO: *********Login Successful**********
+08/27/2026 06:38:53 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 06:38:55 PM: INFO: ********Providing customer info**********
+08/27/2026 06:38:57 PM: INFO: ********Customer information provided**********
+08/27/2026 06:38:58 PM: INFO: ********Saving customer info**********
+08/27/2026 06:38:58 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 06:38:58 PM: INFO: ********Add customer test passed**********
+08/27/2026 06:39:01 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 06:39:05 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=60307): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/bc10287e4aa81bdb93c40aa317ff2797
+08/27/2026 06:39:09 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=60307): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/bc10287e4aa81bdb93c40aa317ff2797
+08/27/2026 06:39:13 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=60307): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/bc10287e4aa81bdb93c40aa317ff2797
+08/27/2026 06:40:30 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 06:40:37 PM: INFO: *********Login Successful**********
+08/27/2026 06:40:37 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 06:40:43 PM: INFO: ********Providing customer info**********
+08/27/2026 06:40:46 PM: INFO: ********Customer information provided**********
+08/27/2026 06:40:46 PM: INFO: ********Saving customer info**********
+08/27/2026 06:40:47 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 06:40:47 PM: INFO: ********Add customer test passed**********
+08/27/2026 06:40:51 PM: INFO: ******Ending Add Customer Test*******
+08/27/2026 06:40:55 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=60413): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/710a3bb8-b717-45ce-8f77-7429cc01ce7f
+08/27/2026 06:40:59 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=60413): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/710a3bb8-b717-45ce-8f77-7429cc01ce7f
+08/27/2026 06:41:03 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=60413): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/710a3bb8-b717-45ce-8f77-7429cc01ce7f
+08/27/2026 06:51:56 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 06:52:00 PM: INFO: *********Login Successful**********
+08/27/2026 06:52:00 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 06:52:04 PM: INFO: ********Providing customer info**********
+08/27/2026 06:52:06 PM: INFO: ********Customer information provided**********
+08/27/2026 06:52:06 PM: INFO: ********Saving customer info**********
+08/27/2026 06:52:27 PM: ERROR: ********Add customer test failed********** Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff65dd1abb5+151b5]
+	chromedriver!GetHandleVerifier [0x7ff65dd1ac10+15210]
+	chromedriver!(No symbol) [0x7ff65d845d6d]
+	chromedriver!(No symbol) [0x7ff65d8a1289]
+	chromedriver!(No symbol) [0x7ff65d8a158c]
+	chromedriver!(No symbol) [0x7ff65d8f2027]
+	chromedriver!(No symbol) [0x7ff65d8eec0b]
+	chromedriver!(No symbol) [0x7ff65d8937cc]
+	chromedriver!(No symbol) [0x7ff65d8946f3]
+	chromedriver!GetHandleVerifier [0x7ff65e33b79b+635d9b]
+	chromedriver!GetHandleVerifier [0x7ff65e335ac6+6300c6]
+	chromedriver!GetHandleVerifier [0x7ff65e35bcee+6562ee]
+	chromedriver!GetHandleVerifier [0x7ff65dd38ffe+335fe]
+	chromedriver!GetHandleVerifier [0x7ff65dd4147c+3ba7c]
+	chromedriver!GetHandleVerifier [0x7ff65dd24d64+1f364]
+	chromedriver!GetHandleVerifier [0x7ff65dd24ef4+1f4f4]
+	chromedriver!GetHandleVerifier [0x7ff65dd07d97+2397]
+	KERNEL32!BaseThreadInitThunk [0x7fff5b037374+14]
+	ntdll!RtlUserThreadStart [0x7fff5ca7cc91+21]
+
+08/27/2026 06:57:20 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 06:57:25 PM: INFO: *********Login Successful**********
+08/27/2026 06:57:25 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 06:57:27 PM: INFO: ********Providing customer info**********
+08/27/2026 07:02:01 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 07:02:05 PM: INFO: *********Login Successful**********
+08/27/2026 07:02:05 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 07:02:10 PM: INFO: ********Providing customer info**********
+08/27/2026 07:04:48 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 07:04:56 PM: INFO: *********Login Successful**********
+08/27/2026 07:04:56 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 07:04:58 PM: INFO: ********Providing customer info**********
+08/27/2026 07:05:01 PM: INFO: ********Customer information provided**********
+08/27/2026 07:05:02 PM: INFO: ********Saving customer info**********
+08/27/2026 07:05:22 PM: ERROR: Customer creation failed: ×
+Add the customer to 'Guests' or 'Registered' customer role
+08/27/2026 07:05:23 PM: ERROR: ********Add customer test failed********** Customer was not added successfully
+assert False
+08/27/2026 08:14:28 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 08:14:36 PM: INFO: *********Login Successful**********
+08/27/2026 08:14:36 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 08:14:38 PM: INFO: ********Providing customer info**********
+08/27/2026 08:14:40 PM: INFO: ********Customer information provided**********
+08/27/2026 08:14:41 PM: INFO: ********Saving customer info**********
+08/27/2026 08:14:42 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 08:14:42 PM: INFO: ********Customer added successfully**********
+08/27/2026 08:14:42 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 08:18:30 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 08:18:34 PM: INFO: *********Login Successful**********
+08/27/2026 08:18:34 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 08:18:37 PM: INFO: ********Providing customer info**********
+08/27/2026 08:18:39 PM: INFO: ********Customer information provided**********
+08/27/2026 08:18:40 PM: INFO: ********Saving customer info**********
+08/27/2026 08:18:40 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 08:18:40 PM: INFO: ********Customer added successfully**********
+08/27/2026 08:18:40 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 08:18:41 PM: INFO: ********Customers page opened**********
+08/27/2026 08:18:41 PM: INFO: ********Searching for xqh7xhsb@gmail.com**********
+08/27/2026 08:18:41 PM: ERROR: Customer grid verification failed: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=151.0.7922.173); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff611e2abb5+151b5]
+	chromedriver!GetHandleVerifier [0x7ff611e2ac10+15210]
+	chromedriver!(No symbol) [0x7ff611955d6d]
+	chromedriver!(No symbol) [0x7ff61195dcd1]
+	chromedriver!(No symbol) [0x7ff611960c85]
+	chromedriver!(No symbol) [0x7ff611960d4f]
+	chromedriver!(No symbol) [0x7ff6119ac51c]
+	chromedriver!(No symbol) [0x7ff6119d9d0a]
+	chromedriver!(No symbol) [0x7ff6119a4f76]
+	chromedriver!(No symbol) [0x7ff6119fec0b]
+	chromedriver!(No symbol) [0x7ff6119a37cc]
+	chromedriver!(No symbol) [0x7ff6119a46f3]
+	chromedriver!GetHandleVerifier [0x7ff61244b79b+635d9b]
+	chromedriver!GetHandleVerifier [0x7ff612445ac6+6300c6]
+	chromedriver!GetHandleVerifier [0x7ff61246bcee+6562ee]
+	chromedriver!GetHandleVerifier [0x7ff611e48ffe+335fe]
+	chromedriver!GetHandleVerifier [0x7ff611e5147c+3ba7c]
+	chromedriver!GetHandleVerifier [0x7ff611e34d64+1f364]
+	chromedriver!GetHandleVerifier [0x7ff611e34ef4+1f4f4]
+	chromedriver!GetHandleVerifier [0x7ff611e17d97+2397]
+	KERNEL32!BaseThreadInitThunk [0x7fff5b037374+14]
+	ntdll!RtlUserThreadStart [0x7fff5ca7cc91+21]
+
+08/27/2026 08:25:32 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 08:25:38 PM: INFO: *********Login Successful**********
+08/27/2026 08:25:38 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 08:25:40 PM: INFO: ********Providing customer info**********
+08/27/2026 08:25:42 PM: INFO: ********Customer information provided**********
+08/27/2026 08:25:42 PM: INFO: ********Saving customer info**********
+08/27/2026 08:25:42 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 08:25:42 PM: INFO: ********Customer added successfully**********
+08/27/2026 08:25:42 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 08:25:43 PM: INFO: ********Customers page opened**********
+08/27/2026 08:25:43 PM: INFO: ********Searching for 4fnv3q40@gmail.com**********
+08/27/2026 08:25:43 PM: INFO: ********Customer found in Customers grid**********
+08/27/2026 08:25:43 PM: INFO: ********Add customer test passed**********
+08/27/2026 08:51:25 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 08:51:37 PM: INFO: *********Login Successful**********
+08/27/2026 08:51:37 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 08:51:40 PM: INFO: ********Providing customer info**********
+08/27/2026 08:51:43 PM: INFO: ********Customer information provided**********
+08/27/2026 08:51:44 PM: INFO: ********Saving customer info**********
+08/27/2026 08:51:44 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 08:51:44 PM: INFO: ********Customer added successfully**********
+08/27/2026 08:51:44 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 08:51:45 PM: INFO: ********Customers page opened**********
+08/27/2026 08:51:46 PM: INFO: ********Searching for lkd0e69c@gmail.com**********
+08/27/2026 08:51:46 PM: INFO: ********Customer found in Customers grid**********
+08/27/2026 08:51:46 PM: INFO: ********Add customer test passed**********
+08/27/2026 08:56:40 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 08:56:44 PM: INFO: *********Login Successful**********
+08/27/2026 08:56:44 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 08:56:47 PM: INFO: ********Providing customer info**********
+08/27/2026 08:56:49 PM: INFO: ********Customer information provided**********
+08/27/2026 08:56:49 PM: INFO: ********Saving customer info**********
+08/27/2026 08:56:50 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 08:56:50 PM: INFO: ********Customer added successfully**********
+08/27/2026 08:56:50 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 08:56:50 PM: INFO: ********Customers page opened**********
+08/27/2026 08:56:50 PM: INFO: ********Searching for 1pgk1jxe@gmail.com**********
+08/27/2026 08:56:50 PM: INFO: ********Customer found in Customers grid**********
+08/27/2026 08:56:50 PM: INFO: ********Add customer test passed**********
+08/27/2026 08:56:55 PM: INFO: ********Verify Login Test********
+08/27/2026 08:57:01 PM: INFO: ********Login test Passed********
+08/27/2026 08:57:21 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 08:57:38 PM: INFO: *********Login Successful**********
+08/27/2026 08:57:38 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 08:57:51 PM: INFO: ********Providing customer info**********
+08/27/2026 08:57:55 PM: INFO: ********Customer information provided**********
+08/27/2026 08:57:57 PM: INFO: ********Saving customer info**********
+08/27/2026 08:57:57 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 08:57:57 PM: INFO: ********Customer added successfully**********
+08/27/2026 08:57:57 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 08:57:57 PM: INFO: ********Customers page opened**********
+08/27/2026 08:58:13 PM: INFO: ********Verify Login Test********
+08/27/2026 08:58:19 PM: INFO: ********Login test Passed********
+08/27/2026 09:03:39 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 09:03:45 PM: INFO: *********Login Successful**********
+08/27/2026 09:03:45 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 09:03:48 PM: INFO: ********Providing customer info**********
+08/27/2026 09:03:50 PM: INFO: ********Customer information provided**********
+08/27/2026 09:03:51 PM: INFO: ********Saving customer info**********
+08/27/2026 09:03:51 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 09:03:51 PM: INFO: ********Customer added successfully**********
+08/27/2026 09:03:51 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 09:03:51 PM: INFO: ********Customers page opened**********
+08/27/2026 09:04:13 PM: INFO: ********Verify Login Test********
+08/27/2026 09:04:18 PM: INFO: ********Login test Passed********
+08/27/2026 09:06:38 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 09:06:46 PM: INFO: *********Login Successful**********
+08/27/2026 09:06:46 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 09:06:50 PM: INFO: ********Providing customer info**********
+08/27/2026 09:06:52 PM: INFO: ********Customer information provided**********
+08/27/2026 09:06:53 PM: INFO: ********Saving customer info**********
+08/27/2026 09:06:53 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 09:06:53 PM: INFO: ********Customer added successfully**********
+08/27/2026 09:06:53 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 09:06:53 PM: INFO: ********Customers page opened**********
+08/27/2026 09:06:53 PM: INFO: ********Searching for gn1zhh5o@gmail.com**********
+08/27/2026 09:06:54 PM: INFO: ********Customer found in Customers grid**********
+08/27/2026 09:06:54 PM: INFO: ********Add customer test passed**********
+08/27/2026 09:07:06 PM: INFO: ********Verify Login Test********
+08/27/2026 09:07:13 PM: INFO: ********Login test Passed********
+08/27/2026 09:08:17 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 09:08:21 PM: INFO: *********Login Successful**********
+08/27/2026 09:08:21 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 09:08:25 PM: INFO: ********Providing customer info**********
+08/27/2026 09:08:26 PM: INFO: ********Customer information provided**********
+08/27/2026 09:08:26 PM: INFO: ********Saving customer info**********
+08/27/2026 09:08:27 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 09:08:27 PM: INFO: ********Customer added successfully**********
+08/27/2026 09:08:27 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 09:08:28 PM: INFO: ********Customers page opened**********
+08/27/2026 09:08:28 PM: INFO: ********Searching for dsyeh74k@gmail.com**********
+08/27/2026 09:08:28 PM: INFO: ********Customer found in Customers grid**********
+08/27/2026 09:08:28 PM: INFO: ********Add customer test passed**********
+08/27/2026 09:08:32 PM: INFO: ********Verify Login Test********
+08/27/2026 09:08:37 PM: INFO: ********Login test Passed********
+08/27/2026 09:08:51 PM: INFO: **********Test_003_AddCustomer**********
+08/27/2026 09:08:56 PM: INFO: *********Login Successful**********
+08/27/2026 09:08:56 PM: INFO: *****Starting Add Customer Test*******
+08/27/2026 09:09:00 PM: INFO: ********Providing customer info**********
+08/27/2026 09:09:02 PM: INFO: ********Customer information provided**********
+08/27/2026 09:09:03 PM: INFO: ********Saving customer info**********
+08/27/2026 09:09:03 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/27/2026 09:09:03 PM: INFO: ********Customer added successfully**********
+08/27/2026 09:09:03 PM: INFO: ********Verifying customer in Customers grid**********
+08/27/2026 09:09:04 PM: INFO: ********Customers page opened**********
+08/27/2026 09:09:04 PM: INFO: ********Searching for 4di91gwz@gmail.com**********
+08/27/2026 09:09:04 PM: INFO: ********Customer found in Customers grid**********
+08/27/2026 09:09:04 PM: INFO: ********Add customer test passed**********
+08/27/2026 09:09:17 PM: INFO: ********Verify Login Test********
+08/27/2026 09:09:23 PM: INFO: ********Login test Passed********
+08/28/2026 09:07:39 AM: INFO: ******* Deleting Customer *******
+08/28/2026 09:07:47 AM: INFO: ******* Login Successful *****
+08/28/2026 09:07:49 AM: INFO: ******* Customers page opened *******
+08/28/2026 09:07:53 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 09:07:55 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 09:07:55 AM: INFO: ******* Delete Customer button clicked *******
+08/28/2026 09:07:56 AM: INFO: ******* Delete confirmation accepted *******
+08/28/2026 09:07:57 AM: INFO: ********* Delete Customer test passed **********
+08/28/2026 09:07:57 AM: INFO: ****** Ending Delete Customer Test *******
+08/28/2026 09:08:08 AM: INFO: ******* Editing Customer *******
+08/28/2026 09:08:12 AM: INFO: ******* Login Successful *****
+08/28/2026 09:08:16 AM: INFO: ******* Customers page opened *******
+08/28/2026 09:08:19 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 09:08:21 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 09:08:23 AM: INFO: ********* Edit Customer test passed **********
+08/28/2026 09:08:24 AM: INFO: ****** Ending Edit Customer Test *******
+08/28/2026 09:08:28 AM: INFO: ******* Exporting All Customers to Excel *******
+08/28/2026 09:08:31 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:08:32 AM: INFO: ******* Login Successful *****
+08/28/2026 09:08:32 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 09:08:34 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:08:38 AM: INFO: ******* Export All Customers Excel button clicked *******
+08/28/2026 09:08:39 AM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/28/2026 09:08:39 AM: INFO: ******* Excel File Verification Successful *******
+08/28/2026 09:08:43 AM: INFO: ******* Exporting All Customers to XML *******
+08/28/2026 09:08:46 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:08:47 AM: INFO: ******* Login Successful *****
+08/28/2026 09:08:47 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 09:08:50 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:08:54 AM: INFO: ******* Export All Customers XML button clicked *******
+08/28/2026 09:08:55 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/28/2026 09:08:55 AM: INFO: ******* XML File Verification Successful *******
+08/28/2026 09:09:01 AM: INFO: ******* Exporting Selected Customers to Excel *******
+08/28/2026 09:09:04 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:09:04 AM: INFO: ******* Login Successful *****
+08/28/2026 09:09:04 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 09:09:07 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:09:09 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 09:09:10 AM: INFO: ******* Export Selected Excel button clicked *******
+08/28/2026 09:09:11 AM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/28/2026 09:09:11 AM: INFO: ******* Excel File Verification Successful *******
+08/28/2026 09:09:16 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/28/2026 09:09:19 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:09:20 AM: INFO: ******* Login Successful *****
+08/28/2026 09:09:20 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 09:09:22 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:09:25 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 09:09:26 AM: INFO: ******* Export Selected XML button clicked *******
+08/28/2026 09:09:27 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/28/2026 09:09:27 AM: INFO: ******* XML File Verification Successful *******
+08/28/2026 09:09:31 AM: INFO: ********Test_001_Login********
+08/28/2026 09:09:31 AM: INFO: ********Verify Home Page Title********
+08/28/2026 09:09:34 AM: INFO: ********Home Page Title test is passed********
+08/28/2026 09:09:39 AM: INFO: ********Verify Login Test********
+08/28/2026 09:09:44 AM: INFO: ********Login test Passed********
+08/28/2026 09:09:49 AM: INFO: **********Test_002_DDT_Login********
+08/28/2026 09:09:49 AM: INFO: ********Verify Login DDT Test********
+08/28/2026 09:09:55 AM: INFO: Row 2: *****Test Passed*****
+08/28/2026 09:09:59 AM: INFO: Row 3: *****Test Passed*****
+08/28/2026 09:10:02 AM: INFO: Row 4: *****Test Passed*****
+08/28/2026 09:10:05 AM: INFO: Row 5: *****Test Passed*****
+08/28/2026 09:10:08 AM: INFO: Row 6: *****Test Passed*****
+08/28/2026 09:10:08 AM: INFO: ****Login DDT Test Passed****
+08/28/2026 09:10:09 AM: INFO: ****End of Login DDT Test****
+08/28/2026 09:10:09 AM: INFO: *****Completed TC_LoginDDT_002******
+08/28/2026 09:10:13 AM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 09:10:18 AM: INFO: ***********Login Successful**********
+08/28/2026 09:10:18 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 09:10:19 AM: INFO: ******** searching customer by emailID***********
+08/28/2026 09:10:28 AM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 09:10:33 AM: INFO: ***********Login Successful**********
+08/28/2026 09:10:33 AM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 09:10:34 AM: INFO: ******** searching customer by Name***********
+08/28/2026 09:16:10 AM: INFO: ******* Deleting Customer *******
+08/28/2026 09:16:15 AM: INFO: ******* Login Successful *****
+08/28/2026 09:16:18 AM: INFO: ******* Customers page opened *******
+08/28/2026 09:16:29 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 09:16:31 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 09:16:31 AM: INFO: ******* Delete Customer button clicked *******
+08/28/2026 09:16:33 AM: INFO: ******* Delete confirmation accepted *******
+08/28/2026 09:16:34 AM: INFO: ********* Delete Customer test passed **********
+08/28/2026 09:16:34 AM: INFO: ****** Ending Delete Customer Test *******
+08/28/2026 09:16:38 AM: INFO: ******* Editing Customer *******
+08/28/2026 09:16:43 AM: INFO: ******* Login Successful *****
+08/28/2026 09:16:45 AM: INFO: ******* Customers page opened *******
+08/28/2026 09:16:48 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 09:16:50 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 09:16:52 AM: INFO: ********* Edit Customer test passed **********
+08/28/2026 09:16:53 AM: INFO: ****** Ending Edit Customer Test *******
+08/28/2026 09:16:58 AM: INFO: ******* Exporting All Customers to Excel *******
+08/28/2026 09:17:01 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:17:02 AM: INFO: ******* Login Successful *****
+08/28/2026 09:17:02 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 09:17:05 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:17:08 AM: INFO: ******* Export All Customers Excel button clicked *******
+08/28/2026 09:17:09 AM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/28/2026 09:17:09 AM: INFO: ******* Excel File Verification Successful *******
+08/28/2026 09:17:14 AM: INFO: ******* Exporting All Customers to XML *******
+08/28/2026 09:17:20 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:17:21 AM: INFO: ******* Login Successful *****
+08/28/2026 09:17:21 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 09:17:25 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:17:28 AM: INFO: ******* Export All Customers XML button clicked *******
+08/28/2026 09:17:32 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/28/2026 09:17:32 AM: INFO: ******* XML File Verification Successful *******
+08/28/2026 09:17:37 AM: INFO: ******* Exporting Selected Customers to Excel *******
+08/28/2026 09:17:40 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:17:41 AM: INFO: ******* Login Successful *****
+08/28/2026 09:17:41 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 09:17:43 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:17:46 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 09:17:47 AM: INFO: ******* Export Selected Excel button clicked *******
+08/28/2026 09:17:48 AM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/28/2026 09:17:48 AM: INFO: ******* Excel File Verification Successful *******
+08/28/2026 09:17:53 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/28/2026 09:17:56 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:17:56 AM: INFO: ******* Login Successful *****
+08/28/2026 09:17:56 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 09:17:59 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:18:01 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 09:18:03 AM: INFO: ******* Export Selected XML button clicked *******
+08/28/2026 09:18:04 AM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/28/2026 09:18:04 AM: INFO: ******* XML File Verification Successful *******
+08/28/2026 09:18:08 AM: INFO: ********Test_001_Login********
+08/28/2026 09:18:08 AM: INFO: ********Verify Home Page Title********
+08/28/2026 09:18:11 AM: INFO: ********Home Page Title test is passed********
+08/28/2026 09:18:16 AM: INFO: ********Verify Login Test********
+08/28/2026 09:18:22 AM: INFO: ********Login test Passed********
+08/28/2026 09:18:27 AM: INFO: **********Test_002_DDT_Login********
+08/28/2026 09:18:27 AM: INFO: ********Verify Login DDT Test********
+08/28/2026 09:18:32 AM: INFO: Row 2: *****Test Passed*****
+08/28/2026 09:18:36 AM: INFO: Row 3: *****Test Passed*****
+08/28/2026 09:18:38 AM: INFO: Row 4: *****Test Passed*****
+08/28/2026 09:18:42 AM: INFO: Row 5: *****Test Passed*****
+08/28/2026 09:18:45 AM: INFO: Row 6: *****Test Passed*****
+08/28/2026 09:18:45 AM: INFO: ****Login DDT Test Passed****
+08/28/2026 09:18:45 AM: INFO: ****End of Login DDT Test****
+08/28/2026 09:18:45 AM: INFO: *****Completed TC_LoginDDT_002******
+08/28/2026 09:18:50 AM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 09:18:54 AM: INFO: ***********Login Successful**********
+08/28/2026 09:18:54 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 09:18:56 AM: INFO: ******** searching customer by emailID***********
+08/28/2026 09:18:59 AM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/28/2026 09:19:04 AM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 09:19:08 AM: INFO: ***********Login Successful**********
+08/28/2026 09:19:08 AM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 09:19:10 AM: INFO: ******** searching customer by Name***********
+08/28/2026 09:19:14 AM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/28/2026 09:20:13 AM: INFO: ******* Deleting Customer *******
+08/28/2026 09:20:19 AM: INFO: ******* Login Successful *****
+08/28/2026 09:20:22 AM: INFO: ******* Customers page opened *******
+08/28/2026 09:20:25 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 09:20:27 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 09:20:27 AM: INFO: ******* Delete Customer button clicked *******
+08/28/2026 09:20:28 AM: INFO: ******* Delete confirmation accepted *******
+08/28/2026 09:20:28 AM: INFO: ********* Delete Customer test passed **********
+08/28/2026 09:20:30 AM: INFO: ****** Ending Delete Customer Test *******
+08/28/2026 09:20:41 AM: INFO: ******* Editing Customer *******
+08/28/2026 09:20:47 AM: INFO: ******* Login Successful *****
+08/28/2026 09:20:49 AM: INFO: ******* Customers page opened *******
+08/28/2026 09:20:52 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 09:20:54 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 09:20:55 AM: INFO: ********* Edit Customer test passed **********
+08/28/2026 09:20:57 AM: INFO: ****** Ending Edit Customer Test *******
+08/28/2026 09:21:09 AM: INFO: ******* Exporting All Customers to Excel *******
+08/28/2026 09:21:11 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:21:14 AM: INFO: ******* Login Successful *****
+08/28/2026 09:21:14 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 09:21:16 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:21:24 AM: INFO: ******* Export All Customers Excel button clicked *******
+08/28/2026 09:22:08 AM: INFO: ******* Exporting All Customers to XML *******
+08/28/2026 09:22:14 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:22:18 AM: INFO: ******* Login Successful *****
+08/28/2026 09:22:18 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 09:22:18 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:22:32 AM: INFO: ******* Export All Customers XML button clicked *******
+08/28/2026 09:23:24 AM: INFO: ******* Exporting Selected Customers to Excel *******
+08/28/2026 09:24:02 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:24:07 AM: INFO: ******* Login Successful *****
+08/28/2026 09:24:07 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 09:24:09 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:24:12 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 09:24:18 AM: INFO: ******* Export Selected Excel button clicked *******
+08/28/2026 09:25:04 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/28/2026 09:25:06 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:25:10 AM: INFO: ******* Login Successful *****
+08/28/2026 09:25:10 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 09:25:12 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:25:15 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 09:25:21 AM: INFO: ******* Export Selected XML button clicked *******
+08/28/2026 09:26:12 AM: INFO: ********Test_001_Login********
+08/28/2026 09:26:12 AM: INFO: ********Verify Home Page Title********
+08/28/2026 09:26:22 AM: INFO: ********Home Page Title test is passed********
+08/28/2026 09:26:36 AM: INFO: ********Verify Login Test********
+08/28/2026 09:26:42 AM: INFO: ********Login test Passed********
+08/28/2026 09:26:56 AM: INFO: **********Test_002_DDT_Login********
+08/28/2026 09:26:56 AM: INFO: ********Verify Login DDT Test********
+08/28/2026 09:27:03 AM: INFO: Row 2: *****Test Passed*****
+08/28/2026 09:27:08 AM: INFO: Row 3: *****Test Passed*****
+08/28/2026 09:27:11 AM: INFO: Row 4: *****Test Passed*****
+08/28/2026 09:27:13 AM: INFO: Row 5: *****Test Passed*****
+08/28/2026 09:27:16 AM: INFO: Row 6: *****Test Passed*****
+08/28/2026 09:27:16 AM: INFO: ****Login DDT Test Passed****
+08/28/2026 09:27:18 AM: INFO: ****End of Login DDT Test****
+08/28/2026 09:27:18 AM: INFO: *****Completed TC_LoginDDT_002******
+08/28/2026 09:27:30 AM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 09:27:36 AM: INFO: ***********Login Successful**********
+08/28/2026 09:27:36 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 09:27:37 AM: INFO: ******** searching customer by emailID***********
+08/28/2026 09:27:42 AM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/28/2026 09:27:55 AM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 09:28:07 AM: INFO: ***********Login Successful**********
+08/28/2026 09:28:07 AM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 09:28:09 AM: INFO: ******** searching customer by Name***********
+08/28/2026 09:28:13 AM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/28/2026 09:35:51 AM: INFO: ******* Deleting Customer *******
+08/28/2026 09:35:57 AM: INFO: ******* Login Successful *****
+08/28/2026 09:35:59 AM: INFO: ******* Customers page opened *******
+08/28/2026 09:36:02 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 09:36:04 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 09:36:04 AM: INFO: ******* Delete Customer button clicked *******
+08/28/2026 09:36:05 AM: INFO: ******* Delete confirmation accepted *******
+08/28/2026 09:36:06 AM: INFO: ********* Delete Customer test passed **********
+08/28/2026 09:36:08 AM: INFO: ****** Ending Delete Customer Test *******
+08/28/2026 09:36:19 AM: INFO: ******* Editing Customer *******
+08/28/2026 09:36:25 AM: INFO: ******* Login Successful *****
+08/28/2026 09:36:27 AM: INFO: ******* Customers page opened *******
+08/28/2026 09:36:30 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 09:36:32 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 09:36:33 AM: INFO: ********* Edit Customer test passed **********
+08/28/2026 09:36:35 AM: INFO: ****** Ending Edit Customer Test *******
+08/28/2026 09:36:47 AM: INFO: ******* Exporting All Customers to Excel *******
+08/28/2026 09:36:49 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:36:52 AM: INFO: ******* Login Successful *****
+08/28/2026 09:36:52 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 09:36:54 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:37:03 AM: INFO: ******* Export All Customers Excel button clicked *******
+08/28/2026 09:37:48 AM: INFO: ******* Exporting All Customers to XML *******
+08/28/2026 09:37:50 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:37:54 AM: INFO: ******* Login Successful *****
+08/28/2026 09:37:54 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 09:37:56 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:38:04 AM: INFO: ******* Export All Customers XML button clicked *******
+08/28/2026 09:38:50 AM: INFO: ******* Exporting Selected Customers to Excel *******
+08/28/2026 09:38:53 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:38:57 AM: INFO: ******* Login Successful *****
+08/28/2026 09:38:57 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 09:38:58 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:39:01 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 09:39:07 AM: INFO: ******* Export Selected Excel button clicked *******
+08/28/2026 09:39:53 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/28/2026 09:39:55 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 09:39:58 AM: INFO: ******* Login Successful *****
+08/28/2026 09:39:58 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 09:40:00 AM: INFO: ****** Customers page opened ******
+08/28/2026 09:40:02 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 09:40:08 AM: INFO: ******* Export Selected XML button clicked *******
+08/28/2026 09:40:52 AM: INFO: ********Test_001_Login********
+08/28/2026 09:40:52 AM: INFO: ********Verify Home Page Title********
+08/28/2026 09:40:54 AM: INFO: ********Home Page Title test is passed********
+08/28/2026 09:41:14 AM: INFO: ********Verify Login Test********
+08/28/2026 09:41:20 AM: INFO: ********Login test Passed********
+08/28/2026 09:41:34 AM: INFO: **********Test_002_DDT_Login********
+08/28/2026 09:41:34 AM: INFO: ********Verify Login DDT Test********
+08/28/2026 09:41:42 AM: INFO: Row 2: *****Test Passed*****
+08/28/2026 09:41:46 AM: INFO: Row 3: *****Test Passed*****
+08/28/2026 09:41:49 AM: INFO: Row 4: *****Test Passed*****
+08/28/2026 09:41:52 AM: INFO: Row 5: *****Test Passed*****
+08/28/2026 09:41:55 AM: INFO: Row 6: *****Test Passed*****
+08/28/2026 09:41:55 AM: INFO: ****Login DDT Test Passed****
+08/28/2026 09:41:56 AM: INFO: ****End of Login DDT Test****
+08/28/2026 09:41:56 AM: INFO: *****Completed TC_LoginDDT_002******
+08/28/2026 09:42:07 AM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 09:42:13 AM: INFO: ***********Login Successful**********
+08/28/2026 09:42:13 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 09:42:15 AM: INFO: ******** searching customer by emailID***********
+08/28/2026 09:42:18 AM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/28/2026 09:42:39 AM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 09:42:44 AM: INFO: ***********Login Successful**********
+08/28/2026 09:42:44 AM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 09:42:47 AM: INFO: ******** searching customer by Name***********
+08/28/2026 09:42:51 AM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/28/2026 10:01:39 AM: INFO: ******* Deleting Customer *******
+08/28/2026 10:01:48 AM: INFO: ******* Login Successful *****
+08/28/2026 10:01:49 AM: INFO: ******* Customers page opened *******
+08/28/2026 10:01:52 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 10:01:54 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 10:01:54 AM: INFO: ******* Delete Customer button clicked *******
+08/28/2026 10:01:55 AM: INFO: ******* Delete confirmation accepted *******
+08/28/2026 10:01:56 AM: INFO: ********* Delete Customer test passed **********
+08/28/2026 10:01:58 AM: INFO: ****** Ending Delete Customer Test *******
+08/28/2026 10:02:09 AM: INFO: ******* Editing Customer *******
+08/28/2026 10:02:15 AM: INFO: ******* Login Successful *****
+08/28/2026 10:02:17 AM: INFO: ******* Customers page opened *******
+08/28/2026 10:02:20 AM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 10:02:22 AM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 10:02:23 AM: INFO: ********* Edit Customer test passed **********
+08/28/2026 10:02:25 AM: INFO: ****** Ending Edit Customer Test *******
+08/28/2026 10:02:36 AM: INFO: ******* Exporting All Customers to Excel *******
+08/28/2026 10:02:39 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 10:02:43 AM: INFO: ******* Login Successful *****
+08/28/2026 10:02:43 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 10:02:45 AM: INFO: ****** Customers page opened ******
+08/28/2026 10:02:53 AM: INFO: ******* Export All Customers Excel button clicked *******
+08/28/2026 10:03:55 AM: INFO: ******* Exporting All Customers to XML *******
+08/28/2026 10:04:00 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 10:04:02 AM: INFO: ******* Login Successful *****
+08/28/2026 10:04:02 AM: INFO: ****** Starting Export All Customers *******
+08/28/2026 10:04:04 AM: INFO: ****** Customers page opened ******
+08/28/2026 10:04:12 AM: INFO: ******* Export All Customers XML button clicked *******
+08/28/2026 10:04:56 AM: INFO: ******* Exporting Selected Customers to Excel *******
+08/28/2026 10:05:00 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 10:05:03 AM: INFO: ******* Login Successful *****
+08/28/2026 10:05:03 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 10:05:05 AM: INFO: ****** Customers page opened ******
+08/28/2026 10:05:07 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 10:05:14 AM: INFO: ******* Export Selected Excel button clicked *******
+08/28/2026 10:05:58 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/28/2026 10:06:41 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 10:06:42 AM: INFO: ******* Login Successful *****
+08/28/2026 10:06:42 AM: INFO: ****** Navigating to Customers ******
+08/28/2026 10:06:43 AM: INFO: ****** Customers page opened ******
+08/28/2026 10:06:52 AM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 10:06:59 AM: INFO: ******* Export Selected XML button clicked *******
+08/28/2026 10:07:42 AM: INFO: ********Test_001_Login********
+08/28/2026 10:07:42 AM: INFO: ********Verify Home Page Title********
+08/28/2026 10:07:44 AM: INFO: ********Home Page Title test is passed********
+08/28/2026 10:08:00 AM: INFO: ********Verify Login Test********
+08/28/2026 10:08:08 AM: INFO: ********Login test Passed********
+08/28/2026 10:08:23 AM: INFO: **********Test_002_DDT_Login********
+08/28/2026 10:08:23 AM: INFO: ********Verify Login DDT Test********
+08/28/2026 10:08:28 AM: INFO: Row 2: *****Test Passed*****
+08/28/2026 10:08:39 AM: INFO: Row 3: *****Test Passed*****
+08/28/2026 10:09:20 AM: INFO: Row 4: *****Test Passed*****
+08/28/2026 10:09:23 AM: INFO: Row 5: *****Test Passed*****
+08/28/2026 10:10:09 AM: INFO: Row 6: *****Test Passed*****
+08/28/2026 10:10:09 AM: INFO: ****Login DDT Test Passed****
+08/28/2026 10:10:11 AM: INFO: ****End of Login DDT Test****
+08/28/2026 10:10:11 AM: INFO: *****Completed TC_LoginDDT_002******
+08/28/2026 10:10:23 AM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 10:10:38 AM: INFO: ***********Login Successful**********
+08/28/2026 10:10:38 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 10:10:40 AM: INFO: ******** searching customer by emailID***********
+08/28/2026 10:10:51 AM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/28/2026 10:11:15 AM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 10:11:28 AM: INFO: ***********Login Successful**********
+08/28/2026 10:11:28 AM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 10:11:30 AM: INFO: ******** searching customer by Name***********
+08/28/2026 10:11:34 AM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/28/2026 10:13:17 AM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 10:13:22 AM: INFO: ***********Login Successful**********
+08/28/2026 10:13:22 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 10:13:35 AM: INFO: ******** searching customer by emailID***********
+08/28/2026 10:13:39 AM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/28/2026 10:56:12 AM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 10:56:26 AM: INFO: ***********Login Successful**********
+08/28/2026 10:56:26 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 10:56:31 AM: INFO: ******** searching customer by emailID***********
+08/28/2026 10:56:35 AM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/28/2026 10:59:46 AM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 10:59:55 AM: INFO: ***********Login Successful**********
+08/28/2026 10:59:55 AM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 10:59:56 AM: INFO: ******** searching customer by Name***********
+08/28/2026 11:00:00 AM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/28/2026 01:07:43 PM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 01:07:58 PM: INFO: ***********Login Successful**********
+08/28/2026 01:07:58 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 01:07:59 PM: INFO: ******** searching customer by Name***********
+08/28/2026 01:08:04 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/28/2026 01:10:07 PM: INFO: ******* Deleting Customer *******
+08/28/2026 01:10:13 PM: INFO: ******* Login Successful *****
+08/28/2026 01:10:17 PM: INFO: ******* Customers page opened *******
+08/28/2026 01:10:27 PM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 01:10:29 PM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 01:10:29 PM: INFO: ******* Delete Customer button clicked *******
+08/28/2026 01:10:30 PM: INFO: ******* Delete confirmation accepted *******
+08/28/2026 01:10:31 PM: INFO: ********* Delete Customer test passed **********
+08/28/2026 01:10:33 PM: INFO: ****** Ending Delete Customer Test *******
+08/28/2026 01:10:45 PM: INFO: ******* Editing Customer *******
+08/28/2026 01:10:50 PM: INFO: ******* Login Successful *****
+08/28/2026 01:10:52 PM: INFO: ******* Customers page opened *******
+08/28/2026 01:10:56 PM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 01:10:58 PM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 01:10:59 PM: INFO: ********* Edit Customer test passed **********
+08/28/2026 01:11:01 PM: INFO: ****** Ending Edit Customer Test *******
+08/28/2026 01:11:13 PM: INFO: ******* Exporting All Customers to Excel *******
+08/28/2026 01:11:15 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 01:11:18 PM: INFO: ******* Login Successful *****
+08/28/2026 01:11:18 PM: INFO: ****** Starting Export All Customers *******
+08/28/2026 01:11:20 PM: INFO: ****** Customers page opened ******
+08/28/2026 01:11:29 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/28/2026 01:12:15 PM: INFO: ******* Exporting All Customers to XML *******
+08/28/2026 01:12:17 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 01:12:21 PM: INFO: ******* Login Successful *****
+08/28/2026 01:12:21 PM: INFO: ****** Starting Export All Customers *******
+08/28/2026 01:12:30 PM: INFO: ****** Customers page opened ******
+08/28/2026 01:12:39 PM: INFO: ******* Export All Customers XML button clicked *******
+08/28/2026 01:13:24 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/28/2026 01:13:27 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 01:13:30 PM: INFO: ******* Login Successful *****
+08/28/2026 01:13:30 PM: INFO: ****** Navigating to Customers ******
+08/28/2026 01:13:32 PM: INFO: ****** Customers page opened ******
+08/28/2026 01:13:35 PM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 01:13:41 PM: INFO: ******* Export Selected Excel button clicked *******
+08/28/2026 01:14:26 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/28/2026 01:14:28 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 01:14:32 PM: INFO: ******* Login Successful *****
+08/28/2026 01:14:32 PM: INFO: ****** Navigating to Customers ******
+08/28/2026 01:14:38 PM: INFO: ****** Customers page opened ******
+08/28/2026 01:14:40 PM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 01:14:47 PM: INFO: ******* Export Selected XML button clicked *******
+08/28/2026 01:15:33 PM: INFO: ********Test_001_Login********
+08/28/2026 01:15:33 PM: INFO: ********Verify Home Page Title********
+08/28/2026 01:15:36 PM: INFO: ********Home Page Title test is passed********
+08/28/2026 01:15:43 PM: INFO: **********Test_003_AddCustomer**********
+08/28/2026 01:15:50 PM: INFO: *********Login Successful**********
+08/28/2026 01:15:50 PM: INFO: *****Starting Add Customer Test*******
+08/28/2026 01:15:53 PM: INFO: ********Providing customer info**********
+08/28/2026 01:15:56 PM: INFO: ********Customer information provided**********
+08/28/2026 01:15:57 PM: INFO: ********Saving customer info**********
+08/28/2026 01:15:58 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/28/2026 01:15:58 PM: INFO: ********Customer added successfully**********
+08/28/2026 01:15:58 PM: INFO: ********Verifying customer in Customers grid**********
+08/28/2026 01:15:58 PM: INFO: ********Customers page opened**********
+08/28/2026 01:16:04 PM: INFO: ********Verify Login Test********
+08/28/2026 01:16:10 PM: INFO: ********Login test Passed********
+08/28/2026 01:16:29 PM: INFO: **********Test_002_DDT_Login********
+08/28/2026 01:16:29 PM: INFO: ********Verify Login DDT Test********
+08/28/2026 01:16:44 PM: INFO: Row 2: *****Test Passed*****
+08/28/2026 01:16:48 PM: INFO: Row 3: *****Test Passed*****
+08/28/2026 01:16:51 PM: INFO: Row 4: *****Test Passed*****
+08/28/2026 01:16:54 PM: INFO: Row 5: *****Test Passed*****
+08/28/2026 01:16:57 PM: INFO: Row 6: *****Test Passed*****
+08/28/2026 01:16:57 PM: INFO: ****Login DDT Test Passed****
+08/28/2026 01:16:59 PM: INFO: ****End of Login DDT Test****
+08/28/2026 01:16:59 PM: INFO: *****Completed TC_LoginDDT_002******
+08/28/2026 01:17:10 PM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 01:17:21 PM: INFO: ***********Login Successful**********
+08/28/2026 01:17:21 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 01:17:24 PM: INFO: ******** searching customer by emailID***********
+08/28/2026 01:17:28 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/28/2026 01:17:42 PM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 01:17:48 PM: INFO: ***********Login Successful**********
+08/28/2026 01:17:48 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 01:17:56 PM: INFO: ******** searching customer by Name***********
+08/28/2026 01:18:00 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/28/2026 01:24:05 PM: INFO: ******* Deleting Customer *******
+08/28/2026 01:24:12 PM: INFO: ******* Login Successful *****
+08/28/2026 01:24:14 PM: INFO: ******* Customers page opened *******
+08/28/2026 01:24:17 PM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 01:24:19 PM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 01:24:19 PM: INFO: ******* Delete Customer button clicked *******
+08/28/2026 01:24:21 PM: INFO: ******* Delete confirmation accepted *******
+08/28/2026 01:24:21 PM: INFO: ********* Delete Customer test passed **********
+08/28/2026 01:24:23 PM: INFO: ****** Ending Delete Customer Test *******
+08/28/2026 01:24:35 PM: INFO: ******* Editing Customer *******
+08/28/2026 01:24:40 PM: INFO: ******* Login Successful *****
+08/28/2026 01:24:43 PM: INFO: ******* Customers page opened *******
+08/28/2026 01:24:45 PM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 01:24:47 PM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 01:24:49 PM: INFO: ********* Edit Customer test passed **********
+08/28/2026 01:24:51 PM: INFO: ****** Ending Edit Customer Test *******
+08/28/2026 01:25:03 PM: INFO: ******* Exporting All Customers to Excel *******
+08/28/2026 01:25:06 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 01:25:08 PM: INFO: ******* Login Successful *****
+08/28/2026 01:25:08 PM: INFO: ****** Starting Export All Customers *******
+08/28/2026 01:25:10 PM: INFO: ****** Customers page opened ******
+08/28/2026 01:25:18 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/28/2026 01:26:04 PM: INFO: ******* Exporting All Customers to XML *******
+08/28/2026 01:26:06 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 01:26:09 PM: INFO: ******* Login Successful *****
+08/28/2026 01:26:09 PM: INFO: ****** Starting Export All Customers *******
+08/28/2026 01:26:13 PM: INFO: ****** Customers page opened ******
+08/28/2026 01:26:22 PM: INFO: ******* Export All Customers XML button clicked *******
+08/28/2026 01:27:06 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/28/2026 01:27:08 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 01:27:10 PM: INFO: ******* Login Successful *****
+08/28/2026 01:27:10 PM: INFO: ****** Navigating to Customers ******
+08/28/2026 01:27:14 PM: INFO: ****** Customers page opened ******
+08/28/2026 01:27:16 PM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 01:27:23 PM: INFO: ******* Export Selected Excel button clicked *******
+08/28/2026 01:28:07 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/28/2026 01:28:08 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 01:28:11 PM: INFO: ******* Login Successful *****
+08/28/2026 01:28:11 PM: INFO: ****** Navigating to Customers ******
+08/28/2026 01:28:15 PM: INFO: ****** Customers page opened ******
+08/28/2026 01:28:17 PM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 01:28:23 PM: INFO: ******* Export Selected XML button clicked *******
+08/28/2026 01:29:12 PM: INFO: ********Test_001_Login********
+08/28/2026 01:29:12 PM: INFO: ********Verify Home Page Title********
+08/28/2026 01:29:16 PM: INFO: ********Home Page Title test is passed********
+08/28/2026 01:29:38 PM: INFO: ********Verify Login Test********
+08/28/2026 01:29:43 PM: INFO: ********Login test Passed********
+08/28/2026 01:29:59 PM: INFO: **********Test_002_DDT_Login********
+08/28/2026 01:29:59 PM: INFO: ********Verify Login DDT Test********
+08/28/2026 01:30:08 PM: INFO: Row 2: *****Test Passed*****
+08/28/2026 01:30:13 PM: INFO: Row 3: *****Test Passed*****
+08/28/2026 01:30:16 PM: INFO: Row 4: *****Test Passed*****
+08/28/2026 01:30:19 PM: INFO: Row 5: *****Test Passed*****
+08/28/2026 01:30:22 PM: INFO: Row 6: *****Test Passed*****
+08/28/2026 01:30:22 PM: INFO: ****Login DDT Test Passed****
+08/28/2026 01:30:24 PM: INFO: ****End of Login DDT Test****
+08/28/2026 01:30:24 PM: INFO: *****Completed TC_LoginDDT_002******
+08/28/2026 01:30:41 PM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 01:30:46 PM: INFO: ***********Login Successful**********
+08/28/2026 01:30:46 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 01:30:51 PM: INFO: ******** searching customer by emailID***********
+08/28/2026 01:30:56 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/28/2026 01:31:10 PM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 01:31:15 PM: INFO: ***********Login Successful**********
+08/28/2026 01:31:15 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 01:31:17 PM: INFO: ******** searching customer by Name***********
+08/28/2026 01:31:22 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/28/2026 01:36:24 PM: INFO: **********Test_003_AddCustomer**********
+08/28/2026 01:36:30 PM: INFO: *********Login Successful**********
+08/28/2026 01:36:30 PM: INFO: *****Starting Add Customer Test*******
+08/28/2026 01:36:35 PM: INFO: ********Providing customer info**********
+08/28/2026 01:36:37 PM: INFO: ********Customer information provided**********
+08/28/2026 01:36:38 PM: INFO: ********Saving customer info**********
+08/28/2026 01:36:38 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/28/2026 01:36:38 PM: INFO: ********Customer added successfully**********
+08/28/2026 01:36:38 PM: INFO: ********Verifying customer in Customers grid**********
+08/28/2026 01:36:39 PM: INFO: ********Customers page opened**********
+08/28/2026 01:58:12 PM: INFO: **********Test_003_AddCustomer**********
+08/28/2026 01:58:32 PM: INFO: *********Login Successful**********
+08/28/2026 01:58:32 PM: INFO: *****Starting Add Customer Test*******
+08/28/2026 01:58:38 PM: INFO: ********Providing customer info**********
+08/28/2026 01:58:41 PM: INFO: ********Customer information provided**********
+08/28/2026 01:58:42 PM: INFO: ********Saving customer info**********
+08/28/2026 01:58:42 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/28/2026 01:58:42 PM: INFO: ********Customer added successfully**********
+08/28/2026 01:58:42 PM: INFO: ********Verifying customer in Customers grid**********
+08/28/2026 01:58:42 PM: INFO: ********Customers page opened**********
+08/28/2026 02:16:42 PM: INFO: **********Test_003_AddCustomer**********
+08/28/2026 02:16:49 PM: INFO: *********Login Successful**********
+08/28/2026 02:16:49 PM: INFO: *****Starting Add Customer Test*******
+08/28/2026 02:16:53 PM: INFO: ********Providing customer info**********
+08/28/2026 02:16:55 PM: INFO: ********Customer information provided**********
+08/28/2026 02:16:56 PM: INFO: ********Saving customer info**********
+08/28/2026 02:16:56 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/28/2026 02:16:56 PM: INFO: ********Customer added successfully**********
+08/28/2026 02:16:56 PM: INFO: ********Verifying customer in Customers grid**********
+08/28/2026 02:16:56 PM: INFO: ********Customers page opened**********
+08/28/2026 02:17:00 PM: INFO: ********Searching for nqah885c@gmail.com**********
+08/28/2026 02:17:00 PM: INFO: ********Customer found in Customers grid**********
+08/28/2026 02:17:00 PM: INFO: ********Add customer test passed**********
+08/28/2026 04:06:11 PM: INFO: ******* Deleting Customer *******
+08/28/2026 04:06:19 PM: INFO: ******* Login Successful *****
+08/28/2026 04:06:22 PM: INFO: ******* Customers page opened *******
+08/28/2026 04:06:25 PM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 04:06:27 PM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 04:06:28 PM: INFO: ******* Delete Customer button clicked *******
+08/28/2026 04:06:28 PM: INFO: ******* Delete confirmation accepted *******
+08/28/2026 04:06:29 PM: INFO: ********* Delete Customer test passed **********
+08/28/2026 04:06:29 PM: INFO: ****** Ending Delete Customer Test *******
+08/28/2026 04:06:37 PM: INFO: ******* Editing Customer *******
+08/28/2026 04:06:43 PM: INFO: ******* Login Successful *****
+08/28/2026 04:06:45 PM: INFO: ******* Customers page opened *******
+08/28/2026 04:06:48 PM: INFO: ******* Edit Customer button clicked *******
+08/28/2026 04:06:50 PM: INFO: ******* Edit Customer page opened successfully *******
+08/28/2026 04:06:52 PM: INFO: ********* Edit Customer test passed **********
+08/28/2026 04:06:53 PM: INFO: ****** Ending Edit Customer Test *******
+08/28/2026 04:06:57 PM: INFO: **********Test_003_AddCustomer**********
+08/28/2026 04:07:02 PM: INFO: *********Login Successful**********
+08/28/2026 04:07:02 PM: INFO: *****Starting Add Customer Test*******
+08/28/2026 04:07:05 PM: INFO: ********Providing customer info**********
+08/28/2026 04:07:07 PM: INFO: ********Customer information provided**********
+08/28/2026 04:07:08 PM: INFO: ********Saving customer info**********
+08/28/2026 04:07:08 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/28/2026 04:07:08 PM: INFO: ********Customer added successfully**********
+08/28/2026 04:07:08 PM: INFO: ********Verifying customer in Customers grid**********
+08/28/2026 04:07:09 PM: INFO: ********Customers page opened**********
+08/28/2026 04:07:09 PM: INFO: ********Searching for qxb0z1y6@gmail.com**********
+08/28/2026 04:07:09 PM: INFO: ********Customer found in Customers grid**********
+08/28/2026 04:07:09 PM: INFO: ********Add customer test passed**********
+08/28/2026 04:07:17 PM: INFO: ******* Exporting All Customers to Excel *******
+08/28/2026 04:07:20 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 04:07:22 PM: INFO: ******* Login Successful *****
+08/28/2026 04:07:22 PM: INFO: ****** Starting Export All Customers *******
+08/28/2026 04:07:24 PM: INFO: ****** Customers page opened ******
+08/28/2026 04:07:29 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/28/2026 04:07:33 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/28/2026 04:07:33 PM: INFO: ******* Excel File Verification Successful *******
+08/28/2026 04:07:38 PM: INFO: ******* Exporting All Customers to XML *******
+08/28/2026 04:07:43 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 04:07:44 PM: INFO: ******* Login Successful *****
+08/28/2026 04:07:44 PM: INFO: ****** Starting Export All Customers *******
+08/28/2026 04:07:51 PM: INFO: ****** Customers page opened ******
+08/28/2026 04:07:55 PM: INFO: ******* Export All Customers XML button clicked *******
+08/28/2026 04:07:59 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/28/2026 04:07:59 PM: INFO: ******* XML File Verification Successful *******
+08/28/2026 04:08:05 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/28/2026 04:08:08 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 04:08:10 PM: INFO: ******* Login Successful *****
+08/28/2026 04:08:10 PM: INFO: ****** Navigating to Customers ******
+08/28/2026 04:08:14 PM: INFO: ****** Customers page opened ******
+08/28/2026 04:08:16 PM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 04:08:18 PM: INFO: ******* Export Selected Excel button clicked *******
+08/28/2026 04:08:23 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/28/2026 04:08:23 PM: INFO: ******* Excel File Verification Successful *******
+08/28/2026 04:08:29 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/28/2026 04:08:32 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/28/2026 04:08:33 PM: INFO: ******* Login Successful *****
+08/28/2026 04:08:33 PM: INFO: ****** Navigating to Customers ******
+08/28/2026 04:08:36 PM: INFO: ****** Customers page opened ******
+08/28/2026 04:08:39 PM: INFO: ******* Customers Selected Successfully *******
+08/28/2026 04:08:40 PM: INFO: ******* Export Selected XML button clicked *******
+08/28/2026 04:08:43 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/28/2026 04:08:43 PM: INFO: ******* XML File Verification Successful *******
+08/28/2026 04:08:52 PM: INFO: ********Test_001_Login********
+08/28/2026 04:08:52 PM: INFO: ********Verify Home Page Title********
+08/28/2026 04:08:56 PM: INFO: ********Home Page Title test is passed********
+08/28/2026 04:09:04 PM: INFO: ********Verify Login Test********
+08/28/2026 04:09:10 PM: INFO: ********Login test Passed********
+08/28/2026 04:09:15 PM: INFO: **********Test_002_DDT_Login********
+08/28/2026 04:09:15 PM: INFO: ********Verify Login DDT Test********
+08/28/2026 04:09:23 PM: INFO: Row 2: *****Test Passed*****
+08/28/2026 04:09:27 PM: INFO: Row 3: *****Test Passed*****
+08/28/2026 04:09:31 PM: INFO: Row 4: *****Test Passed*****
+08/28/2026 04:09:34 PM: INFO: Row 5: *****Test Passed*****
+08/28/2026 04:09:37 PM: INFO: Row 6: *****Test Passed*****
+08/28/2026 04:09:37 PM: INFO: ****Login DDT Test Passed****
+08/28/2026 04:09:37 PM: INFO: ****End of Login DDT Test****
+08/28/2026 04:09:37 PM: INFO: *****Completed TC_LoginDDT_002******
+08/28/2026 04:09:42 PM: INFO: *******SearchCustomerByEmail_004*********
+08/28/2026 04:09:47 PM: INFO: ***********Login Successful**********
+08/28/2026 04:09:47 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/28/2026 04:09:48 PM: INFO: ******** searching customer by emailID***********
+08/28/2026 04:09:51 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/28/2026 04:09:56 PM: INFO: *******SearchCustomerByName_005*********
+08/28/2026 04:10:03 PM: INFO: ***********Login Successful**********
+08/28/2026 04:10:03 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/28/2026 04:10:05 PM: INFO: ******** searching customer by Name***********
+08/28/2026 04:10:09 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
