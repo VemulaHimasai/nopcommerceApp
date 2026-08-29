@@ -2412,3 +2412,81 @@ The new customer has been added successfully.
 08/29/2026 10:52:53 AM: INFO: **********Starting SearchCustomerByName_005**********
 08/29/2026 10:52:56 AM: INFO: ******** searching customer by Name***********
 08/29/2026 10:53:00 AM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/29/2026 11:13:37 AM: INFO: ******* Deleting Customer *******
+08/29/2026 11:13:52 AM: INFO: ******* Login Successful *****
+08/29/2026 11:13:54 AM: INFO: ******* Customers page opened *******
+08/29/2026 11:14:02 AM: INFO: ******* Edit Customer button clicked *******
+08/29/2026 11:14:04 AM: INFO: ******* Edit Customer page opened successfully *******
+08/29/2026 11:14:06 AM: INFO: ******* Delete Customer button clicked *******
+08/29/2026 11:14:32 AM: INFO: ******* Editing Customer *******
+08/29/2026 11:14:38 AM: INFO: ******* Login Successful *****
+08/29/2026 11:14:41 AM: INFO: ******* Customers page opened *******
+08/29/2026 11:14:44 AM: INFO: ******* Edit Customer button clicked *******
+08/29/2026 11:14:46 AM: INFO: ******* Edit Customer page opened successfully *******
+08/29/2026 11:14:47 AM: INFO: ********* Edit Customer test passed **********
+08/29/2026 11:14:50 AM: INFO: ****** Ending Edit Customer Test *******
+08/29/2026 11:15:02 AM: INFO: **********Test_003_AddCustomer**********
+08/29/2026 11:15:07 AM: INFO: *********Login Successful**********
+08/29/2026 11:15:07 AM: INFO: *****Starting Add Customer Test*******
+08/29/2026 11:15:11 AM: INFO: ********Providing customer info**********
+08/29/2026 11:15:14 AM: INFO: ********Customer information provided**********
+08/29/2026 11:15:15 AM: INFO: ********Saving customer info**********
+08/29/2026 11:15:15 AM: INFO: Success message: ×
+The new customer has been added successfully.
+08/29/2026 11:15:15 AM: INFO: ********Customer added successfully**********
+08/29/2026 11:15:15 AM: INFO: ********Verifying customer in Customers grid**********
+08/29/2026 11:15:15 AM: INFO: ********Customers page opened**********
+08/29/2026 11:15:19 AM: INFO: ********Searching for d3dhqixm@gmail.com**********
+08/29/2026 11:15:19 AM: INFO: ********Customer found in Customers grid**********
+08/29/2026 11:15:19 AM: INFO: ********Add customer test passed**********
+08/29/2026 11:15:33 AM: INFO: ******* Exporting All Customers to Excel *******
+08/29/2026 11:15:35 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/29/2026 11:15:41 AM: INFO: ******* Login Successful *****
+08/29/2026 11:15:41 AM: INFO: ****** Starting Export All Customers *******
+08/29/2026 11:15:43 AM: INFO: ****** Customers page opened ******
+08/29/2026 11:15:51 AM: INFO: ******* Export All Customers Excel button clicked *******
+08/29/2026 11:16:57 AM: INFO: ******* Exporting All Customers to XML *******
+08/29/2026 11:17:10 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/29/2026 11:17:13 AM: INFO: ******* Login Successful *****
+08/29/2026 11:17:13 AM: INFO: ****** Starting Export All Customers *******
+08/29/2026 11:17:17 AM: INFO: ****** Customers page opened ******
+08/29/2026 11:17:25 AM: INFO: ******* Export All Customers XML button clicked *******
+08/29/2026 11:18:11 AM: INFO: ******* Exporting Selected Customers to Excel *******
+08/29/2026 11:18:13 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/29/2026 11:18:16 AM: INFO: ******* Login Successful *****
+08/29/2026 11:18:16 AM: INFO: ****** Navigating to Customers ******
+08/29/2026 11:18:18 AM: INFO: ****** Customers page opened ******
+08/29/2026 11:18:21 AM: INFO: ******* Customers Selected Successfully *******
+08/29/2026 11:18:27 AM: INFO: ******* Export Selected Excel button clicked *******
+08/29/2026 11:19:13 AM: INFO: ******* Exporting Selected Customers to XML *******
+08/29/2026 11:19:15 AM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/29/2026 11:19:19 AM: INFO: ******* Login Successful *****
+08/29/2026 11:19:19 AM: INFO: ****** Navigating to Customers ******
+08/29/2026 11:19:21 AM: INFO: ****** Customers page opened ******
+08/29/2026 11:19:23 AM: INFO: ******* Customers Selected Successfully *******
+08/29/2026 11:19:29 AM: INFO: ******* Export Selected XML button clicked *******
+08/29/2026 11:20:21 AM: INFO: ********Test_001_Login********
+08/29/2026 11:20:21 AM: INFO: ********Verify Home Page Title********
+08/29/2026 11:20:23 AM: INFO: ********Home Page Title test is passed********
+08/29/2026 11:20:41 AM: INFO: ********Verify Login Test********
+08/29/2026 11:20:45 AM: INFO: ********Login test Passed********
+08/29/2026 11:21:00 AM: INFO: **********Test_002_DDT_Login********
+08/29/2026 11:21:00 AM: INFO: ********Verify Login DDT Test********
+08/29/2026 11:21:08 AM: INFO: Row 2: *****Test Passed*****
+08/29/2026 11:21:12 AM: INFO: Row 3: *****Test Passed*****
+08/29/2026 11:21:15 AM: INFO: Row 4: *****Test Passed*****
+08/29/2026 11:21:18 AM: INFO: Row 5: *****Test Passed*****
+08/29/2026 11:21:21 AM: INFO: Row 6: *****Test Passed*****
+08/29/2026 11:21:21 AM: INFO: ****Login DDT Test Passed****
+08/29/2026 11:21:23 AM: INFO: ****End of Login DDT Test****
+08/29/2026 11:21:23 AM: INFO: *****Completed TC_LoginDDT_002******
+08/29/2026 11:21:37 AM: INFO: *******SearchCustomerByEmail_004*********
+08/29/2026 11:22:10 AM: INFO: ***********Login Successful**********
+08/29/2026 11:22:10 AM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/29/2026 11:22:14 AM: INFO: ******** searching customer by emailID***********
+08/29/2026 11:22:18 AM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/29/2026 11:22:31 AM: INFO: *******SearchCustomerByName_005*********
+08/29/2026 11:22:35 AM: INFO: ***********Login Successful**********
+08/29/2026 11:22:35 AM: INFO: **********Starting SearchCustomerByName_005**********
+08/29/2026 11:22:38 AM: INFO: ******** searching customer by Name***********
+08/29/2026 11:22:42 AM: INFO: ********TC_SearchCustomerByName_005 Finished**********

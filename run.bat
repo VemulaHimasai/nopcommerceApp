@@ -1,21 +1,21 @@
 @echo off
 
-cd /d C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid
+REM Change directory to the location of this run.bat file.
+REM In Jenkins, this will be the Jenkins workspace.
+cd /d "%~dp0"
 
 echo ========================================
-echo Running SANITY OR REGRESSION  Test Cases
+echo Running SANITY OR REGRESSION Test Cases
 echo ========================================
 
-@REM .venv\Scripts\python.exe -m pytest -v -s -m "sanity or regression" --html=./Reports/report_chrome.html testCases/ --browser chrome
-
+REM Run tests using the Python virtual environment in Jenkins workspace
 .venv\Scripts\python.exe -m pytest -v -s -m "sanity or regression" --html=./Reports/report_firefox.html testCases/ --browser firefox
 
-@REM .venv\Scripts\python.exe -m pytest -v -s -m "regression" --html=./Reports/report-chrome.html testCases/ --browser chrome
-@REM .venv\Scripts\python.exe -m pytest -v -s -m "regression" --html=./Reports/report-firefox.html testCases/ --browser firefox
+set TEST_RESULT=%ERRORLEVEL%
 
 echo.
 echo ========================================
 echo SANITY OR REGRESSION Test Execution Completed
 echo ========================================
 
-pause
+exit /b %TEST_RESULT%
