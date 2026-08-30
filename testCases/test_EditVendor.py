@@ -13,7 +13,9 @@ class Test_EditVendor_014:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
+
     logger = LogGen.loggen()
+
 
     def test_edit_vendor(self, setup):
 
@@ -27,7 +29,9 @@ class Test_EditVendor_014:
 
         self.driver.implicitly_wait(10)
 
+
         # Login
+
         self.lp = LoginPage(self.driver)
 
         self.lp.setUserName(self.username)
@@ -38,18 +42,24 @@ class Test_EditVendor_014:
 
         self.logger.info("*********** Login Successful **********")
 
+
         # Navigate to Vendors
+
         self.addcust = AddCustomer(self.driver)
 
         self.addcust.clickOnCustomersMenu()
+
 
         self.addvendor = AddVendor(self.driver)
 
         self.addvendor.clickonVendorMenuItem()
 
-        self.logger.info("********** Starting EditVendor_014 **********")
+
+        self.logger.info("******** Starting Edit Vendor Test ********")
+
 
         # Search Vendor
+
         searchvendor = SearchVendorPage(self.driver)
 
         old_vendor_name = "Vendor2"
@@ -58,8 +68,12 @@ class Test_EditVendor_014:
 
         searchvendor.clickSearch()
 
+
         # Verify vendor exists
-        status = searchvendor.searchVendorByName(old_vendor_name)
+
+        status = searchvendor.searchVendorByName(
+            old_vendor_name
+        )
 
         assert status is True
 
@@ -67,7 +81,9 @@ class Test_EditVendor_014:
             f"Vendor found: {old_vendor_name}"
         )
 
+
         # IMPORTANT: Click Edit button
+
         searchvendor.clickEditVendorByName(
             old_vendor_name
         )
@@ -76,19 +92,25 @@ class Test_EditVendor_014:
             "***** Clicked Edit Button *****"
         )
 
-        # Edit vendor name
+
+        # Edit Vendor Name
+
         new_vendor_name = "Vendor2_update"
 
         self.addvendor.editVendorName(
             new_vendor_name
         )
 
-        # Save changes
-        self.addvendor.clickSave()
-
         self.logger.info(
-            f"Vendor name updated from "
-            f"{old_vendor_name} to {new_vendor_name}"
+            f"Vendor name changed to: {new_vendor_name}"
         )
 
-        self.driver.close()
+
+        # Save changes
+
+        self.addvendor.clickSave()
+
+
+        self.logger.info(
+            "***** Vendor Updated Successfully *****"
+        )
