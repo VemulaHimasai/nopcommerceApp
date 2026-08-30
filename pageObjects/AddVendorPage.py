@@ -13,7 +13,7 @@ class AddVendor:
 
     #vendor fields
     vendor_name_xpath = "//input[@id='Name']"
-    vendor_desc_xpath = "//div[@role='textbox']//p"
+    vendor_desc_xpath = "//div[@role='textbox' and @contenteditable='true']"
     vendor_email_xpath = "//input[@id='Email']"
 
     btnvendorsave_xpath = "//button[@name='save']"
