@@ -2782,3 +2782,17 @@ The new vendor has been added successfully.
 08/30/2026 03:59:43 PM: INFO: **********Starting SearchVendorByName_013**********
 08/30/2026 03:59:46 PM: INFO: ******** searching vendor by Name***********
 08/30/2026 03:59:49 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********
+08/30/2026 06:59:43 PM: INFO: *****SearchActivity_LogType_018*****
+08/30/2026 06:59:51 PM: INFO: ***********Login Successful**********
+08/30/2026 06:59:51 PM: INFO: **********Starting SearchActivity_LogType_018**********
+08/30/2026 07:03:31 PM: INFO: *****SearchActivity_LogType_018*****
+08/30/2026 07:03:40 PM: INFO: ***********Login Successful**********
+08/30/2026 07:03:40 PM: INFO: **********Starting SearchActivity_LogType_018**********
+08/30/2026 07:05:36 PM: INFO: *****Delete_SingleActivity_019*****
+08/30/2026 07:05:43 PM: INFO: ***********Login Successful**********
+08/30/2026 07:05:43 PM: INFO: **********Starting Delete_SingleActivity_019**********
+08/30/2026 07:05:46 PM: INFO: Activity Log records found: 1
+08/30/2026 07:06:14 PM: INFO: *****Delete_SingleActivity_019*****
+08/30/2026 07:06:20 PM: INFO: ***********Login Successful**********
+08/30/2026 07:06:20 PM: INFO: **********Starting Delete_SingleActivity_019**********
+08/30/2026 07:06:23 PM: INFO: Activity Log records found: 1

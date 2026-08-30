@@ -96,13 +96,51 @@ class ActivityPage:
         ))
         self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", result_table)
 
-    def setActivity_LogType(self,log_type):
-        activity_log_type =self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,self.activity_log_type_select_xpath)
-        ))
+    def setActivity_LogType(self, log_type):
+        activity_log_type = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.activity_log_type_select_xpath)
+            )
+        )
 
-        select = Select(activity_log_type)
-        select.select_by_visible_text(log_type)
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            activity_log_type
+        )
+
+        selected = self.driver.execute_script("""
+            var select = arguments[0];
+            var text = arguments[1].trim();
+
+            for (var i = 0; i < select.options.length; i++) {
+                if (select.options[i].text.trim() === text) {
+                    select.selectedIndex = i;
+
+                    select.dispatchEvent(
+                        new Event('change', {bubbles: true})
+                    );
+
+                    return true;
+                }
+            }
+
+            return false;
+        """, activity_log_type, log_type)
+
+        if not selected:
+            raise Exception(
+                f"Activity log type '{log_type}' not found"
+            )
+
+        selected_option = Select(
+            activity_log_type
+        ).first_selected_option.text
+
+        print("Expected Activity Log Type:", repr(log_type))
+        print("Actual Activity Log Type  :", repr(selected_option))
+
+        assert selected_option.strip() == log_type.strip(), \
+            f"Expected '{log_type}', but got '{selected_option}'"
 
     def deleteSingleActivity(self,log_type):
         rows = self.wait.until(EC.visibility_of_all_elements_located(
