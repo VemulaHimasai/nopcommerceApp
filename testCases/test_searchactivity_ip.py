@@ -19,6 +19,7 @@ class Test_SearchActivityIP_017:
 
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_searchActivityIP(self, setup):
         self.logger.info("*****SearchActivityIP_017*****")
         self.driver = setup

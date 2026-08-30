@@ -1,6 +1,7 @@
 import string
 import random
 
+import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -17,6 +18,7 @@ class Test_Delete_SingleActivity_019:
 
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_delete_singleactivity(self,setup):
         self.logger.info("*****Delete_SingleActivity_019*****")
         self.driver = setup

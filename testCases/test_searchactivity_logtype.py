@@ -18,7 +18,7 @@ class Test_SearchActivityLogType_018:
     password = ReadConfig.getPassword()
 
     logger = LogGen.loggen()
-
+    @pytest.mark.regression
     def test_searchactivity_logtype(self,setup):
         self.logger.info("*****SearchActivity_LogType_018*****")
         self.driver = setup

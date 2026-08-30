@@ -1,5 +1,6 @@
 import string
 import random
+import pytest
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -17,6 +18,7 @@ class Test_ClearActivityLogs_020:
 
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_clearactivitylogs(self,setup):
         self.logger.info("*****Clear_ActivityLogs_020*****")
         self.driver = setup
