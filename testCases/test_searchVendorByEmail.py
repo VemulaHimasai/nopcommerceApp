@@ -10,14 +10,14 @@ from pageObjects.AddVendorPage import AddVendor
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_SearchCustomerByName_014:
+class Test_SearchVendorByEmail_014:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
     logger = LogGen.loggen()
 
     @pytest.mark.regression
-    def test_searchVendorByName(self,setup):
+    def test_searchVendorByEmail(self,setup):
         self.logger.info("*****SearchVendorByName_013*****")
         self.driver = setup
         self.driver.get(self.baseURL)

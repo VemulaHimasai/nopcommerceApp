@@ -8,7 +8,7 @@ from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
 
-class Test_EditVendor_014:
+class Test_EditVendor_015:
 
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()

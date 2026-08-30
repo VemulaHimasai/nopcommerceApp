@@ -2640,3 +2640,145 @@ The new vendor has been added successfully.
 08/29/2026 08:10:53 PM: INFO: **********Starting SearchVendorByName_013**********
 08/29/2026 08:10:56 PM: INFO: ******** searching vendor by Name***********
 08/29/2026 08:10:59 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********
+08/30/2026 12:47:04 PM: INFO: *****SearchActivityDate_015*****
+08/30/2026 12:47:12 PM: INFO: ***********Login Successful**********
+08/30/2026 12:47:12 PM: INFO: **********Starting SearchActivityDate_015**********
+08/30/2026 12:47:42 PM: INFO: *****SearchActivityDate_015*****
+08/30/2026 12:47:48 PM: INFO: ***********Login Successful**********
+08/30/2026 12:47:48 PM: INFO: **********Starting SearchActivityDate_015**********
+08/30/2026 01:01:18 PM: INFO: *****SearchActivityIP_016*****
+08/30/2026 01:01:23 PM: INFO: ***********Login Successful**********
+08/30/2026 01:01:23 PM: INFO: **********Starting SearchActivityIP_016**********
+08/30/2026 01:02:13 PM: INFO: *****SearchActivityIP_016*****
+08/30/2026 01:02:18 PM: INFO: ***********Login Successful**********
+08/30/2026 01:02:18 PM: INFO: **********Starting SearchActivityIP_016**********
+08/30/2026 01:02:54 PM: INFO: *****SearchActivityIP_016*****
+08/30/2026 01:02:58 PM: INFO: ***********Login Successful**********
+08/30/2026 01:02:58 PM: INFO: **********Starting SearchActivityIP_016**********
+08/30/2026 01:40:52 PM: INFO: *****SearchActivity_LogType_018*****
+08/30/2026 01:41:00 PM: INFO: ***********Login Successful**********
+08/30/2026 01:41:00 PM: INFO: **********Starting SearchActivity_LogType_018**********
+08/30/2026 01:43:56 PM: INFO: *****SearchActivity_LogType_018*****
+08/30/2026 01:44:02 PM: INFO: ***********Login Successful**********
+08/30/2026 01:44:02 PM: INFO: **********Starting SearchActivity_LogType_018**********
+08/30/2026 01:52:31 PM: INFO: *****SearchActivity_LogType_018*****
+08/30/2026 01:52:41 PM: INFO: ***********Login Successful**********
+08/30/2026 01:52:41 PM: INFO: **********Starting SearchActivity_LogType_018**********
+08/30/2026 01:53:57 PM: INFO: *****SearchActivity_LogType_018*****
+08/30/2026 01:54:03 PM: INFO: ***********Login Successful**********
+08/30/2026 01:54:03 PM: INFO: **********Starting SearchActivity_LogType_018**********
+08/30/2026 02:55:55 PM: INFO: *****Delete_SingleActivity_019*****
+08/30/2026 02:56:03 PM: INFO: ***********Login Successful**********
+08/30/2026 02:56:03 PM: INFO: **********Starting Delete_SingleActivity_019**********
+08/30/2026 02:56:06 PM: INFO: Activity Log records found: 15
+08/30/2026 02:56:06 PM: INFO: ******Activity Log delete clicked*******
+08/30/2026 03:52:45 PM: INFO: *****Clear_ActivityLogs_020*****
+08/30/2026 03:52:54 PM: INFO: ***********Login Successful**********
+08/30/2026 03:52:54 PM: INFO: **********Starting Clear_ActivityLogs_020**********
+08/30/2026 03:52:56 PM: INFO: **********Clear_ActivityLogs_020 completed**********
+08/30/2026 03:54:23 PM: INFO: ******* Deleting Customer *******
+08/30/2026 03:54:31 PM: INFO: ******* Login Successful *****
+08/30/2026 03:54:33 PM: INFO: ******* Customers page opened *******
+08/30/2026 03:54:37 PM: INFO: ******* Edit Customer button clicked *******
+08/30/2026 03:54:39 PM: INFO: ******* Edit Customer page opened successfully *******
+08/30/2026 03:54:39 PM: INFO: ******* Delete Customer button clicked *******
+08/30/2026 03:54:40 PM: INFO: ******* Delete confirmation accepted *******
+08/30/2026 03:54:41 PM: INFO: ********* Delete Customer test passed **********
+08/30/2026 03:54:41 PM: INFO: ****** Ending Delete Customer Test *******
+08/30/2026 03:54:45 PM: INFO: ******* Editing Customer *******
+08/30/2026 03:54:50 PM: INFO: ******* Login Successful *****
+08/30/2026 03:54:54 PM: INFO: ******* Customers page opened *******
+08/30/2026 03:54:57 PM: INFO: ******* Edit Customer button clicked *******
+08/30/2026 03:54:59 PM: INFO: ******* Edit Customer page opened successfully *******
+08/30/2026 03:55:01 PM: INFO: ********* Edit Customer test passed **********
+08/30/2026 03:55:01 PM: INFO: ****** Ending Edit Customer Test *******
+08/30/2026 03:55:07 PM: INFO: **********Test_003_AddCustomer**********
+08/30/2026 03:55:17 PM: INFO: *********Login Successful**********
+08/30/2026 03:55:17 PM: INFO: *****Starting Add Customer Test*******
+08/30/2026 03:55:26 PM: INFO: ********Providing customer info**********
+08/30/2026 03:55:28 PM: INFO: ********Customer information provided**********
+08/30/2026 03:55:30 PM: INFO: ********Saving customer info**********
+08/30/2026 03:55:30 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/30/2026 03:55:30 PM: INFO: ********Customer added successfully**********
+08/30/2026 03:55:30 PM: INFO: ********Verifying customer in Customers grid**********
+08/30/2026 03:55:31 PM: INFO: ********Customers page opened**********
+08/30/2026 03:55:40 PM: INFO: ********Searching for v8mdgl46@gmail.com**********
+08/30/2026 03:55:40 PM: INFO: ********Customer found in Customers grid**********
+08/30/2026 03:55:40 PM: INFO: ********Add customer test passed**********
+08/30/2026 03:55:48 PM: INFO: ******* Test_012_AddVendor *******
+08/30/2026 03:55:52 PM: INFO: ***** Login Successfully *****
+08/30/2026 03:55:52 PM: INFO: ****** Starting Add Vendor Test ******
+08/30/2026 03:56:00 PM: INFO: ****** Providing Vendor Info ******
+08/30/2026 03:56:12 PM: INFO: Success Message: ×
+The new vendor has been added successfully.
+08/30/2026 03:56:12 PM: INFO: ***** Vendor Added Successfully *****
+08/30/2026 03:56:42 PM: INFO: ******* Exporting All Customers to Excel *******
+08/30/2026 03:56:47 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/30/2026 03:56:52 PM: INFO: ******* Login Successful *****
+08/30/2026 03:56:52 PM: INFO: ****** Starting Export All Customers *******
+08/30/2026 03:56:54 PM: INFO: ****** Customers page opened ******
+08/30/2026 03:56:58 PM: INFO: ******* Export All Customers Excel button clicked *******
+08/30/2026 03:56:59 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/30/2026 03:56:59 PM: INFO: ******* Excel File Verification Successful *******
+08/30/2026 03:57:05 PM: INFO: ******* Exporting All Customers to XML *******
+08/30/2026 03:57:10 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/30/2026 03:57:11 PM: INFO: ******* Login Successful *****
+08/30/2026 03:57:11 PM: INFO: ****** Starting Export All Customers *******
+08/30/2026 03:57:14 PM: INFO: ****** Customers page opened ******
+08/30/2026 03:57:18 PM: INFO: ******* Export All Customers XML button clicked *******
+08/30/2026 03:57:20 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/30/2026 03:57:20 PM: INFO: ******* XML File Verification Successful *******
+08/30/2026 03:57:26 PM: INFO: ******* Exporting Selected Customers to Excel *******
+08/30/2026 03:57:29 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/30/2026 03:57:30 PM: INFO: ******* Login Successful *****
+08/30/2026 03:57:30 PM: INFO: ****** Navigating to Customers ******
+08/30/2026 03:57:33 PM: INFO: ****** Customers page opened ******
+08/30/2026 03:57:36 PM: INFO: ******* Customers Selected Successfully *******
+08/30/2026 03:57:37 PM: INFO: ******* Export Selected Excel button clicked *******
+08/30/2026 03:57:41 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+08/30/2026 03:57:41 PM: INFO: ******* Excel File Verification Successful *******
+08/30/2026 03:57:46 PM: INFO: ******* Exporting Selected Customers to XML *******
+08/30/2026 03:57:49 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+08/30/2026 03:57:50 PM: INFO: ******* Login Successful *****
+08/30/2026 03:57:50 PM: INFO: ****** Navigating to Customers ******
+08/30/2026 03:57:53 PM: INFO: ****** Customers page opened ******
+08/30/2026 03:57:55 PM: INFO: ******* Customers Selected Successfully *******
+08/30/2026 03:57:57 PM: INFO: ******* Export Selected XML button clicked *******
+08/30/2026 03:57:59 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+08/30/2026 03:57:59 PM: INFO: ******* XML File Verification Successful *******
+08/30/2026 03:58:05 PM: INFO: ********Test_001_Login********
+08/30/2026 03:58:05 PM: INFO: ********Verify Home Page Title********
+08/30/2026 03:58:08 PM: INFO: ********Home Page Title test is passed********
+08/30/2026 03:58:14 PM: INFO: ********Verify Login Test********
+08/30/2026 03:58:20 PM: INFO: ********Login test Passed********
+08/30/2026 03:58:27 PM: INFO: **********Test_002_DDT_Login********
+08/30/2026 03:58:27 PM: INFO: ********Verify Login DDT Test********
+08/30/2026 03:58:34 PM: INFO: Row 2: *****Test Passed*****
+08/30/2026 03:58:38 PM: INFO: Row 3: *****Test Passed*****
+08/30/2026 03:58:41 PM: INFO: Row 4: *****Test Passed*****
+08/30/2026 03:58:44 PM: INFO: Row 5: *****Test Passed*****
+08/30/2026 03:58:47 PM: INFO: Row 6: *****Test Passed*****
+08/30/2026 03:58:47 PM: INFO: ****Login DDT Test Passed****
+08/30/2026 03:58:47 PM: INFO: ****End of Login DDT Test****
+08/30/2026 03:58:47 PM: INFO: *****Completed TC_LoginDDT_002******
+08/30/2026 03:58:52 PM: INFO: *******SearchCustomerByEmail_004*********
+08/30/2026 03:58:56 PM: INFO: ***********Login Successful**********
+08/30/2026 03:58:56 PM: INFO: **********Starting SearchCustomerByEmail_004**********
+08/30/2026 03:58:59 PM: INFO: ******** searching customer by emailID***********
+08/30/2026 03:59:03 PM: INFO: ********TC_SearchCustomerByEmail_004 Finished**********
+08/30/2026 03:59:07 PM: INFO: *******SearchCustomerByName_005*********
+08/30/2026 03:59:12 PM: INFO: ***********Login Successful**********
+08/30/2026 03:59:12 PM: INFO: **********Starting SearchCustomerByName_005**********
+08/30/2026 03:59:15 PM: INFO: ******** searching customer by Name***********
+08/30/2026 03:59:18 PM: INFO: ********TC_SearchCustomerByName_005 Finished**********
+08/30/2026 03:59:23 PM: INFO: *****SearchVendorByName_013*****
+08/30/2026 03:59:27 PM: INFO: ***********Login Successful**********
+08/30/2026 03:59:27 PM: INFO: **********Starting SearchVendorByName_013**********
+08/30/2026 03:59:31 PM: INFO: ******** searching vendor by Email***********
+08/30/2026 03:59:34 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
+08/30/2026 03:59:39 PM: INFO: *****SearchVendorByName_013*****
+08/30/2026 03:59:43 PM: INFO: ***********Login Successful**********
+08/30/2026 03:59:43 PM: INFO: **********Starting SearchVendorByName_013**********
+08/30/2026 03:59:46 PM: INFO: ******** searching vendor by Name***********
+08/30/2026 03:59:49 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********

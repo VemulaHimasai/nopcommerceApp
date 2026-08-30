@@ -10,7 +10,7 @@ from pageObjects.AddVendorPage import AddVendor
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_SearchCustomerByName_013:
+class Test_SearchVendorByName_013:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
