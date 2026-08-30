@@ -76,38 +76,77 @@ class SearchCustomer:
     # -------------------------------------------------
 
     def setEmail(self, email):
+
         for attempt in range(3):
+
             try:
-                email_field = self.wait.until(
-                    EC.element_to_be_clickable(
-                        (By.ID,self.txtEmail_id)
-                    )
-                )
-                self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",email_field)
-                # Re-locate after scrolling because DOM may refresh
+
+                # Wait until the email field is visible and clickable
                 email_field = self.wait.until(
                     EC.element_to_be_clickable(
                         (By.ID, self.txtEmail_id)
                     )
                 )
+
+                # Scroll field into view
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    email_field
+                )
+
+                # Re-locate element after scrolling
+                email_field = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.ID, self.txtEmail_id)
+                    )
+                )
+
+                # Click and clear existing value
                 email_field.click()
+
                 email_field.clear()
+
+                # Enter email
                 email_field.send_keys(email)
 
-                entered_value = email_field.get_attribute("value")
+                # Wait until the entered value is available
+                self.wait.until(
+                    lambda driver:
+                    driver.find_element(
+                        By.ID,
+                        self.txtEmail_id
+                    ).get_attribute("value") == email
+                )
+
+                # Re-locate the element before reading the value
+                entered_value = self.driver.find_element(
+                    By.ID,
+                    self.txtEmail_id
+                ).get_attribute("value")
+
                 print("Expected email :", repr(email))
                 print("Actual email   :", repr(entered_value))
 
                 if entered_value != email:
-                    raise AssertionError(f"Email was not entered correctly"
-                                         f"Expected: {email}, Actual: {entered_value}")
+                    raise AssertionError(
+                        f"Email was not entered correctly. "
+                        f"Expected: {email}, "
+                        f"Actual: {entered_value}"
+                    )
+
                 return
+
             except StaleElementReferenceException:
-                print(f"StaleElementReferenceException - "
-                      f"retrying ({attempt + 1}/3)")
+
+                print(
+                    f"StaleElementReferenceException - "
+                    f"retrying ({attempt + 1}/3)"
+                )
+
                 if attempt == 2:
                     raise
-                time.sleep(3)
+
+                time.sleep(2)
 
     # -------------------------------------------------
     # First Name
