@@ -48,7 +48,6 @@ class Test_SearchActivityDate_016:
         self.activity.scrollToTable()
 
         rows = self.activity.getNoOfRows()
-        print("Number of Rows: ", len(rows))
 
         assert rows > 0
 
