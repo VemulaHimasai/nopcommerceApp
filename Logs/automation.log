@@ -2796,3 +2796,18 @@ The new vendor has been added successfully.
 08/30/2026 07:06:20 PM: INFO: ***********Login Successful**********
 08/30/2026 07:06:20 PM: INFO: **********Starting Delete_SingleActivity_019**********
 08/30/2026 07:06:23 PM: INFO: Activity Log records found: 1
+08/30/2026 09:23:12 PM: INFO: ******* Test_012_AddVendor *******
+08/30/2026 09:23:22 PM: INFO: ***** Login Successfully *****
+08/30/2026 09:23:22 PM: INFO: ****** Starting Add Vendor Test ******
+08/30/2026 09:23:26 PM: INFO: ****** Providing Vendor Info ******
+08/30/2026 09:34:32 PM: INFO: ******* Test_012_AddVendor *******
+08/30/2026 09:34:40 PM: INFO: ***** Login Successfully *****
+08/30/2026 09:34:40 PM: INFO: ****** Starting Add Vendor Test ******
+08/30/2026 09:34:43 PM: INFO: ****** Providing Vendor Info ******
+08/30/2026 09:34:44 PM: INFO: After Save URL: https://localhost:59579/Admin/Vendor/List
+08/30/2026 09:34:44 PM: INFO: ******Vendor added successfully******
+08/30/2026 09:40:42 PM: INFO: *****Delete_SingleActivity_019*****
+08/30/2026 09:40:55 PM: INFO: ***********Login Successful**********
+08/30/2026 09:40:55 PM: INFO: **********Starting Delete_SingleActivity_019**********
+08/30/2026 09:41:00 PM: INFO: Activity Log records found: 2
+08/30/2026 09:41:01 PM: INFO: ******Activity Log delete clicked*******

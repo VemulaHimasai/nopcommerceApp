@@ -25,7 +25,7 @@ class ActivityPage:
     table_log_cols_xpath = table_log_xpath + "//tbody/tr/td"
 
     activity_log_row_xpath = "//table[@id='activityLog-grid']//tbody/tr"
-    delete_button_xpath = ".//td[6]/a[1]"
+    delete_button_xpath = ".//td[last()]/a"
 
     #results table
     table_log_results_xpath = "//table[@id='activityLog-grid']"
@@ -155,7 +155,7 @@ class ActivityPage:
             if "No data available in table" in row_text:
                 continue
             if log_type.strip() in row_text:
-                delete_button = row.find_element(By.XPATH,".//td[last()]//button")
+                delete_button = row.find_element(By.XPATH,self.delete_button_xpath)
                 self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", delete_button)
                 self.wait.until(lambda driver:(
                     delete_button.is_displayed()

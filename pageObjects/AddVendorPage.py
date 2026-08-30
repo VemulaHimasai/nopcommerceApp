@@ -64,11 +64,21 @@ class AddVendor:
 
     #enter vendor name
     def setVendorName(self,name):
-        vendor_name = self.wait.until(EC.visibility_of_element_located(
+        vendor_name = self.wait.until(EC.element_to_be_clickable(
             (By.XPATH,self.vendor_name_xpath)
         ))
+        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", vendor_name)
         vendor_name.clear()
         vendor_name.send_keys(name)
+
+        entered_value = vendor_name.get_attribute("value")
+
+        print("Expected Vendor Name:", repr(name))
+        print("Actual Vendor Name:", repr(entered_value))
+
+        assert entered_value == name, \
+        f"Vendor name was not entered. Expected: {name}, Actual: {entered_value}"
+
 
     #enter vendor description
     def setVendorDesc(self,description):
@@ -80,11 +90,20 @@ class AddVendor:
 
     #enter vendor email
     def setVendorEmail(self,email):
-        vendor_email = self.wait.until(EC.visibility_of_element_located(
+        vendor_email = self.wait.until(EC.element_to_be_clickable(
             (By.XPATH,self.vendor_email_xpath)
         ))
+        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", vendor_email)
         vendor_email.clear()
         vendor_email.send_keys(email)
+        entered_value = vendor_email.get_attribute("value")
+        print("Expected Vendor Email:", repr(email))
+        print("Actual Vendor Email:", repr(entered_value))
+
+        assert entered_value == email, \
+            f"Vendor name was not entered. Expected: {email}, Actual: {entered_value}"
+
+
 
     #click save
     def clickSave(self):
