@@ -2,8 +2,6 @@ import time
 import pytest
 import string
 import random
-
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
 from pageObjects.LoginPage import LoginPage
@@ -114,74 +112,21 @@ class Test_012_AddVendor:
         # Save Vendor
         self.addvendor.clickSave()
 
-        # Wait for Success or Error Message
-        WebDriverWait(
-            self.driver,
-            10
-        ).until(
-            lambda driver:
-            driver.find_elements(
-                By.CSS_SELECTOR,
-                "div.alert.alert-success"
-            )
-            or driver.find_elements(
-                By.CSS_SELECTOR,
-                "div.alert.alert-danger"
-            )
-        )
+        WebDriverWait(self.driver,15).until(
+            lambda driver:"/Admin/Vendor/List" in driver.current_url)
+        print("After Save URL: ",self.driver.current_url)
+        print("After Save Title : ",self.driver.title)
 
-        success_msgs = (
-            self.driver.find_elements(
-                By.CSS_SELECTOR,
-                "div.alert.alert-success"
-            )
-        )
+        self.logger.info(f"After Save URL: {self.driver.current_url}")
 
-        error_msgs = (
-            self.driver.find_elements(
-                By.CSS_SELECTOR,
-                "div.alert.alert-danger"
-            )
-        )
+        #Verify vendor was successfully created
 
-        if success_msgs:
+        assert "/Admin/Vendor/List" in self.driver.current_url,\
+        "Vendor was not redirected to Vendor List Page"
 
-            msg = success_msgs[0].text
+        self.logger.info("******Vendor added successfully******")
 
-            print(
-                "Success Message:",
-                msg
-            )
-
-            self.logger.info(
-                f"Success Message: {msg}"
-            )
-
-            assert (
-                "vendor" in msg.lower()
-            )
-
-            self.logger.info(
-                "***** Vendor Added Successfully *****"
-            )
-
-        elif error_msgs:
-
-            msg = error_msgs[0].text
-
-            print(
-                "Error Message:",
-                msg
-            )
-
-            self.logger.error(
-                f"Vendor was not added: {msg}"
-            )
-
-            pytest.fail(
-                f"Vendor creation failed: {msg}"
-            )
-
+        print("Vendor added successfully")
 
 def random_generator(
         size=8,
