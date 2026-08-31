@@ -1,19 +1,14 @@
-import time
 import pytest
-import string
-import random
 
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-
-from pageObjects.ActivityPage import ActivityPage
 from pageObjects.LoginPage import LoginPage
 from pageObjects.AddcustomerPage import AddCustomer
 from pageObjects.OnlineCustomersPage import OnlineCustomersPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
+
 class Test_SearchCustomerRoleForumModerator_023:
+
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
@@ -21,42 +16,50 @@ class Test_SearchCustomerRoleForumModerator_023:
     logger = LogGen.loggen()
 
     @pytest.mark.regression
-    def test_searchcustomerrole_forummoderator(self,setup):
-        self.logger.info("*****SearchCustomer_Role_ForumModerator_023*****")
+    def test_searchcustomerrole_forummoderator(self, setup):
+
+        self.logger.info(
+            "*****SearchCustomer_RoleForumModerator_023*****"
+        )
+
         self.driver = setup
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
 
+        # Login
         self.lp = LoginPage(self.driver)
         self.lp.setUserName(self.username)
         self.lp.setPassword(self.password)
         self.lp.clickLogin()
 
-        self.logger.info("***********Login Successful**********")
+        self.logger.info(
+            "***********Login Successful**********"
+        )
 
-        self.logger.info("********Starting_SearchRegistered_Role_022******")
+        # Open Customers menu
         self.addcust = AddCustomer(self.driver)
         self.addcust.clickOnCustomersMenu()
 
+        # Open Online Customers
         self.onlinecustomer = OnlineCustomersPage(self.driver)
         self.onlinecustomer.clickonOnlineCustomerMenuItem()
 
-        normal_customer_names = self.onlinecustomer.getCustomerNames()
-        print("\n Normal Customers Names : ")
-        for name in normal_customer_names:
-            print(name)
-        self.logger.info(
-            f"Normal table customer count: "
-            f"{len(normal_customer_names)}"
+        # Select Forum Moderators role
+        self.onlinecustomer.selectCustomerRole(
+            "Forum Moderators"
         )
-        self.onlinecustomer.selectCustomerRole("Forum Moderators")
 
+        # Click Search
         self.onlinecustomer.clickSearch()
 
-        search_customer_names = self.onlinecustomer.getSearchResults()
+        # Get search results
+        search_customer_names = (
+            self.onlinecustomer.getSearchResults()
+        )
 
         print("\nForum Moderator Search Results:")
+
         for name in search_customer_names:
             print(name)
 
@@ -65,11 +68,13 @@ class Test_SearchCustomerRoleForumModerator_023:
             f"{len(search_customer_names)}"
         )
 
-        for customer_name in search_customer_names:
-            assert customer_name in normal_customer_names,(
-                f"Customer '{customer_name}' from "
-                f"Forum Moderator search results was not found "
-                f"in the normal table"
-            )
+        # Verify search returned results
+        assert len(search_customer_names) > 0, (
+            "No customers found for Forum Moderators role"
+        )
 
-
+        # Verify expected Forum Moderator
+        assert "admin@yourStore.com" in search_customer_names, (
+            "admin@yourStore.com was not found "
+            "in Forum Moderators search results"
+        )
