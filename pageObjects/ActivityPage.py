@@ -1,3 +1,4 @@
+from selenium.common import StaleElementReferenceException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -79,10 +80,22 @@ class ActivityPage:
         rows = self.wait.until(EC.visibility_of_all_elements_located(
             (By.XPATH, self.table_log_rows_xpath)
         ))
-        for row in rows:
-            if "No data available in table" in row.text:
+        if not rows:
+            return 0
+        try:
+            if len(rows) == 1 and "No data available in table" in rows[0].text:
                 return 0
-        return len(rows)
+            return len(rows)
+        except StaleElementReferenceException:
+            rows =  self.wait.until(EC.visibility_of_all_elements_located(
+            (By.XPATH, self.table_log_rows_xpath)
+            ))
+            if not rows:
+                return 0
+            if len(rows) == 1 and "No data available in table" in rows[0].text:
+                return 0
+            return len(rows)
+
 
 
 

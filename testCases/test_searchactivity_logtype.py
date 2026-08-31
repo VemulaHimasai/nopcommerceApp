@@ -40,7 +40,7 @@ class Test_SearchActivityLogType_018:
         self.activity = ActivityPage(self.driver)
         self.activity.clickActivityPageMenuItem()
 
-        self.activity.setActivity_LogType("Add a new customer")
+        self.activity.setActivity_LogType("Customers were exported")
         self.activity.clickSearch()
 
         self.activity.scrollToTable()
