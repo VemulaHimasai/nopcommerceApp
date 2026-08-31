@@ -3,130 +3,390 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import (
+    StaleElementReferenceException,
+    TimeoutException
+)
+
 
 class OnlineCustomersPage:
 
-    lnkonlinecustomers_menuitem_xpath = "//a[@href='/Admin/OnlineCustomer/List']"
+    # -------------------------------------------------
+    # Online Customers menu
+    # -------------------------------------------------
 
+    lnkonlinecustomers_menuitem_xpath = (
+        "//a[@href='/Admin/OnlineCustomer/List']"
+    )
+
+    # -------------------------------------------------
+    # Customer Roles
+    # -------------------------------------------------
 
     txt_Customer_Roles_xpath = "//input[@role='searchbox']"
-    lst_Administrators_xpath = "//li[contains(text(),'Administrators')]"
-    lst_ForumModerators_xpath = "//li[contains(text(),'Forum Moderators')]"
-    lst_Registered_xpath = "//li[contains(text(),'Registered')]"
-    lst_Guests_xpath = "//li[contains(text(),'Guests')]"
-    lst_Vendors_xpath = "//li[contains(text(),'Vendors')]"
 
-    #search button
-    btnSearchRoles_xpath = "//button[@id='search-customers']"
+    lst_Administrators_xpath = (
+        "//li[contains(text(),'Administrators')]"
+    )
 
-    #full table
-    table_xpath = "//table[@id='onlinecustomers-grid']"
-    table_rows_xpath = "//table[@id='onlinecustomers-grid']/tbody/tr"
+    lst_ForumModerators_xpath = (
+        "//li[contains(text(),'Forum Moderators')]"
+    )
+
+    lst_Registered_xpath = (
+        "//li[contains(text(),'Registered')]"
+    )
+
+    lst_Guests_xpath = (
+        "//li[contains(text(),'Guests')]"
+    )
+
+    lst_Vendors_xpath = (
+        "//li[contains(text(),'Vendors')]"
+    )
+
+    # -------------------------------------------------
+    # Search button
+    # -------------------------------------------------
+
+    btnSearchRoles_xpath = (
+        "//button[@id='search-customers']"
+    )
+
+    # -------------------------------------------------
+    # Online Customers table
+    # -------------------------------------------------
+
+    table_xpath = (
+        "//table[@id='onlinecustomers-grid']"
+    )
+
+    table_rows_xpath = (
+        "//table[@id='onlinecustomers-grid']//tbody/tr"
+    )
+
+    # -------------------------------------------------
+    # Constructor
+    # -------------------------------------------------
 
     def __init__(self, driver):
+
         self.driver = driver
         self.wait = WebDriverWait(driver, 15)
 
+    # -------------------------------------------------
+    # Open Online Customers
+    # -------------------------------------------------
+
     def clickonOnlineCustomerMenuItem(self):
-        online_customers_menu_item = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,self.lnkonlinecustomers_menuitem_xpath)
-        ))
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", online_customers_menu_item)
-        self.driver.execute_script("arguments[0].click();", online_customers_menu_item)
 
-    def getTableRows(self):
-        rows = self.wait.until(EC.presence_of_all_elements_located(
-            (By.XPATH,self.table_rows_xpath)
-        ))
-        table_data = []
-        for row in rows:
-            columns = row.find_elements(By.TAG_NAME, 'td')
-            row_data =[column.text.strip() for column in columns]
-            table_data.append(row_data)
-        return table_data
-
-    def getCustomerNames(self):
-
-        rows = self.wait.until(
-            EC.presence_of_all_elements_located(
-                (By.XPATH, self.table_rows_xpath)
+        online_customers_menu_item = self.wait.until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    self.lnkonlinecustomers_menuitem_xpath
+                )
             )
         )
 
-        customer_names = []
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            online_customers_menu_item
+        )
 
-        for row in rows:
+        self.driver.execute_script(
+            "arguments[0].click();",
+            online_customers_menu_item
+        )
 
-            cols = row.find_elements(By.TAG_NAME, 'td')
+        # Wait for Online Customers table
+        self.wait.until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    self.table_xpath
+                )
+            )
+        )
 
-            if cols:
+    # -------------------------------------------------
+    # Get complete table data
+    # -------------------------------------------------
 
-                customer_name = cols[0].text.strip()
+    def getTableRows(self):
 
-                if customer_name != "No data available in table":
-                    customer_names.append(customer_name)
+        self.wait.until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    self.table_xpath
+                )
+            )
+        )
 
-        return customer_names
+        for attempt in range(3):
 
-    def selectCustomerRole(self,role):
+            try:
+
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    self.table_rows_xpath
+                )
+
+                table_data = []
+
+                for row in rows:
+
+                    columns = row.find_elements(
+                        By.TAG_NAME,
+                        "td"
+                    )
+
+                    row_data = [
+                        column.text.strip()
+                        for column in columns
+                    ]
+
+                    table_data.append(row_data)
+
+                return table_data
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Table refreshed while reading rows. "
+                    f"Retry {attempt + 1}/3"
+                )
+
+                time.sleep(0.5)
+
+        raise Exception(
+            "Unable to read Online Customers table."
+        )
+
+    # -------------------------------------------------
+    # Get Customer Names
+    # -------------------------------------------------
+
+    def getCustomerNames(self):
+
+        for attempt in range(3):
+
+            try:
+
+                # -----------------------------------------
+                # Wait for table
+                # -----------------------------------------
+
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.table_xpath
+                        )
+                    )
+                )
+
+                # -----------------------------------------
+                # Wait until DataTable has finished loading
+                # -----------------------------------------
+
+                self.wait.until(
+                    lambda driver: (
+                        len(
+                            driver.find_elements(
+                                By.XPATH,
+                                self.table_rows_xpath
+                            )
+                        ) > 0
+                    )
+                )
+
+                # -----------------------------------------
+                # Read rows
+                # -----------------------------------------
+
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    self.table_rows_xpath
+                )
+
+                customer_names = []
+
+                for row in rows:
+
+                    try:
+
+                        columns = row.find_elements(
+                            By.TAG_NAME,
+                            "td"
+                        )
+
+                        if not columns:
+                            continue
+
+                        customer_name = columns[0].text.strip()
+
+                        # Ignore empty rows
+                        if not customer_name:
+                            continue
+
+                        # Ignore DataTable empty message
+                        if (
+                            "No data available"
+                            in customer_name
+                        ):
+                            continue
+
+                        customer_names.append(
+                            customer_name
+                        )
+
+                    except StaleElementReferenceException:
+
+                        raise
+
+                print(
+                    "Customer names:",
+                    customer_names
+                )
+
+                return customer_names
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Online Customers table refreshed. "
+                    f"Retry {attempt + 1}/3"
+                )
+
+                time.sleep(1)
+
+        raise Exception(
+            "Unable to read customer names because "
+            "the Online Customers table kept refreshing."
+        )
+
+    # -------------------------------------------------
+    # Select Customer Role
+    # -------------------------------------------------
+
+    def selectCustomerRole(self, role):
+
         role_xpaths = {
-            "Administrators": self.lst_Administrators_xpath,
-            "Forum Moderators": self.lst_ForumModerators_xpath,
-            "Registered": self.lst_Registered_xpath,
-            "Guests": self.lst_Guests_xpath,
-            "Vendors": self.lst_Vendors_xpath
+
+            "Administrators":
+                self.lst_Administrators_xpath,
+
+            "Forum Moderators":
+                self.lst_ForumModerators_xpath,
+
+            "Registered":
+                self.lst_Registered_xpath,
+
+            "Guests":
+                self.lst_Guests_xpath,
+
+            "Vendors":
+                self.lst_Vendors_xpath
         }
 
         if role not in role_xpaths:
-            raise ValueError("Invalid role selected")
 
-        role_input = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,self.txt_Customer_Roles_xpath)
-        ))
+            raise ValueError(
+                f"Invalid role selected: {role}"
+            )
+
+        role_input = self.wait.until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    self.txt_Customer_Roles_xpath
+                )
+            )
+        )
+
         role_input.click()
+        role_input.clear()
         role_input.send_keys(role)
-        role_option = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,role_xpaths[role])
-        ))
+
+        role_option = self.wait.until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    role_xpaths[role]
+                )
+            )
+        )
+
         role_option.click()
-        print("Selected Customer Role:",role)
+
+        print(
+            "Selected Customer Role:",
+            role
+        )
+
+    # -------------------------------------------------
+    # Search
+    # -------------------------------------------------
 
     def clickSearch(self):
-        search_button = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH, self.btnSearchRoles_xpath)
-        ))
+
+        search_button = self.wait.until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    self.btnSearchRoles_xpath
+                )
+            )
+        )
 
         self.driver.execute_script(
-            "arguments[0].scrollIntoView({block: 'center'});",
+            "arguments[0].scrollIntoView({block:'center'});",
             search_button
         )
 
         search_button.click()
 
-        self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH, self.table_xpath)
-        ))
+        # Wait for table
+        self.wait.until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    self.table_xpath
+                )
+            )
+        )
+
+    # -------------------------------------------------
+    # Get Search Results
+    # -------------------------------------------------
 
     def getSearchResults(self):
 
         for attempt in range(3):
 
             try:
-                return self.getCustomerNames()
+
+                results = self.getCustomerNames()
+
+                print(
+                    "Search result customer names:",
+                    results
+                )
+
+                return results
 
             except StaleElementReferenceException:
 
                 print(
                     f"Search result table refreshed. "
-                    f"Retrying... Attempt {attempt + 1}"
+                    f"Retrying... Attempt {attempt + 1}/3"
                 )
 
                 time.sleep(1)
 
-        raise StaleElementReferenceException(
-            "Search results table remained stale after 3 attempts."
+        raise Exception(
+            "Search results table remained stale "
+            "after 3 attempts."
         )
-
-
-

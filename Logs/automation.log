@@ -2898,3 +2898,43 @@ The new vendor has been added successfully.
 08/31/2026 01:26:25 PM: INFO: ********Starting_SearchVendor_Role_025******
 08/31/2026 01:26:40 PM: INFO: Normal table customer count: 5
 08/31/2026 01:26:50 PM: INFO: Vendor search result count: 0
+08/31/2026 03:48:23 PM: INFO: ********** Test_003_AddCustomer **********
+08/31/2026 03:48:31 PM: INFO: ********* Login Successful **********
+08/31/2026 03:48:31 PM: INFO: ********* Starting Add Customer Test *********
+08/31/2026 03:48:40 PM: INFO: ******** Providing customer information ********
+08/31/2026 03:48:43 PM: INFO: ******** Customer information provided ********
+08/31/2026 03:48:45 PM: INFO: ******** Saving customer information ********
+08/31/2026 03:48:45 PM: INFO: Success message: ×
+The new customer has been added successfully.
+08/31/2026 03:48:45 PM: INFO: ******** Customer added successfully ********
+08/31/2026 03:48:45 PM: INFO: ******** Verifying customer in Customers grid ********
+08/31/2026 03:48:56 PM: INFO: ******** Customers page opened ********
+08/31/2026 03:48:58 PM: INFO: ******** Searching for ufw0aox5@gmail.com ********
+08/31/2026 03:48:58 PM: INFO: ******** Customer found in Customers grid ********
+08/31/2026 03:48:58 PM: INFO: ******** Add customer test passed ********
+08/31/2026 03:54:04 PM: INFO: *****SearchActivityDate_016*****
+08/31/2026 03:54:11 PM: INFO: ***********Login Successful**********
+08/31/2026 03:54:11 PM: INFO: **********Starting SearchActivityDate_016**********
+08/31/2026 03:57:46 PM: INFO: *****SearchCustomer_RoleAdministrator_021*****
+08/31/2026 03:57:50 PM: INFO: ***********Login Successful**********
+08/31/2026 03:57:50 PM: INFO: ********Starting_SearchAdministrator_Role_021******
+08/31/2026 04:03:56 PM: INFO: *****SearchCustomer_RoleAdministrator_021*****
+08/31/2026 04:04:00 PM: INFO: ***********Login Successful**********
+08/31/2026 04:04:00 PM: INFO: ********Starting_SearchAdministrator_Role_021******
+08/31/2026 04:04:05 PM: INFO: Normal table customer count: 6
+08/31/2026 04:04:07 PM: INFO: Administrator search result count: 1
+08/31/2026 04:06:29 PM: INFO: *****SearchCustomer_Role_ForumModerator_023*****
+08/31/2026 04:06:37 PM: INFO: ***********Login Successful**********
+08/31/2026 04:06:37 PM: INFO: ********Starting_SearchRegistered_Role_022******
+08/31/2026 04:06:38 PM: INFO: Normal table customer count: 7
+08/31/2026 04:06:40 PM: INFO: Forum Moderator search result count: 1
+08/31/2026 04:08:18 PM: INFO: *****SearchCustomer_Role_Guests_024*****
+08/31/2026 04:08:23 PM: INFO: ***********Login Successful**********
+08/31/2026 04:08:23 PM: INFO: ********Starting_SearchGuest_Role_024******
+08/31/2026 04:08:26 PM: INFO: Normal table customer count: 7
+08/31/2026 04:08:28 PM: INFO: Guests search result count: 5
+08/31/2026 04:09:08 PM: INFO: *****SearchCustomer_RoleRegistered_022*****
+08/31/2026 04:09:13 PM: INFO: ***********Login Successful**********
+08/31/2026 04:09:13 PM: INFO: ********Starting_SearchRegistered_Role_022******
+08/31/2026 04:09:16 PM: INFO: Normal table customer count: 7
+08/31/2026 04:09:18 PM: INFO: Registered search result count: 1

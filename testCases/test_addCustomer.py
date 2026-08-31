@@ -171,25 +171,24 @@ class Test_003_AddCustomer:
         # Verify Success / Error Message
         # -------------------------------------------------
 
+        # -------------------------------------------------
+        # Verify Success / Error Message
+        # -------------------------------------------------
+
         try:
 
-            alert = wait.until(
-                lambda driver: (
-                    driver.find_elements(
-                        By.CSS_SELECTOR,
-                        "div.alert.alert-success"
-                    )
-                    or
-                    driver.find_elements(
-                        By.CSS_SELECTOR,
-                        "div.alert.alert-danger"
-                    )
+            wait.until(
+                lambda driver:
+                driver.find_elements(
+                    By.CSS_SELECTOR,
+                    "div.alert.alert-success"
+                )
+                or
+                driver.find_elements(
+                    By.CSS_SELECTOR,
+                    "div.alert.alert-danger"
                 )
             )
-
-            # -------------------------------------------------
-            # Success
-            # -------------------------------------------------
 
             success_messages = self.driver.find_elements(
                 By.CSS_SELECTOR,
@@ -200,30 +199,22 @@ class Test_003_AddCustomer:
 
                 success_msg = success_messages[0].text.strip()
 
-                print(
-                    "Success message:",
-                    success_msg
-                )
+                print("Success message:", success_msg)
 
                 self.logger.info(
                     f"Success message: {success_msg}"
                 )
 
                 assert (
-                    "customer has been added successfully"
-                    in success_msg.lower()
+                        "customer has been added successfully"
+                        in success_msg.lower()
                 ), (
-                    f"Unexpected success message: "
-                    f"{success_msg}"
+                    f"Unexpected success message: {success_msg}"
                 )
 
                 self.logger.info(
                     "******** Customer added successfully ********"
                 )
-
-            # -------------------------------------------------
-            # Error
-            # -------------------------------------------------
 
             else:
 
@@ -232,48 +223,31 @@ class Test_003_AddCustomer:
                     "div.alert.alert-danger"
                 )
 
-                if error_messages:
+                error_msg = (
+                    error_messages[0].text.strip()
+                    if error_messages
+                    else "Unknown error"
+                )
 
-                    error_msg = error_messages[0].text.strip()
+                print("ERROR MESSAGE:", error_msg)
 
-                    print(
-                        "ERROR MESSAGE:",
-                        error_msg
-                    )
+                self.logger.error(
+                    f"Customer creation failed: {error_msg}"
+                )
 
-                    self.logger.error(
-                        f"Customer creation failed: {error_msg}"
-                    )
+                os.makedirs(
+                    ".\\Screenshots",
+                    exist_ok=True
+                )
 
-                    os.makedirs(
-                        ".\\Screenshots",
-                        exist_ok=True
-                    )
+                self.driver.save_screenshot(
+                    ".\\Screenshots\\test_addCustomer_scr.png"
+                )
 
-                    self.driver.save_screenshot(
-                        ".\\Screenshots\\test_addCustomer_scr.png"
-                    )
-
-                    pytest.fail(
-                        f"Customer was not added successfully. "
-                        f"Error: {error_msg}"
-                    )
-
-                else:
-
-                    os.makedirs(
-                        ".\\Screenshots",
-                        exist_ok=True
-                    )
-
-                    self.driver.save_screenshot(
-                        ".\\Screenshots\\test_addCustomer_scr.png"
-                    )
-
-                    pytest.fail(
-                        "No success or error message found after "
-                        "saving customer."
-                    )
+                pytest.fail(
+                    f"Customer was not added successfully. "
+                    f"Error: {error_msg}"
+                )
 
         except Exception as e:
 

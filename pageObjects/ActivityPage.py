@@ -76,26 +76,64 @@ class ActivityPage:
         self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", search_btn)
         self.driver.execute_script("arguments[0].click();", search_btn)
 
+
+
     def getNoOfRows(self):
-        rows = self.wait.until(EC.visibility_of_all_elements_located(
-            (By.XPATH, self.table_log_rows_xpath)
-        ))
-        if not rows:
-            return 0
+
+        rows_xpath = "//table[@id='activityLog-grid']//tbody/tr"
+
         try:
-            if len(rows) == 1 and "No data available in table" in rows[0].text:
-                return 0
-            return len(rows)
-        except StaleElementReferenceException:
-            rows =  self.wait.until(EC.visibility_of_all_elements_located(
-            (By.XPATH, self.table_log_rows_xpath)
-            ))
-            if not rows:
-                return 0
-            if len(rows) == 1 and "No data available in table" in rows[0].text:
-                return 0
+
+            # Wait until DataTable finishes loading
+            self.wait.until(
+                lambda driver: driver.find_elements(
+                    By.XPATH,
+                    rows_xpath
+                )
+            )
+
+            rows = self.driver.find_elements(
+                By.XPATH,
+                rows_xpath
+            )
+
+            print("Total rows found:", len(rows))
+
+            # Check table message
+            if len(rows) == 1:
+
+                row_text = rows[0].text.strip()
+
+                print("First row text:", repr(row_text))
+
+                if "No data available in table" in row_text:
+                    return 0
+
+                if "No matching records found" in row_text:
+                    return 0
+
             return len(rows)
 
+        except StaleElementReferenceException:
+
+            rows = self.driver.find_elements(
+                By.XPATH,
+                rows_xpath
+            )
+
+            print("Rows after stale element retry:", len(rows))
+
+            if len(rows) == 1:
+
+                row_text = rows[0].text.strip()
+
+                if "No data available in table" in row_text:
+                    return 0
+
+                if "No matching records found" in row_text:
+                    return 0
+
+            return len(rows)
 
 
 
