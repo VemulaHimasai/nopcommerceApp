@@ -324,38 +324,70 @@ class OnlineCustomersPage:
         }
 
         if role not in role_xpaths:
-
             raise ValueError(
                 f"Invalid role selected: {role}"
             )
 
-        role_input = self.wait.until(
-            EC.element_to_be_clickable(
-                (
-                    By.XPATH,
-                    self.txt_Customer_Roles_xpath
+        for attempt in range(3):
+
+            try:
+
+                # -------------------------------------------------
+                # Locate Role Search Input
+                # -------------------------------------------------
+
+                role_input = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            self.txt_Customer_Roles_xpath
+                        )
+                    )
                 )
-            )
-        )
 
-        role_input.click()
-        role_input.clear()
-        role_input.send_keys(role)
+                role_input.click()
+                role_input.clear()
+                role_input.send_keys(role)
 
-        role_option = self.wait.until(
-            EC.element_to_be_clickable(
-                (
-                    By.XPATH,
-                    role_xpaths[role]
+                # -------------------------------------------------
+                # IMPORTANT:
+                # After typing, Select2 may refresh the DOM.
+                # Therefore locate the option again.
+                # -------------------------------------------------
+
+                role_option = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            role_xpaths[role]
+                        )
+                    )
                 )
-            )
-        )
 
-        role_option.click()
+                role_option.click()
 
-        print(
-            "Selected Customer Role:",
-            role
+                print(
+                    "Selected Customer Role:",
+                    role
+                )
+
+                return
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"StaleElementReferenceException while selecting "
+                    f"'{role}'. Retrying "
+                    f"({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+                time.sleep(1)
+
+        raise AssertionError(
+            f"Unable to select customer role: {role}"
         )
 
     # -------------------------------------------------
