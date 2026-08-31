@@ -2829,3 +2829,24 @@ The new vendor has been added successfully.
 08/31/2026 09:32:51 AM: INFO: ******Customers exported successfully*******
 08/31/2026 09:32:53 AM: INFO: Activity Log records found: 6
 08/31/2026 09:32:53 AM: INFO: ******Activity Log delete clicked*******
+08/31/2026 10:11:04 AM: INFO: ******* Deleting Customer *******
+08/31/2026 10:11:11 AM: INFO: ******* Login Successful *****
+08/31/2026 10:11:14 AM: INFO: ******* Customers page opened *******
+08/31/2026 10:11:17 AM: INFO: ******* Edit Customer button clicked *******
+08/31/2026 10:11:19 AM: INFO: ******* Edit Customer page opened successfully *******
+08/31/2026 10:11:20 AM: INFO: ******* Delete Customer button clicked *******
+08/31/2026 10:17:54 AM: INFO: ******* Deleting Customer *******
+08/31/2026 10:18:02 AM: INFO: ******* Login Successful *****
+08/31/2026 10:18:04 AM: INFO: ******* Customers page opened *******
+08/31/2026 10:18:07 AM: INFO: ******* Edit Customer button clicked *******
+08/31/2026 10:18:09 AM: INFO: ******* Edit Customer page opened successfully *******
+08/31/2026 10:18:09 AM: INFO: ******* Delete Customer button clicked *******
+08/31/2026 10:22:27 AM: INFO: ******* Deleting Customer *******
+08/31/2026 10:22:35 AM: INFO: ******* Login Successful *****
+08/31/2026 10:22:36 AM: INFO: ******* Customers page opened *******
+08/31/2026 10:22:40 AM: INFO: ******* Edit Customer button clicked *******
+08/31/2026 10:22:42 AM: INFO: ******* Edit Customer page opened successfully *******
+08/31/2026 10:22:42 AM: INFO: ******* Delete Customer button clicked *******
+08/31/2026 10:22:53 AM: INFO: ******* Delete confirmation accepted *******
+08/31/2026 10:22:54 AM: INFO: ********* Delete Customer test passed **********
+08/31/2026 10:22:56 AM: INFO: ****** Ending Delete Customer Test *******
