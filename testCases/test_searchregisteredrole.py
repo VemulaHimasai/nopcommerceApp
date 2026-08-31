@@ -20,6 +20,7 @@ class Test_SearchCustomerRoleRegistered_022:
 
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_searchcustomerrole_registered(self,setup):
         self.logger.info("*****SearchCustomer_RoleRegistered_022*****")
         self.driver = setup

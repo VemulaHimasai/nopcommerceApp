@@ -19,7 +19,7 @@ class Test_SearchCustomerRoleAdministrator_021:
     password = ReadConfig.getPassword()
 
     logger = LogGen.loggen()
-
+    @pytest.mark.regression
     def test_searchcustomerrole_administrator(self,setup):
         self.logger.info("*****SearchCustomer_RoleAdministrator_021*****")
         self.driver = setup
