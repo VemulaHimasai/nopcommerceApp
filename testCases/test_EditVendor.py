@@ -16,7 +16,7 @@ class Test_EditVendor_015:
 
     logger = LogGen.loggen()
 
-
+    @pytest.mark.regression
     def test_edit_vendor(self, setup):
 
         self.logger.info("******* Test_EditVendor_014 *******")
