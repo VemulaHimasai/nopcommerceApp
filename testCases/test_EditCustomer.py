@@ -1,6 +1,7 @@
-import time
 import pytest
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from pageObjects.LoginPage import LoginPage
 from pageObjects.AddcustomerPage import AddCustomer
@@ -27,7 +28,6 @@ class Test_EditCustomer_010:
         self.driver = setup
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
-        self.driver.implicitly_wait(10)
 
         # Login
         self.lp = LoginPage(self.driver)
@@ -48,59 +48,75 @@ class Test_EditCustomer_010:
             "******* Customers page opened *******"
         )
 
-        # Customers page object
         searchcust = SearchCustomer(self.driver)
 
-        time.sleep(2)
+        # -------------------------------------------------
+        # Edit customer by EMAIL instead of INDEX
+        # -------------------------------------------------
 
-        # Select customer and click Edit
-        searchcust.clickEditCustomer(5)
+        customer_email = "stark1@stark1.com"
+
+        searchcust.clickEditCustomerByEmail(
+            customer_email
+        )
 
         self.logger.info(
             "******* Edit Customer button clicked *******"
         )
 
-        time.sleep(2)
+        # -------------------------------------------------
+        # Wait for Edit Customer page
+        # -------------------------------------------------
 
-        # Verify Edit Customer page
+        WebDriverWait(
+            self.driver,
+            15
+        ).until(
+            EC.url_contains("/Admin/Customer/Edit")
+        )
+
         assert "Edit customer" in self.driver.page_source
 
         self.logger.info(
             "******* Edit Customer page opened successfully *******"
         )
 
-        # Edit Customer page object
+        # -------------------------------------------------
+        # Edit Customer
+        # -------------------------------------------------
+
         editcust = EditCustomerPage(self.driver)
 
-        # Change First Name
         editcust.setFirstName("Johnny")
 
-        # Save customer
+        # -------------------------------------------------
+        # Save
+        # -------------------------------------------------
+
         editcust.clickSave()
 
-        # Verify success message
-        msg = self.driver.find_element(
-            By.TAG_NAME,
-            "body"
-        ).text
+        # -------------------------------------------------
+        # Wait for success message
+        # -------------------------------------------------
 
-        if "The customer has been updated successfully" in msg:
-
-            self.logger.info(
-                "********* Edit Customer test passed **********"
+        success_message = WebDriverWait(
+            self.driver,
+            15
+        ).until(
+            EC.visibility_of_element_located(
+                (
+                    By.XPATH,
+                    "//*[contains(text(),"
+                    "'The customer has been updated successfully')]"
+                )
             )
+        )
 
-        else:
+        assert success_message.is_displayed()
 
-            self.driver.save_screenshot(
-                ".\\Screenshots\\test_editCustomer_scr.png"
-            )
-
-            self.logger.error(
-                "********* Edit Customer test failed **********"
-            )
-
-            assert False
+        self.logger.info(
+            "********* Edit Customer test passed **********"
+        )
 
         self.driver.close()
 
