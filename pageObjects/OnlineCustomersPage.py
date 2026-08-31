@@ -168,7 +168,7 @@ class OnlineCustomersPage:
     # Get Customer Names
     # -------------------------------------------------
 
-    def getCustomerNames(self):
+    def getCustomerNames(self, expected_customer=None):
 
         for attempt in range(3):
 
@@ -185,7 +185,7 @@ class OnlineCustomersPage:
                 )
 
                 # -----------------------------------------
-                # Wait until DataTable finishes loading
+                # Wait for real customer data
                 # -----------------------------------------
 
                 def table_has_real_data(driver):
@@ -197,6 +197,8 @@ class OnlineCustomersPage:
 
                     if not rows:
                         return False
+
+                    customer_names = []
 
                     for row in rows:
 
@@ -210,29 +212,36 @@ class OnlineCustomersPage:
                             if not columns:
                                 continue
 
-                            text = columns[0].text.strip()
+                            customer_name = columns[0].text.strip()
 
-                            # Ignore DataTables loading row
-                            if text == "Loading...":
+                            if not customer_name:
+                                continue
+
+                            if customer_name == "Loading...":
                                 return False
 
-                            # Ignore empty table message
-                            if "No data available" in text:
+                            if "No data available" in customer_name:
                                 return True
 
-                            # Real customer found
-                            if text:
-                                return True
+                            customer_names.append(customer_name)
 
                         except StaleElementReferenceException:
                             return False
 
-                    return False
+                    # -----------------------------------------
+                    # If expected customer was supplied,
+                    # wait until that customer appears
+                    # -----------------------------------------
+
+                    if expected_customer:
+                        return expected_customer.strip() in customer_names
+
+                    return len(customer_names) > 0
 
                 self.wait.until(table_has_real_data)
 
                 # -----------------------------------------
-                # Read customer names
+                # Read table again
                 # -----------------------------------------
 
                 rows = self.driver.find_elements(
@@ -256,25 +265,24 @@ class OnlineCustomersPage:
 
                         customer_name = columns[0].text.strip()
 
-                        # Ignore loading row
+                        if not customer_name:
+                            continue
+
                         if customer_name == "Loading...":
                             continue
 
-                        # Ignore empty table message
                         if "No data available" in customer_name:
-                            continue
-
-                        # Ignore empty values
-                        if not customer_name:
                             continue
 
                         customer_names.append(customer_name)
 
                     except StaleElementReferenceException:
-
                         raise
 
-                print("Customer names:", customer_names)
+                print(
+                    "Customer names:",
+                    customer_names
+                )
 
                 return customer_names
 
@@ -291,7 +299,6 @@ class OnlineCustomersPage:
             "Unable to read customer names because "
             "the Online Customers table kept refreshing."
         )
-
     # -------------------------------------------------
     # Select Customer Role
     # -------------------------------------------------
