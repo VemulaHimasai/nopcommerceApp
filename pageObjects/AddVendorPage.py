@@ -63,45 +63,130 @@ class AddVendor:
         print("Page title:", self.driver.title)
 
     #enter vendor name
-    def setVendorName(self,name):
-        vendor_name = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,self.vendor_name_xpath)
-        ))
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", vendor_name)
+    def setVendorName(self, name):
+        vendor_name = self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, self.vendor_name_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            vendor_name
+        )
+
+        self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.vendor_name_xpath)
+            )
+        )
+
+        vendor_name.click()
         vendor_name.clear()
         vendor_name.send_keys(name)
+
+        # Wait until the entered value is available
+        self.wait.until(
+            lambda driver: driver.find_element(
+                By.XPATH,
+                self.vendor_name_xpath
+            ).get_attribute("value") == name
+        )
+
+        # Get the element again after the wait
+        vendor_name = self.driver.find_element(
+            By.XPATH,
+            self.vendor_name_xpath
+        )
 
         entered_value = vendor_name.get_attribute("value")
 
         print("Expected Vendor Name:", repr(name))
         print("Actual Vendor Name:", repr(entered_value))
 
-        assert entered_value == name, \
-        f"Vendor name was not entered. Expected: {name}, Actual: {entered_value}"
+        assert entered_value == name, (
+            f"Vendor name was not entered. "
+            f"Expected: {name}, Actual: {entered_value}"
+        )
 
+    def setVendorDesc(self, description):
+        vendor_desc = self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, self.vendor_desc_xpath)
+            )
+        )
 
-    #enter vendor description
-    def setVendorDesc(self,description):
-        vendor_desc = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH,self.vendor_desc_xpath)
-        ))
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            vendor_desc
+        )
+
+        self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.vendor_desc_xpath)
+            )
+        )
+
+        vendor_desc.click()
         vendor_desc.clear()
         vendor_desc.send_keys(description)
 
-    #enter vendor email
-    def setVendorEmail(self,email):
-        vendor_email = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,self.vendor_email_xpath)
-        ))
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", vendor_email)
+        print(
+            "Expected Vendor Description:",
+            repr(description)
+        )
+
+        entered_value = vendor_desc.get_attribute("textContent")
+
+        print(
+            "Actual Vendor Description:",
+            repr(entered_value)
+        )
+    def setVendorEmail(self, email):
+        vendor_email = self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, self.vendor_email_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            vendor_email
+        )
+
+        self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.vendor_email_xpath)
+            )
+        )
+
+        vendor_email.click()
         vendor_email.clear()
         vendor_email.send_keys(email)
-        entered_value = vendor_email.get_attribute("value")
-        print("Expected Vendor Email:", repr(email))
-        print("Actual Vendor Email:", repr(entered_value))
 
-        assert entered_value == email, \
-            f"Vendor name was not entered. Expected: {email}, Actual: {entered_value}"
+        # Wait until the entered value is available
+        self.wait.until(
+            lambda driver: driver.find_element(
+                By.XPATH,
+                self.vendor_email_xpath
+            ).get_attribute("value") == email
+        )
+
+        # Get the element again after the wait
+        vendor_email = self.driver.find_element(
+            By.XPATH,
+            self.vendor_email_xpath
+        )
+
+        entered_value = vendor_email.get_attribute("value")
+
+        print("Expected Vendor Name:", repr(email))
+        print("Actual Vendor Name:", repr(entered_value))
+
+        assert entered_value == email, (
+            f"Vendor name was not entered. "
+            f"Expected: {email}, Actual: {entered_value}"
+        )
 
 
 

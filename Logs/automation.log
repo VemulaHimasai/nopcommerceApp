@@ -2850,3 +2850,17 @@ The new vendor has been added successfully.
 08/31/2026 10:22:53 AM: INFO: ******* Delete confirmation accepted *******
 08/31/2026 10:22:54 AM: INFO: ********* Delete Customer test passed **********
 08/31/2026 10:22:56 AM: INFO: ****** Ending Delete Customer Test *******
+08/31/2026 10:49:55 AM: INFO: ******* Test_012_AddVendor *******
+08/31/2026 10:50:05 AM: INFO: ***** Login Successfully *****
+08/31/2026 10:50:05 AM: INFO: ****** Starting Add Vendor Test ******
+08/31/2026 10:50:08 AM: INFO: ****** Providing Vendor Info ******
+08/31/2026 10:54:09 AM: INFO: ******* Test_012_AddVendor *******
+08/31/2026 10:54:16 AM: INFO: ***** Login Successfully *****
+08/31/2026 10:54:16 AM: INFO: ****** Starting Add Vendor Test ******
+08/31/2026 10:54:19 AM: INFO: ****** Providing Vendor Info ******
+08/31/2026 10:57:29 AM: INFO: ******* Test_012_AddVendor *******
+08/31/2026 10:57:44 AM: INFO: ***** Login Successfully *****
+08/31/2026 10:57:44 AM: INFO: ****** Starting Add Vendor Test ******
+08/31/2026 10:57:48 AM: INFO: ****** Providing Vendor Info ******
+08/31/2026 10:57:50 AM: INFO: After Save URL: https://localhost:59579/Admin/Vendor/List
+08/31/2026 10:57:50 AM: INFO: ******Vendor added successfully******
