@@ -1,3 +1,5 @@
+
+import os
 import pytest
 import string
 import random
@@ -24,13 +26,14 @@ class Test_003_AddCustomer:
     def test_addCustomer(self, setup):
 
         self.logger.info(
-            "**********Test_003_AddCustomer**********"
+            "********** Test_003_AddCustomer **********"
         )
 
         self.driver = setup
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
-        self.driver.implicitly_wait(10)
+
+        wait = WebDriverWait(self.driver, 15)
 
         # -------------------------------------------------
         # Login
@@ -43,7 +46,7 @@ class Test_003_AddCustomer:
         self.lp.clickLogin()
 
         self.logger.info(
-            "*********Login Successful**********"
+            "********* Login Successful **********"
         )
 
         # -------------------------------------------------
@@ -51,7 +54,7 @@ class Test_003_AddCustomer:
         # -------------------------------------------------
 
         self.logger.info(
-            "*****Starting Add Customer Test*******"
+            "********* Starting Add Customer Test *********"
         )
 
         self.addcust = AddCustomer(self.driver)
@@ -66,7 +69,7 @@ class Test_003_AddCustomer:
         self.addcust.clickonAddNew()
 
         self.logger.info(
-            "********Providing customer info**********"
+            "******** Providing customer information ********"
         )
 
         # -------------------------------------------------
@@ -75,10 +78,7 @@ class Test_003_AddCustomer:
 
         self.email = random_generator() + "@gmail.com"
 
-        print(
-            "Generated email:",
-            self.email
-        )
+        print("Generated email:", self.email)
 
         # -------------------------------------------------
         # Enter Email
@@ -86,28 +86,25 @@ class Test_003_AddCustomer:
 
         self.addcust.setEmail(self.email)
 
-        # Verify email
-        email_value = self.driver.find_element(
-            By.XPATH,
-            self.addcust.txtEmail_xpath
-        ).get_attribute("value")
-
-        print(
-            "Expected email:",
-            repr(self.email)
+        email_field = wait.until(
+            EC.visibility_of_element_located(
+                (
+                    By.XPATH,
+                    self.addcust.txtEmail_xpath
+                )
+            )
         )
 
-        print(
-            "Actual email:",
-            repr(email_value)
-        )
+        actual_email = email_field.get_attribute("value")
 
-        print(
-            "Email field value:",
-            email_value
-        )
+        print("Expected email:", repr(self.email))
+        print("Actual email:", repr(actual_email))
 
-        assert email_value == self.email
+        assert actual_email == self.email, (
+            f"Email mismatch. "
+            f"Expected: {self.email}, "
+            f"Actual: {actual_email}"
+        )
 
         # -------------------------------------------------
         # Enter Password
@@ -125,10 +122,7 @@ class Test_003_AddCustomer:
         # Verify Customer Role
         # -------------------------------------------------
 
-        WebDriverWait(
-            self.driver,
-            10
-        ).until(
+        registered_role = wait.until(
             EC.visibility_of_element_located(
                 (
                     By.XPATH,
@@ -136,6 +130,10 @@ class Test_003_AddCustomer:
                     "and @title='Registered']"
                 )
             )
+        )
+
+        assert registered_role.is_displayed(), (
+            "Registered customer role was not selected"
         )
 
         print(
@@ -147,21 +145,16 @@ class Test_003_AddCustomer:
         # -------------------------------------------------
 
         self.addcust.setManagerofVendor("Vendor1")
-
         self.addcust.setGender("Female")
-
         self.addcust.setFirstName("Himasai")
-
         self.addcust.setLastName("V")
-
         self.addcust.setCompanyName("xxxxx")
-
         self.addcust.setAdminComment(
             "This is for testing purpose"
         )
 
         self.logger.info(
-            "********Customer information provided**********"
+            "******** Customer information provided ********"
         )
 
         # -------------------------------------------------
@@ -171,7 +164,7 @@ class Test_003_AddCustomer:
         self.addcust.clickSave()
 
         self.logger.info(
-            "********Saving customer info**********"
+            "******** Saving customer information ********"
         )
 
         # -------------------------------------------------
@@ -180,11 +173,8 @@ class Test_003_AddCustomer:
 
         try:
 
-            WebDriverWait(
-                self.driver,
-                15
-            ).until(
-                lambda driver:
+            alert = wait.until(
+                lambda driver: (
                     driver.find_elements(
                         By.CSS_SELECTOR,
                         "div.alert.alert-success"
@@ -194,11 +184,12 @@ class Test_003_AddCustomer:
                         By.CSS_SELECTOR,
                         "div.alert.alert-danger"
                     )
+                )
             )
 
-            # ---------------------------------------------
-            # Check Success Message
-            # ---------------------------------------------
+            # -------------------------------------------------
+            # Success
+            # -------------------------------------------------
 
             success_messages = self.driver.find_elements(
                 By.CSS_SELECTOR,
@@ -207,29 +198,32 @@ class Test_003_AddCustomer:
 
             if success_messages:
 
-                msg = success_messages[0].text
+                success_msg = success_messages[0].text.strip()
 
                 print(
                     "Success message:",
-                    msg
+                    success_msg
                 )
 
                 self.logger.info(
-                    f"Success message: {msg}"
+                    f"Success message: {success_msg}"
                 )
 
                 assert (
                     "customer has been added successfully"
-                    in msg.lower()
+                    in success_msg.lower()
+                ), (
+                    f"Unexpected success message: "
+                    f"{success_msg}"
                 )
 
                 self.logger.info(
-                    "********Customer added successfully**********"
+                    "******** Customer added successfully ********"
                 )
 
-            # ---------------------------------------------
-            # Check Error Message
-            # ---------------------------------------------
+            # -------------------------------------------------
+            # Error
+            # -------------------------------------------------
 
             else:
 
@@ -240,7 +234,7 @@ class Test_003_AddCustomer:
 
                 if error_messages:
 
-                    error_msg = error_messages[0].text
+                    error_msg = error_messages[0].text.strip()
 
                     print(
                         "ERROR MESSAGE:",
@@ -251,46 +245,49 @@ class Test_003_AddCustomer:
                         f"Customer creation failed: {error_msg}"
                     )
 
+                    os.makedirs(
+                        ".\\Screenshots",
+                        exist_ok=True
+                    )
+
+                    self.driver.save_screenshot(
+                        ".\\Screenshots\\test_addCustomer_scr.png"
+                    )
+
+                    pytest.fail(
+                        f"Customer was not added successfully. "
+                        f"Error: {error_msg}"
+                    )
+
                 else:
 
-                    print(
-                        "No success or error message found."
+                    os.makedirs(
+                        ".\\Screenshots",
+                        exist_ok=True
                     )
 
-                    print(
-                        "Current URL:",
-                        self.driver.current_url
+                    self.driver.save_screenshot(
+                        ".\\Screenshots\\test_addCustomer_scr.png"
                     )
 
-                    print(
-                        "Page title:",
-                        self.driver.title
+                    pytest.fail(
+                        "No success or error message found after "
+                        "saving customer."
                     )
-
-                    print(
-                        "Page text:",
-                        self.driver.find_element(
-                            By.TAG_NAME,
-                            "body"
-                        ).text
-                    )
-
-                self.driver.save_screenshot(
-                    ".\\Screenshots\\test_addCustomer_scr.png"
-                )
-
-                assert False, (
-                    "Customer was not added successfully"
-                )
 
         except Exception as e:
+
+            os.makedirs(
+                ".\\Screenshots",
+                exist_ok=True
+            )
 
             self.driver.save_screenshot(
                 ".\\Screenshots\\test_addCustomer_scr.png"
             )
 
             self.logger.error(
-                f"********Add customer test failed********** {e}"
+                f"******** Add customer test failed ******** {e}"
             )
 
             raise
@@ -300,15 +297,14 @@ class Test_003_AddCustomer:
         # -------------------------------------------------
 
         self.logger.info(
-            "********Verifying customer in Customers grid**********"
+            "******** Verifying customer in Customers grid ********"
         )
 
         self.addcust.clickOnCustomersMenu()
-
         self.addcust.clickonCustomersMenuItem()
 
         self.logger.info(
-            "********Customers page opened**********"
+            "******** Customers page opened ********"
         )
 
         # -------------------------------------------------
@@ -318,11 +314,10 @@ class Test_003_AddCustomer:
         searchcust = SearchCustomer(self.driver)
 
         searchcust.setEmail(self.email)
-
         searchcust.clickSearch()
 
         self.logger.info(
-            f"********Searching for {self.email}**********"
+            f"******** Searching for {self.email} ********"
         )
 
         # -------------------------------------------------
@@ -337,17 +332,31 @@ class Test_003_AddCustomer:
                 f"[normalize-space()='{self.email}']"
             )
 
-            WebDriverWait(
-                self.driver,
-                15
-            ).until(
-                lambda driver: any(
-                    cell.text.strip() == self.email
-                    for cell in driver.find_elements(
+            email_cell = wait.until(
+                EC.visibility_of_element_located(
+                    (
                         By.XPATH,
                         customer_email_xpath
                     )
                 )
+            )
+
+            actual_grid_email = email_cell.text.strip()
+
+            print(
+                "Expected grid email:",
+                self.email
+            )
+
+            print(
+                "Actual grid email:",
+                actual_grid_email
+            )
+
+            assert actual_grid_email == self.email, (
+                f"Customer email mismatch in grid. "
+                f"Expected: {self.email}, "
+                f"Actual: {actual_grid_email}"
             )
 
             print(
@@ -356,10 +365,15 @@ class Test_003_AddCustomer:
             )
 
             self.logger.info(
-                "********Customer found in Customers grid**********"
+                "******** Customer found in Customers grid ********"
             )
 
         except Exception as e:
+
+            os.makedirs(
+                ".\\Screenshots",
+                exist_ok=True
+            )
 
             self.driver.save_screenshot(
                 ".\\Screenshots\\test_addCustomer_grid_scr.png"
@@ -379,9 +393,14 @@ class Test_003_AddCustomer:
                 self.driver.current_url
             )
 
-            # ---------------------------------------------
+            print(
+                "Page title:",
+                self.driver.title
+            )
+
+            # -------------------------------------------------
             # Print Grid Rows for Debugging
-            # ---------------------------------------------
+            # -------------------------------------------------
 
             try:
 
@@ -420,7 +439,7 @@ class Test_003_AddCustomer:
         # -------------------------------------------------
 
         self.logger.info(
-            "********Add customer test passed**********"
+            "******** Add customer test passed ********"
         )
 
 
@@ -436,3 +455,4 @@ def random_generator(
         random.choice(chars)
         for _ in range(size)
     )
+
