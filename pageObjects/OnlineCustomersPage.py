@@ -180,30 +180,59 @@ class OnlineCustomersPage:
 
                 self.wait.until(
                     EC.presence_of_element_located(
-                        (
-                            By.XPATH,
-                            self.table_xpath
-                        )
+                        (By.XPATH, self.table_xpath)
                     )
                 )
 
                 # -----------------------------------------
-                # Wait until DataTable has finished loading
+                # Wait until DataTable finishes loading
                 # -----------------------------------------
 
-                self.wait.until(
-                    lambda driver: (
-                        len(
-                            driver.find_elements(
-                                By.XPATH,
-                                self.table_rows_xpath
+                def table_has_real_data(driver):
+
+                    rows = driver.find_elements(
+                        By.XPATH,
+                        self.table_rows_xpath
+                    )
+
+                    if not rows:
+                        return False
+
+                    for row in rows:
+
+                        try:
+
+                            columns = row.find_elements(
+                                By.TAG_NAME,
+                                "td"
                             )
-                        ) > 0
-                    )
-                )
+
+                            if not columns:
+                                continue
+
+                            text = columns[0].text.strip()
+
+                            # Ignore DataTables loading row
+                            if text == "Loading...":
+                                return False
+
+                            # Ignore empty table message
+                            if "No data available" in text:
+                                return True
+
+                            # Real customer found
+                            if text:
+                                return True
+
+                        except StaleElementReferenceException:
+                            return False
+
+                    return False
+
+                self.wait.until(table_has_real_data)
 
                 # -----------------------------------------
-                # Read rows
+                # Read customer names
                 # -----------------------------------------
 
                 rows = self.driver.find_elements(
@@ -227,29 +256,25 @@ class OnlineCustomersPage:
 
                         customer_name = columns[0].text.strip()
 
-                        # Ignore empty rows
+                        # Ignore loading row
+                        if customer_name == "Loading...":
+                            continue
+
+                        # Ignore empty table message
+                        if "No data available" in customer_name:
+                            continue
+
+                        # Ignore empty values
                         if not customer_name:
                             continue
 
-                        # Ignore DataTable empty message
-                        if (
-                            "No data available"
-                            in customer_name
-                        ):
-                            continue
-
-                        customer_names.append(
-                            customer_name
-                        )
+                        customer_names.append(customer_name)
 
                     except StaleElementReferenceException:
 
                         raise
 
-                print(
-                    "Customer names:",
-                    customer_names
-                )
+                print("Customer names:", customer_names)
 
                 return customer_names
 

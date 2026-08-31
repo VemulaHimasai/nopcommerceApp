@@ -70,71 +70,112 @@ class ActivityPage:
         ip_address.send_keys(ip)
 
     def clickSearch(self):
-        search_btn = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH, self.btn_search_xpath)
-        ))
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", search_btn)
-        self.driver.execute_script("arguments[0].click();", search_btn)
 
+        search_btn = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.btn_search_xpath)
+            )
+        )
 
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            search_btn
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            search_btn
+        )
+
+        # Wait until the search request updates the table
+        self.wait.until(
+            lambda driver: driver.execute_script(
+                "return typeof jQuery !== 'undefined' && jQuery.active === 0;"
+            )
+        )
+
+        print("Activity Log search completed")
 
     def getNoOfRows(self):
 
         rows_xpath = "//table[@id='activityLog-grid']//tbody/tr"
 
-        try:
+        for attempt in range(3):
 
-            # Wait until DataTable finishes loading
-            self.wait.until(
-                lambda driver: driver.find_elements(
+            try:
+
+                # -----------------------------------------
+                # Wait until Activity Log table is present
+                # -----------------------------------------
+
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (By.XPATH, self.table_log_results_xpath)
+                    )
+                )
+
+                # -----------------------------------------
+                # Wait until at least one row is rendered
+                # -----------------------------------------
+
+                self.wait.until(
+                    lambda driver: len(
+                        driver.find_elements(
+                            By.XPATH,
+                            rows_xpath
+                        )
+                    ) > 0
+                )
+
+                # -----------------------------------------
+                # Get fresh rows
+                # -----------------------------------------
+
+                rows = self.driver.find_elements(
                     By.XPATH,
                     rows_xpath
                 )
-            )
 
-            rows = self.driver.find_elements(
-                By.XPATH,
-                rows_xpath
-            )
+                print("Total rows found:", len(rows))
 
-            print("Total rows found:", len(rows))
+                # -----------------------------------------
+                # Check DataTable message
+                # -----------------------------------------
 
-            # Check table message
-            if len(rows) == 1:
+                if len(rows) == 1:
 
-                row_text = rows[0].text.strip()
+                    row_text = rows[0].text.strip()
 
-                print("First row text:", repr(row_text))
+                    print(
+                        "First row text:",
+                        repr(row_text)
+                    )
 
-                if "No data available in table" in row_text:
-                    return 0
+                    if "No data available in table" in row_text:
+                        return 0
 
-                if "No matching records found" in row_text:
-                    return 0
+                    if "No matching records found" in row_text:
+                        return 0
 
-            return len(rows)
+                # -----------------------------------------
+                # Return actual row count
+                # -----------------------------------------
 
-        except StaleElementReferenceException:
+                return len(rows)
 
-            rows = self.driver.find_elements(
-                By.XPATH,
-                rows_xpath
-            )
+            except StaleElementReferenceException:
 
-            print("Rows after stale element retry:", len(rows))
+                print(
+                    f"Activity Log table refreshed. "
+                    f"Retry {attempt + 1}/3"
+                )
 
-            if len(rows) == 1:
+                continue
 
-                row_text = rows[0].text.strip()
-
-                if "No data available in table" in row_text:
-                    return 0
-
-                if "No matching records found" in row_text:
-                    return 0
-
-            return len(rows)
-
+        raise Exception(
+            "Unable to read Activity Log rows because "
+            "the Activity Log table kept refreshing."
+        )
 
 
     def getNoOfColumns(self):

@@ -40,8 +40,8 @@ class Test_SearchActivityDate_016:
         self.activity = ActivityPage(self.driver)
         self.activity.clickActivityPageMenuItem()
 
-        self.activity.setCreatedFrom("24-08-2026")
-        self.activity.setCreatedTo("26-08-2026")
+        self.activity.setCreatedFrom("29-08-2026")
+        self.activity.setCreatedTo("31-08-2026")
 
         self.activity.clickSearch()
 
