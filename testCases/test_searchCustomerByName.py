@@ -67,7 +67,7 @@ class Test_SearchCustomerByName_005:
             "******** Searching customer by Name ***********"
         )
 
-        searchcust.setFirstName("Tony")
+        searchcust.setFirstName("Johnny")
         searchcust.setLastName("James")
 
         searchcust.clickSearch()
@@ -83,7 +83,7 @@ class Test_SearchCustomerByName_005:
         # -------------------------------------------------
 
         status = searchcust.searchCustomerByName(
-            "Tony James"
+            "Johnny James"
         )
 
         print(
@@ -92,7 +92,7 @@ class Test_SearchCustomerByName_005:
         )
 
         assert status is True, (
-            "Customer 'Tony James' was not found "
+            "Customer 'Johnny James' was not found "
             "in search results."
         )
 
