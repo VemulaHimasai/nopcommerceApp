@@ -43,8 +43,8 @@ class Test_SearchActivityDate_016:
         self.activity.clickActivityPageMenuItem()
 
         # Set date range
-        self.activity.setCreatedFrom("29-08-2026")
-        self.activity.setCreatedTo("31-08-2026")
+        self.activity.setCreatedFrom("01-09-2026")
+        self.activity.setCreatedTo("01-09-2026")
 
         # Search
         self.activity.clickSearch()

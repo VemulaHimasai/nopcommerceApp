@@ -2978,3 +2978,21 @@ The new customer has been added successfully.
 09/01/2026 07:33:22 PM: INFO: ********Starting Verify Activity Type**********
 09/01/2026 07:33:24 PM: INFO: fActivity Type '{activity_name}' Status: {result}
 09/01/2026 07:33:24 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/01/2026 08:14:24 PM: INFO: ********** Test_003_AddCustomer **********
+09/01/2026 08:14:30 PM: INFO: ********* Login Successful **********
+09/01/2026 08:14:30 PM: INFO: ********* Starting Add Customer Test *********
+09/01/2026 08:14:32 PM: INFO: ******** Providing customer information ********
+09/01/2026 08:14:34 PM: INFO: ******** Customer information provided ********
+09/01/2026 08:14:34 PM: INFO: ******** Saving customer information ********
+09/01/2026 08:14:35 PM: INFO: Success message: ×
+The new customer has been added successfully.
+09/01/2026 08:14:35 PM: INFO: ******** Customer added successfully ********
+09/01/2026 08:14:35 PM: INFO: ******** Verifying customer in Customers grid ********
+09/01/2026 08:14:36 PM: INFO: ******** Customers page opened ********
+09/01/2026 08:14:44 PM: INFO: ******** Searching for r9aqilk8@gmail.com ********
+09/01/2026 08:14:44 PM: INFO: ******** Customer found in Customers grid ********
+09/01/2026 08:14:44 PM: INFO: ******** Add customer test passed ********
+09/01/2026 08:20:13 PM: INFO: ***** SearchActivityDate_016 *****
+09/01/2026 08:20:21 PM: INFO: *********** Login Successful **********
+09/01/2026 08:20:21 PM: INFO: ********** Starting SearchActivityDate_016 **********
+09/01/2026 08:20:23 PM: INFO: Activity log rows found: 15

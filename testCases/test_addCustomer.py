@@ -20,6 +20,7 @@ class Test_003_AddCustomer:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
+
     logger = LogGen.loggen()
 
     @pytest.mark.sanity
@@ -78,7 +79,10 @@ class Test_003_AddCustomer:
 
         self.email = random_generator() + "@gmail.com"
 
-        print("Generated email:", self.email)
+        print(
+            "Generated email:",
+            self.email
+        )
 
         # -------------------------------------------------
         # Enter Email
@@ -97,8 +101,15 @@ class Test_003_AddCustomer:
 
         actual_email = email_field.get_attribute("value")
 
-        print("Expected email:", repr(self.email))
-        print("Actual email:", repr(actual_email))
+        print(
+            "Expected email:",
+            repr(self.email)
+        )
+
+        print(
+            "Actual email:",
+            repr(actual_email)
+        )
 
         assert actual_email == self.email, (
             f"Email mismatch. "
@@ -171,10 +182,6 @@ class Test_003_AddCustomer:
         # Verify Success / Error Message
         # -------------------------------------------------
 
-        # -------------------------------------------------
-        # Verify Success / Error Message
-        # -------------------------------------------------
-
         try:
 
             wait.until(
@@ -199,15 +206,18 @@ class Test_003_AddCustomer:
 
                 success_msg = success_messages[0].text.strip()
 
-                print("Success message:", success_msg)
+                print(
+                    "Success message:",
+                    success_msg
+                )
 
                 self.logger.info(
                     f"Success message: {success_msg}"
                 )
 
                 assert (
-                        "customer has been added successfully"
-                        in success_msg.lower()
+                    "customer has been added successfully"
+                    in success_msg.lower()
                 ), (
                     f"Unexpected success message: {success_msg}"
                 )
@@ -229,7 +239,10 @@ class Test_003_AddCustomer:
                     else "Unknown error"
                 )
 
-                print("ERROR MESSAGE:", error_msg)
+                print(
+                    "ERROR MESSAGE:",
+                    error_msg
+                )
 
                 self.logger.error(
                     f"Customer creation failed: {error_msg}"
@@ -306,16 +319,30 @@ class Test_003_AddCustomer:
                 f"[normalize-space()='{self.email}']"
             )
 
-            email_cell = wait.until(
-                EC.visibility_of_element_located(
+            # -------------------------------------------------
+            # Wait for DataTable refresh and email to appear
+            # -------------------------------------------------
+
+            wait.until(
+                EC.text_to_be_present_in_element(
                     (
                         By.XPATH,
                         customer_email_xpath
-                    )
+                    ),
+                    self.email
                 )
             )
 
-            actual_grid_email = email_cell.text.strip()
+            # -------------------------------------------------
+            # IMPORTANT:
+            # Locate the element again after DataTable refresh.
+            # This prevents stale element reference errors.
+            # -------------------------------------------------
+
+            actual_grid_email = self.driver.find_element(
+                By.XPATH,
+                customer_email_xpath
+            ).text.strip()
 
             print(
                 "Expected grid email:",
@@ -326,6 +353,10 @@ class Test_003_AddCustomer:
                 "Actual grid email:",
                 actual_grid_email
             )
+
+            # -------------------------------------------------
+            # Validate Email
+            # -------------------------------------------------
 
             assert actual_grid_email == self.email, (
                 f"Customer email mismatch in grid. "
@@ -344,6 +375,10 @@ class Test_003_AddCustomer:
 
         except Exception as e:
 
+            # -------------------------------------------------
+            # Take Screenshot
+            # -------------------------------------------------
+
             os.makedirs(
                 ".\\Screenshots",
                 exist_ok=True
@@ -352,6 +387,10 @@ class Test_003_AddCustomer:
             self.driver.save_screenshot(
                 ".\\Screenshots\\test_addCustomer_grid_scr.png"
             )
+
+            # -------------------------------------------------
+            # Debug Information
+            # -------------------------------------------------
 
             print(
                 "Customer was NOT found in Customers grid."
@@ -390,10 +429,19 @@ class Test_003_AddCustomer:
 
                 for row in rows:
 
-                    print(
-                        "ROW:",
-                        row.text
-                    )
+                    try:
+
+                        print(
+                            "ROW:",
+                            row.text
+                        )
+
+                    except Exception as row_error:
+
+                        print(
+                            "Could not read row:",
+                            row_error
+                        )
 
             except Exception as grid_error:
 
