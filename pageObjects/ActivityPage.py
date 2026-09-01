@@ -1,4 +1,7 @@
-from selenium.common import StaleElementReferenceException
+from selenium.common.exceptions import (
+    StaleElementReferenceException,
+    TimeoutException
+)
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -30,6 +33,11 @@ class ActivityPage:
 
     #results table
     table_log_results_xpath = "//table[@id='activityLog-grid']"
+
+    no_data_message_xpath = (
+        "//table[@id='activityLog-grid']//td"
+        "[normalize-space()='No data available in table']"
+    )
 
     def __init__(self, driver):
         self.driver = driver
@@ -98,15 +106,13 @@ class ActivityPage:
 
     def getNoOfRows(self):
 
-        rows_xpath = "//table[@id='activityLog-grid']//tbody/tr"
+        rows_xpath = (
+            "//table[@id='activityLog-grid']//tbody/tr"
+        )
 
         for attempt in range(3):
 
             try:
-
-                # -----------------------------------------
-                # Wait until Activity Log table is present
-                # -----------------------------------------
 
                 self.wait.until(
                     EC.presence_of_element_located(
@@ -114,34 +120,20 @@ class ActivityPage:
                     )
                 )
 
-                # -----------------------------------------
-                # Wait until at least one row is rendered
-                # -----------------------------------------
-
                 self.wait.until(
                     lambda driver: len(
-                        driver.find_elements(
-                            By.XPATH,
-                            rows_xpath
-                        )
+                        driver.find_elements(By.XPATH, rows_xpath)
                     ) > 0
                 )
-
-                # -----------------------------------------
-                # Get fresh rows
-                # -----------------------------------------
 
                 rows = self.driver.find_elements(
                     By.XPATH,
                     rows_xpath
                 )
 
-                print("Total rows found:", len(rows))
+                print("Total table rows found:", len(rows))
 
-                # -----------------------------------------
-                # Check DataTable message
-                # -----------------------------------------
-
+                # Dynamic DataTable no-data row
                 if len(rows) == 1:
 
                     row_text = rows[0].text.strip()
@@ -151,16 +143,13 @@ class ActivityPage:
                         repr(row_text)
                     )
 
-                    if "No data available in table" in row_text:
+                    if (
+                            "No data available in table" in row_text
+                            or "No matching records found" in row_text
+                    ):
                         return 0
 
-                    if "No matching records found" in row_text:
-                        return 0
-
-                # -----------------------------------------
-                # Return actual row count
-                # -----------------------------------------
-
+                # Actual activity rows
                 return len(rows)
 
             except StaleElementReferenceException:
@@ -170,14 +159,10 @@ class ActivityPage:
                     f"Retry {attempt + 1}/3"
                 )
 
-                continue
-
         raise Exception(
             "Unable to read Activity Log rows because "
             "the Activity Log table kept refreshing."
         )
-
-
     def getNoOfColumns(self):
         rows = self.wait.until(EC.visibility_of_all_elements_located(
             (By.XPATH,self.table_log_rows_xpath)
@@ -262,6 +247,19 @@ class ActivityPage:
             (By.XPATH,self.btn_clear_alllog_xpath)
         ))
         self.driver.execute_script("arguments[0].click();", btn_clear_log)
+
+    def isNoDataMessageDisplayed(self):
+        try:
+            message = self.wait.until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, self.no_data_message_xpath)
+                )
+            )
+
+            return message.is_displayed()
+
+        except TimeoutException:
+            return False
 
 
 
