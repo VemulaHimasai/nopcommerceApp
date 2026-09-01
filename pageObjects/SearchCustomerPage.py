@@ -891,73 +891,43 @@ class SearchCustomer:
     # =================================================
 
     def clickEditCustomerByEmail(self, email):
-
         for attempt in range(3):
-
             try:
-
                 self.waitForTable()
-
-                # -----------------------------------------
-                # Locate customer row by email
-                # -----------------------------------------
-
-                row_xpath = (
-                    f"{self.tableRows_xpath}"
-                    f"[td[2][normalize-space()='{email}']]"
-                )
-
-                self.wait.until(
-                    EC.presence_of_element_located(
-                        (By.XPATH, row_xpath)
+                while True:
+                    row_xpath = (
+                        f"{self.tableRows_xpath}"
+                        f'[td[2][normalize-space()="{email}"]]'
                     )
-                )
-
-                # -----------------------------------------
-                # Locate Edit button in same row
-                # -----------------------------------------
-
-                edit_button_xpath = (
-                    f"{row_xpath}"
-                    f"//td[last()]//a"
-                )
-
-                edit_button = self.wait.until(
-                    EC.element_to_be_clickable(
-                        (By.XPATH, edit_button_xpath)
-                    )
-                )
-
-                self.driver.execute_script(
-                    "arguments[0].scrollIntoView({block:'center'});",
-                    edit_button
-                )
-
-                # Re-locate after scrolling
-                edit_button = self.wait.until(
-                    EC.element_to_be_clickable(
-                        (By.XPATH, edit_button_xpath)
-                    )
-                )
-
-                edit_button.click()
-
-                return
-
+                    rows = self.driver.find_elements(By.XPATH, row_xpath)
+                    if rows:
+                        print(f"Customer found on current page: {email}")
+                        edit_button_xpath = (
+                            f"{row_xpath}"
+                            f"//td[last()]//a"
+                        )
+                        edit_button = self.wait.until(EC.element_to_be_clickable(
+                            (By.XPATH, edit_button_xpath)
+                        ))
+                        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",
+                                                   edit_button)
+                        edit_button.click()
+                        return
+                    print(f"Customer '{email}' not found on current page.")
+                    next_button = self.driver.find_element(By.XPATH,"//a[contains(@class,'next')]")
+                    classes = next_button.get_attribute("class")
+                    if "disabled" in classes:
+                        raise AssertionError(f"Customer {email} not found on any page.")
+                    print(f"Moving to next page while searching for '{email}'.")
+                    self.driver.execute_script("arguments[0].click();", next_button)
+                    time.sleep(1)
+                    self.waitForTable()
             except StaleElementReferenceException:
-
-                print(
-                    f"Customer table refreshed while locating "
-                    f"'{email}'. "
-                    f"Retrying ({attempt + 1}/3)..."
-                )
-
+                print(f"Customer table refreshed while searching "
+                f"'{email}'. "
+                f"Retrying ({attempt + 1}/3)...")
                 if attempt == 2:
                     raise
-
                 time.sleep(1)
-
-        raise AssertionError(
-            f"Unable to find/edit customer with email: {email}"
-        )
+        raise AssertionError( f"Unable to find/edit customer with email: {email}")
 

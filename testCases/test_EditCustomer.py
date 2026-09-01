@@ -85,7 +85,7 @@ class Test_EditCustomer_010:
         # Edit Customer
         # -------------------------------------------------
 
-        
+
         # Edit Customer
         editcust = EditCustomerPage(self.driver)
 
