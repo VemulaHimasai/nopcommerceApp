@@ -914,7 +914,7 @@ class SearchCustomer:
                         edit_button.click()
                         return
                     print(f"Customer '{email}' not found on current page.")
-                    next_button = self.driver.find_element(By.XPATH,"//a[contains(@class,'next')]")
+                    next_button = self.driver.find_element(By.XPATH,"//a[normalize-space()='Next']")
                     classes = next_button.get_attribute("class")
                     if "disabled" in classes:
                         raise AssertionError(f"Customer {email} not found on any page.")
