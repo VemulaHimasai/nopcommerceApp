@@ -15,6 +15,7 @@ class Test_VerifyActivityTypeDisplayed_026:
 
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_verifyactivitytypedisplayed(self,setup):
         self.logger.info("******VerifyActivityTypeDisplayed******")
         self.driver = setup
