@@ -915,11 +915,16 @@ class SearchCustomer:
                         return
                     print(f"Customer '{email}' not found on current page.")
                     next_buttons = self.driver.find_elements(By.XPATH,"//a[normalize-space()='Next']")
-                    classes = next_buttons.get_attribute("class")
+                    if not next_buttons:
+                        print(f"Next button not found,Customer {email} is not available on any page")
+                        raise AssertionError(f"Customer{email} not found on any page")
+                    
+                    next_button = next_buttons[0]
+                    classes = next_button.get_attribute("class")
                     if "disabled" in classes:
                         raise AssertionError(f"Customer {email} not found on any page.")
                     print(f"Moving to next page while searching for '{email}'.")
-                    self.driver.execute_script("arguments[0].click();", next_buttons)
+                    self.driver.execute_script("arguments[0].click();", next_button)
                     time.sleep(1)
                     self.waitForTable()
             except StaleElementReferenceException:
