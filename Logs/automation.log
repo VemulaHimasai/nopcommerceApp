@@ -2973,3 +2973,8 @@ The new customer has been added successfully.
 08/31/2026 05:16:03 PM: INFO: ********Starting_SearchRegistered_Role_022******
 08/31/2026 05:16:08 PM: INFO: Normal table customer count: 15
 08/31/2026 05:16:09 PM: INFO: Forum Moderator search result count: 1
+09/01/2026 07:33:14 PM: INFO: ******VerifyActivityTypeDisplayed******
+09/01/2026 07:33:22 PM: INFO: ***********Login Successful**********
+09/01/2026 07:33:22 PM: INFO: ********Starting Verify Activity Type**********
+09/01/2026 07:33:24 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/01/2026 07:33:24 PM: INFO: fActivity Type '{activity_name}' Status: {result}
