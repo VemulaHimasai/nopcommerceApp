@@ -1,3 +1,4 @@
+
 import os
 import pytest
 from selenium import webdriver
@@ -48,19 +49,43 @@ def setup(browser):
             prefs
         )
 
-        driver = webdriver.Chrome(
-            options=options
-        )
+        driver = None
 
-        print("Launching Chrome Browser......")
-        print(
-            "Chrome Download directory:",
-            download_dir
-        )
+        try:
 
-        yield driver
+            print("Starting Chrome WebDriver......")
 
-        driver.quit()
+            driver = webdriver.Chrome(
+                options=options
+            )
+
+            print("Launching Chrome Browser......")
+            print(
+                "Chrome Download directory:",
+                download_dir
+            )
+
+            yield driver
+
+        except Exception as e:
+
+            print("========================================")
+            print("CHROME WEBDRIVER ERROR")
+            print("========================================")
+            print("Exception Type:", type(e).__name__)
+            print("Exception:", str(e))
+            print("========================================")
+
+            raise
+
+        finally:
+
+            if driver is not None:
+
+                try:
+                    driver.quit()
+                except Exception:
+                    pass
 
     # =====================================================
     # FIREFOX
@@ -128,11 +153,7 @@ def setup(browser):
             True
         )
 
-        # =================================================
-        # IMPORTANT
         # Do not ask what to do with downloaded files
-        # =================================================
-
         options.set_preference(
             "browser.helperApps.alwaysAsk.force",
             False
@@ -148,7 +169,6 @@ def setup(browser):
         # =================================================
 
         mime_types = ",".join([
-
             # XML
             "application/xml",
             "text/xml",
@@ -194,25 +214,51 @@ def setup(browser):
         # START FIREFOX
         # =================================================
 
-        driver = webdriver.Firefox(
-            options=options
-        )
+        driver = None
 
-        print("Launching Firefox Browser......")
-        print(
-            "Firefox Download directory:",
-            download_dir
-        )
+        print("========================================")
+        print("Starting Firefox WebDriver......")
+        print("========================================")
 
-        yield driver
+        try:
 
-        driver.quit()
+            driver = webdriver.Firefox(
+                options=options
+            )
+
+            print("Launching Firefox Browser......")
+            print(
+                "Firefox Download directory:",
+                download_dir
+            )
+
+            yield driver
+
+        except Exception as e:
+
+            print("========================================")
+            print("FIREFOX WEBDRIVER STARTUP ERROR")
+            print("========================================")
+            print("Exception Type:", type(e).__name__)
+            print("Error Message:", str(e))
+            print("========================================")
+
+            raise
+
+        finally:
+
+            if driver is not None:
+
+                try:
+                    driver.quit()
+                except Exception:
+                    pass
 
     # =====================================================
     # EDGE
     # =====================================================
 
-    else:
+    elif browser == "edge":
 
         options = webdriver.EdgeOptions()
 
@@ -233,19 +279,54 @@ def setup(browser):
             prefs
         )
 
-        driver = webdriver.Edge(
-            options=options
+        driver = None
+
+        try:
+
+            print("Starting Edge WebDriver......")
+
+            driver = webdriver.Edge(
+                options=options
+            )
+
+            print("Launching Edge Browser......")
+            print(
+                "Edge Download directory:",
+                download_dir
+            )
+
+            yield driver
+
+        except Exception as e:
+
+            print("========================================")
+            print("EDGE WEBDRIVER ERROR")
+            print("========================================")
+            print("Exception Type:", type(e).__name__)
+            print("Exception:", str(e))
+            print("========================================")
+
+            raise
+
+        finally:
+
+            if driver is not None:
+
+                try:
+                    driver.quit()
+                except Exception:
+                    pass
+
+    # =====================================================
+    # INVALID BROWSER
+    # =====================================================
+
+    else:
+
+        raise ValueError(
+            f"Unsupported browser: {browser}. "
+            f"Use chrome, firefox, or edge."
         )
-
-        print("Launching Edge Browser......")
-        print(
-            "Edge Download directory:",
-            download_dir
-        )
-
-        yield driver
-
-        driver.quit()
 
 
 # =========================================================
@@ -300,3 +381,4 @@ def pytest_metadata(metadata):
         "Plugins",
         None
     )
+
