@@ -85,33 +85,19 @@ class Test_EditCustomer_010:
         # Edit Customer
         # -------------------------------------------------
 
+        
+        # Edit Customer
         editcust = EditCustomerPage(self.driver)
 
         editcust.setFirstName("Johnny")
 
-        self.logger.info(
-            "******* First Name changed to Johnny *******"
-        )
-
-        # -------------------------------------------------
-        # Save Customer
-        # -------------------------------------------------
-
+        # Save
         editcust.clickSave()
 
-        self.logger.info(
-            "******* Save button clicked *******"
-        )
+        # Verify update
+        status = editcust.isCustomerUpdatedSuccessfully()
 
-        # -------------------------------------------------
-        # Verify Success Message
-        # -------------------------------------------------
-
-        status = editcust.isUpdateSuccessMessageDisplayed()
-
-        assert status, (
-            "Customer update success message was not displayed"
-        )
+        assert status is True
 
         self.logger.info(
             "********* Edit Customer test passed **********"

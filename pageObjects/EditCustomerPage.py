@@ -138,53 +138,85 @@ class EditCustomerPage:
 
     def clickSave(self):
 
-        for attempt in range(3):
+        save_button = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.btnSave_xpath)
+            )
+        )
 
-            try:
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            save_button
+        )
 
-                save_button = self.wait.until(
-                    EC.element_to_be_clickable(
-                        (By.XPATH, self.btnSave_xpath)
+        save_button.click()
+
+    def isCustomerUpdatedSuccessfully(self):
+
+        try:
+            success_message = WebDriverWait(
+                self.driver,
+                20
+            ).until(
+                EC.visibility_of_element_located(
+                    (
+                        By.XPATH,
+                        "//div[contains(@class,'alert-success') "
+                        "and contains(normalize-space(.), "
+                        "'The customer has been updated successfully')]"
                     )
                 )
+            )
 
-                self.driver.execute_script(
-                    "arguments[0].scrollIntoView({block:'center'});",
-                    save_button
-                )
+            print(
+                "Success message:",
+                repr(success_message.text)
+            )
 
-                save_button = self.wait.until(
-                    EC.element_to_be_clickable(
-                        (By.XPATH, self.btnSave_xpath)
-                    )
-                )
+            return True
 
-                save_button.click()
+        except Exception as e:
 
-                print("Save button clicked")
+            print(
+                "Success message was not found."
+            )
 
-                return
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
 
-            except StaleElementReferenceException:
+            print(
+                "Page title:",
+                self.driver.title
+            )
 
-                print(
-                    f"Save button became stale. "
-                    f"Retrying ({attempt + 1}/3)..."
-                )
+            self.driver.save_screenshot(
+                ".\\Screenshots\\edit_customer_failure.png"
+            )
 
-                if attempt == 2:
-                    raise
-
-                time.sleep(1)
+            return False
 
     # -------------------------------------------------
     # Verify Customer Updated
     # -------------------------------------------------
 
+
     def isCustomerUpdatedSuccessfully(self):
 
         try:
 
+            # Wait for AJAX processing to finish
+            try:
+                self.wait.until(
+                    EC.invisibility_of_element_located(
+                        (By.ID, "ajaxBusy")
+                    )
+                )
+            except:
+                pass
+
+            # Wait for success message
             success_message = self.wait.until(
                 EC.visibility_of_element_located(
                     (
@@ -202,8 +234,8 @@ class EditCustomerPage:
             )
 
             return (
-                "The customer has been updated successfully"
-                in message
+                    "The customer has been updated successfully"
+                    in message
             )
 
         except Exception as e:
@@ -234,7 +266,13 @@ class EditCustomerPage:
                 ).text
             )
 
+            self.driver.save_screenshot(
+                ".\\Screenshots\\edit_customer_failure.png"
+            )
+
             return False
+
+
 
     # -------------------------------------------------
     # Click Delete
