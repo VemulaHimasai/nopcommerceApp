@@ -203,19 +203,13 @@ class SearchCustomer:
                 first_name_field.clear()
                 first_name_field.send_keys(firstName)
 
-                # Verify entered value
-                self.wait.until(
-                    lambda driver:
-                    driver.find_element(
+                # Re-locate element before reading value
+                entered_value = self.wait.until(
+                    lambda driver: driver.find_element(
                         By.ID,
                         self.txtFirstName_id
-                    ).get_attribute("value") == firstName
+                    ).get_attribute("value")
                 )
-
-                entered_value = self.driver.find_element(
-                    By.ID,
-                    self.txtFirstName_id
-                ).get_attribute("value")
 
                 print(
                     "Expected First Name:",
@@ -227,15 +221,14 @@ class SearchCustomer:
                     repr(entered_value)
                 )
 
-                if entered_value != firstName:
+                if entered_value == firstName:
+                    return
 
-                    raise AssertionError(
-                        f"First Name was not entered correctly. "
-                        f"Expected: {firstName}, "
-                        f"Actual: {entered_value}"
-                    )
-
-                return
+                raise AssertionError(
+                    f"First Name was not entered correctly. "
+                    f"Expected: {firstName}, "
+                    f"Actual: {entered_value}"
+                )
 
             except StaleElementReferenceException:
 
@@ -252,6 +245,8 @@ class SearchCustomer:
         raise AssertionError(
             f"Unable to enter first name: {firstName}"
         )
+
+
 
     # =================================================
     # CLEAR FIRST NAME
