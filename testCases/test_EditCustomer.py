@@ -1,5 +1,5 @@
+
 import pytest
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -51,7 +51,7 @@ class Test_EditCustomer_010:
         searchcust = SearchCustomer(self.driver)
 
         # -------------------------------------------------
-        # Edit customer by EMAIL instead of INDEX
+        # Find customer by email and click Edit
         # -------------------------------------------------
 
         customer_email = "stark1@stark1.com"
@@ -89,30 +89,29 @@ class Test_EditCustomer_010:
 
         editcust.setFirstName("Johnny")
 
+        self.logger.info(
+            "******* First Name changed to Johnny *******"
+        )
+
         # -------------------------------------------------
-        # Save
+        # Save Customer
         # -------------------------------------------------
 
         editcust.clickSave()
 
-        # -------------------------------------------------
-        # Wait for success message
-        # -------------------------------------------------
-
-        success_message = WebDriverWait(
-            self.driver,
-            15
-        ).until(
-            EC.visibility_of_element_located(
-                (
-                    By.XPATH,
-                    "//*[contains(text(),"
-                    "'The customer has been updated successfully')]"
-                )
-            )
+        self.logger.info(
+            "******* Save button clicked *******"
         )
 
-        assert success_message.is_displayed()
+        # -------------------------------------------------
+        # Verify Success Message
+        # -------------------------------------------------
+
+        status = editcust.isUpdateSuccessMessageDisplayed()
+
+        assert status, (
+            "Customer update success message was not displayed"
+        )
 
         self.logger.info(
             "********* Edit Customer test passed **********"
@@ -123,3 +122,4 @@ class Test_EditCustomer_010:
         self.logger.info(
             "****** Ending Edit Customer Test *******"
         )
+

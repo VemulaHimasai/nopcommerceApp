@@ -1,5 +1,7 @@
+
 import time
 
+from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,6 +13,12 @@ class EditCustomerPage:
     txtFirstName_id = "FirstName"
 
     btnSave_xpath = "//button[@name='save']"
+
+    success_message_xpath = (
+        "//div[contains(@class,'alert-success') "
+        "and contains(normalize-space(.),"
+        "'The customer has been updated successfully')]"
+    )
 
     btnDelete_xpath = "//span[@id='customer-delete']"
 
@@ -28,16 +36,19 @@ class EditCustomerPage:
     )
 
     def __init__(self, driver):
+
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 15)
+
+        self.wait = WebDriverWait(
+            self.driver,
+            15
+        )
+
+    # -------------------------------------------------
+    # Clear First Name
+    # -------------------------------------------------
 
     def clearFirstName(self):
-        self.driver.find_element(
-            By.ID,
-            self.txtFirstName_id
-        ).clear()
-
-    def setFirstName(self, firstName):
 
         first_name = self.wait.until(
             EC.visibility_of_element_located(
@@ -46,15 +57,188 @@ class EditCustomerPage:
         )
 
         first_name.clear()
-        first_name.send_keys(firstName)
+
+    # -------------------------------------------------
+    # Set First Name
+    # -------------------------------------------------
+
+    def setFirstName(self, firstName):
+
+        for attempt in range(3):
+
+            try:
+
+                first_name = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.ID, self.txtFirstName_id)
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    first_name
+                )
+
+                first_name = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.ID, self.txtFirstName_id)
+                    )
+                )
+
+                first_name.click()
+                first_name.clear()
+                first_name.send_keys(firstName)
+
+                entered_value = self.wait.until(
+                    lambda driver:
+                    driver.find_element(
+                        By.ID,
+                        self.txtFirstName_id
+                    ).get_attribute("value") == firstName
+                )
+
+                if entered_value:
+
+                    print(
+                        "Expected First Name:",
+                        repr(firstName)
+                    )
+
+                    print(
+                        "Actual First Name  :",
+                        repr(
+                            self.driver.find_element(
+                                By.ID,
+                                self.txtFirstName_id
+                            ).get_attribute("value")
+                        )
+                    )
+
+                    return
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"First Name field became stale. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+                time.sleep(1)
+
+        raise AssertionError(
+            f"Unable to enter first name: {firstName}"
+        )
+
+    # -------------------------------------------------
+    # Click Save
+    # -------------------------------------------------
 
     def clickSave(self):
 
-        self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, self.btnSave_xpath)
+        for attempt in range(3):
+
+            try:
+
+                save_button = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, self.btnSave_xpath)
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    save_button
+                )
+
+                save_button = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, self.btnSave_xpath)
+                    )
+                )
+
+                save_button.click()
+
+                print("Save button clicked")
+
+                return
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Save button became stale. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+                time.sleep(1)
+
+    # -------------------------------------------------
+    # Verify Customer Updated
+    # -------------------------------------------------
+
+    def isCustomerUpdatedSuccessfully(self):
+
+        try:
+
+            success_message = self.wait.until(
+                EC.visibility_of_element_located(
+                    (
+                        By.XPATH,
+                        self.success_message_xpath
+                    )
+                )
             )
-        ).click()
+
+            message = success_message.text.strip()
+
+            print(
+                "Success message:",
+                repr(message)
+            )
+
+            return (
+                "The customer has been updated successfully"
+                in message
+            )
+
+        except Exception as e:
+
+            print(
+                "Customer update success message "
+                "was not found."
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            print(
+                "Page title:",
+                self.driver.title
+            )
+
+            print(
+                "Body text after Save:"
+            )
+
+            print(
+                self.driver.find_element(
+                    By.TAG_NAME,
+                    "body"
+                ).text
+            )
+
+            return False
+
+    # -------------------------------------------------
+    # Click Delete
+    # -------------------------------------------------
 
     def clickDelete(self):
 
@@ -64,20 +248,29 @@ class EditCustomerPage:
             )
         )
 
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            delete_button
+        )
+
         delete_button.click()
+
+    # -------------------------------------------------
+    # Confirm Delete
+    # -------------------------------------------------
 
     def confirmDelete(self):
 
-        # Wait for delete confirmation form/modal
         self.wait.until(
             EC.visibility_of_element_located(
                 (By.XPATH, self.delete_confirmation_form_xpath)
             )
         )
 
-        print("Delete confirmation modal is visible")
+        print(
+            "Delete confirmation modal is visible"
+        )
 
-        # Wait for Confirm Delete button
         confirm_delete_button = self.wait.until(
             EC.element_to_be_clickable(
                 (By.XPATH, self.btnConfirmDelete_xpath)
@@ -89,14 +282,15 @@ class EditCustomerPage:
             confirm_delete_button.text
         )
 
-        # Click Confirm Delete
         confirm_delete_button.click()
 
-        # Wait until confirmation form/modal disappears
         self.wait.until(
             EC.invisibility_of_element_located(
                 (By.XPATH, self.delete_confirmation_form_xpath)
             )
         )
 
-        print("Customer delete confirmed")
+        print(
+            "Customer delete confirmed"
+        )
+
