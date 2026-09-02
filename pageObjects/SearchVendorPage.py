@@ -136,13 +136,19 @@ class SearchVendorPage:
         return None
 
     def getFirstVendorName(self):
-        row = self.getFirstVendorRow()
-        if row is None:
-            return None
-        cells = row.find_elements(By.TAG_NAME,"td")
-        if not cells:
-            return None
-        return cells[0].text.strip()
+        def get_vendor_name(driver):
+            row = self.getFirstVendorRow()
+            if row is None:
+                return False
+            cells = row.find_elements(By.XPATH,"td")
+            if not cells:
+                return False
+            vendor_name = cells[0].text.strip()
+            if vendor_name and vendor_name.lower() != "loading...":
+                return vendor_name
+            return False
+        return WebDriverWait(self.driver,20).until(get_vendor_name())
+
 
     def getVendorNameByRow(self,row_number):
         rows = self.getVendorRows()
