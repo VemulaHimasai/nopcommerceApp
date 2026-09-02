@@ -140,7 +140,7 @@ class SearchVendorPage:
             row = self.getFirstVendorRow()
             if row is None:
                 return False
-            cells = row.find_elements(By.XPATH,"td")
+            cells = row.find_elements(By.TAG_NAME,"td")
             if not cells:
                 return False
             vendor_name = cells[0].text.strip()
