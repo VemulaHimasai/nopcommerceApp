@@ -40,14 +40,15 @@ class Test_SearchVendorByName_013:
 
         self.logger.info("******** searching vendor by Name***********")
         searchvendor = SearchVendorPage(self.driver)
-        searchvendor.setName("Vendor2")
+        vendor_name = searchvendor.getFirstVendorName()
+        self.logger.info(f"Selected Vendor Name: {vendor_name}")
+        assert vendor_name is not None,"No Vendors available in vendor table"
+        self.logger.info("*******Searching Vendor by Name: {vendor_name}********")
+        searchvendor.setName(vendor_name)
         searchvendor.clickSearch()
 
         time.sleep(3)
-
-
-
-        status = searchvendor.searchVendorByName("Vendor2")
-        assert True == status
+        status = searchvendor.searchVendorByName(vendor_name)
+        assert status is True
         self.logger.info("********TC_SearchvendorrByName_013 Finished**********")
         self.driver.close()

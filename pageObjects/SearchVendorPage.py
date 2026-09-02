@@ -129,9 +129,11 @@ class SearchVendorPage:
 
     def getFirstVendorRow(self):
         rows = self.getVendorRows()
-        if not rows:
-            return None
-        return rows[0]
+        for row in rows:
+            cells = row.find_elements(By.XPATH,"td")
+            if cells and "No data available in table" not in row.text:
+                return row
+        return None
 
     def getFirstVendorName(self):
         row = self.getFirstVendorRow()
