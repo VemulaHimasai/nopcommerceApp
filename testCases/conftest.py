@@ -1,7 +1,100 @@
 
 import os
+import subprocess
 import pytest
 from selenium import webdriver
+
+
+# =========================================================
+# FIND FIREFOX MSIX EXECUTABLE
+# =========================================================
+
+def get_firefox_binary():
+
+    # -----------------------------------------------------
+    # Normal Firefox installation paths
+    # -----------------------------------------------------
+
+    normal_paths = [
+        os.path.join(
+            os.environ.get("PROGRAMFILES", ""),
+            "Mozilla Firefox",
+            "firefox.exe"
+        ),
+
+        os.path.join(
+            os.environ.get("PROGRAMFILES(X86)", ""),
+            "Mozilla Firefox",
+            "firefox.exe"
+        ),
+
+        os.path.join(
+            os.environ.get("LOCALAPPDATA", ""),
+            "Programs",
+            "Mozilla Firefox",
+            "firefox.exe"
+        )
+    ]
+
+    for path in normal_paths:
+
+        if os.path.isfile(path):
+
+            print("Firefox executable found:")
+            print(path)
+
+            return path
+
+    # -----------------------------------------------------
+    # Microsoft Store / MSIX Firefox
+    # -----------------------------------------------------
+
+    try:
+
+        command = [
+            "powershell",
+            "-NoProfile",
+            "-Command",
+            (
+                "$p=(Get-AppxPackage Mozilla.Firefox).InstallLocation; "
+                "if ($p) { "
+                "Get-ChildItem -Path $p -Recurse "
+                "-Filter firefox.exe "
+                "-ErrorAction SilentlyContinue | "
+                "Select-Object -First 1 -ExpandProperty FullName "
+                "}"
+            )
+        ]
+
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=15
+        )
+
+        firefox_path = result.stdout.strip()
+
+        if firefox_path and os.path.isfile(firefox_path):
+
+            print("Firefox MSIX executable found:")
+            print(firefox_path)
+
+            return firefox_path
+
+    except Exception as e:
+
+        print("Firefox MSIX detection failed:")
+        print(type(e).__name__, str(e))
+
+    # -----------------------------------------------------
+    # Firefox not found
+    # -----------------------------------------------------
+
+    raise FileNotFoundError(
+        "Firefox executable was not found. "
+        "Install Mozilla Firefox or verify the Firefox installation."
+    )
 
 
 # =========================================================
@@ -16,12 +109,21 @@ def setup(browser):
     # =====================================================
 
     download_dir = os.path.abspath(
-        os.path.join(os.getcwd(), "downloads")
+        os.path.join(
+            os.getcwd(),
+            "downloads"
+        )
     )
 
-    os.makedirs(download_dir, exist_ok=True)
+    os.makedirs(
+        download_dir,
+        exist_ok=True
+    )
 
-    print("Download directory:", download_dir)
+    print(
+        "Download directory:",
+        download_dir
+    )
 
     # =====================================================
     # CHROME
@@ -34,14 +136,27 @@ def setup(browser):
         options.accept_insecure_certs = True
 
         # Disable proxy
-        options.add_argument("--proxy-server=direct://")
-        options.add_argument("--proxy-bypass-list=*")
+        options.add_argument(
+            "--proxy-server=direct://"
+        )
+
+        options.add_argument(
+            "--proxy-bypass-list=*"
+        )
 
         prefs = {
-            "download.default_directory": download_dir,
-            "download.prompt_for_download": False,
-            "download.directory_upgrade": True,
-            "safebrowsing.enabled": True
+
+            "download.default_directory":
+                download_dir,
+
+            "download.prompt_for_download":
+                False,
+
+            "download.directory_upgrade":
+                True,
+
+            "safebrowsing.enabled":
+                True
         }
 
         options.add_experimental_option(
@@ -53,13 +168,18 @@ def setup(browser):
 
         try:
 
-            print("Starting Chrome WebDriver......")
+            print(
+                "Starting Chrome WebDriver......"
+            )
 
             driver = webdriver.Chrome(
                 options=options
             )
 
-            print("Launching Chrome Browser......")
+            print(
+                "Launching Chrome Browser......"
+            )
+
             print(
                 "Chrome Download directory:",
                 download_dir
@@ -69,12 +189,31 @@ def setup(browser):
 
         except Exception as e:
 
-            print("========================================")
-            print("CHROME WEBDRIVER ERROR")
-            print("========================================")
-            print("Exception Type:", type(e).__name__)
-            print("Exception:", str(e))
-            print("========================================")
+            print(
+                "========================================"
+            )
+
+            print(
+                "CHROME WEBDRIVER ERROR"
+            )
+
+            print(
+                "========================================"
+            )
+
+            print(
+                "Exception Type:",
+                type(e).__name__
+            )
+
+            print(
+                "Exception:",
+                str(e)
+            )
+
+            print(
+                "========================================"
+            )
 
             raise
 
@@ -84,6 +223,7 @@ def setup(browser):
 
                 try:
                     driver.quit()
+
                 except Exception:
                     pass
 
@@ -95,24 +235,43 @@ def setup(browser):
 
         options = webdriver.FirefoxOptions()
 
+        # -------------------------------------------------
+        # Find Firefox executable automatically
+        # -------------------------------------------------
+
+        firefox_binary = get_firefox_binary()
+
+        options.binary_location = firefox_binary
+
+        print(
+            "Firefox binary:",
+            firefox_binary
+        )
+
+        # -------------------------------------------------
         # Accept localhost/self-signed certificate
+        # -------------------------------------------------
+
         options.accept_insecure_certs = True
 
-        # Explicitly enable downloads
+        # -------------------------------------------------
+        # Enable downloads
+        # -------------------------------------------------
+
         options.enable_downloads = True
 
-        # =================================================
+        # -------------------------------------------------
         # Disable proxy
-        # =================================================
+        # -------------------------------------------------
 
         options.set_preference(
             "network.proxy.type",
             0
         )
 
-        # =================================================
-        # DOWNLOAD DIRECTORY
-        # =================================================
+        # -------------------------------------------------
+        # Download directory
+        # -------------------------------------------------
 
         options.set_preference(
             "browser.download.folderList",
@@ -129,9 +288,9 @@ def setup(browser):
             True
         )
 
-        # =================================================
-        # DOWNLOAD BEHAVIOR
-        # =================================================
+        # -------------------------------------------------
+        # Download behavior
+        # -------------------------------------------------
 
         options.set_preference(
             "browser.download.manager.showWhenStarting",
@@ -153,7 +312,10 @@ def setup(browser):
             True
         )
 
-        # Do not ask what to do with downloaded files
+        # -------------------------------------------------
+        # Do not ask about downloaded files
+        # -------------------------------------------------
+
         options.set_preference(
             "browser.helperApps.alwaysAsk.force",
             False
@@ -164,11 +326,12 @@ def setup(browser):
             False
         )
 
-        # =================================================
-        # MIME TYPES
-        # =================================================
+        # -------------------------------------------------
+        # MIME types
+        # -------------------------------------------------
 
         mime_types = ",".join([
+
             # XML
             "application/xml",
             "text/xml",
@@ -178,7 +341,7 @@ def setup(browser):
             "application/vnd.ms-excel",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 
-            # Generic download
+            # Generic downloads
             "application/octet-stream",
             "application/force-download",
             "binary/octet-stream",
@@ -195,16 +358,19 @@ def setup(browser):
             mime_types
         )
 
-        # =================================================
+        # -------------------------------------------------
         # Prevent Firefox from opening files internally
-        # =================================================
+        # -------------------------------------------------
 
         options.set_preference(
             "browser.download.viewableInternally.enabledTypes",
             ""
         )
 
+        # -------------------------------------------------
         # Disable PDF viewer
+        # -------------------------------------------------
+
         options.set_preference(
             "pdfjs.disabled",
             True
@@ -216,9 +382,17 @@ def setup(browser):
 
         driver = None
 
-        print("========================================")
-        print("Starting Firefox WebDriver......")
-        print("========================================")
+        print(
+            "========================================"
+        )
+
+        print(
+            "Starting Firefox WebDriver......"
+        )
+
+        print(
+            "========================================"
+        )
 
         try:
 
@@ -226,7 +400,10 @@ def setup(browser):
                 options=options
             )
 
-            print("Launching Firefox Browser......")
+            print(
+                "Launching Firefox Browser......"
+            )
+
             print(
                 "Firefox Download directory:",
                 download_dir
@@ -236,12 +413,31 @@ def setup(browser):
 
         except Exception as e:
 
-            print("========================================")
-            print("FIREFOX WEBDRIVER STARTUP ERROR")
-            print("========================================")
-            print("Exception Type:", type(e).__name__)
-            print("Error Message:", str(e))
-            print("========================================")
+            print(
+                "========================================"
+            )
+
+            print(
+                "FIREFOX WEBDRIVER ERROR"
+            )
+
+            print(
+                "========================================"
+            )
+
+            print(
+                "Exception Type:",
+                type(e).__name__
+            )
+
+            print(
+                "Error Message:",
+                str(e)
+            )
+
+            print(
+                "========================================"
+            )
 
             raise
 
@@ -251,6 +447,7 @@ def setup(browser):
 
                 try:
                     driver.quit()
+
                 except Exception:
                     pass
 
@@ -264,14 +461,27 @@ def setup(browser):
 
         options.accept_insecure_certs = True
 
-        options.add_argument("--proxy-server=direct://")
-        options.add_argument("--proxy-bypass-list=*")
+        options.add_argument(
+            "--proxy-server=direct://"
+        )
+
+        options.add_argument(
+            "--proxy-bypass-list=*"
+        )
 
         prefs = {
-            "download.default_directory": download_dir,
-            "download.prompt_for_download": False,
-            "download.directory_upgrade": True,
-            "safebrowsing.enabled": True
+
+            "download.default_directory":
+                download_dir,
+
+            "download.prompt_for_download":
+                False,
+
+            "download.directory_upgrade":
+                True,
+
+            "safebrowsing.enabled":
+                True
         }
 
         options.add_experimental_option(
@@ -283,13 +493,18 @@ def setup(browser):
 
         try:
 
-            print("Starting Edge WebDriver......")
+            print(
+                "Starting Edge WebDriver......"
+            )
 
             driver = webdriver.Edge(
                 options=options
             )
 
-            print("Launching Edge Browser......")
+            print(
+                "Launching Edge Browser......"
+            )
+
             print(
                 "Edge Download directory:",
                 download_dir
@@ -299,12 +514,31 @@ def setup(browser):
 
         except Exception as e:
 
-            print("========================================")
-            print("EDGE WEBDRIVER ERROR")
-            print("========================================")
-            print("Exception Type:", type(e).__name__)
-            print("Exception:", str(e))
-            print("========================================")
+            print(
+                "========================================"
+            )
+
+            print(
+                "EDGE WEBDRIVER ERROR"
+            )
+
+            print(
+                "========================================"
+            )
+
+            print(
+                "Exception Type:",
+                type(e).__name__
+            )
+
+            print(
+                "Exception:",
+                str(e)
+            )
+
+            print(
+                "========================================"
+            )
 
             raise
 
@@ -314,6 +548,7 @@ def setup(browser):
 
                 try:
                     driver.quit()
+
                 except Exception:
                     pass
 
@@ -369,7 +604,9 @@ def metadata(request):
 def pytest_metadata(metadata):
 
     metadata["Project Name"] = "nopCommerce"
+
     metadata["Module Name"] = "Customers"
+
     metadata["Tester"] = "Himasai"
 
     metadata.pop(
