@@ -1,8 +1,9 @@
-
 import os
 import subprocess
 import pytest
+
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 # =========================================================
@@ -85,7 +86,10 @@ def get_firefox_binary():
     except Exception as e:
 
         print("Firefox MSIX detection failed:")
-        print(type(e).__name__, str(e))
+        print(
+            type(e).__name__,
+            str(e)
+        )
 
     # -----------------------------------------------------
     # Firefox not found
@@ -135,7 +139,10 @@ def setup(browser):
 
         options.accept_insecure_certs = True
 
+        # -------------------------------------------------
         # Disable proxy
+        # -------------------------------------------------
+
         options.add_argument(
             "--proxy-server=direct://"
         )
@@ -143,6 +150,10 @@ def setup(browser):
         options.add_argument(
             "--proxy-bypass-list=*"
         )
+
+        # -------------------------------------------------
+        # Download settings
+        # -------------------------------------------------
 
         prefs = {
 
@@ -222,6 +233,7 @@ def setup(browser):
             if driver is not None:
 
                 try:
+
                     driver.quit()
 
                 except Exception:
@@ -267,6 +279,25 @@ def setup(browser):
         options.set_preference(
             "network.proxy.type",
             0
+        )
+
+        # -------------------------------------------------
+        # Firefox startup settings
+        # -------------------------------------------------
+
+        options.set_preference(
+            "browser.startup.page",
+            0
+        )
+
+        options.set_preference(
+            "browser.startup.homepage",
+            "about:blank"
+        )
+
+        options.set_preference(
+            "browser.shell.checkDefaultBrowser",
+            False
         )
 
         # -------------------------------------------------
@@ -381,6 +412,7 @@ def setup(browser):
         # =================================================
 
         driver = None
+        max_attempts = 3
 
         print(
             "========================================"
@@ -394,20 +426,121 @@ def setup(browser):
             "========================================"
         )
 
+        # -------------------------------------------------
+        # Firefox startup retry
+        # -------------------------------------------------
+
+        for attempt in range(
+            1,
+            max_attempts + 1
+        ):
+
+            try:
+
+                print(
+                    f"Starting Firefox attempt "
+                    f"{attempt}/{max_attempts}"
+                )
+
+                driver = webdriver.Firefox(
+                    options=options
+                )
+
+                print(
+                    "Launching Firefox Browser......"
+                )
+
+                print(
+                    "Firefox Download directory:",
+                    download_dir
+                )
+
+                # -------------------------------------------------
+                # Verify browsing context
+                # -------------------------------------------------
+
+                WebDriverWait(
+                    driver,
+                    10
+                ).until(
+                    lambda d: len(
+                        d.window_handles
+                    ) > 0
+                )
+
+                current_window = (
+                    driver.current_window_handle
+                )
+
+                print(
+                    "Firefox window handle:",
+                    current_window
+                )
+
+                print(
+                    "Firefox browsing context is alive"
+                )
+
+                break
+
+            except Exception as e:
+
+                print(
+                    "========================================"
+                )
+
+                print(
+                    f"Firefox startup attempt "
+                    f"{attempt} failed"
+                )
+
+                print(
+                    "Exception Type:",
+                    type(e).__name__
+                )
+
+                print(
+                    "Exception:",
+                    str(e)
+                )
+
+                print(
+                    "========================================"
+                )
+
+                # -------------------------------------------------
+                # Close failed Firefox session
+                # -------------------------------------------------
+
+                if driver is not None:
+
+                    try:
+
+                        driver.quit()
+
+                    except Exception:
+                        pass
+
+                    driver = None
+
+                # -------------------------------------------------
+                # Retry
+                # -------------------------------------------------
+
+                if attempt == max_attempts:
+
+                    print(
+                        "Firefox could not be started "
+                        "after 3 attempts."
+                    )
+
+                    raise
+
+        # =================================================
+        # GIVE DRIVER TO TEST
+        # =================================================
+
         try:
-
-            driver = webdriver.Firefox(
-                options=options
-            )
-
-            print(
-                "Launching Firefox Browser......"
-            )
-
-            print(
-                "Firefox Download directory:",
-                download_dir
-            )
 
             yield driver
 
@@ -418,7 +551,7 @@ def setup(browser):
             )
 
             print(
-                "FIREFOX WEBDRIVER ERROR"
+                "FIREFOX TEST ERROR"
             )
 
             print(
@@ -443,13 +576,31 @@ def setup(browser):
 
         finally:
 
+            # -------------------------------------------------
+            # Close Firefox
+            # -------------------------------------------------
+
             if driver is not None:
 
                 try:
+
+                    print(
+                        "Closing Firefox WebDriver......"
+                    )
+
                     driver.quit()
 
-                except Exception:
-                    pass
+                    print(
+                        "Firefox WebDriver closed successfully"
+                    )
+
+                except Exception as e:
+
+                    print(
+                        "Firefox driver quit warning:",
+                        type(e).__name__,
+                        str(e)
+                    )
 
     # =====================================================
     # EDGE
@@ -461,6 +612,10 @@ def setup(browser):
 
         options.accept_insecure_certs = True
 
+        # -------------------------------------------------
+        # Disable proxy
+        # -------------------------------------------------
+
         options.add_argument(
             "--proxy-server=direct://"
         )
@@ -468,6 +623,10 @@ def setup(browser):
         options.add_argument(
             "--proxy-bypass-list=*"
         )
+
+        # -------------------------------------------------
+        # Download settings
+        # -------------------------------------------------
 
         prefs = {
 
@@ -547,6 +706,7 @@ def setup(browser):
             if driver is not None:
 
                 try:
+
                     driver.quit()
 
                 except Exception:
@@ -576,6 +736,10 @@ def pytest_addoption(parser):
         default="chrome"
     )
 
+
+# =========================================================
+# BROWSER FIXTURE
+# =========================================================
 
 @pytest.fixture()
 def browser(request):
@@ -618,4 +782,3 @@ def pytest_metadata(metadata):
         "Plugins",
         None
     )
-
