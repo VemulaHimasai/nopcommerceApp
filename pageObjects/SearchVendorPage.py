@@ -7,6 +7,10 @@ class SearchVendorPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 
+    txtName_id = "SearchName"
+    txtEmail_id = "SearchEmail"
+    btnSearch_id = "search-vendors"
+
     vendor_table_xpath = "//table[@id='vendors-grid']"
     vendor_rows_xpath = "//table[@id='vendors-grid']//tbody/tr"
     previous_button_xpath = "//div[@id='vendors-grid_wrapper']//a[contains(@class,'previous')]"
@@ -16,6 +20,93 @@ class SearchVendorPage:
     confirm_delete_xpath = "//button[normalize-space()='Delete']"
 
     success_message_xpath = "//div[contains(@class,'alert-success')]"
+
+    def setName(self,name):
+        name_field = self.wait.until(EC.visibility_of_element_located(
+            (By.ID,self.txtName_id)
+        ))
+        name_field.clear()
+        name_field.send_keys(name)
+
+    def setEmail(self,email):
+        email_field = self.wait.until(EC.visibility_of_element_located(
+            (By.ID,self.txtEmail_id)
+        ))
+        email_field.clear()
+        email_field.send_keys(email)
+
+    def clickSearch(self):
+        search_button = self.wait.until(EC.element_to_be_clickable(
+            (By.ID,self.btnSearch_id)
+        ))
+        search_button.click()
+        self.wait.until(EC.visibility_of_element_located(
+            (By.XPATH,self.vendor_table_xpath)
+        ))
+
+    def searchVendorByName(self,vendor_name):
+        rows = self.getVendorRows()
+        for row in rows:
+            cells = row.find_elements(By.TAG_NAME,"td")
+            if cells:
+                current_vendor_name = cells[0].text.strip()
+                if current_vendor_name == vendor_name:
+                    return True
+        return False
+
+    def clickEditVendorByName(self, vendor_name):
+
+        rows = self.getVendorRows()
+
+        for row in rows:
+
+            cells = row.find_elements(
+                By.TAG_NAME,
+                "td"
+            )
+
+            if not cells:
+                continue
+
+            current_vendor_name = (
+                cells[0].text.strip()
+            )
+
+            if current_vendor_name == vendor_name:
+                print(
+                    f"Clicking Edit for vendor: "
+                    f"{vendor_name}"
+                )
+
+                edit_button = row.find_element(
+                    By.XPATH,
+                    ".//a[contains(@href,'/Admin/Vendor/Edit')]"
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    edit_button
+                )
+
+                self.wait.until(
+                    EC.element_to_be_clickable(
+                        edit_button
+                    )
+                )
+
+                edit_button.click()
+
+                return True
+
+
+        raise Exception(
+            f"Vendor '{vendor_name}' was not found "
+            f"in the search results"
+        )
+
+
+
+
 
     def waitForVendorList(self):
         self.wait.until(EC.visibility_of_element_located(

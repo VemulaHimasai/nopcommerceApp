@@ -19,7 +19,7 @@ class Test_EditVendor_015:
     @pytest.mark.regression
     def test_edit_vendor(self, setup):
 
-        self.logger.info("******* Test_EditVendor_014 *******")
+        self.logger.info("******* Test_EditVendor_015 *******")
 
         self.driver = setup
 
