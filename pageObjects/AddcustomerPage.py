@@ -12,7 +12,7 @@ class AddCustomer:
 
     # Customers menu
     lnkCustomers_menu_xpath = "//a[@href='#']//p[contains(text(),'Customers')]"
-    lnkCustomers_menuitem_xpath = "//a[contains(@href,'/Admin/Customer/List')]"
+    lnkCustomers_menuitem_xpath = "//a[@href='/Admin/Customer/List']"
 
     # Add New button
     btnAddnew_xpath = "//a[contains(@href,'/Admin/Customer/Create')]"
@@ -78,7 +78,7 @@ class AddCustomer:
                     raise
 
 
-    def clickonCustomersmenuItem(self):
+    def clickonCustomersMenuItem(self):
         for attempt in range(3):
             try:
                 customers_menu_item = self.wait.until(EC.visibility_of_element_located(
