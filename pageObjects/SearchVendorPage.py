@@ -53,6 +53,15 @@ class SearchVendorPage:
                 if current_vendor_name == vendor_name:
                     return True
         return False
+    def searchVendorByEmail(self,vendor_email):
+        rows = self.getVendorRows()
+        for row in rows:
+            cells = row.find_elements(By.TAG_NAME,"td")
+            if cells:
+                current_vendor_email = cells[1].text.strip()
+                if current_vendor_email == vendor_email:
+                    return True
+        return False
 
     def clickEditVendorByName(self, vendor_name):
 
