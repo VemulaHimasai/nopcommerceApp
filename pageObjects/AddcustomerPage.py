@@ -1,6 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import (
+    StaleElementReferenceException,
+    TimeoutException
+)
 
 
 # Add Customer Page
@@ -8,7 +12,7 @@ class AddCustomer:
 
     # Customers menu
     lnkCustomers_menu_xpath = "//a[@href='#']//p[contains(text(),'Customers')]"
-    lnkCustomers_menuitem_xpath = "//a[@href='/Admin/Customer/List']"
+    lnkCustomers_menuitem_xpath = "//a[contains(@href,'/Admin/Customer/List')]"
 
     # Add New button
     btnAddnew_xpath = "//a[contains(@href,'/Admin/Customer/Create')]"
@@ -55,42 +59,57 @@ class AddCustomer:
     # -----------------------------
 
     def clickOnCustomersMenu(self):
+        for attempt in range(3):
+            try:
+                customers_menu = self.wait.until(EC.presence_of_element_located(
+                    (By.XPATH,self.lnkCustomers_menu_xpath)
+                ))
+                self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",customers_menu)
+                self.driver.execute_script("arguments[0].click();",customers_menu)
+                self.wait.until(EC.presence_of_element_located(
+                    (By.XPATH,"//a[contains(@href,'/Admin/Customer/List')]")
+                ))
+                print("Customers menu opened")
+                return
+            except (StaleElementReferenceException,TimeoutException):
+                print(f"Customers menu not ready. "
+                f"Retrying ({attempt + 1}/3)...")
+                if attempt == 2:
+                    raise
 
-        customers_menu = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, self.lnkCustomers_menu_xpath)
-            )
-        )
 
-        self.driver.execute_script(
-            "arguments[0].click();",
-            customers_menu
-        )
+    def clickonCustomersmenuItem(self):
+        for attempt in range(3):
+            try:
+                customers_menu_item = self.wait.until(EC.visibility_of_element_located(
+                    (By.XPATH,self.lnkCustomers_menuitem_xpath)
+                ))
+                self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",customers_menu_item)
+                self.driver.execute_script("arguments[0].click();",customers_menu_item)
+                self.wait.until(EC.url_contains("/Admin/Customer/List"))
+                self.wait.until(EC.visibility_of_element_located(
+                    (By.XPATH,self.btnAddnew_xpath)
+                ))
+                print("Customers list page opened")
+                print("Current Url: ",self.driver.current_url)
+                return
+            except (StaleElementReferenceException,TimeoutException):
+                print(f"Customer menu item not ready. "
+                f"Retrying ({attempt + 1}/3)...")
+                if attempt < 2:
+                    try:
+                        customers_menu = self.wait.until(EC.element_to_be_clickable(
+                            (By.XPATH,self.lnkCustomers_menu_xpath)
+                        ))
+                        self.driver.execute_script("arguments[0].click();",customers_menu)
+                    except (StaleElementReferenceException,TimeoutException):
+                        pass
+                else:
+                    raise
 
-    def clickonCustomersMenuItem(self):
 
-        customers_menu_item = self.wait.until(
-            EC.presence_of_element_located(
-                (By.XPATH, self.lnkCustomers_menuitem_xpath)
-            )
-        )
 
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            customers_menu_item
-        )
 
-        self.driver.execute_script(
-            "arguments[0].click();",
-            customers_menu_item
-        )
-
-        # Wait until Customers page is loaded
-        self.wait.until(
-            EC.visibility_of_element_located(
-                (By.XPATH, self.btnAddnew_xpath)
-            )
-        )
     # -----------------------------
     # Add New Customer
     # -----------------------------

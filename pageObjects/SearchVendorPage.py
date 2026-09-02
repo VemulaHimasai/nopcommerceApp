@@ -1,3 +1,4 @@
+from selenium.common import StaleElementReferenceException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -137,17 +138,37 @@ class SearchVendorPage:
 
     def getFirstVendorName(self):
         def get_vendor_name(driver):
-            row = self.getFirstVendorRow()
-            if row is None:
+            try:
+                element = driver.find_element(
+                    By.XPATH,
+                    "//table[@id='vendors-grid']//tbody/tr[td][1]/td[1]"
+                )
+
+                vendor_name = element.text.strip()
+
+                if vendor_name and vendor_name.lower() not in (
+                        "loading...",
+                        "no data available in table"
+                ):
+                    return vendor_name
+
                 return False
-            cells = row.find_elements(By.TAG_NAME,"td")
-            if not cells:
+
+            except StaleElementReferenceException:
                 return False
-            vendor_name = cells[0].text.strip()
-            if vendor_name and vendor_name.lower() != "loading...":
-                return vendor_name
-            return False
-        return WebDriverWait(self.driver,20).until(get_vendor_name)
+
+            except Exception:
+                return False
+
+        vendor_name = WebDriverWait(
+            self.driver,
+            20,
+            poll_frequency=0.5
+        ).until(get_vendor_name)
+
+        print("First vendor name:", vendor_name)
+
+        return vendor_name
 
 
     def getVendorNameByRow(self,row_number):
