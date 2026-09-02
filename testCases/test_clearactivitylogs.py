@@ -11,7 +11,7 @@ from pageObjects.ActivityPage import ActivityPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_ClearActivityLogs_020:
+class Test_ClearActivityLogs_021:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()

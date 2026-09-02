@@ -8,7 +8,7 @@ from pageObjects.ActivityTypePage import ActivityTypePage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_VerifyActivityTypeDisplayed_026:
+class Test_VerifyActivityTypeDisplayed_027:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()

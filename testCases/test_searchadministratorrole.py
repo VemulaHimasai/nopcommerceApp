@@ -7,7 +7,7 @@ from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
 
-class Test_SearchCustomerRoleAdministrator_021:
+class Test_SearchCustomerRoleAdministrator_022:
 
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()

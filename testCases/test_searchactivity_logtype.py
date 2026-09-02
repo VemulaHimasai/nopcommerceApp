@@ -12,7 +12,7 @@ from pageObjects.ActivityPage import ActivityPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_SearchActivityLogType_018:
+class Test_SearchActivityLogType_019:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()

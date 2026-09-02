@@ -13,7 +13,7 @@ from pageObjects.OnlineCustomersPage import OnlineCustomersPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_SearchCustomerRoleVendors_025:
+class Test_SearchCustomerRoleVendors_026:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
