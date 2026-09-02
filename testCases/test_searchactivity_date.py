@@ -1,5 +1,6 @@
 
 import pytest
+from datetime import datetime
 
 from pageObjects.LoginPage import LoginPage
 from pageObjects.AddcustomerPage import AddCustomer
@@ -42,9 +43,11 @@ class Test_SearchActivityDate_017:
         self.activity = ActivityPage(self.driver)
         self.activity.clickActivityPageMenuItem()
 
+        today = datetime.now().strftime("%d-%m-%Y")
+
         # Set date range
-        self.activity.setCreatedFrom("01-09-2026")
-        self.activity.setCreatedTo("01-09-2026")
+        self.activity.setCreatedFrom(today)
+        self.activity.setCreatedTo(today)
 
         # Search
         self.activity.clickSearch()
@@ -58,7 +61,6 @@ class Test_SearchActivityDate_017:
         self.logger.info(f"Activity log rows found: {rows}")
 
         assert rows > 0, (
-            "No activity log records found for date range "
-            "29-08-2026 to 31-08-2026"
+            f"No activity log records found for date {today}"
         )
 
