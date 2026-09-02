@@ -147,7 +147,7 @@ class SearchVendorPage:
             if vendor_name and vendor_name.lower() != "loading...":
                 return vendor_name
             return False
-        return WebDriverWait(self.driver,20).until(get_vendor_name())
+        return WebDriverWait(self.driver,20).until(get_vendor_name)
 
 
     def getVendorNameByRow(self,row_number):
