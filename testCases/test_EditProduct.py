@@ -14,6 +14,7 @@ class Test_EditProduct_031:
     password = ReadConfig.getPassword()
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_editproduct(self,setup):
         self.logger.info("*****Test_EditProduct_031*****")
         self.driver = setup

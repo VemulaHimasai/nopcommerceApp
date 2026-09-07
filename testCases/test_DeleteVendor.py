@@ -14,6 +14,8 @@ class Test_DeleteVendor_016:
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
 
+
+    @pytest.mark.regression
     def test_delete_vendor(self, setup):
 
         self.driver = setup

@@ -14,6 +14,7 @@ class Test_DeleteProductByRow_032:
     password = ReadConfig.getPassword()
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_deleteproductbyRow(self,setup):
         self.logger.info("*****Test_DeleteProduct_032*****")
         self.driver = setup

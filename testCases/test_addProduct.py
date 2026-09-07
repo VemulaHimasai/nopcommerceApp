@@ -19,6 +19,7 @@ class Test_AddProduct_028:
 
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_addProduct(self,setup):
         self.logger.info("*****Test_AddProduct_028*****")
         self.driver = setup

@@ -15,6 +15,7 @@ class Test_BulkEditSearchProductName_036:
     password = ReadConfig.getPassword()
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_bulkeditsearch_productname(self,setup):
         self.logger.info("***** Test_BulkEditProductSearchProductName_036*****")
 

@@ -21,6 +21,7 @@ class Test_SearchProductByVendor_031:
     # ---------------------------------------------------------
     # Test Search Product By Vendor
     # ---------------------------------------------------------
+    @pytest.mark.regression
     def test_searchproduct_vendor(self, setup):
 
         self.logger.info(
