@@ -770,6 +770,7 @@ def pytest_metadata(metadata):
     metadata["Project Name"] = "nopCommerce"
 
     metadata["Module Name"] = "Customers"
+    metadata["Module Name"] = "Catalog"
 
     metadata["Tester"] = "Himasai"
 

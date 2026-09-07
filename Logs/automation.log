@@ -2996,3 +2996,342 @@ The new customer has been added successfully.
 09/01/2026 08:20:21 PM: INFO: *********** Login Successful **********
 09/01/2026 08:20:21 PM: INFO: ********** Starting SearchActivityDate_016 **********
 09/01/2026 08:20:23 PM: INFO: Activity log rows found: 15
+09/03/2026 05:27:34 PM: INFO: *****Test_AddProduct_028*****
+09/03/2026 05:27:38 PM: INFO: *****Login Successful******
+09/03/2026 05:27:38 PM: INFO: *****Staring Add Product test*****
+09/03/2026 05:29:54 PM: INFO: *****Test_AddProduct_028*****
+09/03/2026 05:30:03 PM: INFO: *****Login Successful******
+09/03/2026 05:30:03 PM: INFO: *****Staring Add Product test*****
+09/03/2026 05:30:11 PM: INFO: *****Providing product details*******
+09/03/2026 05:32:53 PM: INFO: *****Test_AddProduct_028*****
+09/03/2026 05:32:57 PM: INFO: *****Login Successful******
+09/03/2026 05:32:57 PM: INFO: *****Staring Add Product test*****
+09/03/2026 05:33:03 PM: INFO: *****Providing product details*******
+09/03/2026 05:35:24 PM: INFO: *****Test_AddProduct_028*****
+09/03/2026 05:35:32 PM: INFO: *****Login Successful******
+09/03/2026 05:35:32 PM: INFO: *****Staring Add Product test*****
+09/03/2026 05:35:35 PM: INFO: *****Providing product details*******
+09/03/2026 05:37:26 PM: INFO: *****Test_AddProduct_028*****
+09/03/2026 05:37:33 PM: INFO: *****Login Successful******
+09/03/2026 05:37:33 PM: INFO: *****Staring Add Product test*****
+09/03/2026 05:37:36 PM: INFO: *****Providing product details*******
+09/03/2026 05:39:41 PM: INFO: *****Test_AddProduct_028*****
+09/03/2026 05:39:55 PM: INFO: *****Login Successful******
+09/03/2026 05:39:55 PM: INFO: *****Staring Add Product test*****
+09/03/2026 05:40:01 PM: INFO: *****Providing product details*******
+09/03/2026 05:44:29 PM: INFO: *****Test_AddProduct_028*****
+09/03/2026 05:44:38 PM: INFO: *****Login Successful******
+09/03/2026 05:44:38 PM: INFO: *****Staring Add Product test*****
+09/03/2026 05:44:44 PM: INFO: *****Providing product details*******
+09/03/2026 07:22:50 PM: INFO: *****Test_SearchProductByName_029*****
+09/03/2026 07:22:59 PM: INFO: *****Login Successful******
+09/03/2026 07:22:59 PM: INFO: *****Staring Search Product By Name test*****
+09/03/2026 07:33:37 PM: INFO: *****Test_SearchProductByName_029*****
+09/03/2026 07:33:46 PM: INFO: *****Login Successful******
+09/03/2026 07:33:46 PM: INFO: *****Staring Search Product By Name test*****
+09/03/2026 07:41:18 PM: INFO: *****Test_SearchProductByName_029*****
+09/03/2026 07:41:24 PM: INFO: *****Login Successful******
+09/03/2026 07:41:24 PM: INFO: *****Staring Search Product By Name test*****
+09/03/2026 07:43:01 PM: INFO: *****Test_SearchProductByName_029*****
+09/03/2026 07:43:12 PM: INFO: *****Login Successful******
+09/03/2026 07:43:12 PM: INFO: *****Staring Search Product By Name test*****
+09/03/2026 07:56:13 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/03/2026 07:56:22 PM: INFO: *****Login Successful******
+09/03/2026 07:56:22 PM: INFO: *****Staring Search Product By SKU test*****
+09/03/2026 08:19:30 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/03/2026 08:19:37 PM: INFO: *****Login Successful******
+09/03/2026 08:19:37 PM: INFO: *****Staring Search Product By SKU test*****
+09/03/2026 08:20:31 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/03/2026 08:20:40 PM: INFO: *****Login Successful******
+09/03/2026 08:20:40 PM: INFO: *****Staring Search Product By SKU test*****
+09/04/2026 09:22:36 AM: INFO: *****Test_SearchProductBySKU_030*****
+09/04/2026 09:22:48 AM: INFO: *****Login Successful******
+09/04/2026 09:22:48 AM: INFO: *****Staring Search Product By SKU test*****
+09/04/2026 09:51:48 AM: INFO: *****Test_SearchProductBySKU_030*****
+09/04/2026 09:51:55 AM: INFO: *****Login Successful******
+09/04/2026 09:51:55 AM: INFO: *****Staring Search Product By SKU test*****
+09/04/2026 11:13:25 AM: INFO: *****Test_SearchProductBySKU_030*****
+09/04/2026 11:13:38 AM: INFO: *****Login Successful******
+09/04/2026 11:13:38 AM: INFO: *****Staring Search Product By SKU test*****
+09/04/2026 11:28:13 AM: INFO: *****Test_SearchProductByVendor_031*****
+09/04/2026 11:28:19 AM: INFO: *****Login Successful******
+09/04/2026 11:28:19 AM: INFO: *****Staring Search Product By Vendor test*****
+09/04/2026 11:29:33 AM: INFO: *****Test_SearchProductByVendor_031*****
+09/04/2026 11:29:36 AM: INFO: *****Login Successful******
+09/04/2026 11:29:36 AM: INFO: *****Staring Search Product By Vendor test*****
+09/04/2026 11:59:21 AM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/04/2026 11:59:22 AM: INFO: Application URL opened: https://localhost:59579/admin
+09/04/2026 11:59:23 AM: INFO: ********** Login Successful **********
+09/04/2026 11:59:28 AM: INFO: ********** Products page opened successfully **********
+09/04/2026 11:59:29 AM: INFO: ********** Product search performed for Vendor1 **********
+09/04/2026 12:04:53 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/04/2026 12:04:54 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/04/2026 12:04:55 PM: INFO: ********** Login Successful **********
+09/04/2026 12:05:00 PM: INFO: ********** Products page opened successfully **********
+09/04/2026 12:05:01 PM: INFO: ********** Product search performed for Vendor1 **********
+09/04/2026 12:05:01 PM: INFO: ********** 'No data available in table' validated **********
+09/04/2026 12:08:43 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/04/2026 12:08:45 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/04/2026 12:08:46 PM: INFO: ********** Login Successful **********
+09/04/2026 12:08:51 PM: INFO: ********** Products page opened successfully **********
+09/04/2026 12:08:52 PM: INFO: ********** Product search performed for Vendor1 **********
+09/04/2026 12:08:53 PM: INFO: ********** 'No data available in table' validated **********
+09/04/2026 12:08:53 PM: INFO: ********** 'No records' validated **********
+09/04/2026 12:08:53 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/04/2026 12:10:26 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/04/2026 12:10:30 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/04/2026 12:10:32 PM: INFO: ********** Login Successful **********
+09/04/2026 12:10:34 PM: INFO: ********** Products page opened successfully **********
+09/04/2026 12:10:37 PM: INFO: ********** Product search performed for Vendor1 **********
+09/04/2026 12:10:38 PM: INFO: ********** 'No data available in table' validated **********
+09/04/2026 12:10:38 PM: INFO: ********** 'No records' validated **********
+09/04/2026 12:10:38 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/04/2026 02:06:34 PM: INFO: *****Test_EditProduct_031*****
+09/04/2026 02:06:41 PM: INFO: *****Login Successful******
+09/04/2026 02:06:41 PM: INFO: *****Staring Edit Product test*****
+09/04/2026 02:06:46 PM: INFO: *****Edit page opened successfully****
+09/04/2026 02:06:49 PM: INFO: *****Product details updated*****
+09/04/2026 02:06:52 PM: INFO: *****Save button clicked*****
+09/04/2026 02:07:41 PM: INFO: *****Test_EditProduct_031*****
+09/04/2026 02:07:52 PM: INFO: *****Login Successful******
+09/04/2026 02:07:52 PM: INFO: *****Staring Edit Product test*****
+09/04/2026 02:07:56 PM: INFO: *****Edit page opened successfully****
+09/04/2026 02:07:58 PM: INFO: *****Product details updated*****
+09/04/2026 02:07:59 PM: INFO: *****Save button clicked*****
+09/04/2026 04:46:46 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 04:46:55 PM: INFO: *****Login Successful******
+09/04/2026 04:46:55 PM: INFO: *****Staring Add Product test*****
+09/04/2026 04:47:02 PM: INFO: *****Providing product details*******
+09/04/2026 05:17:26 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 05:17:37 PM: INFO: *****Login Successful******
+09/04/2026 05:17:37 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 06:12:14 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 06:12:23 PM: INFO: *****Login Successful******
+09/04/2026 06:12:23 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 06:34:34 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 06:34:49 PM: INFO: *****Login Successful******
+09/04/2026 06:34:49 PM: INFO: *****Staring Add Product test*****
+09/04/2026 06:34:53 PM: INFO: *****Providing product details*******
+09/04/2026 06:36:44 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 06:36:46 PM: INFO: *****Login Successful******
+09/04/2026 06:36:46 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 06:39:32 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 06:39:39 PM: INFO: *****Login Successful******
+09/04/2026 06:39:39 PM: INFO: *****Staring Add Product test*****
+09/04/2026 06:39:47 PM: INFO: *****Providing product details*******
+09/04/2026 06:40:37 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 06:40:41 PM: INFO: *****Login Successful******
+09/04/2026 06:40:41 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 06:40:49 PM: INFO: ***** Product deleted successfully *****
+09/04/2026 07:31:29 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 07:31:37 PM: INFO: *****Login Successful******
+09/04/2026 07:31:37 PM: INFO: *****Staring Add Product test*****
+09/04/2026 07:31:41 PM: INFO: *****Providing product details*******
+09/04/2026 07:33:04 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 07:33:08 PM: INFO: *****Login Successful******
+09/04/2026 07:33:08 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 07:33:16 PM: INFO: ***** Product deleted successfully *****
+09/04/2026 07:36:38 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 07:36:41 PM: INFO: *****Login Successful******
+09/04/2026 07:36:41 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 07:36:48 PM: INFO: ***** Product deleted successfully *****
+09/04/2026 07:37:39 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 07:37:49 PM: INFO: *****Login Successful******
+09/04/2026 07:37:49 PM: INFO: *****Staring Add Product test*****
+09/04/2026 07:37:54 PM: INFO: *****Providing product details*******
+09/04/2026 07:38:46 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 07:38:52 PM: INFO: *****Login Successful******
+09/04/2026 07:38:52 PM: INFO: *****Staring Add Product test*****
+09/04/2026 07:38:54 PM: INFO: *****Providing product details*******
+09/04/2026 07:39:27 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 07:39:32 PM: INFO: *****Login Successful******
+09/04/2026 07:39:32 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 07:39:36 PM: INFO: ***** Product deleted successfully *****
+09/04/2026 07:43:44 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 07:43:46 PM: INFO: *****Login Successful******
+09/04/2026 07:43:46 PM: INFO: *****Staring Add Product test*****
+09/04/2026 07:43:53 PM: INFO: *****Providing product details*******
+09/04/2026 07:44:32 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 07:44:37 PM: INFO: *****Login Successful******
+09/04/2026 07:44:37 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 07:44:44 PM: INFO: ***** Product deleted successfully *****
+09/04/2026 07:46:59 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 07:47:03 PM: INFO: *****Login Successful******
+09/04/2026 07:47:03 PM: INFO: *****Staring Add Product test*****
+09/04/2026 07:47:10 PM: INFO: *****Providing product details*******
+09/04/2026 07:47:45 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 07:47:53 PM: INFO: *****Login Successful******
+09/04/2026 07:47:53 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 07:47:58 PM: INFO: ***** Product deleted successfully *****
+09/04/2026 07:49:15 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 07:49:23 PM: INFO: *****Login Successful******
+09/04/2026 07:49:23 PM: INFO: *****Staring Add Product test*****
+09/04/2026 07:49:26 PM: INFO: *****Providing product details*******
+09/04/2026 07:50:08 PM: INFO: *****Test_DeleteProduct_032*****
+09/04/2026 07:50:13 PM: INFO: *****Login Successful******
+09/04/2026 07:50:13 PM: INFO: *****Staring Delete Product test*****
+09/04/2026 07:50:18 PM: INFO: ***** Product deleted successfully *****
+09/04/2026 08:48:43 PM: INFO: *****Test_AddProduct_028*****
+09/04/2026 08:48:51 PM: INFO: *****Login Successful******
+09/04/2026 08:48:51 PM: INFO: *****Staring Add Product test*****
+09/04/2026 08:48:56 PM: INFO: *****Providing product details*******
+09/04/2026 08:49:45 PM: INFO: *****Test_DeleteProduct_Select_033*****
+09/04/2026 08:49:52 PM: INFO: *****Login Successful******
+09/04/2026 08:49:52 PM: INFO: *****Starting Delete Selected Product test*****
+09/04/2026 08:49:54 PM: INFO: ***** Product 'Test Product 1810' was deleted successfully *****
+09/05/2026 12:58:03 PM: INFO: ***Test_BulkEditProductSaveAll_034***
+09/05/2026 12:59:18 PM: INFO: ***Test_BulkEditProductSaveAll_034***
+09/05/2026 12:59:25 PM: INFO: *****Login Successful******
+09/05/2026 12:59:25 PM: INFO: *****Staring Bulk Edit Product Save all Test*****
+09/05/2026 01:43:26 PM: INFO: ***Test_BulkEditProductSaveAll_034***
+09/05/2026 01:43:33 PM: INFO: *****Login Successful******
+09/05/2026 01:43:33 PM: INFO: *****Staring Bulk Edit Product Save all Test*****
+09/05/2026 04:33:36 PM: INFO: *** Test_BulkEditProductSaveSelected_035 ***
+09/05/2026 04:33:46 PM: INFO: ***** Login Successful *****
+09/05/2026 04:33:46 PM: INFO: ***** Starting Bulk Edit Product Save Selected Test *****
+09/05/2026 04:33:52 PM: INFO: Product Name: Test Product 4758
+09/05/2026 04:33:52 PM: INFO: SKU: SKU 69235
+09/05/2026 04:33:52 PM: INFO: New Price: 2000
+09/05/2026 04:33:52 PM: INFO: Old Price: 1000
+09/05/2026 04:33:52 PM: INFO: Stock Quantity: 1000
+09/05/2026 04:33:52 PM: INFO: Products at row 2 and row 3 selected
+09/05/2026 04:33:53 PM: INFO: Bulk Edit Save Selected completed
+09/05/2026 04:42:06 PM: INFO: *** Test_BulkEditProductSaveSelected_035 ***
+09/05/2026 04:42:10 PM: INFO: ***** Login Successful *****
+09/05/2026 04:42:10 PM: INFO: ***** Starting Bulk Edit Product Save Selected Test *****
+09/05/2026 04:42:16 PM: INFO: Product Name: Test Product 7474
+09/05/2026 04:42:16 PM: INFO: SKU: SKU 32906
+09/05/2026 04:42:16 PM: INFO: New Price: 2000
+09/05/2026 04:42:16 PM: INFO: Old Price: 1000
+09/05/2026 04:42:16 PM: INFO: Stock Quantity: 1000
+09/05/2026 04:42:16 PM: INFO: Products at row 2 and row 3 selected
+09/05/2026 04:42:16 PM: INFO: Bulk Edit Save Selected completed
+09/05/2026 04:57:23 PM: INFO: *** Test_BulkEditProductSaveSelected_035 ***
+09/05/2026 04:57:30 PM: INFO: ***** Login Successful *****
+09/05/2026 04:57:30 PM: INFO: ***** Starting Bulk Edit Product Save Selected Test *****
+09/05/2026 04:57:34 PM: INFO: Product Name: Test Product 1848
+09/05/2026 04:57:34 PM: INFO: SKU: SKU 19865
+09/05/2026 04:57:34 PM: INFO: New Price: 2000
+09/05/2026 04:57:34 PM: INFO: Old Price: 1000
+09/05/2026 04:57:34 PM: INFO: Stock Quantity: 1000
+09/05/2026 04:57:34 PM: INFO: Products at row 2 and row 3 selected
+09/05/2026 04:57:35 PM: INFO: Bulk Edit Save Selected completed
+09/05/2026 05:09:20 PM: INFO: *** Test_BulkEditProductSaveSelected_035 ***
+09/05/2026 05:09:25 PM: INFO: ***** Login Successful *****
+09/05/2026 05:09:25 PM: INFO: ***** Starting Bulk Edit Product Save Selected Test *****
+09/05/2026 05:09:30 PM: INFO: Product Name: Test Product 5755
+09/05/2026 05:09:30 PM: INFO: SKU: SKU 13483
+09/05/2026 05:09:30 PM: INFO: New Price: 2000
+09/05/2026 05:09:30 PM: INFO: Old Price: 1000
+09/05/2026 05:09:30 PM: INFO: Stock Quantity: 1000
+09/05/2026 05:09:30 PM: INFO: Product 'Test Product 5755' selected for Save Selected
+09/05/2026 05:09:32 PM: INFO: Bulk Edit Save Selected completed
+09/05/2026 05:09:33 PM: INFO: Product 'Test Product 5755' successfully found in Products table
+09/05/2026 05:37:50 PM: INFO: *** Test_BulkEditProductSaveSelected_035 ***
+09/05/2026 05:37:54 PM: INFO: ***** Login Successful *****
+09/05/2026 05:37:54 PM: INFO: ***** Starting Bulk Edit Product Save Selected Test *****
+09/05/2026 05:38:05 PM: INFO: Product Name: Test Product 9967
+09/05/2026 05:38:05 PM: INFO: SKU: SKU 71751
+09/05/2026 05:38:05 PM: INFO: New Price: 2000
+09/05/2026 05:38:05 PM: INFO: Old Price: 1000
+09/05/2026 05:38:05 PM: INFO: Stock Quantity: 1000
+09/05/2026 06:52:14 PM: INFO: *** Test_BulkEditProductSaveSelected_035 ***
+09/05/2026 06:52:25 PM: INFO: ***** Login Successful *****
+09/05/2026 06:52:25 PM: INFO: ***** Starting Bulk Edit Product Save Selected Test *****
+09/05/2026 06:52:36 PM: INFO: Product Name: Test Product 7090
+09/05/2026 06:52:36 PM: INFO: SKU: SKU 39918
+09/05/2026 06:52:36 PM: INFO: New Price: 2000
+09/05/2026 06:52:36 PM: INFO: Old Price: 1000
+09/05/2026 06:52:36 PM: INFO: Stock Quantity: 1000
+09/05/2026 06:52:36 PM: INFO: Product 'Test Product 7090' selected for Save Selected
+09/05/2026 06:52:39 PM: INFO: Bulk Edit Save Selected completed
+09/05/2026 06:52:40 PM: INFO: Product 'Test Product 7090' successfully found in Products table
+09/06/2026 11:23:26 AM: INFO: ***** Test_BulkEditProductSearchProductName_036*****
+09/06/2026 11:23:36 AM: INFO: ***** Login Successful *****
+09/06/2026 11:23:36 AM: INFO: ***** Starting Bulk Edit Product Search Product Name Test *****
+09/06/2026 11:26:23 AM: INFO: ***** Test_BulkEditProductSearchProductName_036*****
+09/06/2026 11:26:31 AM: INFO: ***** Login Successful *****
+09/06/2026 11:26:31 AM: INFO: ***** Starting Bulk Edit Product Search Product Name Test *****
+09/06/2026 11:29:19 AM: INFO: ***** Test_BulkEditProductSearchProductName_036*****
+09/06/2026 11:29:23 AM: INFO: ***** Login Successful *****
+09/06/2026 11:29:23 AM: INFO: ***** Starting Bulk Edit Product Search Product Name Test *****
+09/06/2026 11:32:08 AM: INFO: ***** Test_BulkEditProductSearchProductName_036*****
+09/06/2026 11:32:12 AM: INFO: ***** Login Successful *****
+09/06/2026 11:32:12 AM: INFO: ***** Starting Bulk Edit Product Search Product Name Test *****
+09/06/2026 01:39:20 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 01:39:26 PM: INFO: ***** Login Successful *****
+09/06/2026 01:39:26 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 02:20:53 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 02:20:59 PM: INFO: ***** Login Successful *****
+09/06/2026 02:20:59 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 02:52:34 PM: WARNING: There was an error managing chromedriver (error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)); using driver found in the cache
+09/06/2026 02:52:34 PM: WARNING: Error sending stats to Plausible: error sending request for url (https://plausible.io/api/event)
+09/06/2026 02:52:39 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 02:52:50 PM: INFO: ***** Login Successful *****
+09/06/2026 02:52:50 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 02:57:57 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 02:58:06 PM: INFO: ***** Login Successful *****
+09/06/2026 02:58:06 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 04:22:50 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 04:22:59 PM: INFO: ***** Login Successful *****
+09/06/2026 04:22:59 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 04:35:05 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 04:35:12 PM: INFO: ***** Login Successful *****
+09/06/2026 04:35:12 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 04:41:08 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 04:41:13 PM: INFO: ***** Login Successful *****
+09/06/2026 04:41:13 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 05:37:46 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 05:37:57 PM: INFO: ***** Login Successful *****
+09/06/2026 05:37:57 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 06:53:49 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 06:54:00 PM: INFO: ***** Login Successful *****
+09/06/2026 06:54:00 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 07:01:34 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 07:01:43 PM: INFO: ***** Login Successful *****
+09/06/2026 07:01:43 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 07:04:58 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 07:05:02 PM: INFO: ***** Login Successful *****
+09/06/2026 07:05:02 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 07:20:41 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 07:20:48 PM: INFO: ***** Login Successful *****
+09/06/2026 07:20:48 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/06/2026 07:24:19 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/06/2026 07:24:23 PM: INFO: ***** Login Successful *****
+09/06/2026 07:24:23 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/07/2026 09:54:53 AM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/07/2026 09:54:56 AM: INFO: ***** Login Successful *****
+09/07/2026 09:54:56 AM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/07/2026 10:30:32 AM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/07/2026 10:30:38 AM: INFO: ***** Login Successful *****
+09/07/2026 10:30:38 AM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/07/2026 10:38:06 AM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/07/2026 10:38:11 AM: INFO: ***** Login Successful *****
+09/07/2026 10:38:11 AM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/07/2026 10:51:47 AM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/07/2026 10:51:55 AM: INFO: ***** Login Successful *****
+09/07/2026 10:51:55 AM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/07/2026 11:43:19 AM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/07/2026 11:43:27 AM: INFO: ***** Login Successful *****
+09/07/2026 11:43:27 AM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/07/2026 11:48:42 AM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/07/2026 11:48:49 AM: INFO: ***** Login Successful *****
+09/07/2026 11:48:49 AM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/07/2026 12:03:41 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/07/2026 12:03:46 PM: INFO: ***** Login Successful *****
+09/07/2026 12:03:46 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/07/2026 12:07:44 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/07/2026 12:07:49 PM: INFO: ***** Login Successful *****
+09/07/2026 12:07:49 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/07/2026 12:17:18 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/07/2026 12:17:23 PM: INFO: ***** Login Successful *****
+09/07/2026 12:17:23 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/07/2026 12:59:39 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/07/2026 12:59:50 PM: INFO: ***** Login Successful *****
+09/07/2026 12:59:50 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/07/2026 06:21:02 PM: INFO: ***** Test_BulkEditProductSearchPublishType_039*****
+09/07/2026 06:21:13 PM: INFO: ***** Login Successful *****
+09/07/2026 06:21:13 PM: INFO: ***** Starting Bulk Edit Product Search Publish Type Test *****
+09/07/2026 06:25:29 PM: INFO: ***** Test_BulkEditProductSearchPublishType_039*****
+09/07/2026 06:25:34 PM: INFO: ***** Login Successful *****
+09/07/2026 06:25:34 PM: INFO: ***** Starting Bulk Edit Product Search Publish Type Test *****
