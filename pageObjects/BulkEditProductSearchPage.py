@@ -149,33 +149,35 @@ class BulkEditProductSearchPage:
             return False
 
     def getSearchResults(self):
-       product_list = self.wait.until(EC.presence_of_element_located(
-           (By.ID,"product-list")
-       ))
-       self.wait.until(
-           lambda driver:(
-               product_list.get_attribute("innerHTML").strip() !=""
-           )
-       )
-       rows = product_list.find_elements(By.XPATH,"./tr")
-       print("Number of rows: ", len(rows))
-       print("\nLoaded info:")
        try:
-           loaded_info = self.driver.find_element(By.ID,"loaded-info")
-           print(loaded_info.text)
-       except:
-           print("loaded-info not found")
+           rows = self.wait.until(EC.presence_of_all_elements_located(
+               (By.XPATH,"//tr[contains(@class,'product-row')]")
+           ))
+           print("Number of rows:", len(rows))
+           print("\nLoaded Info:")
+           try:
+               loaded_info = self.wait.until(EC.presence_of_element_located(
+                   (By.ID,"loaded-info")
+               ))
+               print(loaded_info.text)
+           except TimeoutException:
+               print("loaded info not found")
 
-       print("\nTable HTML:")
-       print(product_list.get_attribute("innerHTML"))
+           print("\nTable HTML:")
+           try:
+               product_list = self.driver.find_element(By.ID,"product-list")
+               print(product_list.get_attribute("innerHTML"))
+           except TimeoutException:
+               print("product-list not found")
 
-       if len(rows) == 1 and "No data available in table" in rows[0].text:
-           print("No data available in table")
+           for row in rows:
+               print(row.text)
+
+           return rows
+       except TimeoutException:
+           print("No product rows found in the search results.")
            return []
-       for row in rows:
-           print(row.text)
-
-       return rows
+       
 
 
 
