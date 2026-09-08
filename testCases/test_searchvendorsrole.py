@@ -1,12 +1,6 @@
-import time
+
 import pytest
-import string
-import random
 
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-
-from pageObjects.ActivityPage import ActivityPage
 from pageObjects.LoginPage import LoginPage
 from pageObjects.AddcustomerPage import AddCustomer
 from pageObjects.OnlineCustomersPage import OnlineCustomersPage

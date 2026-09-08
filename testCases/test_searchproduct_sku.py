@@ -20,6 +20,7 @@ class Test_SearchProductBySKU_030:
 
     logger = LogGen.loggen()
 
+    @pytest.mark.regression
     def test_searchproductbysku(self,setup):
         self.logger.info("*****Test_SearchProductBySKU_030*****")
         self.driver = setup
