@@ -1,3 +1,4 @@
+
 import os
 import subprocess
 import pytest
@@ -7,16 +8,17 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 # =========================================================
-# FIND FIREFOX MSIX EXECUTABLE
+# FIND FIREFOX EXECUTABLE
 # =========================================================
 
 def get_firefox_binary():
 
-    # -----------------------------------------------------
-    # Normal Firefox installation paths
-    # -----------------------------------------------------
+    # =====================================================
+    # NORMAL FIREFOX INSTALLATION PATHS
+    # =====================================================
 
     normal_paths = [
+
         os.path.join(
             os.environ.get("PROGRAMFILES", ""),
             "Mozilla Firefox",
@@ -37,67 +39,179 @@ def get_firefox_binary():
         )
     ]
 
+    # -----------------------------------------------------
+    # Check normal installation paths
+    # -----------------------------------------------------
+
     for path in normal_paths:
 
         if os.path.isfile(path):
 
-            print("Firefox executable found:")
-            print(path)
+            print(
+                "========================================"
+            )
+
+            print(
+                "Firefox executable found:"
+            )
+
+            print(
+                path
+            )
+
+            print(
+                "========================================"
+            )
 
             return path
 
-    # -----------------------------------------------------
-    # Microsoft Store / MSIX Firefox
-    # -----------------------------------------------------
+    # =====================================================
+    # MICROSOFT STORE / MSIX FIREFOX
+    # =====================================================
 
     try:
 
-        command = [
-            "powershell",
-            "-NoProfile",
-            "-Command",
-            (
-                "$p=(Get-AppxPackage Mozilla.Firefox).InstallLocation; "
-                "if ($p) { "
-                "Get-ChildItem -Path $p -Recurse "
-                "-Filter firefox.exe "
-                "-ErrorAction SilentlyContinue | "
-                "Select-Object -First 1 -ExpandProperty FullName "
-                "}"
-            )
-        ]
+        powershell_command = r"""
+        $packages = Get-AppxPackage -AllUsers |
+            Where-Object {
+                $_.Name -like '*Mozilla.Firefox*'
+            }
+
+        foreach ($package in $packages) {
+
+            if ($package.InstallLocation) {
+
+                $exe = Get-ChildItem `
+                    -Path $package.InstallLocation `
+                    -Filter 'firefox.exe' `
+                    -Recurse `
+                    -ErrorAction SilentlyContinue |
+                    Select-Object -First 1
+
+                if ($exe) {
+                    $exe.FullName
+                    break
+                }
+            }
+        }
+        """
 
         result = subprocess.run(
-            command,
+
+            [
+                "powershell.exe",
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-Command",
+                powershell_command
+            ],
+
             capture_output=True,
             text=True,
-            timeout=15
+            timeout=30
         )
 
-        firefox_path = result.stdout.strip()
+        print(
+            "Firefox MSIX detection stdout:"
+        )
 
-        if firefox_path and os.path.isfile(firefox_path):
+        print(
+            result.stdout
+        )
 
-            print("Firefox MSIX executable found:")
-            print(firefox_path)
+        if result.stderr:
 
-            return firefox_path
+            print(
+                "Firefox MSIX detection stderr:"
+            )
+
+            print(
+                result.stderr
+            )
+
+        firefox_output = result.stdout.strip()
+
+        # -------------------------------------------------
+        # PowerShell can return multiple lines
+        # -------------------------------------------------
+
+        if firefox_output:
+
+            for line in firefox_output.splitlines():
+
+                line = line.strip()
+
+                if not line:
+                    continue
+
+                if not line.lower().endswith(
+                    "firefox.exe"
+                ):
+                    continue
+
+                if os.path.isfile(line):
+
+                    print(
+                        "========================================"
+                    )
+
+                    print(
+                        "Firefox MSIX executable found:"
+                    )
+
+                    print(
+                        line
+                    )
+
+                    print(
+                        "========================================"
+                    )
+
+                    return line
 
     except Exception as e:
 
-        print("Firefox MSIX detection failed:")
         print(
-            type(e).__name__,
+            "========================================"
+        )
+
+        print(
+            "Firefox MSIX detection failed"
+        )
+
+        print(
+            "Exception Type:",
+            type(e).__name__
+        )
+
+        print(
+            "Exception:",
             str(e)
         )
 
-    # -----------------------------------------------------
-    # Firefox not found
-    # -----------------------------------------------------
+        print(
+            "========================================"
+        )
+
+    # =====================================================
+    # FIREFOX NOT FOUND
+    # =====================================================
 
     raise FileNotFoundError(
-        "Firefox executable was not found. "
-        "Install Mozilla Firefox or verify the Firefox installation."
+
+        "Real Firefox executable was not found.\n\n"
+
+        "Windows currently resolves 'firefox' to:\n"
+
+        "C:\\Users\\hp\\AppData\\Local\\Microsoft\\"
+        "WindowsApps\\firefox.exe\n\n"
+
+        "That WindowsApps entry is an application alias "
+        "and should not be used as the Firefox binary.\n\n"
+
+        "Please verify that Firefox is installed normally "
+        "or through Microsoft Store."
     )
 
 
@@ -113,6 +227,7 @@ def setup(browser):
     # =====================================================
 
     download_dir = os.path.abspath(
+
         os.path.join(
             os.getcwd(),
             "downloads"
@@ -125,8 +240,19 @@ def setup(browser):
     )
 
     print(
-        "Download directory:",
+        "========================================"
+    )
+
+    print(
+        "Download directory:"
+    )
+
+    print(
         download_dir
+    )
+
+    print(
+        "========================================"
     )
 
     # =====================================================
@@ -136,6 +262,10 @@ def setup(browser):
     if browser == "chrome":
 
         options = webdriver.ChromeOptions()
+
+        # -------------------------------------------------
+        # Accept localhost/self-signed certificate
+        # -------------------------------------------------
 
         options.accept_insecure_certs = True
 
@@ -180,7 +310,15 @@ def setup(browser):
         try:
 
             print(
+                "========================================"
+            )
+
+            print(
                 "Starting Chrome WebDriver......"
+            )
+
+            print(
+                "========================================"
             )
 
             driver = webdriver.Chrome(
@@ -188,7 +326,7 @@ def setup(browser):
             )
 
             print(
-                "Launching Chrome Browser......"
+                "Chrome Browser launched successfully."
             )
 
             print(
@@ -234,10 +372,23 @@ def setup(browser):
 
                 try:
 
+                    print(
+                        "Closing Chrome WebDriver......"
+                    )
+
                     driver.quit()
 
-                except Exception:
-                    pass
+                    print(
+                        "Chrome WebDriver closed successfully."
+                    )
+
+                except Exception as e:
+
+                    print(
+                        "Chrome driver quit warning:",
+                        type(e).__name__,
+                        str(e)
+                    )
 
     # =====================================================
     # FIREFOX
@@ -247,9 +398,9 @@ def setup(browser):
 
         options = webdriver.FirefoxOptions()
 
-        # -------------------------------------------------
-        # Find Firefox executable automatically
-        # -------------------------------------------------
+        # =================================================
+        # FIND REAL FIREFOX EXECUTABLE
+        # =================================================
 
         firefox_binary = get_firefox_binary()
 
@@ -260,30 +411,30 @@ def setup(browser):
             firefox_binary
         )
 
-        # -------------------------------------------------
-        # Accept localhost/self-signed certificate
-        # -------------------------------------------------
+        # =================================================
+        # CERTIFICATE
+        # =================================================
 
         options.accept_insecure_certs = True
 
-        # -------------------------------------------------
-        # Enable downloads
-        # -------------------------------------------------
+        # =================================================
+        # DOWNLOADS
+        # =================================================
 
         options.enable_downloads = True
 
-        # -------------------------------------------------
-        # Disable proxy
-        # -------------------------------------------------
+        # =================================================
+        # DISABLE PROXY
+        # =================================================
 
         options.set_preference(
             "network.proxy.type",
             0
         )
 
-        # -------------------------------------------------
-        # Firefox startup settings
-        # -------------------------------------------------
+        # =================================================
+        # FIREFOX STARTUP SETTINGS
+        # =================================================
 
         options.set_preference(
             "browser.startup.page",
@@ -300,9 +451,9 @@ def setup(browser):
             False
         )
 
-        # -------------------------------------------------
-        # Download directory
-        # -------------------------------------------------
+        # =================================================
+        # DOWNLOAD DIRECTORY
+        # =================================================
 
         options.set_preference(
             "browser.download.folderList",
@@ -319,9 +470,9 @@ def setup(browser):
             True
         )
 
-        # -------------------------------------------------
-        # Download behavior
-        # -------------------------------------------------
+        # =================================================
+        # DOWNLOAD BEHAVIOR
+        # =================================================
 
         options.set_preference(
             "browser.download.manager.showWhenStarting",
@@ -343,9 +494,9 @@ def setup(browser):
             True
         )
 
-        # -------------------------------------------------
-        # Do not ask about downloaded files
-        # -------------------------------------------------
+        # =================================================
+        # DO NOT ASK ABOUT DOWNLOADS
+        # =================================================
 
         options.set_preference(
             "browser.helperApps.alwaysAsk.force",
@@ -357,9 +508,9 @@ def setup(browser):
             False
         )
 
-        # -------------------------------------------------
-        # MIME types
-        # -------------------------------------------------
+        # =================================================
+        # MIME TYPES
+        # =================================================
 
         mime_types = ",".join([
 
@@ -372,16 +523,16 @@ def setup(browser):
             "application/vnd.ms-excel",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 
+            # CSV
+            "text/csv",
+            "application/csv",
+
             # Generic downloads
             "application/octet-stream",
             "application/force-download",
             "binary/octet-stream",
             "application/download",
-            "application/x-download",
-
-            # CSV
-            "text/csv",
-            "application/csv"
+            "application/x-download"
         ])
 
         options.set_preference(
@@ -389,18 +540,18 @@ def setup(browser):
             mime_types
         )
 
-        # -------------------------------------------------
-        # Prevent Firefox from opening files internally
-        # -------------------------------------------------
+        # =================================================
+        # PREVENT INTERNAL FILE VIEWING
+        # =================================================
 
         options.set_preference(
             "browser.download.viewableInternally.enabledTypes",
             ""
         )
 
-        # -------------------------------------------------
-        # Disable PDF viewer
-        # -------------------------------------------------
+        # =================================================
+        # DISABLE PDF VIEWER
+        # =================================================
 
         options.set_preference(
             "pdfjs.disabled",
@@ -412,6 +563,7 @@ def setup(browser):
         # =================================================
 
         driver = None
+
         max_attempts = 3
 
         print(
@@ -426,9 +578,9 @@ def setup(browser):
             "========================================"
         )
 
-        # -------------------------------------------------
-        # Firefox startup retry
-        # -------------------------------------------------
+        # =================================================
+        # FIREFOX STARTUP RETRY
+        # =================================================
 
         for attempt in range(
             1,
@@ -447,7 +599,7 @@ def setup(browser):
                 )
 
                 print(
-                    "Launching Firefox Browser......"
+                    "Firefox Browser launched successfully."
                 )
 
                 print(
@@ -455,15 +607,17 @@ def setup(browser):
                     download_dir
                 )
 
-                # -------------------------------------------------
-                # Verify browsing context
-                # -------------------------------------------------
+                # -----------------------------------------
+                # Verify browser window
+                # -----------------------------------------
 
                 WebDriverWait(
                     driver,
                     10
                 ).until(
-                    lambda d: len(
+
+                    lambda d:
+                    len(
                         d.window_handles
                     ) > 0
                 )
@@ -478,8 +632,12 @@ def setup(browser):
                 )
 
                 print(
-                    "Firefox browsing context is alive"
+                    "Firefox browsing context is alive."
                 )
+
+                # -----------------------------------------
+                # Firefox started successfully
+                # -----------------------------------------
 
                 break
 
@@ -508,9 +666,9 @@ def setup(browser):
                     "========================================"
                 )
 
-                # -------------------------------------------------
-                # Close failed Firefox session
-                # -------------------------------------------------
+                # -----------------------------------------
+                # Close failed session
+                # -----------------------------------------
 
                 if driver is not None:
 
@@ -523,9 +681,9 @@ def setup(browser):
 
                     driver = None
 
-                # -------------------------------------------------
-                # Retry
-                # -------------------------------------------------
+                # -----------------------------------------
+                # Final attempt
+                # -----------------------------------------
 
                 if attempt == max_attempts:
 
@@ -576,9 +734,9 @@ def setup(browser):
 
         finally:
 
-            # -------------------------------------------------
-            # Close Firefox
-            # -------------------------------------------------
+            # ---------------------------------------------
+            # CLOSE FIREFOX
+            # ---------------------------------------------
 
             if driver is not None:
 
@@ -591,7 +749,7 @@ def setup(browser):
                     driver.quit()
 
                     print(
-                        "Firefox WebDriver closed successfully"
+                        "Firefox WebDriver closed successfully."
                     )
 
                 except Exception as e:
@@ -609,6 +767,10 @@ def setup(browser):
     elif browser == "edge":
 
         options = webdriver.EdgeOptions()
+
+        # -------------------------------------------------
+        # Accept localhost/self-signed certificate
+        # -------------------------------------------------
 
         options.accept_insecure_certs = True
 
@@ -653,7 +815,15 @@ def setup(browser):
         try:
 
             print(
+                "========================================"
+            )
+
+            print(
                 "Starting Edge WebDriver......"
+            )
+
+            print(
+                "========================================"
             )
 
             driver = webdriver.Edge(
@@ -661,7 +831,7 @@ def setup(browser):
             )
 
             print(
-                "Launching Edge Browser......"
+                "Edge Browser launched successfully."
             )
 
             print(
@@ -707,10 +877,23 @@ def setup(browser):
 
                 try:
 
+                    print(
+                        "Closing Edge WebDriver......"
+                    )
+
                     driver.quit()
 
-                except Exception:
-                    pass
+                    print(
+                        "Edge WebDriver closed successfully."
+                    )
+
+                except Exception as e:
+
+                    print(
+                        "Edge driver quit warning:",
+                        type(e).__name__,
+                        str(e)
+                    )
 
     # =====================================================
     # INVALID BROWSER
@@ -719,7 +902,9 @@ def setup(browser):
     else:
 
         raise ValueError(
+
             f"Unsupported browser: {browser}. "
+
             f"Use chrome, firefox, or edge."
         )
 
@@ -731,8 +916,11 @@ def setup(browser):
 def pytest_addoption(parser):
 
     parser.addoption(
+
         "--browser",
+
         action="store",
+
         default="chrome"
     )
 
@@ -757,6 +945,10 @@ def pytest_configure(config):
     pass
 
 
+# =========================================================
+# SESSION METADATA FIXTURE
+# =========================================================
+
 @pytest.fixture(
     scope="session",
     autouse=True
@@ -765,14 +957,21 @@ def metadata(request):
     pass
 
 
+# =========================================================
+# PYTEST HTML REPORT METADATA
+# =========================================================
+
 def pytest_metadata(metadata):
 
     metadata["Project Name"] = "nopCommerce"
 
-    metadata["Module Name"] = "Customers"
-    metadata["Module Name"] = "Catalog"
+    metadata["Module Name"] = "Customers, Catalog"
 
     metadata["Tester"] = "Himasai"
+
+    # -----------------------------------------------------
+    # Remove unnecessary metadata
+    # -----------------------------------------------------
 
     metadata.pop(
         "JAVA_HOME",

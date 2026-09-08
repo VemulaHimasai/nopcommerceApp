@@ -177,7 +177,7 @@ class BulkEditProductSearchPage:
        except TimeoutException:
            print("No product rows found in the search results.")
            return []
-       
+
 
 
 
