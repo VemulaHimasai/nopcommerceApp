@@ -50,5 +50,15 @@ class Test_BulkEditSearchVendor_038:
 
         rows = self.bulkeditsearch.getSearchResults()
 
+        print("Vendor searched:", vendor)
+        print("Number of rows:", len(rows))
+
+        for index, row in enumerate(rows, start=1):
+            try:
+                print(f"----- Row {index} -----")
+                print(row.text)
+            except Exception as e:
+                print(f"Unable to read row {index}: {e}")
+
         assert len(rows) == 0, f"Products found for vendor: {vendor}"
 

@@ -1,4 +1,3 @@
-import time
 
 from selenium.common.exceptions import (
     StaleElementReferenceException,
@@ -66,6 +65,11 @@ class SearchProduct:
             EC.element_to_be_clickable(
                 (By.XPATH, self.drp_vendor_xpath)
             )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            vendor_dropdown
         )
 
         vendor_dropdown.click()
@@ -190,9 +194,29 @@ class SearchProduct:
             search_button
         )
 
-        search_button.click()
+        self.driver.execute_script(
+            "arguments[0].click();",
+            search_button
+        )
 
         print("Search button clicked")
+
+        self.wait.until(
+            EC.presence_of_element_located(
+                (By.XPATH, self.tbl_producttable_xpath)
+            )
+        )
+
+        self.wait.until(
+            lambda driver: len(
+                driver.find_elements(
+                    By.XPATH,
+                    self.tbl_producttable_xpath + "//tbody/tr"
+                )
+            ) > 0
+        )
+
+        print("Search results table loaded")
 
     # =========================================================
     # PRODUCT PRESENT
@@ -201,9 +225,9 @@ class SearchProduct:
     def isProductPresent(self, product_name):
 
         product_xpath = (
-            f"{self.tbl_producttable_xpath}"
-            f"//tbody//tr//td"
-            f"[contains(normalize-space(.),'{product_name}')]"
+            f"//table[@id='products-grid']"
+            f"//tbody//tr"
+            f"//td[contains(normalize-space(.),'{product_name}')]"
         )
 
         try:
@@ -215,8 +239,7 @@ class SearchProduct:
             )
 
             print(
-                "Product found in search results:",
-                product_name
+                f"Product found in search results: {product_name}"
             )
 
             return True
@@ -224,9 +247,11 @@ class SearchProduct:
         except TimeoutException:
 
             print(
-                "Product not found in search results:",
-                product_name
+                f"Product not found in search results: {product_name}"
             )
+
+            print("Current URL:", self.driver.current_url)
+            print("Current Title:", self.driver.title)
 
             return False
 
@@ -242,14 +267,19 @@ class SearchProduct:
             )
         )
 
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            sku_field
+        )
+
         sku_field.clear()
         sku_field.send_keys(sku)
 
         print("SKU entered:", sku)
 
-    # ---------------------------------------------------------
-    # Click Go
-    # ---------------------------------------------------------
+    # =========================================================
+    # CLICK GO
+    # =========================================================
 
     def clickGo(self):
 
@@ -259,35 +289,188 @@ class SearchProduct:
             )
         )
 
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            go_button
+        )
+
+        print("Go button found")
+        print("Go button text:", go_button.text)
+        print("Go button type:", go_button.get_attribute("type"))
+        print("Go button id:", go_button.get_attribute("id"))
+        print("Go button disabled:", go_button.get_attribute("disabled"))
+
+        print(
+            "SKU before Go:",
+            self.driver.find_element(
+                By.XPATH,
+                self.txtsku_xpath
+            ).get_attribute("value")
+        )
+
+        old_url = self.driver.current_url
+
+        print("URL before Go:", old_url)
+
         go_button.click()
 
         print("Go button clicked")
 
+        # Wait a few seconds for any AJAX/redirect operation
+        try:
+
+            WebDriverWait(self.driver, 5).until(
+                lambda driver: driver.current_url != old_url
+            )
+
+            print(
+                "URL changed:",
+                self.driver.current_url
+            )
+
+        except TimeoutException:
+
+            print(
+                "URL did NOT change after Go."
+            )
+
+        print(
+            "URL after Go:",
+            self.driver.current_url
+        )
+
+        print(
+            "Title after Go:",
+            self.driver.title
+        )
+
+        # ---------------------------------------------------------
+        # Check whether SKU edit field exists
+        # ---------------------------------------------------------
+
+        sku_fields = self.driver.find_elements(
+            By.XPATH,
+            self.txtsku_edit_xpath
+        )
+
+        print(
+            "Edit Product SKU fields found:",
+            len(sku_fields)
+        )
+
+        # ---------------------------------------------------------
+        # Check for validation/error messages
+        # ---------------------------------------------------------
+
+        body_text = self.driver.find_element(
+            By.TAG_NAME,
+            "body"
+        ).text
+
+        print("----- PAGE TEXT AFTER GO -----")
+        print(body_text[:3000])
+        print("----- END PAGE TEXT -----")
     # =========================================================
     # VERIFY SKU
     # =========================================================
 
     def verifySKU(self, expected_sku):
 
+        print(
+            "Verifying SKU:",
+            expected_sku
+        )
+
         try:
 
             sku_field = self.wait.until(
-                EC.presence_of_element_located(
+                EC.visibility_of_element_located(
                     (By.XPATH, self.txtsku_edit_xpath)
                 )
             )
 
-            actual_sku = sku_field.get_attribute("value")
+            # Wait until the field actually contains a value
+            self.wait.until(
+                lambda driver: (
+                    sku_field.get_attribute("value") or ""
+                ).strip() != ""
+            )
 
-            print("Expected SKU:", expected_sku)
-            print("Actual SKU:", actual_sku)
+            actual_sku = (
+                sku_field.get_attribute("value") or ""
+            ).strip()
 
-            return actual_sku == expected_sku
+            expected_sku = str(expected_sku).strip()
+
+            print(
+                "Expected SKU:",
+                expected_sku
+            )
+
+            print(
+                "Actual SKU:",
+                actual_sku
+            )
+
+            if actual_sku == expected_sku:
+
+                print(
+                    "SKU verification PASSED"
+                )
+
+                return True
+
+            print(
+                "SKU verification FAILED"
+            )
+
+            return False
+
+        except StaleElementReferenceException:
+
+            print(
+                "SKU field became stale. "
+                "Locating it again..."
+            )
+
+            try:
+
+                sku_field = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.XPATH, self.txtsku_edit_xpath)
+                    )
+                )
+
+                actual_sku = (
+                    sku_field.get_attribute("value") or ""
+                ).strip()
+
+                expected_sku = str(expected_sku).strip()
+
+                print(
+                    "Expected SKU:",
+                    expected_sku
+                )
+
+                print(
+                    "Actual SKU after retry:",
+                    actual_sku
+                )
+
+                return actual_sku == expected_sku
+
+            except TimeoutException:
+
+                print(
+                    "Could not locate SKU field after retry."
+                )
+
+                return False
 
         except TimeoutException:
 
             print(
-                "SKU Not found:",
+                "SKU field not found:",
                 self.txtsku_edit_xpath
             )
 
@@ -445,3 +628,4 @@ class SearchProduct:
             )
 
             return False
+

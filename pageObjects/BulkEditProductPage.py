@@ -10,27 +10,16 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class BulkEditProductPage:
-
-    # =========================================================
-    # BULK EDIT / ADD NEW
-    # =========================================================
-
     btnbulkedit_xpath = "//a[normalize-space()='Bulk edit products']"
     btnAddnew_xpath = "//a[normalize-space()='Add new']"
 
-    # =========================================================
-    # BULK EDIT FIELDS
-    # =========================================================
 
-    txtProductName_xpath = "//input[@id='name--1']"
-    txtSKU_xpath = "//input[@id='sku--1']"
-
-    # Prices
-    new_price_xpath = "//input[@id='price--1']"
-    old_price_xpath = "//input[@id='old-price--1']"
-
+    txtProductName_xpath = "//input[contains(@id,'name-')]"
+    txtSKU_xpath = "//input[contains(@id,'sku-')]"
+    new_price_xpath = "//input[contains(@id,'price-')]"
+    old_price_xpath = "//input[contains(@id,'old-price-')]"
+    stkquantity_xpath = "//input[contains(@id,'quantity-')]"
     # Stock
-    stkquantity_xpath = "//input[@id='quantity--1']"
 
     # =========================================================
     # SAVE BUTTONS
@@ -81,6 +70,7 @@ class BulkEditProductPage:
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 15)
+        self.new_product_row = None
 
     # =========================================================
     # SCROLL TO PRODUCTS TABLE
@@ -337,6 +327,8 @@ class BulkEditProductPage:
 
     def clickAddNew(self):
 
+        print("Waiting for Add New button...")
+
         add_new_button = self.wait.until(
             EC.element_to_be_clickable(
                 (By.XPATH, self.btnAddnew_xpath)
@@ -348,6 +340,20 @@ class BulkEditProductPage:
             add_new_button
         )
 
+        rows_xpath = (
+            "//table[@class='table table-hover table-bordered table-striped']"
+            "//tbody//tr"
+        )
+
+        rows_before = self.driver.find_elements(
+            By.XPATH,
+            rows_xpath
+        )
+
+        row_count_before = len(rows_before)
+
+        print(f"Rows before Add New: {row_count_before}")
+
         self.driver.execute_script(
             "arguments[0].click();",
             add_new_button
@@ -355,16 +361,70 @@ class BulkEditProductPage:
 
         print("Add new button clicked")
 
-        # IMPORTANT:
-        # Wait until the Bulk Edit Add New field is loaded
-        self.wait.until(
-            EC.visibility_of_element_located(
-                (By.XPATH, self.txtProductName_xpath)
-            )
+        # Wait until a new row is created
+        def new_row_created(driver):
+
+            try:
+                rows = driver.find_elements(
+                    By.XPATH,
+                    rows_xpath
+                )
+
+                return len(rows) > row_count_before
+
+            except StaleElementReferenceException:
+                return False
+
+        self.wait.until(new_row_created)
+
+        print("New Bulk Edit row created")
+
+        # ---------------------------------------------------------
+        # Store the newly created row
+        # ---------------------------------------------------------
+
+        def get_new_row(driver):
+
+            try:
+                rows = driver.find_elements(
+                    By.XPATH,
+                    rows_xpath
+                )
+
+                if len(rows) <= row_count_before:
+                    return False
+
+                last_row = rows[-1]
+
+                product_name = last_row.find_element(
+                    By.XPATH,
+                    ".//input[contains(@id,'name-')]"
+                )
+
+                if (
+                        product_name.is_displayed()
+                        and product_name.is_enabled()
+                ):
+                    return last_row
+
+                return False
+
+            except (
+                    StaleElementReferenceException,
+                    Exception
+            ):
+                return False
+
+        self.new_product_row = self.wait.until(get_new_row)
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({"
+            "block:'center', inline:'nearest'"
+            "});",
+            self.new_product_row
         )
 
-        print("Bulk Edit Add New page loaded")
-
+        print("Bulk Edit Add New row loaded")
     # =========================================================
     # CLICK BULK EDIT PRODUCTS
     # =========================================================
@@ -406,20 +466,24 @@ class BulkEditProductPage:
     def setProductName(self, product_name=None):
 
         if product_name is None:
-
             product_name = (
-                "Test Product "
-                + str(random.randint(1000, 9999))
+                    "Test Product "
+                    + str(random.randint(1000, 9999))
             )
 
         for attempt in range(3):
 
             try:
 
-                product_name_field = self.wait.until(
-                    EC.visibility_of_element_located(
-                        (By.XPATH, self.txtProductName_xpath)
+                if self.new_product_row is None:
+                    raise TimeoutException(
+                        "New product row has not been created. "
+                        "Call clickAddNew() first."
                     )
+
+                product_name_field = self.new_product_row.find_element(
+                    By.XPATH,
+                    ".//input[contains(@id,'name-')]"
                 )
 
                 self.driver.execute_script(
@@ -429,9 +493,7 @@ class BulkEditProductPage:
 
                 product_name_field.clear()
 
-                product_name_field.send_keys(
-                    product_name
-                )
+                product_name_field.send_keys(product_name)
 
                 print(
                     f"Product name entered: {product_name}"
@@ -442,9 +504,27 @@ class BulkEditProductPage:
             except StaleElementReferenceException:
 
                 print(
-                    "Product name field became stale. "
+                    "New product row became stale. "
                     f"Retrying ({attempt + 1}/3)..."
                 )
+
+                # Re-acquire the last row
+                rows_xpath = (
+                    "//table[@class='table table-hover "
+                    "table-bordered table-striped']"
+                    "//tbody//tr"
+                )
+
+                try:
+                    rows = self.driver.find_elements(
+                        By.XPATH,
+                        rows_xpath
+                    )
+
+                    self.new_product_row = rows[-1]
+
+                except Exception:
+                    pass
 
         raise TimeoutException(
             "Product name field could not be located."
@@ -457,16 +537,17 @@ class BulkEditProductPage:
     def setSKU(self, sku=None):
 
         if sku is None:
+            sku = "SKU " + str(random.randint(10000, 99999))
 
-            sku = (
-                "SKU "
-                + str(random.randint(10000, 99999))
+        if self.new_product_row is None:
+            raise TimeoutException(
+                "New product row has not been created. "
+                "Call clickAddNew() first."
             )
 
-        sku_field = self.wait.until(
-            EC.visibility_of_element_located(
-                (By.XPATH, self.txtSKU_xpath)
-            )
+        sku_field = self.new_product_row.find_element(
+            By.XPATH,
+            ".//input[contains(@id,'sku-')]"
         )
 
         self.driver.execute_script(
@@ -475,7 +556,6 @@ class BulkEditProductPage:
         )
 
         sku_field.clear()
-
         sku_field.send_keys(sku)
 
         print(f"SKU entered: {sku}")
