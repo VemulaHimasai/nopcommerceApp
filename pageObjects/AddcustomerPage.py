@@ -167,8 +167,7 @@ class AddCustomer:
 
         actual_value = email_field.get_attribute("value")
 
-        print("Expected email:", repr(email))
-        print("Actual email:", repr(actual_value))
+
 
         assert actual_value == email, (
             f"Email was not entered correctly. "
@@ -327,7 +326,6 @@ class AddCustomer:
             )
         )
 
-        print("Role option found:", repr(role_option.text))
 
         # Scroll role into view
         self.driver.execute_script(
@@ -341,7 +339,6 @@ class AddCustomer:
             role_option
         )
 
-        print("Clicked role:", role)
 
         # Verify that role was actually selected
         self.wait.until(

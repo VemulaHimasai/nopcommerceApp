@@ -7,6 +7,10 @@ import random
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import (
+    StaleElementReferenceException,
+    TimeoutException
+)
 
 from pageObjects.LoginPage import LoginPage
 from pageObjects.AddcustomerPage import AddCustomer
@@ -36,9 +40,9 @@ class Test_003_AddCustomer:
 
         wait = WebDriverWait(self.driver, 15)
 
-        # -------------------------------------------------
+        # =================================================
         # Login
-        # -------------------------------------------------
+        # =================================================
 
         self.lp = LoginPage(self.driver)
 
@@ -50,9 +54,9 @@ class Test_003_AddCustomer:
             "********* Login Successful **********"
         )
 
-        # -------------------------------------------------
+        # =================================================
         # Navigate to Customers
-        # -------------------------------------------------
+        # =================================================
 
         self.logger.info(
             "********* Starting Add Customer Test *********"
@@ -63,9 +67,9 @@ class Test_003_AddCustomer:
         self.addcust.clickOnCustomersMenu()
         self.addcust.clickonCustomersMenuItem()
 
-        # -------------------------------------------------
+        # =================================================
         # Click Add New
-        # -------------------------------------------------
+        # =================================================
 
         self.addcust.clickonAddNew()
 
@@ -73,9 +77,9 @@ class Test_003_AddCustomer:
             "******** Providing customer information ********"
         )
 
-        # -------------------------------------------------
+        # =================================================
         # Generate Unique Email
-        # -------------------------------------------------
+        # =================================================
 
         self.email = random_generator() + "@gmail.com"
 
@@ -84,9 +88,9 @@ class Test_003_AddCustomer:
             self.email
         )
 
-        # -------------------------------------------------
+        # =================================================
         # Enter Email
-        # -------------------------------------------------
+        # =================================================
 
         self.addcust.setEmail(self.email)
 
@@ -117,21 +121,21 @@ class Test_003_AddCustomer:
             f"Actual: {actual_email}"
         )
 
-        # -------------------------------------------------
+        # =================================================
         # Enter Password
-        # -------------------------------------------------
+        # =================================================
 
         self.addcust.setPassword("test123")
 
-        # -------------------------------------------------
+        # =================================================
         # Select Customer Role
-        # -------------------------------------------------
+        # =================================================
 
         self.addcust.setCustomerRoles("Registered")
 
-        # -------------------------------------------------
+        # =================================================
         # Verify Customer Role
-        # -------------------------------------------------
+        # =================================================
 
         registered_role = wait.until(
             EC.visibility_of_element_located(
@@ -151,9 +155,9 @@ class Test_003_AddCustomer:
             "Customer Role successfully selected: Registered"
         )
 
-        # -------------------------------------------------
+        # =================================================
         # Other Customer Information
-        # -------------------------------------------------
+        # =================================================
 
         self.addcust.setManagerofVendor("Vendor1")
         self.addcust.setGender("Female")
@@ -168,9 +172,9 @@ class Test_003_AddCustomer:
             "******** Customer information provided ********"
         )
 
-        # -------------------------------------------------
+        # =================================================
         # Save Customer
-        # -------------------------------------------------
+        # =================================================
 
         self.addcust.clickSave()
 
@@ -178,9 +182,9 @@ class Test_003_AddCustomer:
             "******** Saving customer information ********"
         )
 
-        # -------------------------------------------------
+        # =================================================
         # Verify Success / Error Message
-        # -------------------------------------------------
+        # =================================================
 
         try:
 
@@ -279,9 +283,9 @@ class Test_003_AddCustomer:
 
             raise
 
-        # -------------------------------------------------
+        # =================================================
         # Navigate Back to Customers
-        # -------------------------------------------------
+        # =================================================
 
         self.logger.info(
             "******** Verifying customer in Customers grid ********"
@@ -294,9 +298,9 @@ class Test_003_AddCustomer:
             "******** Customers page opened ********"
         )
 
-        # -------------------------------------------------
+        # =================================================
         # Search Customer
-        # -------------------------------------------------
+        # =================================================
 
         searchcust = SearchCustomer(self.driver)
 
@@ -307,9 +311,9 @@ class Test_003_AddCustomer:
             f"******** Searching for {self.email} ********"
         )
 
-        # -------------------------------------------------
+        # =================================================
         # Verify Customer Exists in Grid
-        # -------------------------------------------------
+        # =================================================
 
         try:
 
@@ -320,29 +324,89 @@ class Test_003_AddCustomer:
             )
 
             # -------------------------------------------------
-            # Wait for DataTable refresh and email to appear
+            # Wait for customer email to appear.
+            #
+            # IMPORTANT:
+            # Do NOT use text_to_be_present_in_element()
+            # because the nopCommerce DataTable can refresh
+            # and replace the DOM element.
             # -------------------------------------------------
 
-            wait.until(
-                EC.text_to_be_present_in_element(
-                    (
+            def customer_email_found(driver):
+
+                try:
+
+                    elements = driver.find_elements(
                         By.XPATH,
                         customer_email_xpath
-                    ),
-                    self.email
-                )
+                    )
+
+                    for element in elements:
+
+                        try:
+
+                            if (
+                                element.is_displayed()
+                                and element.text.strip() == self.email
+                            ):
+                                return True
+
+                        except StaleElementReferenceException:
+
+                            # DataTable refreshed.
+                            # Ignore this element and retry.
+                            continue
+
+                    return False
+
+                except StaleElementReferenceException:
+
+                    return False
+
+            wait.until(customer_email_found)
+
+            # -------------------------------------------------
+            # Locate customer email again after DataTable
+            # refresh.
+            # -------------------------------------------------
+
+            def get_customer_email(driver):
+
+                try:
+
+                    elements = driver.find_elements(
+                        By.XPATH,
+                        customer_email_xpath
+                    )
+
+                    for element in elements:
+
+                        try:
+
+                            if element.is_displayed():
+
+                                text = element.text.strip()
+
+                                if text == self.email:
+                                    return text
+
+                        except StaleElementReferenceException:
+
+                            continue
+
+                    return False
+
+                except StaleElementReferenceException:
+
+                    return False
+
+            actual_grid_email = wait.until(
+                get_customer_email
             )
 
             # -------------------------------------------------
-            # IMPORTANT:
-            # Locate the element again after DataTable refresh.
-            # This prevents stale element reference errors.
+            # Print Verification Information
             # -------------------------------------------------
-
-            actual_grid_email = self.driver.find_element(
-                By.XPATH,
-                customer_email_xpath
-            ).text.strip()
 
             print(
                 "Expected grid email:",
@@ -375,9 +439,9 @@ class Test_003_AddCustomer:
 
         except Exception as e:
 
-            # -------------------------------------------------
-            # Take Screenshot
-            # -------------------------------------------------
+            # =================================================
+            # Screenshot
+            # =================================================
 
             os.makedirs(
                 ".\\Screenshots",
@@ -388,9 +452,9 @@ class Test_003_AddCustomer:
                 ".\\Screenshots\\test_addCustomer_grid_scr.png"
             )
 
-            # -------------------------------------------------
+            # =================================================
             # Debug Information
-            # -------------------------------------------------
+            # =================================================
 
             print(
                 "Customer was NOT found in Customers grid."
@@ -411,9 +475,9 @@ class Test_003_AddCustomer:
                 self.driver.title
             )
 
-            # -------------------------------------------------
+            # =================================================
             # Print Grid Rows for Debugging
-            # -------------------------------------------------
+            # =================================================
 
             try:
 
@@ -436,11 +500,11 @@ class Test_003_AddCustomer:
                             row.text
                         )
 
-                    except Exception as row_error:
+                    except StaleElementReferenceException:
 
                         print(
-                            "Could not read row:",
-                            row_error
+                            "Could not read row because "
+                            "DataTable refreshed."
                         )
 
             except Exception as grid_error:
@@ -456,18 +520,18 @@ class Test_003_AddCustomer:
 
             raise
 
-        # -------------------------------------------------
+        # =================================================
         # Test Passed
-        # -------------------------------------------------
+        # =================================================
 
         self.logger.info(
             "******** Add customer test passed ********"
         )
 
 
-# ---------------------------------------------------------
+# =========================================================
 # Random Email Generator
-# ---------------------------------------------------------
+# =========================================================
 
 def random_generator(
         size=8,
