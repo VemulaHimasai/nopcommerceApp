@@ -22,9 +22,8 @@ class BulkEditProductSearchPage:
 
     #drppublished
     drpPublishedtype =(
-        "//span[contains(@class,'select2-container') "
-        "and contains(@class,'select2-container--default')]"
-        "//span[@role='combobox']"
+        "//span[@role='combobox' "
+        "and @aria-labelledby='select2-SearchPublishedId-container']"
     )
 
     #search button
@@ -108,16 +107,23 @@ class BulkEditProductSearchPage:
             (By.XPATH,self.drpPublishedtype)
         ))
         self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",published_dropdown)
+        print("Published Type dropdown found")
+        published_dropdown.click()
         published_option_xpath = (
             f"//li[contains(@class,'select2-results__option') "
             f"and normalize-space(.)='{published_type}']"
         )
-        published_option = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,published_option_xpath)
-        ))
-        published_option.click()
-        print(f"Published type '{published_type}' selected")
 
+        published_option = self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, published_option_xpath)
+            )
+        )
+        print("Published option found:", published_option.text)
+
+        published_option.click()
+
+        print(f"Published type '{published_type}' selected")
 
     def clickSearch(self):
         search_btn = self.wait.until(EC.element_to_be_clickable(
