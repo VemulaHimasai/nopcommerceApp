@@ -288,6 +288,23 @@ class AddCustomer:
 
         save_button.click()
 
+        self.wait.until(
+            lambda driver:
+            "/Admin/Customer/Edit/" in driver.current_url
+            or
+            driver.find_elements(
+                By.CSS_SELECTOR,
+                "div.alert.alert-success"
+            )
+            or
+            driver.find_elements(
+                By.CSS_SELECTOR,
+                "div.alert.alert-danger"
+            )
+        )
+        print("Customer save response received")
+        print("Current URL:", self.driver.current_url)
+
     def setCustomerRoles(self, role):
 
         # Click Customer Roles dropdown
