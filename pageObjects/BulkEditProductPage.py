@@ -8,10 +8,19 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class BulkEditProductPage:
+
+    # =========================================================
+    # BULK EDIT / ADD NEW
+    # =========================================================
 
     btnbulkedit_xpath = "//a[normalize-space()='Bulk edit products']"
     btnAddnew_xpath = "//a[normalize-space()='Add new']"
+
+    # =========================================================
+    # BULK EDIT FIELDS
+    # =========================================================
 
     txtProductName_xpath = "//input[@id='name--1']"
     txtSKU_xpath = "//input[@id='sku--1']"
@@ -19,18 +28,34 @@ class BulkEditProductPage:
     # Prices
     new_price_xpath = "//input[@id='price--1']"
     old_price_xpath = "//input[@id='old-price--1']"
+
+    # Stock
     stkquantity_xpath = "//input[@id='quantity--1']"
 
-    # Save buttons
-    btnsaveselected_xpath = "//button[@id='bulk-edit-save-selected']"
-    btnsaveall_xpath = "//button[@id='bulk-edit-save-all']"
+    # =========================================================
+    # SAVE BUTTONS
+    # =========================================================
 
-    # Products table
+    btnsaveselected_xpath = (
+        "//button[@id='bulk-edit-save-selected']"
+    )
+
+    btnsaveall_xpath = (
+        "//button[@id='bulk-edit-save-all']"
+    )
+
+    # =========================================================
+    # BULK EDIT PRODUCTS TABLE
+    # =========================================================
+
     products_table_xpath = (
         "//table[@class='table table-hover table-bordered table-striped']"
     )
 
-    # Checkboxes
+    # =========================================================
+    # CHECKBOXES
+    # =========================================================
+
     checkboxes_table = (
         "//table[@class='table table-hover table-bordered table-striped']"
         "//tbody//tr/td[1]/input"
@@ -41,13 +66,28 @@ class BulkEditProductPage:
         "/thead/tr/th//input"
     )
 
-    lnk_backproductslist = "//a[normalize-space()='back to product list']"
+    # =========================================================
+    # BACK TO PRODUCT LIST
+    # =========================================================
+
+    lnk_backproductslist = (
+        "//a[normalize-space()='back to product list']"
+    )
+
+    # =========================================================
+    # INITIALIZE
+    # =========================================================
 
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 15)
 
+    # =========================================================
+    # SCROLL TO PRODUCTS TABLE
+    # =========================================================
+
     def scrollToProductsTable(self):
+
         products_table = self.wait.until(
             EC.presence_of_element_located(
                 (By.XPATH, self.products_table_xpath)
@@ -55,13 +95,20 @@ class BulkEditProductPage:
         )
 
         self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center', inline:'nearest'});",
+            "arguments[0].scrollIntoView({"
+            "block:'center', inline:'nearest'"
+            "});",
             products_table
         )
 
         print("Products table scrolled into view")
 
+    # =========================================================
+    # GET PRODUCT CHECKBOXES
+    # =========================================================
+
     def getProductCheckboxes(self):
+
         self.scrollToProductsTable()
 
         checkboxes = self.wait.until(
@@ -70,13 +117,23 @@ class BulkEditProductPage:
             )
         )
 
-        print("Total number of checkboxes:", len(checkboxes))
+        print(
+            "Total number of checkboxes:",
+            len(checkboxes)
+        )
+
         return checkboxes
 
+    # =========================================================
+    # SELECT PRODUCT CHECKBOX BY ROW
+    # =========================================================
+
     def SelectProductCheckbox(self, row_number):
+
         checkboxes = self.getProductCheckboxes()
 
         if row_number < 1 or row_number > len(checkboxes):
+
             raise IndexError(
                 f"Invalid row number: {row_number}. "
                 f"Available rows: {len(checkboxes)}"
@@ -85,19 +142,29 @@ class BulkEditProductPage:
         checkbox = checkboxes[row_number - 1]
 
         self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center', inline:'nearest'});",
+            "arguments[0].scrollIntoView({"
+            "block:'center', inline:'nearest'"
+            "});",
             checkbox
         )
 
         if not checkbox.is_selected():
+
             self.driver.execute_script(
                 "arguments[0].click();",
                 checkbox
             )
 
-        print(f"Product checkbox selected at row {row_number}")
+        print(
+            f"Product checkbox selected at row {row_number}"
+        )
+
+    # =========================================================
+    # CLICK SAVE SELECTED
+    # =========================================================
 
     def clickSaveSelected(self):
+
         btnsave_selected = self.wait.until(
             EC.element_to_be_clickable(
                 (By.XPATH, self.btnsaveselected_xpath)
@@ -116,12 +183,19 @@ class BulkEditProductPage:
 
         print("Save Selected button clicked")
 
+    # =========================================================
+    # CONFIRM SAVE SELECTED
+    # =========================================================
+
     def clickConfirmSelected(self):
+
         confirm_selected_xpath = (
-            "//button[@id='bulk-edit-save-selected-action-confirmation-submit-button']"
+            "//button[@id="
+            "'bulk-edit-save-selected-action-confirmation-submit-button']"
         )
 
         try:
+
             confirm_selected_btn = self.wait.until(
                 EC.element_to_be_clickable(
                     (By.XPATH, confirm_selected_xpath)
@@ -141,196 +215,561 @@ class BulkEditProductPage:
             print("Save Selected confirmation clicked")
 
         except TimeoutException:
-            print("Save Selected confirmation button not found")
+
+            print(
+                "Save Selected confirmation button not found"
+            )
+
             raise
+
+    # =========================================================
+    # CLICK BACK TO PRODUCTS LIST
+    # =========================================================
 
     def clickBacktoProductsList(self):
-        try:
-            backproducts_link = self.wait.until(
-                EC.element_to_be_clickable(
-                    (By.XPATH, self.lnk_backproductslist)
-                )
+
+        backproducts_link = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.lnk_backproductslist)
             )
-
-            self.driver.execute_script(
-                "arguments[0].scrollIntoView({block:'center'});",
-                backproducts_link
-            )
-
-            self.driver.execute_script(
-                "arguments[0].click();",
-                backproducts_link
-            )
-
-            print("Back to Products List clicked")
-
-        except TimeoutException:
-            print("No Back to Products List link found")
-            raise
-
-    def isProductAddedInTable(self, product_name):
-        product_xpath = (
-            "//table[@id='products-grid']"
-            f"//tbody//tr[td[contains(normalize-space(.), '{product_name}')]]"
         )
 
-        try:
-            product = self.wait.until(
-                EC.visibility_of_element_located(
-                    (By.XPATH, product_xpath)
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            backproducts_link
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            backproducts_link
+        )
+
+        print("Back to Products List clicked")
+
+        # Wait until Products List URL is loaded
+        self.wait.until(
+            EC.url_contains("/Admin/Product/List")
+        )
+
+        # Wait for products DataTable
+        self.wait.until(
+            EC.presence_of_element_located(
+                (By.XPATH, "//table[@id='products-grid']")
+            )
+        )
+
+        print("Products list page loaded")
+
+    # =========================================================
+    # VERIFY PRODUCT IN PRODUCTS TABLE
+    # =========================================================
+
+    def isProductAddedInTable(self, product_name):
+
+        product_xpath = (
+            "//table[@id='products-grid']"
+            "//tbody//tr"
+            f"[td[contains(normalize-space(.), '{product_name}')]]"
+        )
+
+        def find_product(driver):
+
+            try:
+
+                rows = driver.find_elements(
+                    By.XPATH,
+                    product_xpath
                 )
+
+                for row in rows:
+
+                    try:
+
+                        if (
+                            row.is_displayed()
+                            and product_name in row.text.strip()
+                        ):
+                            return True
+
+                    except StaleElementReferenceException:
+                        continue
+
+                return False
+
+            except StaleElementReferenceException:
+                return False
+
+        try:
+
+            self.wait.until(find_product)
+
+            print(
+                f"Product '{product_name}' is present in the table"
             )
 
-            print(f"Product '{product_name}' is present in the table")
-            return product.is_displayed()
+            return True
 
         except TimeoutException:
-            print(f"Product '{product_name}' is not present in the table")
+
+            print(
+                f"Product '{product_name}' is not present in the table"
+            )
+
+            try:
+                print(
+                    "Current URL:",
+                    self.driver.current_url
+                )
+
+                print(
+                    "Current Title:",
+                    self.driver.title
+                )
+
+            except Exception:
+                pass
+
             return False
 
+    # =========================================================
+    # CLICK ADD NEW
+    # =========================================================
+
     def clickAddNew(self):
-        self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,self.btnAddnew_xpath)
-        )).click()
+
+        add_new_button = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.btnAddnew_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            add_new_button
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            add_new_button
+        )
+
         print("Add new button clicked")
 
+        # IMPORTANT:
+        # Wait until the Bulk Edit Add New field is loaded
+        self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, self.txtProductName_xpath)
+            )
+        )
+
+        print("Bulk Edit Add New page loaded")
+
+    # =========================================================
+    # CLICK BULK EDIT PRODUCTS
+    # =========================================================
+
     def clickBulkEditProducts(self):
-        self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,self.btnbulkedit_xpath)
-        )).click()
+
+        bulk_edit_button = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.btnbulkedit_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            bulk_edit_button
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            bulk_edit_button
+        )
+
         print("Bulk Edit products button clicked")
 
-    def setProductName(self,product_name=None):
-        product_name_field = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH,self.txtProductName_xpath)
-        ))
-        if product_name is None:
-            product_name = "Test Product " + str(random.randint(1000,9999))
-        product_name_field.clear()
-        product_name_field.send_keys(product_name)
-        return product_name
+        # IMPORTANT:
+        # Wait until Bulk Edit table is actually loaded
+        self.wait.until(
+            EC.presence_of_element_located(
+                (By.XPATH, self.products_table_xpath)
+            )
+        )
 
-    def setSKU(self,sku=None):
-        sku_field = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH,self.txtSKU_xpath)
-        ))
+        print("Bulk Edit products page loaded")
+
+    # =========================================================
+    # SET PRODUCT NAME
+    # =========================================================
+
+    def setProductName(self, product_name=None):
+
+        if product_name is None:
+
+            product_name = (
+                "Test Product "
+                + str(random.randint(1000, 9999))
+            )
+
+        for attempt in range(3):
+
+            try:
+
+                product_name_field = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.XPATH, self.txtProductName_xpath)
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    product_name_field
+                )
+
+                product_name_field.clear()
+
+                product_name_field.send_keys(
+                    product_name
+                )
+
+                print(
+                    f"Product name entered: {product_name}"
+                )
+
+                return product_name
+
+            except StaleElementReferenceException:
+
+                print(
+                    "Product name field became stale. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+        raise TimeoutException(
+            "Product name field could not be located."
+        )
+
+    # =========================================================
+    # SET SKU
+    # =========================================================
+
+    def setSKU(self, sku=None):
+
         if sku is None:
-            sku = "SKU " + str(random.randint(10000,99999))
+
+            sku = (
+                "SKU "
+                + str(random.randint(10000, 99999))
+            )
+
+        sku_field = self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, self.txtSKU_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            sku_field
+        )
+
         sku_field.clear()
+
         sku_field.send_keys(sku)
+
+        print(f"SKU entered: {sku}")
+
         return sku
-    def setNewPrice(self,new_price=None):
-        new_price_field = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH,self.new_price_xpath)
-        ))
+
+    # =========================================================
+    # SET NEW PRICE
+    # =========================================================
+
+    def setNewPrice(self, new_price=None):
+
         if new_price is None:
             new_price = 2000
+
+        new_price_field = self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, self.new_price_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            new_price_field
+        )
+
         new_price_field.clear()
-        new_price_field.send_keys(str(new_price))
+
+        new_price_field.send_keys(
+            str(new_price)
+        )
+
+        print(
+            f"New price entered: {new_price}"
+        )
+
         return new_price
 
-    def setOldPrice(self,old_price=None):
-        old_price_field = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH,self.old_price_xpath)
-        ))
+    # =========================================================
+    # SET OLD PRICE
+    # =========================================================
+
+    def setOldPrice(self, old_price=None):
+
         if old_price is None:
             old_price = 1000
+
+        old_price_field = self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, self.old_price_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            old_price_field
+        )
+
         old_price_field.clear()
-        old_price_field.send_keys(str(old_price))
+
+        old_price_field.send_keys(
+            str(old_price)
+        )
+
+        print(
+            f"Old price entered: {old_price}"
+        )
+
         return old_price
 
-    def setStockQuantity(self,stk_qntity=None):
-        stk_qntity_field = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH,self.stkquantity_xpath)
-        ))
+    # =========================================================
+    # SET STOCK QUANTITY
+    # =========================================================
+
+    def setStockQuantity(self, stk_qntity=None):
+
         if stk_qntity is None:
             stk_qntity = 1000
+
+        stk_qntity_field = self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, self.stkquantity_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            stk_qntity_field
+        )
+
         stk_qntity_field.clear()
-        stk_qntity_field.send_keys(str(stk_qntity))
+
+        stk_qntity_field.send_keys(
+            str(stk_qntity)
+        )
+
+        print(
+            f"Stock quantity entered: {stk_qntity}"
+        )
+
         return stk_qntity
 
+    # =========================================================
+    # CLICK SAVE ALL
+    # =========================================================
+
     def clickSaveAll(self):
-        btnsave = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,self.btnsaveall_xpath)
-        ))
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", btnsave)
-        self.driver.execute_script("arguments[0].click();", btnsave)
+
+        btnsave = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.btnsaveall_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            btnsave
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            btnsave
+        )
+
         print("Save all button clicked")
 
+    # =========================================================
+    # CONFIRM SAVE ALL
+    # =========================================================
+
     def clickConfirmSaveAll(self):
-        btn_confirm_saveall = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,"//button[@id='bulk-edit-save-all-action-confirmation-submit-button']")
-        ))
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",btn_confirm_saveall)
-        self.driver.execute_script("arguments[0].click();", btn_confirm_saveall)
+
+        confirm_xpath = (
+            "//button[@id="
+            "'bulk-edit-save-all-action-confirmation-submit-button']"
+        )
+
+        btn_confirm_saveall = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, confirm_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            btn_confirm_saveall
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            btn_confirm_saveall
+        )
+
         print("Confirm all button clicked")
 
-    def printProductRows(self):
-        rows = self.wait.until(EC.presence_of_all_elements_located(
-            (By.XPATH, "//table[@class='table table-hover table-bordered table-striped']//tbody//tr")
-        ))
-        print(f"Total Rows: {len(rows)}")
-        for index, row in enumerate(rows):
-            try:
-                name = row.find_element(By.XPATH,".//input[contains(@id,'name-')]").get_attribute("value")
-            except:
-                name = ""
-            try:
-                sku = row.find_element(By.XPATH,".//input[contains(@id,'sku-')]").get_attribute("value")
-            except:
-                sku=""
-            print(f"Row {index}: Product Name='{name}', SKU='{sku}'")
+    # =========================================================
+    # PRINT BULK EDIT PRODUCT ROWS
+    # =========================================================
 
-    def selectProductByName(self, product_name):
+    def printProductRows(self):
 
         rows = self.wait.until(
             EC.presence_of_all_elements_located(
                 (
                     By.XPATH,
-                    "//table[@class='table table-hover table-bordered table-striped']"
+                    "//table[@class="
+                    "'table table-hover table-bordered table-striped']"
                     "//tbody//tr"
                 )
             )
         )
 
-        for index, row in enumerate(rows, start=1):
+        print(
+            f"Total Rows: {len(rows)}"
+        )
+
+        for index, row in enumerate(rows):
 
             try:
-                name_field = row.find_element(
+
+                name = row.find_element(
                     By.XPATH,
                     ".//input[contains(@id,'name-')]"
+                ).get_attribute("value")
+
+            except Exception:
+
+                name = ""
+
+            try:
+
+                sku = row.find_element(
+                    By.XPATH,
+                    ".//input[contains(@id,'sku-')]"
+                ).get_attribute("value")
+
+            except Exception:
+
+                sku = ""
+
+            print(
+                f"Row {index}: "
+                f"Product Name='{name}', "
+                f"SKU='{sku}'"
+            )
+
+    # =========================================================
+    # SELECT PRODUCT BY NAME
+    # =========================================================
+
+    def selectProductByName(self, product_name):
+
+        rows_xpath = (
+            "//table[@class="
+            "'table table-hover table-bordered table-striped']"
+            "//tbody//tr"
+        )
+
+        for attempt in range(3):
+
+            try:
+
+                rows = self.wait.until(
+                    EC.presence_of_all_elements_located(
+                        (By.XPATH, rows_xpath)
+                    )
                 )
 
-                current_product_name = name_field.get_attribute("value")
+                for index, row in enumerate(
+                    rows,
+                    start=1
+                ):
 
-                if current_product_name == product_name:
+                    try:
 
-                    checkbox = row.find_element(
-                        By.XPATH,
-                        ".//td[1]//input[@type='checkbox']"
-                    )
-
-                    self.driver.execute_script(
-                        "arguments[0].scrollIntoView({block:'center', inline:'nearest'});",
-                        checkbox
-                    )
-
-                    if not checkbox.is_selected():
-                        self.driver.execute_script(
-                            "arguments[0].click();",
-                            checkbox
+                        name_field = row.find_element(
+                            By.XPATH,
+                            ".//input[contains(@id,'name-')]"
                         )
 
-                    print(
-                        f"Product '{product_name}' checkbox selected "
-                        f"at row {index}"
-                    )
+                        current_product_name = (
+                            name_field.get_attribute("value")
+                        )
 
-                    return
+                        if (
+                            current_product_name
+                            == product_name
+                        ):
+
+                            checkbox = row.find_element(
+                                By.XPATH,
+                                ".//td[1]"
+                                "//input[@type='checkbox']"
+                            )
+
+                            self.driver.execute_script(
+                                "arguments[0].scrollIntoView({"
+                                "block:'center', "
+                                "inline:'nearest'"
+                                "});",
+                                checkbox
+                            )
+
+                            if not checkbox.is_selected():
+
+                                self.driver.execute_script(
+                                    "arguments[0].click();",
+                                    checkbox
+                                )
+
+                            print(
+                                f"Product '{product_name}' "
+                                f"checkbox selected at row {index}"
+                            )
+
+                            return
+
+                    except StaleElementReferenceException:
+
+                        continue
+
+                print(
+                    f"Product '{product_name}' "
+                    f"not found. Retrying..."
+                )
 
             except StaleElementReferenceException:
-                continue
+
+                print(
+                    "Bulk Edit table became stale. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
 
         raise TimeoutException(
-            f"Product '{product_name}' was not found in the Bulk Edit table"
+            f"Product '{product_name}' "
+            "was not found in the Bulk Edit table"
         )

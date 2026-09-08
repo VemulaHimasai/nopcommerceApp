@@ -12,9 +12,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 # =========================================================
 def get_firefox_binary():
 
-    # -----------------------------------------------------
-    # Normal Firefox installation paths
-    # -----------------------------------------------------
+    # =====================================================
+    # NORMAL FIREFOX INSTALLATION
+    # =====================================================
 
     normal_paths = [
         os.path.join(
@@ -44,41 +44,19 @@ def get_firefox_binary():
 
             return path
 
-    # -----------------------------------------------------
-    # Firefox Microsoft Store / MSIX installation
-    # -----------------------------------------------------
+    # =====================================================
+    # MICROSOFT STORE / MSIX FIREFOX
+    # =====================================================
 
     ps_script = r'''
-$package = Get-AppxPackage -Name "Mozilla.Firefox" -ErrorAction SilentlyContinue |
+$package = Get-AppxPackage -Name "Mozilla.Firefox" |
            Select-Object -First 1
 
 if (-not $package) {
     exit 10
 }
 
-$manifest = Get-AppxPackageManifest $package
-
-$application = $manifest.Package.Applications.Application |
-               Where-Object { $_.Id -eq "App" } |
-               Select-Object -First 1
-
-if (-not $application) {
-    exit 11
-}
-
-$executable = $application.Executable
-
-if (-not $executable) {
-    exit 12
-}
-
-$exe = Join-Path $package.InstallLocation $executable
-
-if (-not (Test-Path $exe)) {
-    exit 13
-}
-
-Write-Output $exe
+Write-Output $package.InstallLocation
 '''
 
     try:
@@ -98,55 +76,38 @@ Write-Output $exe
             timeout=15
         )
 
-        stdout = result.stdout.strip()
-        stderr = result.stderr.strip()
+        install_location = result.stdout.strip()
 
         print(
-            "Firefox MSIX detection stdout:"
+            "Firefox MSIX InstallLocation:"
         )
+        print(install_location)
 
-        print(stdout)
+        if install_location:
 
-        if stderr:
+            # =================================================
+            # Known Firefox MSIX executable location
+            # =================================================
 
-            print(
-                "Firefox MSIX detection stderr:"
-            )
-
-            print(stderr)
-
-        # -------------------------------------------------
-        # Check PowerShell result
-        # -------------------------------------------------
-
-        if result.returncode != 0:
-
-            print(
-                "Firefox MSIX detection failed."
+            firefox_path = os.path.join(
+                install_location,
+                "VFS",
+                "ProgramFiles",
+                "Firefox Package Root",
+                "firefox.exe"
             )
 
             print(
-                "PowerShell exit code:",
-                result.returncode
+                "Checking Firefox executable:"
             )
+            print(firefox_path)
 
-        else:
-
-            # ---------------------------------------------
-            # Get executable path
-            # ---------------------------------------------
-
-            firefox_path = stdout.strip()
-
-            if firefox_path and os.path.isfile(firefox_path):
+            if os.path.isfile(firefox_path):
 
                 print(
                     "Firefox MSIX executable found:"
                 )
-
-                print(
-                    firefox_path
-                )
+                print(firefox_path)
 
                 return firefox_path
 
@@ -164,16 +125,60 @@ Write-Output $exe
             str(e)
         )
 
-    # -----------------------------------------------------
-    # Firefox executable not found
-    # -----------------------------------------------------
+    # =====================================================
+    # FALLBACK: SEARCH WINDOWSAPPS
+    # =====================================================
+
+    windows_apps = os.path.join(
+        os.environ.get("PROGRAMFILES", ""),
+        "WindowsApps"
+    )
+
+    if os.path.isdir(windows_apps):
+
+        try:
+
+            for folder in os.listdir(windows_apps):
+
+                if folder.lower().startswith(
+                    "mozilla.firefox_"
+                ):
+
+                    firefox_path = os.path.join(
+                        windows_apps,
+                        folder,
+                        "VFS",
+                        "ProgramFiles",
+                        "Firefox Package Root",
+                        "firefox.exe"
+                    )
+
+                    if os.path.isfile(firefox_path):
+
+                        print(
+                            "Firefox executable found using fallback:"
+                        )
+                        print(firefox_path)
+
+                        return firefox_path
+
+        except Exception as e:
+
+            print(
+                "WindowsApps search failed:",
+                type(e).__name__,
+                str(e)
+            )
+
+    # =====================================================
+    # FIREFOX NOT FOUND
+    # =====================================================
 
     raise FileNotFoundError(
         "Firefox executable was not found. "
-        "Neither normal Firefox nor Microsoft Store "
-        "Firefox could be located."
+        "Firefox may be installed through Microsoft Store "
+        "but the firefox.exe executable could not be located."
     )
-
 
 # =========================================================
 # BROWSER FIXTURE

@@ -3381,3 +3381,51 @@ The new customer has been added successfully.
 09/08/2026 04:44:55 PM: INFO: ******** Searching for 52w1ip0n@gmail.com ********
 09/08/2026 04:44:55 PM: INFO: ******** Customer found in Customers grid ********
 09/08/2026 04:44:55 PM: INFO: ******** Add customer test passed ********
+09/08/2026 05:26:32 PM: INFO: ********** Test_003_AddCustomer **********
+09/08/2026 05:26:38 PM: INFO: ********* Login Successful **********
+09/08/2026 05:26:38 PM: INFO: ********* Starting Add Customer Test *********
+09/08/2026 05:26:42 PM: INFO: ******** Providing customer information ********
+09/08/2026 05:26:44 PM: INFO: ******** Customer information provided ********
+09/08/2026 05:26:45 PM: INFO: ******** Saving customer information ********
+09/08/2026 05:26:45 PM: INFO: Success message: ×
+The new customer has been added successfully.
+09/08/2026 05:26:45 PM: INFO: ******** Customer added successfully ********
+09/08/2026 05:26:45 PM: INFO: ******** Verifying customer in Customers grid ********
+09/08/2026 05:27:01 PM: INFO: ******** Customers page opened ********
+09/08/2026 05:27:02 PM: INFO: ******** Searching for ozqz8bmc@gmail.com ********
+09/08/2026 05:27:03 PM: INFO: ******** Customer found in Customers grid ********
+09/08/2026 05:27:03 PM: INFO: ******** Add customer test passed ********
+09/08/2026 05:30:32 PM: INFO: *** Test_BulkEditProductSaveSelected_035 ***
+09/08/2026 05:30:38 PM: INFO: ***** Login Successful *****
+09/08/2026 05:30:38 PM: INFO: ***** Starting Bulk Edit Product Save Selected Test *****
+09/08/2026 05:30:43 PM: INFO: Product Name: Test Product 4582
+09/08/2026 05:30:43 PM: INFO: SKU: SKU 19178
+09/08/2026 05:30:43 PM: INFO: New Price: 2000
+09/08/2026 05:30:43 PM: INFO: Old Price: 1000
+09/08/2026 05:30:43 PM: INFO: Stock Quantity: 1000
+09/08/2026 05:30:43 PM: INFO: Product 'Test Product 4582' selected for Save Selected
+09/08/2026 05:30:44 PM: INFO: Bulk Edit Save Selected completed
+09/08/2026 05:38:26 PM: INFO: *** Test_BulkEditProductSaveSelected_035 ***
+09/08/2026 05:38:34 PM: INFO: ***** Login Successful *****
+09/08/2026 05:38:34 PM: INFO: ***** Starting Bulk Edit Product Save Selected Test *****
+09/08/2026 05:38:40 PM: INFO: Product Name: Test Product 7512
+09/08/2026 05:38:40 PM: INFO: SKU: SKU 95246
+09/08/2026 05:38:40 PM: INFO: New Price: 2000
+09/08/2026 05:38:40 PM: INFO: Old Price: 1000
+09/08/2026 05:38:40 PM: INFO: Stock Quantity: 1000
+09/08/2026 05:38:40 PM: INFO: Product 'Test Product 7512' selected for Save Selected
+09/08/2026 05:38:40 PM: INFO: Bulk Edit Save Selected completed
+09/08/2026 05:38:42 PM: INFO: Product 'Test Product 7512' successfully found in Products table
+09/08/2026 05:40:38 PM: INFO: ***Test_BulkEditProductSaveAll_034***
+09/08/2026 05:40:46 PM: INFO: *****Login Successful******
+09/08/2026 05:40:46 PM: INFO: *****Staring Bulk Edit Product Save all Test*****
+09/08/2026 05:43:02 PM: INFO: *** Test_BulkEditProductSaveAll_035 ***
+09/08/2026 05:43:10 PM: INFO: ***** Login Successful *****
+09/08/2026 05:43:10 PM: INFO: ***** Starting Bulk Edit Product Save All Test *****
+09/08/2026 05:43:16 PM: INFO: Product Name: Test Product 7949
+09/08/2026 05:43:16 PM: INFO: SKU: SKU 11658
+09/08/2026 05:43:16 PM: INFO: New Price: 2000
+09/08/2026 05:43:16 PM: INFO: Old Price: 1000
+09/08/2026 05:43:16 PM: INFO: Stock Quantity: 1000
+09/08/2026 05:43:17 PM: INFO: Bulk Edit Save All completed
+09/08/2026 05:43:19 PM: INFO: Product 'Test Product 7949' successfully found in Products table
