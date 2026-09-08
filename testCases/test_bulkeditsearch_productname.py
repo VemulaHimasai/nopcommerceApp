@@ -9,7 +9,7 @@ from pageObjects.BulkEditProductSearchPage import BulkEditProductSearchPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_BulkEditSearchProductName_036:
+class Test_BulkEditSearchProductName_037:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()

@@ -8,7 +8,7 @@ from pageObjects.EditProductPage import EditProductPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_DeleteProductByRow_032:
+class Test_DeleteProductByRow_033:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()

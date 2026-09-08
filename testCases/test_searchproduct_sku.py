@@ -42,7 +42,7 @@ class Test_SearchProductBySKU_030:
         self.addproduct.clickonProductMenuItem()
 
         self.searchproduct = SearchProduct(self.driver)
-        self.searchproduct.setSKU("SKU54363")
+        self.searchproduct.setSKU("SKU64529")
         self.searchproduct.clickGo()
 
         print("URL after Go:", self.driver.current_url)

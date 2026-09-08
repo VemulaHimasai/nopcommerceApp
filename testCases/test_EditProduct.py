@@ -8,7 +8,7 @@ from pageObjects.EditProductPage import EditProductPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_EditProduct_031:
+class Test_EditProduct_032:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()

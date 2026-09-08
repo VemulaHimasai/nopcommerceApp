@@ -8,7 +8,7 @@ from pageObjects.BulkEditProductPage import BulkEditProductPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_BulkEditProductSaveAll_034:
+class Test_BulkEditProductSaveAll_035:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
