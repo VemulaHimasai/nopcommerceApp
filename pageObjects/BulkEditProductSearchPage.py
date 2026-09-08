@@ -15,8 +15,8 @@ class BulkEditProductSearchPage:
 
     #product type dropdown
     drpProducttype = (
-        "//span[contains(@class,'select2-container')]"
-        "//span[@role='combobox']"
+        "//span[@role='combobox' "
+        "and @aria-labelledby='select2-SearchProductTypeId-container']"
     )
 
 
@@ -88,34 +88,20 @@ class BulkEditProductSearchPage:
         print(f"Vendor '{vendor}' selected")
 
     def SelectByProductType(self, product_type):
-
-        product_type_dropdown = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, self.drpProducttype)
-            )
-        )
-
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            product_type_dropdown
-        )
-
-        product_type_dropdown.click()
-
-        product_type_option_xpath = (
+       product_type_dropdown = self.wait.until(EC.element_to_be_clickable(
+           (By.XPATH,self.drpProducttype)
+       ))
+       self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",product_type_dropdown)
+       product_type_dropdown.click()
+       product_type_option_xpath = (
             f"//li[contains(@class,'select2-results__option') "
             f"and normalize-space(.)='{product_type}']"
         )
-
-        product_type_option = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, product_type_option_xpath)
-            )
-        )
-
-        product_type_option.click()
-
-        print(f"Product Type '{product_type}' selected")
+       product_type_option = self.wait.until(EC.element_to_be_clickable(
+            (By.XPATH,product_type_option_xpath)
+        ))
+       product_type_option.click()
+       print(f"Product Type '{product_type}' selected")
 
     def SelectByPublishedType(self,published_type):
         published_dropdown = self.wait.until(EC.element_to_be_clickable(
