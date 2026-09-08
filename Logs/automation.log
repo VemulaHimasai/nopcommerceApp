@@ -3344,3 +3344,12 @@ The new customer has been added successfully.
 09/08/2026 11:28:54 AM: INFO: ***** Test_BulkEditProductSearchPublishType_039*****
 09/08/2026 11:29:01 AM: INFO: ***** Login Successful *****
 09/08/2026 11:29:01 AM: INFO: ***** Starting Bulk Edit Product Search Publish Type Test *****
+09/08/2026 03:54:23 PM: INFO: ******* Deleting Customer *******
+09/08/2026 03:54:34 PM: INFO: ******* Login Successful *****
+09/08/2026 03:54:36 PM: INFO: ******* Customers page opened *******
+09/08/2026 03:54:39 PM: INFO: ******* Edit Customer button clicked *******
+09/08/2026 03:54:41 PM: INFO: ******* Edit Customer page opened successfully *******
+09/08/2026 03:54:41 PM: INFO: ******* Delete Customer button clicked *******
+09/08/2026 03:54:53 PM: INFO: ******* Delete confirmation accepted *******
+09/08/2026 03:54:53 PM: INFO: ********* Delete Customer test passed **********
+09/08/2026 03:54:56 PM: INFO: ****** Ending Delete Customer Test *******

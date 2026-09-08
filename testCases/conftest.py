@@ -10,208 +10,168 @@ from selenium.webdriver.support.ui import WebDriverWait
 # =========================================================
 # FIND FIREFOX EXECUTABLE
 # =========================================================
-
 def get_firefox_binary():
 
-    # =====================================================
-    # NORMAL FIREFOX INSTALLATION PATHS
-    # =====================================================
+    # -----------------------------------------------------
+    # Normal Firefox installation paths
+    # -----------------------------------------------------
 
     normal_paths = [
-
         os.path.join(
             os.environ.get("PROGRAMFILES", ""),
             "Mozilla Firefox",
             "firefox.exe"
         ),
-
         os.path.join(
             os.environ.get("PROGRAMFILES(X86)", ""),
             "Mozilla Firefox",
             "firefox.exe"
         ),
-
         os.path.join(
             os.environ.get("LOCALAPPDATA", ""),
-            "Programs",
             "Mozilla Firefox",
             "firefox.exe"
         )
     ]
-
-    # -----------------------------------------------------
-    # Check normal installation paths
-    # -----------------------------------------------------
 
     for path in normal_paths:
 
         if os.path.isfile(path):
 
             print(
-                "========================================"
-            )
-
-            print(
-                "Firefox executable found:"
-            )
-
-            print(
-                path
-            )
-
-            print(
-                "========================================"
+                f"Firefox normal installation found: {path}"
             )
 
             return path
 
-    # =====================================================
-    # MICROSOFT STORE / MSIX FIREFOX
-    # =====================================================
+    # -----------------------------------------------------
+    # Firefox Microsoft Store / MSIX installation
+    # -----------------------------------------------------
+
+    ps_script = r'''
+$package = Get-AppxPackage -Name "Mozilla.Firefox" -ErrorAction SilentlyContinue |
+           Select-Object -First 1
+
+if (-not $package) {
+    exit 10
+}
+
+$manifest = Get-AppxPackageManifest $package
+
+$application = $manifest.Package.Applications.Application |
+               Where-Object { $_.Id -eq "App" } |
+               Select-Object -First 1
+
+if (-not $application) {
+    exit 11
+}
+
+$executable = $application.Executable
+
+if (-not $executable) {
+    exit 12
+}
+
+$exe = Join-Path $package.InstallLocation $executable
+
+if (-not (Test-Path $exe)) {
+    exit 13
+}
+
+Write-Output $exe
+'''
 
     try:
 
-        powershell_command = r"""
-        $packages = Get-AppxPackage -AllUsers |
-            Where-Object {
-                $_.Name -like '*Mozilla.Firefox*'
-            }
-
-        foreach ($package in $packages) {
-
-            if ($package.InstallLocation) {
-
-                $exe = Get-ChildItem `
-                    -Path $package.InstallLocation `
-                    -Filter 'firefox.exe' `
-                    -Recurse `
-                    -ErrorAction SilentlyContinue |
-                    Select-Object -First 1
-
-                if ($exe) {
-                    $exe.FullName
-                    break
-                }
-            }
-        }
-        """
-
         result = subprocess.run(
-
             [
                 "powershell.exe",
                 "-NoProfile",
+                "-NonInteractive",
                 "-ExecutionPolicy",
                 "Bypass",
                 "-Command",
-                powershell_command
+                ps_script
             ],
-
             capture_output=True,
             text=True,
-            timeout=30
+            timeout=15
         )
+
+        stdout = result.stdout.strip()
+        stderr = result.stderr.strip()
 
         print(
             "Firefox MSIX detection stdout:"
         )
 
-        print(
-            result.stdout
-        )
+        print(stdout)
 
-        if result.stderr:
+        if stderr:
 
             print(
                 "Firefox MSIX detection stderr:"
             )
 
+            print(stderr)
+
+        # -------------------------------------------------
+        # Check PowerShell result
+        # -------------------------------------------------
+
+        if result.returncode != 0:
+
             print(
-                result.stderr
+                "Firefox MSIX detection failed."
             )
 
-        firefox_output = result.stdout.strip()
+            print(
+                "PowerShell exit code:",
+                result.returncode
+            )
 
-        # -------------------------------------------------
-        # PowerShell can return multiple lines
-        # -------------------------------------------------
+        else:
 
-        if firefox_output:
+            # ---------------------------------------------
+            # Get executable path
+            # ---------------------------------------------
 
-            for line in firefox_output.splitlines():
+            firefox_path = stdout.strip()
 
-                line = line.strip()
+            if firefox_path and os.path.isfile(firefox_path):
 
-                if not line:
-                    continue
+                print(
+                    "Firefox MSIX executable found:"
+                )
 
-                if not line.lower().endswith(
-                    "firefox.exe"
-                ):
-                    continue
+                print(
+                    firefox_path
+                )
 
-                if os.path.isfile(line):
+                return firefox_path
 
-                    print(
-                        "========================================"
-                    )
+    except subprocess.TimeoutExpired:
 
-                    print(
-                        "Firefox MSIX executable found:"
-                    )
-
-                    print(
-                        line
-                    )
-
-                    print(
-                        "========================================"
-                    )
-
-                    return line
+        print(
+            "Firefox MSIX detection timed out."
+        )
 
     except Exception as e:
 
         print(
-            "========================================"
-        )
-
-        print(
-            "Firefox MSIX detection failed"
-        )
-
-        print(
-            "Exception Type:",
-            type(e).__name__
-        )
-
-        print(
-            "Exception:",
+            "Firefox MSIX detection failed:",
+            type(e).__name__,
             str(e)
         )
 
-        print(
-            "========================================"
-        )
-
-    # =====================================================
-    # FIREFOX NOT FOUND
-    # =====================================================
+    # -----------------------------------------------------
+    # Firefox executable not found
+    # -----------------------------------------------------
 
     raise FileNotFoundError(
-
-        "Real Firefox executable was not found.\n\n"
-
-        "Windows currently resolves 'firefox' to:\n"
-
-        "C:\\Users\\hp\\AppData\\Local\\Microsoft\\"
-        "WindowsApps\\firefox.exe\n\n"
-
-        "That WindowsApps entry is an application alias "
-        "and should not be used as the Firefox binary.\n\n"
-
-        "Please verify that Firefox is installed normally "
-        "or through Microsoft Store."
+        "Firefox executable was not found. "
+        "Neither normal Firefox nor Microsoft Store "
+        "Firefox could be located."
     )
 
 
@@ -677,6 +637,7 @@ def setup(browser):
                         driver.quit()
 
                     except Exception:
+
                         pass
 
                     driver = None
@@ -982,3 +943,4 @@ def pytest_metadata(metadata):
         "Plugins",
         None
     )
+
