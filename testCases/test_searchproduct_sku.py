@@ -48,7 +48,7 @@ class Test_SearchProductBySKU_030:
         print("URL after Go:", self.driver.current_url)
         print("Title after Go:", self.driver.title)
 
-        assert self.searchproduct.isSKUProductPresent("SKU54363"),\
+        assert self.searchproduct.isSKUProductPresent("SKU64529"),\
         "Expected SKU was not found on the product page"
 
 
