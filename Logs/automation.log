@@ -3475,3 +3475,43 @@ The new customer has been added successfully.
 09/08/2026 07:32:28 PM: INFO: *****Test_SearchProductBySKU_030*****
 09/08/2026 07:32:34 PM: INFO: *****Login Successful******
 09/08/2026 07:32:34 PM: INFO: *****Staring Search Product By SKU test*****
+09/08/2026 08:12:52 PM: INFO: *****Test_DeleteProduct_032*****
+09/08/2026 08:12:59 PM: INFO: *****Login Successful******
+09/08/2026 08:12:59 PM: INFO: *****Staring Delete Product test*****
+09/08/2026 08:13:05 PM: INFO: ***** Product deleted successfully *****
+09/08/2026 08:17:55 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/08/2026 08:18:02 PM: INFO: ***** Login Successful *****
+09/08/2026 08:18:02 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/08/2026 08:55:40 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/08/2026 08:55:50 PM: INFO: ***** Login Successful *****
+09/08/2026 08:55:50 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/08/2026 08:59:15 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/08/2026 08:59:37 PM: INFO: ***** Login Successful *****
+09/08/2026 08:59:37 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/08/2026 09:05:32 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/08/2026 09:06:02 PM: INFO: ***** Login Successful *****
+09/08/2026 09:06:02 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/08/2026 09:11:29 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/08/2026 09:11:48 PM: INFO: ***** Login Successful *****
+09/08/2026 09:11:48 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/08/2026 09:16:25 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/08/2026 09:16:32 PM: INFO: ***** Login Successful *****
+09/08/2026 09:16:32 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/08/2026 09:19:37 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/08/2026 09:19:51 PM: INFO: ***** Login Successful *****
+09/08/2026 09:19:51 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/08/2026 09:23:04 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/08/2026 09:23:12 PM: INFO: ***** Login Successful *****
+09/08/2026 09:23:12 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/09/2026 09:18:06 AM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/09/2026 09:18:32 AM: INFO: ***** Login Successful *****
+09/09/2026 09:18:32 AM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/09/2026 09:23:35 AM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/09/2026 09:23:43 AM: INFO: ***** Login Successful *****
+09/09/2026 09:23:43 AM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/09/2026 09:26:30 AM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/09/2026 09:26:36 AM: INFO: ***** Login Successful *****
+09/09/2026 09:26:36 AM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/09/2026 09:31:49 AM: INFO: ***** Test_BulkEditProductSearchPublishType_039*****
+09/09/2026 09:31:57 AM: INFO: ***** Login Successful *****
+09/09/2026 09:31:57 AM: INFO: ***** Starting Bulk Edit Product Search Publish Type Test *****

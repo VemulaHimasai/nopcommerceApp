@@ -1,4 +1,3 @@
-
 from selenium.common.exceptions import (
     StaleElementReferenceException,
     TimeoutException
@@ -59,8 +58,20 @@ class BulkEditProductSearchPage:
     # =========================================================
 
     products_table_xpath = (
-        "//table[@class='table table-hover "
-        "table-bordered table-striped']"
+        "//table[contains(@class,'table-hover') "
+        "and contains(@class,'table-bordered') "
+        "and contains(@class,'table-striped')]"
+    )
+
+    # =========================================================
+    # PRODUCT ROWS
+    # =========================================================
+
+    product_rows_xpath = (
+        "//table[contains(@class,'table-hover') "
+        "and contains(@class,'table-bordered') "
+        "and contains(@class,'table-striped')]"
+        "//tbody//tr[contains(@class,'product-row')]"
     )
 
     # =========================================================
@@ -93,8 +104,7 @@ class BulkEditProductSearchPage:
         product_name_field.send_keys(product_name)
 
         print(
-            f"Product name entered for search: "
-            f"{product_name}"
+            f"Product name entered for search: {product_name}"
         )
 
     # =========================================================
@@ -102,10 +112,6 @@ class BulkEditProductSearchPage:
     # =========================================================
 
     def SelectByVendor(self, vendor):
-
-        # ---------------------------------------------------------
-        # Wait for Vendor dropdown
-        # ---------------------------------------------------------
 
         vendor_dropdown = self.wait.until(
             EC.element_to_be_clickable(
@@ -122,10 +128,6 @@ class BulkEditProductSearchPage:
 
         print("Vendor dropdown clicked")
 
-        # ---------------------------------------------------------
-        # Wait for Select2 results container
-        # ---------------------------------------------------------
-
         results_container_xpath = (
             "//ul[contains(@class,'select2-results__options')]"
         )
@@ -137,10 +139,6 @@ class BulkEditProductSearchPage:
         )
 
         print("Vendor dropdown options container loaded")
-
-        # ---------------------------------------------------------
-        # Find Vendor1
-        # ---------------------------------------------------------
 
         vendor_option_xpath = (
             "//li[contains(@class,'select2-results__option') "
@@ -171,10 +169,6 @@ class BulkEditProductSearchPage:
         )
 
         vendor_option.click()
-
-        # ---------------------------------------------------------
-        # Verify selected vendor
-        # ---------------------------------------------------------
 
         selected_vendor = self.wait.until(
             EC.presence_of_element_located(
@@ -214,15 +208,65 @@ class BulkEditProductSearchPage:
 
         product_type_dropdown.click()
 
+        print("Product Type dropdown clicked")
+
+        # -----------------------------------------------------
+        # Select2 options
+        # -----------------------------------------------------
+
         product_type_option_xpath = (
-            f"//li[contains(@class,'select2-results__option') "
-            f"and normalize-space(.)='{product_type}']"
+            "//li[contains(@class,'select2-results__option') "
+            "and normalize-space(.)="
+            f"'{product_type}']"
         )
 
-        product_type_option = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, product_type_option_xpath)
+        try:
+
+            product_type_option = self.wait.until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, product_type_option_xpath)
+                )
             )
+
+        except TimeoutException:
+
+            print(
+                f"Product Type option '{product_type}' "
+                "was not immediately visible."
+            )
+
+            # Debug available options
+            options = self.driver.find_elements(
+                By.XPATH,
+                "//li[contains(@class,'select2-results__option')]"
+            )
+
+            print("Available Product Type options:")
+
+            for option in options:
+
+                try:
+
+                    if option.is_displayed():
+
+                        print(
+                            f" - '{option.text.strip()}'"
+                        )
+
+                except StaleElementReferenceException:
+
+                    continue
+
+            raise
+
+        print(
+            "Product Type option found:",
+            product_type_option.text
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            product_type_option
         )
 
         product_type_option.click()
@@ -231,12 +275,49 @@ class BulkEditProductSearchPage:
             f"Product Type '{product_type}' selected"
         )
 
+        # -----------------------------------------------------
+        # Verify selected value
+        # -----------------------------------------------------
+
+        selected_product_type = self.wait.until(
+            EC.presence_of_element_located(
+                (By.ID, "SearchProductTypeId")
+            )
+        )
+
+        selected_value = (
+            selected_product_type.get_attribute("value")
+        )
+
+        print(
+            "SearchProductTypeId value:",
+            selected_value
+        )
+
+        # -----------------------------------------------------
+        # For "All", nopCommerce uses value 0
+        # -----------------------------------------------------
+
+        if product_type == "All":
+
+            assert selected_value == "0", (
+                "Product Type 'All' was not selected correctly. "
+                f"Expected value '0', got '{selected_value}'"
+            )
+
+            print(
+                "Product Type 'All' verification PASSED"
+            )
+
     # =========================================================
     # SELECT BY PUBLISHED TYPE
     # =========================================================
 
     def SelectByPublishedType(self, published_type):
 
+        # ---------------------------------------------------------
+        # 1. Locate Published Type dropdown
+        # ---------------------------------------------------------
         published_dropdown = self.wait.until(
             EC.element_to_be_clickable(
                 (By.XPATH, self.drpPublishedtype)
@@ -248,19 +329,36 @@ class BulkEditProductSearchPage:
             published_dropdown
         )
 
-        print(
-            "Published Type dropdown found"
-        )
+        print("Published Type dropdown found")
 
+        # ---------------------------------------------------------
+        # 2. Click dropdown
+        # ---------------------------------------------------------
         published_dropdown.click()
 
+        # ---------------------------------------------------------
+        # 3. Wait for Select2 results container
+        # ---------------------------------------------------------
+        self.wait.until(
+            EC.visibility_of_element_located(
+                (
+                    By.XPATH,
+                    "//ul[contains(@class,'select2-results__options')]"
+                )
+            )
+        )
+
+        # ---------------------------------------------------------
+        # 4. Locate required option
+        # ---------------------------------------------------------
         published_option_xpath = (
-            f"//li[contains(@class,'select2-results__option') "
+            "//ul[contains(@class,'select2-results__options')]"
+            "//li[contains(@class,'select2-results__option') "
             f"and normalize-space(.)='{published_type}']"
         )
 
         published_option = self.wait.until(
-            EC.visibility_of_element_located(
+            EC.element_to_be_clickable(
                 (By.XPATH, published_option_xpath)
             )
         )
@@ -270,6 +368,17 @@ class BulkEditProductSearchPage:
             published_option.text
         )
 
+        # ---------------------------------------------------------
+        # 5. Scroll option into view
+        # ---------------------------------------------------------
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            published_option
+        )
+
+        # ---------------------------------------------------------
+        # 6. Click option
+        # ---------------------------------------------------------
         published_option.click()
 
         print(
@@ -303,57 +412,136 @@ class BulkEditProductSearchPage:
 
     def getSearchResults(self):
 
-        rows_xpath = (
-            "//table[@class='table table-hover "
-            "table-bordered table-striped']"
-            "//tbody//tr"
-            "[not(td[@colspan='7' and "
-            "contains(normalize-space(.), "
-            "'No data available in table')])]"
-        )
-
         try:
 
-            # Wait for the table to be present
+            # -------------------------------------------------
+            # Wait for product table
+            # -------------------------------------------------
+
             self.wait.until(
                 EC.presence_of_element_located(
                     (By.XPATH, self.products_table_xpath)
                 )
             )
 
-            # Give DataTable time to update after Search
+            print("Product table found")
+
+            # -------------------------------------------------
+            # Wait until at least one product row exists
+            # -------------------------------------------------
+
             self.wait.until(
-                lambda driver: (
-                    len(
-                        driver.find_elements(
-                            By.XPATH,
-                            rows_xpath
-                        )
-                    ) >= 0
-                )
+                lambda driver: len(
+                    driver.find_elements(
+                        By.XPATH,
+                        self.product_rows_xpath
+                    )
+                ) > 0
             )
+
+            # -------------------------------------------------
+            # Get all product rows
+            # -------------------------------------------------
 
             rows = self.driver.find_elements(
                 By.XPATH,
-                rows_xpath
+                self.product_rows_xpath
+            )
+
+            print(
+                "Total product rows found:",
+                len(rows)
             )
 
             actual_rows = []
 
-            for row in rows:
+            # -------------------------------------------------
+            # IMPORTANT:
+            # Do NOT use row.text here.
+            #
+            # Bulk Edit rows contain INPUT elements.
+            # Firefox returns row.text == '' even though
+            # the input has a value.
+            # -------------------------------------------------
+
+            for index, row in enumerate(rows, start=1):
 
                 try:
 
-                    if row.is_displayed():
+                    # -----------------------------------------
+                    # Find product name input
+                    # -----------------------------------------
 
-                        row_text = row.text.strip()
+                    name_input = row.find_element(
+                        By.XPATH,
+                        ".//input[contains(@id,'name-')]"
+                    )
 
-                        # Ignore empty rows
-                        if row_text:
+                    product_name = (
+                        name_input.get_attribute("value")
+                        or ""
+                    ).strip()
 
-                            actual_rows.append(row)
+                    # -----------------------------------------
+                    # Find SKU input
+                    # -----------------------------------------
+
+                    sku_input = row.find_element(
+                        By.XPATH,
+                        ".//input[contains(@id,'sku-')]"
+                    )
+
+                    sku = (
+                        sku_input.get_attribute("value")
+                        or ""
+                    ).strip()
+
+                    print(
+                        f"Row {index}: "
+                        f"Product='{product_name}', "
+                        f"SKU='{sku}'"
+                    )
+
+                    # -----------------------------------------
+                    # Ignore empty row
+                    #
+                    # Your current table contains:
+                    # product-select-62
+                    # name-62 value=""
+                    # sku-62 value=""
+                    #
+                    # This is not a real product.
+                    # -----------------------------------------
+
+                    if not product_name and not sku:
+
+                        print(
+                            f"Row {index} ignored "
+                            "(empty product row)"
+                        )
+
+                        continue
+
+                    # -----------------------------------------
+                    # Add real product row
+                    # -----------------------------------------
+
+                    actual_rows.append(row)
 
                 except StaleElementReferenceException:
+
+                    print(
+                        f"Row {index} became stale. "
+                        "Skipping row."
+                    )
+
+                    continue
+
+                except Exception as e:
+
+                    print(
+                        f"Unable to process row {index}: {e}"
+                    )
 
                     continue
 
@@ -367,7 +555,8 @@ class BulkEditProductSearchPage:
         except TimeoutException:
 
             print(
-                "Search result table did not load"
+                "Search result table/product rows "
+                "did not load"
             )
 
             return []
@@ -379,11 +568,12 @@ class BulkEditProductSearchPage:
     def isProductDisplayed(self, product_name):
 
         product_xpath = (
-            "//table[@class='table table-hover "
-            "table-bordered table-striped']"
-            "//tbody//tr"
-            "[.//input[contains(@id,'name-') "
-            f"and @value='{product_name}']]"
+            "//table[contains(@class,'table-hover') "
+            "and contains(@class,'table-bordered') "
+            "and contains(@class,'table-striped')]"
+            "//tbody//tr[contains(@class,'product-row')]"
+            "//input[contains(@id,'name-') "
+            f"and @value='{product_name}']"
         )
 
         try:
@@ -409,4 +599,3 @@ class BulkEditProductSearchPage:
             )
 
             return False
-

@@ -95,40 +95,59 @@ class SearchCustomer:
     # SEARCH EMAIL
     # =================================================
 
+
+
     def setEmail(self, email):
 
         for attempt in range(3):
 
             try:
-
+                # Wait until the email field exists in the DOM
                 email_field = self.wait.until(
-                    EC.visibility_of_element_located(
+                    EC.presence_of_element_located(
                         (By.ID, self.txtEmail_id)
                     )
                 )
 
+                # Scroll to the field
                 self.driver.execute_script(
                     "arguments[0].scrollIntoView({block:'center'});",
                     email_field
                 )
 
-                email_field = self.wait.until(
-                    EC.element_to_be_clickable(
-                        (By.ID, self.txtEmail_id)
+                # Wait until it is visible and enabled
+                self.wait.until(
+                    lambda driver: (
+                            driver.find_element(
+                                By.ID,
+                                self.txtEmail_id
+                            ).is_displayed()
+                            and
+                            driver.find_element(
+                                By.ID,
+                                self.txtEmail_id
+                            ).is_enabled()
                     )
+                )
+
+                # Re-locate the element after the wait
+                email_field = self.driver.find_element(
+                    By.ID,
+                    self.txtEmail_id
                 )
 
                 email_field.click()
                 email_field.clear()
                 email_field.send_keys(email)
 
-                # Verify entered value
+                # Verify the value
                 self.wait.until(
-                    lambda driver:
-                    driver.find_element(
-                        By.ID,
-                        self.txtEmail_id
-                    ).get_attribute("value") == email
+                    lambda driver: (
+                            driver.find_element(
+                                By.ID,
+                                self.txtEmail_id
+                            ).get_attribute("value") == email
+                    )
                 )
 
                 entered_value = self.driver.find_element(
@@ -136,23 +155,17 @@ class SearchCustomer:
                     self.txtEmail_id
                 ).get_attribute("value")
 
-                print(
-                    "Expected email :",
-                    repr(email)
-                )
-
-                print(
-                    "Actual email   :",
-                    repr(entered_value)
-                )
+                print("Expected email :", repr(email))
+                print("Actual email   :", repr(entered_value))
 
                 if entered_value != email:
-
                     raise AssertionError(
                         f"Email was not entered correctly. "
                         f"Expected: {email}, "
                         f"Actual: {entered_value}"
                     )
+
+                print("Email entered successfully")
 
                 return
 
@@ -168,9 +181,23 @@ class SearchCustomer:
 
                 time.sleep(1)
 
+            except TimeoutException:
+
+                print(
+                    f"Email field was not ready. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+                time.sleep(1)
+
         raise AssertionError(
             f"Unable to enter email: {email}"
         )
+
+
 
     # =================================================
     # FIRST NAME
