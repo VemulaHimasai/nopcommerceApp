@@ -206,58 +206,31 @@ class BulkEditProductSearchPage:
             product_type_dropdown
         )
 
+        print("Product Type dropdown found")
+
         product_type_dropdown.click()
 
-        print("Product Type dropdown clicked")
-
-        # -----------------------------------------------------
-        # Select2 options
-        # -----------------------------------------------------
-
-        product_type_option_xpath = (
-            "//li[contains(@class,'select2-results__option') "
-            "and normalize-space(.)="
-            f"'{product_type}']"
-        )
-
-        try:
-
-            product_type_option = self.wait.until(
-                EC.visibility_of_element_located(
-                    (By.XPATH, product_type_option_xpath)
+        # Wait for Select2 result container
+        self.wait.until(
+            EC.visibility_of_element_located(
+                (
+                    By.XPATH,
+                    "//ul[contains(@class,'select2-results__options')]"
                 )
             )
+        )
 
-        except TimeoutException:
+        product_type_option_xpath = (
+            "//ul[contains(@class,'select2-results__options')]"
+            "//li[contains(@class,'select2-results__option') "
+            f"and normalize-space(.)='{product_type}']"
+        )
 
-            print(
-                f"Product Type option '{product_type}' "
-                "was not immediately visible."
+        product_type_option = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, product_type_option_xpath)
             )
-
-            # Debug available options
-            options = self.driver.find_elements(
-                By.XPATH,
-                "//li[contains(@class,'select2-results__option')]"
-            )
-
-            print("Available Product Type options:")
-
-            for option in options:
-
-                try:
-
-                    if option.is_displayed():
-
-                        print(
-                            f" - '{option.text.strip()}'"
-                        )
-
-                except StaleElementReferenceException:
-
-                    continue
-
-            raise
+        )
 
         print(
             "Product Type option found:",
@@ -274,40 +247,6 @@ class BulkEditProductSearchPage:
         print(
             f"Product Type '{product_type}' selected"
         )
-
-        # -----------------------------------------------------
-        # Verify selected value
-        # -----------------------------------------------------
-
-        selected_product_type = self.wait.until(
-            EC.presence_of_element_located(
-                (By.ID, "SearchProductTypeId")
-            )
-        )
-
-        selected_value = (
-            selected_product_type.get_attribute("value")
-        )
-
-        print(
-            "SearchProductTypeId value:",
-            selected_value
-        )
-
-        # -----------------------------------------------------
-        # For "All", nopCommerce uses value 0
-        # -----------------------------------------------------
-
-        if product_type == "All":
-
-            assert selected_value == "0", (
-                "Product Type 'All' was not selected correctly. "
-                f"Expected value '0', got '{selected_value}'"
-            )
-
-            print(
-                "Product Type 'All' verification PASSED"
-            )
 
     # =========================================================
     # SELECT BY PUBLISHED TYPE

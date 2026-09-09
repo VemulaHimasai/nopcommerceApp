@@ -3515,3 +3515,38 @@ The new customer has been added successfully.
 09/09/2026 09:31:49 AM: INFO: ***** Test_BulkEditProductSearchPublishType_039*****
 09/09/2026 09:31:57 AM: INFO: ***** Login Successful *****
 09/09/2026 09:31:57 AM: INFO: ***** Starting Bulk Edit Product Search Publish Type Test *****
+09/09/2026 10:39:54 AM: INFO: *****Test_DeleteProduct_032*****
+09/09/2026 10:40:04 AM: INFO: *****Login Successful******
+09/09/2026 10:40:04 AM: INFO: *****Staring Delete Product test*****
+09/09/2026 10:57:30 AM: INFO: *****Test_DeleteProduct_032*****
+09/09/2026 10:57:50 AM: INFO: *****Login Successful******
+09/09/2026 10:57:50 AM: INFO: *****Staring Delete Product test*****
+09/09/2026 11:08:32 AM: INFO: *****Test_DeleteProduct_032*****
+09/09/2026 11:08:39 AM: INFO: *****Login Successful******
+09/09/2026 11:08:39 AM: INFO: *****Staring Delete Product test*****
+09/09/2026 11:08:48 AM: INFO: ***** Product deleted successfully *****
+09/09/2026 12:30:55 PM: INFO: *** Test_BulkEditProductSaveAll_035 ***
+09/09/2026 12:31:04 PM: INFO: ***** Login Successful *****
+09/09/2026 12:31:04 PM: INFO: ***** Starting Bulk Edit Product Save All Test *****
+09/09/2026 12:31:09 PM: INFO: Product Name: Test Product 4920
+09/09/2026 12:31:09 PM: INFO: SKU: SKU 54381
+09/09/2026 12:31:09 PM: INFO: New Price: 2000
+09/09/2026 12:31:09 PM: INFO: Old Price: 1000
+09/09/2026 12:31:09 PM: INFO: Stock Quantity: 1000
+09/09/2026 12:31:10 PM: INFO: Bulk Edit Save All completed
+09/09/2026 12:31:12 PM: INFO: Product 'Test Product 4920' successfully found in Products table
+09/09/2026 12:35:29 PM: INFO: ***** Test_BulkEditProductSearchProductType_038*****
+09/09/2026 12:35:37 PM: INFO: ***** Login Successful *****
+09/09/2026 12:35:37 PM: INFO: ***** Starting Bulk Edit Product Search Product Type Test *****
+09/09/2026 12:39:04 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/09/2026 12:39:07 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/09/2026 12:39:10 PM: INFO: ********** Login Successful **********
+09/09/2026 12:39:12 PM: INFO: ********** Products page opened successfully **********
+09/09/2026 12:42:06 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/09/2026 12:42:10 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/09/2026 12:42:14 PM: INFO: ********** Login Successful **********
+09/09/2026 12:42:15 PM: INFO: ********** Products page opened successfully **********
+09/09/2026 12:42:18 PM: INFO: ********** Product search performed for Vendor1 **********
+09/09/2026 12:42:18 PM: INFO: ********** 'No data available in table' validated **********
+09/09/2026 12:42:18 PM: INFO: ********** 'No records' validated **********
+09/09/2026 12:42:18 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********

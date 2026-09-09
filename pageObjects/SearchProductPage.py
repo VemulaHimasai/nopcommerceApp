@@ -72,10 +72,26 @@ class SearchProduct:
             vendor_dropdown
         )
 
+        print("Vendor dropdown found")
+
         vendor_dropdown.click()
 
+        print("Vendor dropdown clicked")
+
+        # Wait for Select2 results container
+        self.wait.until(
+            EC.visibility_of_element_located(
+                (
+                    By.XPATH,
+                    "//ul[contains(@class,'select2-results__options')]"
+                )
+            )
+        )
+
         vendor_option_xpath = (
-            f"//li[normalize-space(.)='{vendor}']"
+            "//ul[contains(@class,'select2-results__options')]"
+            "//li[contains(@class,'select2-results__option') "
+            f"and normalize-space(.)='{vendor}']"
         )
 
         vendor_option = self.wait.until(
@@ -84,9 +100,21 @@ class SearchProduct:
             )
         )
 
+        print(
+            "Vendor option found:",
+            vendor_option.text
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            vendor_option
+        )
+
         vendor_option.click()
 
-        print("Vendor Selected:", vendor)
+        print(
+            f"Vendor '{vendor}' selected"
+        )
 
     # =========================================================
     # PRODUCT TYPE

@@ -708,8 +708,15 @@ class BulkEditProductPage:
             "arguments[0].click();",
             btn_confirm_saveall
         )
+        try:
+            self.wait.until(EC.invisibility_of_element_located(
+                (By.XPATH, confirm_xpath)
+            ))
+            print("Save All confirmation dialog closed")
+        except TimeoutException:
+            print("Save All confirmation dialog not closed")
+            raise
 
-        print("Confirm all button clicked")
 
     # =========================================================
     # PRINT BULK EDIT PRODUCT ROWS

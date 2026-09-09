@@ -1,4 +1,4 @@
-from selenium.common import StaleElementReferenceException
+from selenium.common import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -268,11 +268,37 @@ class SearchVendorPage:
         print("Delete button clicked successfully")
 
     def clickConfirmDelete(self):
-        confirm_button = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH, self.confirm_delete_xpath)
-        ))
-        confirm_button.click()
-        print("Delete confirmation clicked successfully")
+       try:
+           delete_modal_xpath = (
+               "//div[contains(@class,'modal') and contains(@class,'show')]"
+           )
+           self.wait.until(EC.visibility_of_element_located(
+               (By.XPATH, delete_modal_xpath)
+           ))
+           print("Delete Confirmation modal found")
+           confirm_button_xpath = (
+               "//button[normalize-space()='Delete' "
+               "and not(contains(@style,'display: none'))]"
+           )
+           confirm_button = self.wait.until(EC.element_to_be_clickable(
+               (By.XPATH, confirm_button_xpath)
+           ))
+           print("Delete Confirmation button found: ",confirm_button.text)
+           self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",confirm_button)
+           confirm_button.click()
+           print("Delete confirmation clicked successfully")
+           self.wait.until(
+               EC.url_contains("/Admin/Vendor/List")
+           )
+           print("Vendor List page loaded after deletion")
+           self.wait.until(EC.presence_of_element_located(
+               (By.XPATH, self.vendor_table_xpath)
+           ))
+           print("Vendor table found")
+           print("Vendor deletion completed")
+       except TimeoutException:
+           print("Delete Confirmation not found")
+           raise
 
     def getSuccessMessage(self):
         message = self.wait.until(EC.visibility_of_element_located(

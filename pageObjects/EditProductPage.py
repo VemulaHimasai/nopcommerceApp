@@ -322,23 +322,38 @@ class EditProductPage:
 
 
     def confirmDelete(self):
-        confirm_button_xpath = (
-            "//button[normalize-space()='Delete']"
-        )
-        try:
-            confirm_button = self.wait.until(EC.element_to_be_clickable(
-                (By.XPATH, confirm_button_xpath)
-            ))
-            self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",confirm_button)
-            self.driver.execute_script("arguments[0].click();",confirm_button)
-            print("Delete confirmation button clicked")
-            self.wait.until(EC.presence_of_element_located(
-                (By.XPATH,self.tbl_producttable_xpath)
-            ))
-            print("Product deletion completed")
-        except TimeoutException:
-            print("Delete Confirmation not found")
-            raise
+       try:
+           delete_modal_xpath = (
+               "//div[contains(@class,'modal') and contains(@class,'show')]"
+           )
+           delete_modal = self.wait.until(EC.visibility_of_element_located(
+               (By.XPATH, delete_modal_xpath)
+           ))
+           print("Delete confirmation modal found")
+           confirm_button_xpath = (
+               "//button[normalize-space()='Delete' "
+               "and not(contains(@style,'display: none'))]"
+           )
+           confirm_button = self.wait.until(EC.element_to_be_clickable(
+               (By.XPATH, confirm_button_xpath)
+           ))
+           print("Delete confirmation button found: ",confirm_button.text)
+           self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",confirm_button)
+           confirm_button.click()
+           print("Delete Confirmation clicked")
+           self.wait.until(
+               EC.url_contains("/Admin/Product/List")
+           )
+           print("Product List page loaded after deletion")
+           self.wait.until(EC.presence_of_element_located(
+               (By.XPATH,self.tbl_producttable_xpath)
+           ))
+           print("Product table found")
+           print("Product deletion completed")
+       except TimeoutException:
+           print("Delete Confirmation not found")
+           raise
+
 
     def clickEditProductByRow(self,row_number):
         edit_xpath = (
