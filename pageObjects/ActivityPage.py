@@ -227,11 +227,15 @@ class ActivityPage:
         rows = self.wait.until(EC.visibility_of_all_elements_located(
             (By.XPATH,self.activity_log_row_xpath)
         ))
-        for row in rows:
+        print("Activity rows found:", len(rows))
+        for index, row in enumerate(rows,start=1):
             row_text = row.text.strip()
+            print(f"Activity Row {index}:")
+            print(repr(row_text))
             if "No data available in table" in row_text:
                 continue
             if log_type.strip() in row_text:
+                print(f"Matching activity found: {log_type}")
                 delete_button = row.find_element(By.XPATH,self.delete_button_xpath)
                 self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", delete_button)
                 self.wait.until(lambda driver:(
@@ -239,8 +243,9 @@ class ActivityPage:
                     and delete_button.is_enabled()
                 ))
                 self.driver.execute_script("arguments[0].click();", delete_button)
+                print( f"Delete button clicked for: {log_type}")
                 return True
-        raise Exception(f"Activity log type '{log_type}' not found")
+        raise Exception( f"Activity log type '{log_type}' not found")
 
     def clearall_logs(self):
         btn_clear_log = self.wait.until(EC.element_to_be_clickable(

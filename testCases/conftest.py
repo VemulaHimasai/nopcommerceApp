@@ -49,14 +49,15 @@ def get_firefox_binary():
     # =====================================================
 
     ps_script = r'''
-$package = Get-AppxPackage -Name "Mozilla.Firefox" |
-           Select-Object -First 1
+$packages = Get-AppxPackage -Name "Mozilla.Firefox"
 
-if (-not $package) {
-    exit 10
+foreach ($package in $packages) {
+
+    if ($package.InstallLocation) {
+
+        Write-Output $package.InstallLocation
+    }
 }
-
-Write-Output $package.InstallLocation
 '''
 
     try:
@@ -76,18 +77,25 @@ Write-Output $package.InstallLocation
             timeout=15
         )
 
-        install_location = result.stdout.strip()
+        install_locations = [
+            line.strip()
+            for line in result.stdout.splitlines()
+            if line.strip()
+        ]
 
         print(
-            "Firefox MSIX InstallLocation:"
+            "Firefox MSIX InstallLocations:"
         )
-        print(install_location)
 
-        if install_location:
+        for install_location in install_locations:
 
-            # =================================================
+            print(
+                install_location
+            )
+
+            # ---------------------------------------------
             # Known Firefox MSIX executable location
-            # =================================================
+            # ---------------------------------------------
 
             firefox_path = os.path.join(
                 install_location,
@@ -100,14 +108,20 @@ Write-Output $package.InstallLocation
             print(
                 "Checking Firefox executable:"
             )
-            print(firefox_path)
+
+            print(
+                firefox_path
+            )
 
             if os.path.isfile(firefox_path):
 
                 print(
                     "Firefox MSIX executable found:"
                 )
-                print(firefox_path)
+
+                print(
+                    firefox_path
+                )
 
                 return firefox_path
 
@@ -138,29 +152,47 @@ Write-Output $package.InstallLocation
 
         try:
 
-            for folder in os.listdir(windows_apps):
+            firefox_folders = sorted(
+                [
+                    folder
+                    for folder in os.listdir(windows_apps)
+                    if folder.lower().startswith(
+                        "mozilla.firefox_"
+                    )
+                ],
+                reverse=True
+            )
 
-                if folder.lower().startswith(
-                    "mozilla.firefox_"
-                ):
+            for folder in firefox_folders:
 
-                    firefox_path = os.path.join(
-                        windows_apps,
-                        folder,
-                        "VFS",
-                        "ProgramFiles",
-                        "Firefox Package Root",
-                        "firefox.exe"
+                firefox_path = os.path.join(
+                    windows_apps,
+                    folder,
+                    "VFS",
+                    "ProgramFiles",
+                    "Firefox Package Root",
+                    "firefox.exe"
+                )
+
+                print(
+                    "Fallback checking Firefox:"
+                )
+
+                print(
+                    firefox_path
+                )
+
+                if os.path.isfile(firefox_path):
+
+                    print(
+                        "Firefox executable found using fallback:"
                     )
 
-                    if os.path.isfile(firefox_path):
+                    print(
+                        firefox_path
+                    )
 
-                        print(
-                            "Firefox executable found using fallback:"
-                        )
-                        print(firefox_path)
-
-                        return firefox_path
+                    return firefox_path
 
         except Exception as e:
 
@@ -179,7 +211,6 @@ Write-Output $package.InstallLocation
         "Firefox may be installed through Microsoft Store "
         "but the firefox.exe executable could not be located."
     )
-
 # =========================================================
 # BROWSER FIXTURE
 # =========================================================

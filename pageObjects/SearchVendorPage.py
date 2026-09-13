@@ -1,4 +1,5 @@
-from selenium.common import StaleElementReferenceException, TimeoutException
+from selenium.common import StaleElementReferenceException, TimeoutException, ElementClickInterceptedException, \
+    ElementNotInteractableException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -268,37 +269,164 @@ class SearchVendorPage:
         print("Delete button clicked successfully")
 
     def clickConfirmDelete(self):
-       try:
-           delete_modal_xpath = (
-               "//div[contains(@class,'modal') and contains(@class,'show')]"
-           )
-           self.wait.until(EC.visibility_of_element_located(
-               (By.XPATH, delete_modal_xpath)
-           ))
-           print("Delete Confirmation modal found")
-           confirm_button_xpath = (
-               "//button[normalize-space()='Delete' "
-               "and not(contains(@style,'display: none'))]"
-           )
-           confirm_button = self.wait.until(EC.element_to_be_clickable(
-               (By.XPATH, confirm_button_xpath)
-           ))
-           print("Delete Confirmation button found: ",confirm_button.text)
-           self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",confirm_button)
-           confirm_button.click()
-           print("Delete confirmation clicked successfully")
-           self.wait.until(
-               EC.url_contains("/Admin/Vendor/List")
-           )
-           print("Vendor List page loaded after deletion")
-           self.wait.until(EC.presence_of_element_located(
-               (By.XPATH, self.vendor_table_xpath)
-           ))
-           print("Vendor table found")
-           print("Vendor deletion completed")
-       except TimeoutException:
-           print("Delete Confirmation not found")
-           raise
+
+        try:
+
+            # =================================================
+            # WAIT FOR DELETE CONFIRMATION MODAL
+            # =================================================
+
+            modal_xpath = (
+                "//div[contains(@class,'modal') "
+                "and contains(@class,'show')]"
+            )
+
+            try:
+                modal = WebDriverWait(
+                    self.driver,
+                    5
+                ).until(
+                    EC.visibility_of_element_located(
+                        (By.XPATH, modal_xpath)
+                    )
+                )
+
+                print("Delete Confirmation modal found")
+
+            except TimeoutException:
+
+                print(
+                    "Standard modal locator not found."
+                )
+
+                # ---------------------------------------------
+                # Firefox-safe fallback:
+                # Find visible modal dialogs
+                # ---------------------------------------------
+
+                visible_modals = self.driver.find_elements(
+                    By.XPATH,
+                    "//div[contains(@class,'modal')]"
+                )
+
+                for current_modal in visible_modals:
+
+                    try:
+
+                        if current_modal.is_displayed():
+                            print(
+                                "Visible delete modal found "
+                                "using fallback"
+                            )
+
+                            modal = current_modal
+                            break
+
+                    except (
+                            StaleElementReferenceException
+                    ):
+                        continue
+
+                else:
+
+                    print(
+                        "Delete Confirmation modal not found"
+                    )
+
+                    print(
+                        "Current URL:",
+                        self.driver.current_url
+                    )
+
+                    raise
+
+            # =================================================
+            # FIND DELETE CONFIRM BUTTON INSIDE MODAL
+            # =================================================
+
+            confirm_button_xpath = (
+                ".//button[normalize-space()='Delete']"
+            )
+
+            confirm_button = self.wait.until(
+                EC.element_to_be_clickable(
+                    (
+                        By.XPATH,
+                        confirm_button_xpath
+                    )
+                )
+            )
+
+            print(
+                "Delete Confirmation button found:",
+                confirm_button.text
+            )
+
+            # =================================================
+            # SCROLL AND CLICK
+            # =================================================
+
+            self.driver.execute_script(
+                "arguments[0].scrollIntoView({block:'center'});",
+                confirm_button
+            )
+
+            try:
+
+                confirm_button.click()
+
+            except (
+                    ElementClickInterceptedException,
+                    ElementNotInteractableException
+            ):
+
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    confirm_button
+                )
+
+            print(
+                "Delete confirmation clicked successfully"
+            )
+
+            # =================================================
+            # WAIT FOR VENDOR LIST
+            # =================================================
+
+            self.wait.until(
+                EC.url_contains(
+                    "/Admin/Vendor/List"
+                )
+            )
+
+            print(
+                "Vendor List page loaded after deletion"
+            )
+
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        self.vendor_table_xpath
+                    )
+                )
+            )
+
+            print("Vendor table found")
+            print("Vendor deletion completed")
+
+        except TimeoutException:
+
+            print(
+                "Delete confirmation process timed out"
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            raise
 
     def getSuccessMessage(self):
         message = self.wait.until(EC.visibility_of_element_located(

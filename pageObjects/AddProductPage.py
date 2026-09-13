@@ -1,5 +1,4 @@
 import random
-import string
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -274,16 +273,35 @@ class AddProduct:
         self.driver.execute_script( "arguments[0].scrollIntoView({block:'center'});",section)
 
     def isProductCreatedSuccessfully(self):
+
         try:
-            message = self.wait.until(EC.visibility_of_element_located(
-                (By.XPATH,self.success_message_xpath)
-            ))
-            print("Success message: ",message.text)
-            return message.is_displayed()
-        except (StaleElementReferenceException,TimeoutException):
+
+            self.wait.until(
+                EC.url_contains("/Admin/Product/List")
+            )
+
+            print("Product List page loaded after saving")
+
+            message = self.wait.until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, self.success_message_xpath)
+                )
+            )
+
+            print("Success message:", message.text)
+
+            if message.is_displayed():
+                print("Product created successfully")
+                return True
+
             return False
 
+        except (StaleElementReferenceException, TimeoutException):
 
+            print("Product creation success message not found")
+            print("Current URL:", self.driver.current_url)
+
+            return False
 
 
 

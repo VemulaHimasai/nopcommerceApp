@@ -1,7 +1,7 @@
 
 import time
 
-from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -64,10 +64,19 @@ class EditCustomerPage:
 
     def setFirstName(self, firstName):
 
+        firstName = str(firstName).strip()
+
         for attempt in range(3):
 
             try:
+                print(
+                    f"Setting First Name: {firstName} "
+                    f"(attempt {attempt + 1}/3)"
+                )
 
+                # -------------------------------------------------
+                # Locate field
+                # -------------------------------------------------
                 first_name = self.wait.until(
                     EC.visibility_of_element_located(
                         (By.ID, self.txtFirstName_id)
@@ -79,39 +88,64 @@ class EditCustomerPage:
                     first_name
                 )
 
+                # -------------------------------------------------
+                # Re-locate after scrolling
+                # -------------------------------------------------
                 first_name = self.wait.until(
                     EC.element_to_be_clickable(
                         (By.ID, self.txtFirstName_id)
                     )
                 )
 
+                # -------------------------------------------------
+                # Click and clear
+                # -------------------------------------------------
                 first_name.click()
                 first_name.clear()
+
+                # -------------------------------------------------
+                # Enter First Name
+                # -------------------------------------------------
                 first_name.send_keys(firstName)
 
-                entered_value = self.wait.until(
-                    lambda driver:
-                    driver.find_element(
-                        By.ID,
-                        self.txtFirstName_id
-                    ).get_attribute("value") == firstName
+                # -------------------------------------------------
+                # Verify value by RE-LOCATING the element
+                # -------------------------------------------------
+                self.wait.until(
+                    lambda driver: (
+                                           driver.find_element(
+                                               By.ID,
+                                               self.txtFirstName_id
+                                           ).get_attribute("value") or ""
+                                   ).strip() == firstName
                 )
 
-                if entered_value:
+                # -------------------------------------------------
+                # Get actual value
+                # -------------------------------------------------
+                actual_value = (
+                        self.driver.find_element(
+                            By.ID,
+                            self.txtFirstName_id
+                        ).get_attribute("value") or ""
+                ).strip()
 
-                    print(
-                        "Expected First Name:",
-                        repr(firstName)
-                    )
+                print(
+                    "Expected First Name:",
+                    repr(firstName)
+                )
 
+                print(
+                    "Actual First Name  :",
+                    repr(actual_value)
+                )
+
+                # -------------------------------------------------
+                # Final verification
+                # -------------------------------------------------
+                if actual_value == firstName:
                     print(
-                        "Actual First Name  :",
-                        repr(
-                            self.driver.find_element(
-                                By.ID,
-                                self.txtFirstName_id
-                            ).get_attribute("value")
-                        )
+                        "First Name entered successfully"
                     )
 
                     return
@@ -123,10 +157,44 @@ class EditCustomerPage:
                     f"Retrying ({attempt + 1}/3)..."
                 )
 
-                if attempt == 2:
-                    raise
+                if attempt < 2:
+                    time.sleep(1)
+                    continue
 
-                time.sleep(1)
+                raise
+
+            except TimeoutException:
+
+                print(
+                    f"First Name value verification timed out. "
+                    f"Attempt {attempt + 1}/3"
+                )
+
+                # Debug current value
+                try:
+
+                    current_value = self.driver.find_element(
+                        By.ID,
+                        self.txtFirstName_id
+                    ).get_attribute("value")
+
+                    print(
+                        "Current First Name field value:",
+                        repr(current_value)
+                    )
+
+                except Exception as e:
+
+                    print(
+                        "Unable to read First Name field:",
+                        e
+                    )
+
+                if attempt < 2:
+                    time.sleep(1)
+                    continue
+
+                raise
 
         raise AssertionError(
             f"Unable to enter first name: {firstName}"

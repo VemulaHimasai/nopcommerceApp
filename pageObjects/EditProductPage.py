@@ -322,11 +322,12 @@ class EditProductPage:
 
 
     def confirmDelete(self):
-       try:
+        try:
+
            delete_modal_xpath = (
                "//div[contains(@class,'modal') and contains(@class,'show')]"
            )
-           delete_modal = self.wait.until(EC.visibility_of_element_located(
+           self.wait.until(EC.visibility_of_element_located(
                (By.XPATH, delete_modal_xpath)
            ))
            print("Delete confirmation modal found")
@@ -337,22 +338,21 @@ class EditProductPage:
            confirm_button = self.wait.until(EC.element_to_be_clickable(
                (By.XPATH, confirm_button_xpath)
            ))
-           print("Delete confirmation button found: ",confirm_button.text)
+           print("Delete Confirmation button found: ",confirm_button.text)
            self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",confirm_button)
            confirm_button.click()
            print("Delete Confirmation clicked")
-           self.wait.until(
-               EC.url_contains("/Admin/Product/List")
-           )
+           self.wait.until(EC.url_contains("/Admin/Product/List"))
            print("Product List page loaded after deletion")
            self.wait.until(EC.presence_of_element_located(
                (By.XPATH,self.tbl_producttable_xpath)
            ))
            print("Product table found")
            print("Product deletion completed")
-       except TimeoutException:
-           print("Delete Confirmation not found")
-           raise
+        except TimeoutException:
+            print("Delete confirmation process timed out")
+            print("Current URL:", self.driver.current_url)
+            raise
 
 
     def clickEditProductByRow(self,row_number):

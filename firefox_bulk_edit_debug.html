@@ -1,0 +1,2522 @@
+<html lang="en" dir="ltr" style="height: auto;"><head>
+    <title>Products / nopCommerce administration</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/o4ynslmy4z4ubmqsmc7-da.styles.css?v=_M7plqiDRYbE3bedmFcXbGjeobo">
+
+<script src="/lib_npm/jquery/jquery.min.js?v=iJ8r0K_XonX6OmnKXCsQ-ahTv3A"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/icons_0/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/icons/icons_0/favicon-32x32.png"><link rel="icon" type="image/png" sizes="192x192" href="/icons/icons_0/android-chrome-192x192.png"><link rel="icon" type="image/png" sizes="16x16" href="/icons/icons_0/favicon-16x16.png"><link rel="manifest" href="/icons/icons_0/site.webmanifest"><link rel="mask-icon" href="/icons/icons_0/safari-pinned-tab.svg" color="#5bbad5"><link rel="shortcut icon" href="/icons/icons_0/favicon.ico"><meta name="msapplication-TileColor" content="#2d89ef"><meta name="msapplication-TileImage" content="/icons/icons_0/mstile-144x144.png"><meta name="msapplication-config" content="/icons/icons_0/browserconfig.xml"><meta name="theme-color" content="#ffffff">
+</head>
+<body class="sidebar-mini layout-fixed control-sidebar-slide-open" style="height: auto;">
+    <div class="throbber">
+        <div class="curtain">
+        </div>
+        <div class="curtain-content">
+            <div>
+                <h1 class="throbber-header">Wait...</h1>
+                <p>
+                    <img src="/css/admin/images/throbber-synchronizing.gif" alt="">
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="ajaxBusy" style="display: none;">
+        <span>&nbsp;</span>
+    </div>
+    <div class="wrapper">
+            <nav class="main-header navbar navbar-expand-md navbar-dark bg-dark">
+                <ul class="navbar-nav pl-2 pl-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" id="nopSideBarPusher" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                    </li>
+                    
+                </ul>
+                <a href="/Admin" class="brand-link navbar-dark">
+                    <img src="/css/admin/images/logo.png" alt="logo.png" class="brand-image logo d-block d-md-none d-sm-block d-sm-none">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav ml-auto pl-2">
+                        <li class="nav-item">
+                            
+
+
+                        </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link disabled">Johnny Smith</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                        <li class="nav-item">
+                            
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Public store</a>
+                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" data-toggle="dropdown">
+                                    <i class="fas fa-gears"></i>
+                                </a>
+                                <ul class="maintenance-menu dropdown-menu dropdown-menu-right" role="menu">
+                                    <li class="dropdown-item">
+                                        <form action="/Admin/Common/ClearCache" method="post">
+                                            <input name="returnurl" type="hidden" value="/Admin/Product/List">
+                                            <div class="input-group-append">
+                                                <button type="submit" style="width:210px;background-color: Transparent;">
+                                                    <span>Clear cache</span>
+                                                </button>
+                                            </div>
+                                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G5zC0HIYsRKp8pLgOzH4SORAsyvBtGcci4hOhWo8hHjbycA1XY-3WOib2MubHMr7_GxoYybz1GHudo7eJPhf4CE-cNVLQgoTx2N5u9Bff3sY303baKIlngmhDswQIXX-EUEbcLtJLWuU054cmU5Tumahctrz7TO4bzb-IWFX8UkfmFCuZzXcJKQQf8FaoGgNw"></form>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <form action="/Admin/Common/RestartApplication" method="post">
+                                            <input name="returnurl" type="hidden" value="/Admin/Product/List">
+                                            <button id="restart-application" type="submit" style="width:210px;background-color: Transparent;">
+                                                <span>Restart application</span>
+                                            </button>
+                                            
+                                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G5zC0HIYsRKp8pLgOzH4SORAsyvBtGcci4hOhWo8hHjbycA1XY-3WOib2MubHMr7_GxoYybz1GHudo7eJPhf4CE-cNVLQgoTx2N5u9Bff3sY303baKIlngmhDswQIXX-EUEbcLtJLWuU054cmU5Tumahctrz7TO4bzb-IWFX8UkfmFCuZzXcJKQQf8FaoGgNw"></form>
+                                    </li>
+                                </ul>
+                            </li>
+                    </ul>
+                </div>
+                
+            </nav>
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="/Admin" class="brand-link navbar-dark logo-switch">
+                    <img src="/css/admin/images/logo.png" alt="logo.png" class="brand-image-xl logo-xl">
+                    <img src="/css/admin/images/logo-mini.png" alt="logo.png" class="brand-image-xs logo-xs">
+                </a>
+                <div class="sidebar" style="overflow-y: auto;">
+                    <div class="sidebar-form">
+                        <div id="search-box">
+                            <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input type="text" class="form-control admin-search-box typeahead tt-input" placeholder="Search" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Source Sans Pro&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div class="tt-dataset tt-dataset-pages"></div></div></span>
+                        </div>
+                    </div>
+                    <nav class="mt-2">
+                        
+                        
+                        
+                        
+
+<ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu">
+
+    <li class="nav-item">
+
+        <a href="/Admin" class="nav-link">
+
+                    <i class="nav-icon fas fa-desktop"></i>
+                
+            <p> Dashboard</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item has-treeview menu-open">
+
+        <a href="#" class="nav-link active">
+
+                    <i class="nav-icon fas fa-book"></i>
+                            <p>
+                Catalog
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Product/List" class="nav-link active">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Products</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Category/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Categories</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Manufacturer/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Manufacturers</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/ProductReview/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Product reviews</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Product/ProductTags" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Product tags</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                            <p>
+                Attributes
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/ProductAttribute/List" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Product attributes</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/SpecificationAttribute/List" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Specification attributes</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/CheckoutAttribute/List" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Checkout attributes</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon fas fa-shopping-cart"></i>
+                            <p>
+                Sales
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Order/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Orders</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Order/ShipmentList" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Shipments</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/ReturnRequest/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Return requests</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/RecurringPayment/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Recurring payments</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/GiftCard/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Gift cards</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/ShoppingCart/CurrentCarts" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Shopping carts and wishlists</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/RfqAdmin/AdminRequests" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Requests for quote</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/RfqAdmin/AdminQuotes" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Quotes</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon far fa-user"></i>
+                            <p>
+                Customers
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Customer/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Customers</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/CustomerRole/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Customer roles</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/OnlineCustomer/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Online customers</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Vendor/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Vendors</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/ActivityLog/ActivityLogs" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Activity log</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/ActivityLog/ActivityTypes" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Activity Types</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Customer/GdprLog" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> GDPR requests (log)</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon fas fa-tags"></i>
+                            <p>
+                Promotions
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Discount/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Discounts</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Affiliate/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Affiliates</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/NewsLetterSubscription/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Newsletter subscribers</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/NewsLetterSubscriptionType/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Subscription types</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Campaign/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Campaigns</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon fas fa-cubes"></i>
+                            <p>
+                Content management
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Topic/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Topics (pages)</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Menu/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Menus</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/MessageTemplate/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Message templates</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/News/NewsItems" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> News items</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/News/NewsComments" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> News comments</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Blog/BlogPosts" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Blog posts</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Blog/BlogComments" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Blog comments</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Poll/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Polls</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Forum/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Forums</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                Configuration
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                            <p>
+                Settings
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/GeneralCommon" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> General settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/CustomerUser" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Customer settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/Order" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Order settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/Shipping" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Shipping settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/Tax" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Tax settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/Catalog" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Catalog settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/FilterLevel" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Filter (YMM) settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/ShoppingCart" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Shopping cart settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/RewardPoints" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Reward points</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/Gdpr" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> GDPR settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/Vendor" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Vendor settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/Blog" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Blog settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/News" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> News settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/Forum" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Forum settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/Media" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Media settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/AppSettings" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> App settings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Setting/AllSettings" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> All settings (advanced)</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/EmailAccount/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Email accounts</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Store/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Stores</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Country/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Countries</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Language/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Languages</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Currency/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Currencies</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Payment/Methods" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Payment methods</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Payment/MethodRestrictions" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Payment restrictions</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Tax/Providers" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Tax providers</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Tax/Categories" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Tax categories</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                            <p>
+                Shipping
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Shipping/Providers" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Shipping providers</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Shipping/Warehouses" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Warehouses</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Shipping/PickupPointProviders" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Pickup points</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Shipping/DatesAndRanges" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Dates and ranges</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Measure/List" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Measures</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Zettle/Configure" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> PayPal Zettle (POS)</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                            <p>
+                PayPal Commerce
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/PayPalCommerce/Configure" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Configuration</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Security/Permissions" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Access control list</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Widget/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Widgets</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                            <p>
+                Authentication
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Authentication/ExternalMethods" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> External authentication</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Authentication/MultiFactorMethods" class="nav-link">
+
+                    <i class="nav-icon far fa-circle"></i>
+                
+            <p> Multi-factor authentication</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="https://localhost:59579/Admin/WebApiFrontend/Configure" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Web API Frontend</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="https://localhost:59579/Admin/OmnibusDirective/Configure" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> EU Omnibus Directive</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="https://localhost:59579/Admin/Lucene/Configure" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Lucene search provider</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="https://localhost:59579/Admin/Dynamics365/Configure" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Dynamics 365</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="https://localhost:59579/Admin/NopMobileApp/Configure" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Mobile App</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Plugin/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Local plugins</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Plugin/OfficialFeed" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> All plugins and themes</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon fas fa-cube"></i>
+                            <p>
+                System
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Common/SystemInfo" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> System information</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Log/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Log</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Common/Warnings" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Warnings</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Common/Maintenance" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Maintenance</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/QueuedEmail/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Message queue</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/ScheduleTask/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Schedule tasks</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Common/SeNames" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Search engine friendly page names</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Template/List" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Templates</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon fas fa-chart-line"></i>
+                            <p>
+                Reports
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="https://localhost:59579/Admin/PowerBI/Configure" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> PowerBI</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Report/SalesSummary" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Sales summary</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Report/LowStock" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Low stock</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Report/Bestsellers" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Bestsellers</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Report/NeverSold" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Products never purchased</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Report/CountrySales" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Country sales</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                            <p>
+                Customer reports
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="/Admin/Report/RegisteredCustomers" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Registered customers</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Report/BestCustomersByOrderTotal" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Customers by order total</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="/Admin/Report/BestCustomersByNumberOfOrders" class="nav-link">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Customers by number of orders</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+            </ul>
+    </li>
+
+    <li class="nav-item has-treeview">
+
+        <a href="#" class="nav-link">
+
+                    <i class="nav-icon fas fa-question-circle"></i>
+                            <p>
+                Help
+                    <i class="right fas fa-angle-left "></i>
+            </p>
+        </a>
+            <ul class="nav nav-treeview">
+
+    <li class="nav-item">
+
+        <a href="https://www.nopcommerce.com/training?utm_source=admin-panel&amp;utm_medium=menu&amp;utm_campaign=course&amp;utm_content=help" class="nav-link" target="_blank">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Training</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="https://docs.nopcommerce.com?utm_source=admin-panel&amp;utm_medium=menu&amp;utm_campaign=documentation&amp;utm_content=help" class="nav-link" target="_blank">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Documentation</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="https://www.nopcommerce.com/boards?utm_source=admin-panel&amp;utm_medium=menu&amp;utm_campaign=forum&amp;utm_content=help" class="nav-link" target="_blank">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Community forums</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="https://www.nopcommerce.com/nopcommerce-premium-support-services?utm_source=admin-panel&amp;utm_medium=menu&amp;utm_campaign=premium_support&amp;utm_content=help" class="nav-link" target="_blank">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Premium support services</p>
+
+        </a>
+    </li>
+
+    <li class="nav-item">
+
+        <a href="https://www.nopcommerce.com/solution-partners?utm_source=admin-panel&amp;utm_medium=menu&amp;utm_campaign=solution_partners&amp;utm_content=help" class="nav-link" target="_blank">
+
+                    <i class="nav-icon far fa-dot-circle"></i>
+                
+            <p> Solution partners</p>
+
+        </a>
+    </li>
+            </ul>
+    </li>
+</ul>
+
+                    </nav>
+                </div>
+            </aside>
+        <div class="content-wrapper " style="min-height: 626.2px;">
+            
+<div id="admin-notifications">
+</div>
+
+
+            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G5zC0HIYsRKp8pLgOzH4SORAsyvBtGcci4hOhWo8hHjbycA1XY-3WOib2MubHMr7_GxoYybz1GHudo7eJPhf4CE-cNVLQgoTx2N5u9Bff3sY303baKIlngmhDswQIXX-EUEbcLtJLWuU054cmU5Tumahctrz7TO4bzb-IWFX8UkfmFCuZzXcJKQQf8FaoGgNw">
+            
+
+
+
+    <form method="post" action="/Admin/Product/List" novalidate="novalidate">
+        <div class="content-header clearfix">
+            <h1 class="float-left">
+                Products
+            </h1>
+            <div class="float-right">
+                <a class="btn btn-primary" href="/Admin/Product/Create">
+                    <i class="fas fa-square-plus"></i>
+                    Add new
+                </a>
+                <a class="btn btn-info" href="/Admin/Product/BulkEdit">
+                    <i class="fas fa-pen"></i>
+                    Bulk edit products
+                </a>
+                <button type="submit" name="download-catalog-pdf" class="btn bg-purple" formaction="/Admin/Product/DownloadCatalogPDF">
+                    <i class="far fa-file-pdf"></i>
+                    Download catalog as PDF
+                </button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success">
+                        <i class="fas fa-download"></i>
+                        Export
+                    </button>
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">&nbsp;</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-item">
+                            
+                                <button type="submit" name="exportxml-all" formaction="/Admin/Product/ExportToXml">
+                                    <i class="far fa-file-code"></i>
+                                    Export to XML (all found)
+                                </button>                            
+                        </li>
+                        <li class="dropdown-item">
+                           
+                                <button type="button" id="exportxml-selected">
+                                    <i class="far fa-file-code"></i>
+                                    Export to XML (selected)
+                                </button>                            
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item">                            
+                                <button type="submit" name="exportexcel-all" formaction="/Admin/Product/ExportToExcel">
+                                    <i class="far fa-file-excel"></i>
+                                    Export to Excel (all found)
+                                </button>                            
+                        </li>
+                        <li class="dropdown-item">                            
+                                <button type="button" id="exportexcel-selected">
+                                    <i class="far fa-file-excel"></i>
+                                    Export to Excel (selected)
+                                </button>                            
+                        </li>
+                    </ul>
+                </div>
+                    <button type="button" name="importexcel" class="btn bg-olive" data-toggle="modal" data-target="#importexcel-window">
+                        <i class="fas fa-upload"></i>
+                        Import
+                    </button>
+                <button type="button" id="delete-selected" class="btn btn-danger" data-toggle="modal" data-target="#delete-selected-action-confirmation">
+                    <i class="far fa-trash-can"></i>
+                    Delete (selected)
+                </button>
+                
+            </div>
+        </div>
+
+      <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                      <div class="card card-default card-search">
+                        <div class="card-body">
+                            <div class="row search-row opened" data-hideattribute="ProductListPage.HideSearchBlock">
+                                <div class="search-text">Search</div>
+                                <div class="icon-search"><i class="fas fa-magnifying-glass" aria-hidden="true"></i></div>
+                                <div class="icon-collapse"><i class="far fa-angle-up" aria-hidden="true"></i></div>
+                            </div>
+
+                            <div class="search-body ">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="SearchProductName">Product name</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="A product name."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input class="form-control text-box single-line" id="SearchProductName" name="SearchProductName" type="text" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="display:none">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="SearchCategoryId">Category</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Search by a specific category."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                
+
+<div class="select2-blue">
+    <select class="form-control select2 select2-hidden-accessible" data-dropdown-css-class="select2-blue" data-val="true" data-val-required="The Category field is required." id="SearchCategoryId" name="SearchCategoryId" style="width: 100%;" data-select2-id="SearchCategoryId" tabindex="-1" aria-hidden="true"><option selected="selected" value="0" data-select2-id="2">All</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="1" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-SearchCategoryId-container"><span class="select2-selection__rendered" id="select2-SearchCategoryId-container" role="textbox" aria-readonly="true" title="All">All</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="display:none">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="SearchIncludeSubCategories">Search subcategories</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Check to search in subcategories."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input class="check-box" data-val="true" data-val-required="The Search subcategories field is required." id="SearchIncludeSubCategories" name="SearchIncludeSubCategories" type="checkbox" value="true">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="display:none">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="SearchManufacturerId">Manufacturer</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Search by a specific manufacturer."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                
+
+<div class="select2-blue">
+    <select class="form-control select2 select2-hidden-accessible" data-dropdown-css-class="select2-blue" data-val="true" data-val-required="The Manufacturer field is required." id="SearchManufacturerId" name="SearchManufacturerId" style="width: 100%;" data-select2-id="SearchManufacturerId" tabindex="-1" aria-hidden="true"><option selected="selected" value="0" data-select2-id="4">All</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="3" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-SearchManufacturerId-container"><span class="select2-selection__rendered" id="select2-SearchManufacturerId-container" role="textbox" aria-readonly="true" title="All">All</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="SearchVendorId">Vendor</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Search by a specific vendor."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                
+
+<div class="select2-blue">
+    <select class="form-control select2 select2-hidden-accessible" data-dropdown-css-class="select2-blue" data-val="true" data-val-required="The Vendor field is required." id="SearchVendorId" name="SearchVendorId" style="width: 100%;" data-select2-id="SearchVendorId" tabindex="-1" aria-hidden="true"><option selected="selected" value="0" data-select2-id="6">All</option>
+<option value="1">Vendor1</option>
+<option value="6">Vendor2_update</option>
+<option value="28">Vendor2_update</option>
+<option value="30">Vendor2_update</option>
+<option value="51">Vendor2_update</option>
+<option value="3">Vendor_1787995381</option>
+<option value="4">Vendor_1788014272</option>
+<option value="5">Vendor_1788015848</option>
+<option value="7">Vendor_1788066855</option>
+<option value="8">Vendor_1788085560</option>
+<option value="11">Vendor_1788087576</option>
+<option value="60">Vendor_1788348272</option>
+<option value="61">Vendor_1788353113</option>
+<option value="62">Vendor_1788354178</option>
+<option value="64">Vendor_1788793012</option>
+<option value="66">Vendor_1788836685</option>
+<option value="67">Vendor_1788839398</option>
+<option value="68">Vendor_1788840606</option>
+<option value="69">Vendor_1788842043</option>
+<option value="70">Vendor_1788843458</option>
+<option value="72">Vendor_1788847617</option>
+<option value="74">Vendor_1788854638</option>
+<option value="75">Vendor_1788863590</option>
+<option value="76">Vendor_1788866652</option>
+<option value="77">Vendor_1788870152</option>
+<option value="78">Vendor_1788877116</option>
+<option value="79">Vendor_1788927381</option>
+<option value="80">Vendor_1788938765</option>
+<option value="81">Vendor_1788951347</option>
+<option value="82">Vendor_1788953912</option>
+<option value="83">Vendor_1788958794</option>
+<option value="84">Vendor_1788959681</option>
+<option value="85">Vendor_1789034360</option>
+<option value="86">Vendor_1789039109</option>
+<option value="87">Vendor_1789041001</option>
+<option value="88">Vendor_1789045829</option>
+<option value="89">Vendor_1789048035</option>
+<option value="90">Vendor_1789055413</option>
+<option value="91">Vendor_1789100855</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="5" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-SearchVendorId-container"><span class="select2-selection__rendered" id="select2-SearchVendorId-container" role="textbox" aria-readonly="true" title="All">All</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="form-group row" style="display:none">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="SearchStoreId">Store</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Search by a specific store."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                
+
+<div class="select2-blue">
+    <select class="form-control select2 select2-hidden-accessible" data-dropdown-css-class="select2-blue" data-val="true" data-val-required="The Store field is required." id="SearchStoreId" name="SearchStoreId" style="width: 100%;" data-select2-id="SearchStoreId" tabindex="-1" aria-hidden="true"><option selected="selected" value="0" data-select2-id="8">All</option>
+<option value="1">Your store name</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="7" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-SearchStoreId-container"><span class="select2-selection__rendered" id="select2-SearchStoreId-container" role="textbox" aria-readonly="true" title="All">All</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="display:none">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="SearchWarehouseId">Warehouse</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Search by a specific warehouse."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                
+
+<div class="select2-blue">
+    <select class="form-control select2 select2-hidden-accessible" data-dropdown-css-class="select2-blue" data-val="true" data-val-required="The Warehouse field is required." id="SearchWarehouseId" name="SearchWarehouseId" style="width: 100%;" data-select2-id="SearchWarehouseId" tabindex="-1" aria-hidden="true"><option selected="selected" value="0" data-select2-id="10">All</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="9" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-SearchWarehouseId-container"><span class="select2-selection__rendered" id="select2-SearchWarehouseId-container" role="textbox" aria-readonly="true" title="All">All</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="SearchProductTypeId">Product type</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Search by a product type."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                
+
+<div class="select2-blue">
+    <select class="form-control select2 select2-hidden-accessible" data-dropdown-css-class="select2-blue" data-val="true" data-val-required="The Product type field is required." id="SearchProductTypeId" name="SearchProductTypeId" style="width: 100%;" data-select2-id="SearchProductTypeId" tabindex="-1" aria-hidden="true"><option selected="selected" value="0" data-select2-id="12">All</option>
+<option value="5">Simple</option>
+<option value="10">Grouped (product with variants)</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="11" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-SearchProductTypeId-container"><span class="select2-selection__rendered" id="select2-SearchProductTypeId-container" role="textbox" aria-readonly="true" title="All">All</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="SearchPublishedId">Published</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Search by a &quot;Published&quot; property."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                
+
+<div class="select2-blue">
+    <select class="form-control select2 select2-hidden-accessible" data-dropdown-css-class="select2-blue" data-val="true" data-val-required="The Published field is required." id="SearchPublishedId" name="SearchPublishedId" style="width: 100%;" data-select2-id="SearchPublishedId" tabindex="-1" aria-hidden="true"><option selected="selected" value="0" data-select2-id="14">All</option>
+<option value="1">Published only</option>
+<option value="2">Unpublished only</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="13" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-SearchPublishedId-container"><span class="select2-selection__rendered" id="select2-SearchPublishedId-container" role="textbox" aria-readonly="true" title="All">All</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <div class="label-wrapper"><label class="col-form-label" for="GoDirectlyToSku">Go directly to product SKU</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Enter product SKU and click Go."><i class="fas fa-circle-question"></i></div></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="input-group input-group-short">
+                                                    <input class="form-control text-box single-line" id="GoDirectlyToSku" name="GoDirectlyToSku" type="text" value="">
+                                                    <span class="input-group-append">
+                                                        <button type="submit" id="go-to-product-by-sku" name="go-to-product-by-sku" class="btn btn-info btn-flat">
+                                                            Go
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="text-center col-12">
+                                        <button type="button" id="search-products" class="btn btn-primary btn-search">
+                                            <i class="fas fa-magnifying-glass"></i>
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                      <div class="card card-default">
+                          <div class="card-body">
+                            <div class="documentation-reference"><span>Learn more about <a target="_blank" href="https://docs.nopcommerce.com/running-your-store/catalog/products/index.html?utm_source=admin-panel&amp;utm_medium=admin-page&amp;utm_campaign=documentation&amp;utm_content=doc-reference">products</a></span></div>
+
+                              
+
+
+<div id="products-grid_wrapper" class="dt-container dt-bootstrap4 dt-empty-footer"><div class="row justify-content-between dt-layout-table"><div class="d-md-flex justify-content-between align-items-center col-12 dt-layout-full col-md"><div class="dt-scroll"><div id="products-grid_processing" class="dt-processing card" role="status" style="display: none;"><i class="fas fa-refresh fa-spin"></i><div><div></div><div></div><div></div><div></div></div></div><div class="dt-scroll-head" style="overflow: hidden; position: relative; border: 0px; width: 100%;"><div class="dt-scroll-headInner" style="box-sizing: content-box; width: 1194.2px; padding-right: 0px;"><table class="table table-bordered table-hover table-striped dataTable" width="100%" aria-describedby="products-grid_info" style="margin-left: 0px; width: 1194.2px;"><thead><tr><th class="text-center dt-orderable-none" data-dt-column="0" rowspan="1" colspan="1"><div class="dt-column-header"><span class="dt-column-title"><input class="mastercheckbox" type="checkbox"></span></div></th><th data-dt-column="1" class="dt-orderable-none" rowspan="1" colspan="1"><div class="dt-column-header"><span class="dt-column-title">Picture</span></div></th><th data-dt-column="2" class="dt-orderable-none" rowspan="1" colspan="1"><div class="dt-column-header"><span class="dt-column-title">Product name</span></div></th><th data-dt-column="3" class="dt-orderable-none" rowspan="1" colspan="1"><div class="dt-column-header"><span class="dt-column-title">SKU</span></div></th><th data-dt-column="4" class="dt-orderable-none dt-type-numeric" rowspan="1" colspan="1"><div class="dt-column-header"><span class="dt-column-title">Price</span></div></th><th data-dt-column="5" class="dt-orderable-none" rowspan="1" colspan="1"><div class="dt-column-header"><span class="dt-column-title">Stock quantity</span></div></th><th class="text-center dt-orderable-none" data-dt-column="6" rowspan="1" colspan="1"><div class="dt-column-header"><span class="dt-column-title">Published</span></div></th><th class="button-column dt-orderable-none" data-dt-column="7" rowspan="1" colspan="1"><div class="dt-column-header"><span class="dt-column-title">Edit</span></div></th></tr></thead><colgroup><col data-dt-column="0" style="width: 56.9833px; min-width: 56.9833px;"><col data-dt-column="1" style="width: 183.3px; min-width: 183.3px;"><col data-dt-column="2" style="width: 210.717px; min-width: 210.717px;"><col data-dt-column="3" style="width: 140.483px; min-width: 140.483px;"><col data-dt-column="4" style="width: 129.867px; min-width: 129.867px;"><col data-dt-column="5" style="width: 188.367px; min-width: 188.367px;"><col data-dt-column="6" style="width: 139.9px; min-width: 139.9px;"><col data-dt-column="7" style="width: 143.783px; min-width: 143.783px;"></colgroup></table></div></div><div class="dt-scroll-body" style="position: relative; overflow: auto; width: 100%;"><table class="table table-bordered table-hover table-striped dataTable" width="100%" id="products-grid" aria-describedby="products-grid_info"><thead><tr><th class="text-center dt-orderable-none" data-dt-column="0" rowspan="1" colspan="1"><div class="dt-scroll-sizing"><div class="dt-column-header"><span class="dt-column-title"><input class="mastercheckbox" type="checkbox"></span></div></div></th><th data-dt-column="1" class="dt-orderable-none" rowspan="1" colspan="1"><div class="dt-scroll-sizing"><div class="dt-column-header"><span class="dt-column-title">Picture</span></div></div></th><th data-dt-column="2" class="dt-orderable-none" rowspan="1" colspan="1"><div class="dt-scroll-sizing"><div class="dt-column-header"><span class="dt-column-title">Product name</span></div></div></th><th data-dt-column="3" class="dt-orderable-none" rowspan="1" colspan="1"><div class="dt-scroll-sizing"><div class="dt-column-header"><span class="dt-column-title">SKU</span></div></div></th><th data-dt-column="4" class="dt-orderable-none dt-type-numeric" rowspan="1" colspan="1"><div class="dt-scroll-sizing"><div class="dt-column-header"><span class="dt-column-title">Price</span></div></div></th><th data-dt-column="5" class="dt-orderable-none" rowspan="1" colspan="1"><div class="dt-scroll-sizing"><div class="dt-column-header"><span class="dt-column-title">Stock quantity</span></div></div></th><th class="text-center dt-orderable-none" data-dt-column="6" rowspan="1" colspan="1"><div class="dt-scroll-sizing"><div class="dt-column-header"><span class="dt-column-title">Published</span></div></div></th><th class="button-column dt-orderable-none" data-dt-column="7" rowspan="1" colspan="1"><div class="dt-scroll-sizing"><div class="dt-column-header"><span class="dt-column-title">Edit</span></div></div></th></tr></thead>
+<tbody><tr><td class="text-center"><input name="checkbox_products" value="1" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 6289</td><td>SKU64529</td><td class="dt-type-numeric">$999.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/1"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="68" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td></td><td></td><td class="dt-type-numeric">$2,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/68"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="69" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 6406</td><td>SKU 53360</td><td class="dt-type-numeric">$1,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/69"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="70" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 3450</td><td>SKU 40150</td><td class="dt-type-numeric">$2,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/70"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="71" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 9916</td><td>SKU83622</td><td class="dt-type-numeric">$1,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/71"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="72" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 1960</td><td>SKU 47383</td><td class="dt-type-numeric">$0.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/72"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="73" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 7385</td><td>SKU 63467</td><td class="dt-type-numeric">$0.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/73"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="74" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 1023</td><td>SKU 48001</td><td class="dt-type-numeric">$1,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/74"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="75" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 9191</td><td>SKU 48286</td><td class="dt-type-numeric">$2,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/75"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="76" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 5378</td><td>SKU 42410</td><td class="dt-type-numeric">$1,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/76"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="77" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 7656</td><td>SKU63875</td><td class="dt-type-numeric">$1,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/77"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="78" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 6177</td><td>SKU 31549</td><td class="dt-type-numeric">$0.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/78"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="79" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 8476</td><td>SKU 96257</td><td class="dt-type-numeric">$1,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/79"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="80" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td>Test Product 7643</td><td>SKU 82676</td><td class="dt-type-numeric">$2,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/80"><i class="fas fa-pencil"></i>Edit</a></td></tr><tr><td class="text-center"><input name="checkbox_products" value="81" type="checkbox" class="checkboxGroups"></td><td><img src="https://localhost:59579/images/thumbs/default-image_75.png" width="100"></td><td></td><td></td><td class="dt-type-numeric">$2,000.00</td><td></td><td class="text-center"><i class="fas fa-check true-icon" nop-value="true"></i></td><td class="button-column"><a class="btn btn-default" href="/Admin/Product/Edit/81"><i class="fas fa-pencil"></i>Edit</a></td></tr></tbody></table></div><div class="dt-scroll-foot" style="overflow: hidden; border: 0px; width: 100%;"><div class="dt-scroll-footInner"><table class="table table-bordered table-hover table-striped dataTable" width="100%" aria-describedby="products-grid_info" style="margin-left: 0px;"><tfoot></tfoot></table></div></div></div></div></div><div class="row justify-content-between"><div class="d-md-flex justify-content-between align-items-center dt-layout-full col-md"><div class="dt-paging paging_simple_numbers"><nav aria-label="pagination"><ul class="pagination"><li class="dt-paging-button page-item disabled"><a class="page-link previous" aria-controls="products-grid" aria-disabled="true" aria-label="Previous" data-dt-idx="previous" tabindex="-1">Previous</a></li><li class="dt-paging-button page-item active"><a href="#" class="page-link" aria-controls="products-grid" aria-current="page" data-dt-idx="0">1</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link" aria-controls="products-grid" data-dt-idx="1">2</a></li><li class="dt-paging-button page-item"><a href="#" class="page-link next" aria-controls="products-grid" aria-label="Next" data-dt-idx="next">Next</a></li></ul></nav></div><div class="dt-length"><label for="dt-length-0">Show <select aria-controls="products-grid" class="custom-select custom-select-sm form-control form-control-sm" id="dt-length-0"><option value="7">7</option><option value="15">15</option><option value="20">20</option><option value="50">50</option><option value="100">100</option></select> items</label></div><div class="dt-info" aria-live="polite" id="products-grid_info" role="status">1-15 of 28 items</div><div class="dt-buttons btn-group flex-wrap"><button class="btn btn-secondary" aria-controls="products-grid" type="button" tabindex="0"><span><i class="fas fa-rotate" style="padding: 0px"></i></span></button> </div></div></div><div class="row justify-content-between"><div class="d-md-flex justify-content-between align-items-center dt-layout-start col-md-auto mr-auto"></div><div class="d-md-flex justify-content-between align-items-center dt-layout-end col-md-auto ml-auto"></div></div></div>
+
+
+
+
+
+
+
+
+                              
+                          </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+      </section>
+    
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8G5zC0HIYsRKp8pLgOzH4SORAsyvBtGcci4hOhWo8hHjbycA1XY-3WOib2MubHMr7_GxoYybz1GHudo7eJPhf4CE-cNVLQgoTx2N5u9Bff3sY303baKIlngmhDswQIXX-EUEbcLtJLWuU054cmU5Tumahctrz7TO4bzb-IWFX8UkfmFCuZzXcJKQQf8FaoGgNw"><input name="SearchIncludeSubCategories" type="hidden" value="false"></form>
+
+
+<div id="license-window" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            
+        </div>
+    </div>
+</div>
+
+    <div id="importexcel-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="importexcel-window-title">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="importexcel-window-title">Import from Excel</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>                    
+                </div>
+                <form method="post" enctype="multipart/form-data" action="/Admin/Product/ImportExcel">
+                    <div class="form-horizontal">
+                        <div class="modal-body">
+                            <ul class="common-list">
+                                <li>
+                                    <em>Imported products are distinguished by SKU. If the SKU already exists, then its corresponding product will be updated.</em>
+                                </li>
+                                <li>
+                                    <em>Import requires a lot of memory resources. That's why it's not recommended to import more than 500 - 1,000 records at once. If you have more records, it's better to split them to multiple Excel files and import separately.</em>
+                                </li>
+                            </ul>
+                            <div class="form-group row">
+                                <div class="col-md-2">
+                                    <div class="label-wrapper">
+                                        <label class="col-form-label">
+                                            Excel file
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="file" id="importexcelfile" name="importexcelfile" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">
+                                Import from Excel
+                            </button>
+                        </div>
+                    </div>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G5zC0HIYsRKp8pLgOzH4SORAsyvBtGcci4hOhWo8hHjbycA1XY-3WOib2MubHMr7_GxoYybz1GHudo7eJPhf4CE-cNVLQgoTx2N5u9Bff3sY303baKIlngmhDswQIXX-EUEbcLtJLWuU054cmU5Tumahctrz7TO4bzb-IWFX8UkfmFCuZzXcJKQQf8FaoGgNw"></form>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" id="export-xml-selected-form" action="/Admin/Product/ExportXmlSelected">
+        <input type="hidden" id="selectedIds" name="selectedIds" value="">
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G5zC0HIYsRKp8pLgOzH4SORAsyvBtGcci4hOhWo8hHjbycA1XY-3WOib2MubHMr7_GxoYybz1GHudo7eJPhf4CE-cNVLQgoTx2N5u9Bff3sY303baKIlngmhDswQIXX-EUEbcLtJLWuU054cmU5Tumahctrz7TO4bzb-IWFX8UkfmFCuZzXcJKQQf8FaoGgNw"></form>
+
+
+
+    <form method="post" id="export-excel-selected-form" action="/Admin/Product/ExportExcelSelected">
+        <input type="hidden" id="selectedIds" name="selectedIds" value="">
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G5zC0HIYsRKp8pLgOzH4SORAsyvBtGcci4hOhWo8hHjbycA1XY-3WOib2MubHMr7_GxoYybz1GHudo7eJPhf4CE-cNVLQgoTx2N5u9Bff3sY303baKIlngmhDswQIXX-EUEbcLtJLWuU054cmU5Tumahctrz7TO4bzb-IWFX8UkfmFCuZzXcJKQQf8FaoGgNw"></form>
+
+    
+<div id="exportExcelSelected-action-alert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exportExcelSelected-action-alert-title">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="exportExcelSelected-action-alert-title">Information</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="additional-text" id="exportExcelSelected-info"></div>
+            
+        </div>
+        <div class="modal-footer">
+            <span class="btn btn-primary float-right" data-dismiss="modal">Ok</span>
+        </div>
+    </div>
+</div>
+<div class="btn btn-default" id="exportExcelSelected" style="display:none" data-toggle="modal" data-target="#exportExcelSelected-action-alert"></div><script>$(function() {$('#exportExcelSelected').attr("data-toggle", "modal").attr("data-target", "#exportExcelSelected-action-alert")});</script></div>
+<div id="exportXmlSelected-action-alert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exportXmlSelected-action-alert-title">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="exportXmlSelected-action-alert-title">Information</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="additional-text" id="exportXmlSelected-info"></div>
+            
+        </div>
+        <div class="modal-footer">
+            <span class="btn btn-primary float-right" data-dismiss="modal">Ok</span>
+        </div>
+    </div>
+</div>
+<div class="btn btn-default" id="exportXmlSelected" style="display:none" data-toggle="modal" data-target="#exportXmlSelected-action-alert"></div><script>$(function() {$('#exportXmlSelected').attr("data-toggle", "modal").attr("data-target", "#exportXmlSelected-action-alert")});</script></div>
+<div id="deleteSelectedFailed-action-alert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteSelectedFailed-action-alert-title">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="deleteSelectedFailed-action-alert-title">Information</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="additional-text" id="deleteSelectedFailed-info"></div>
+            
+        </div>
+        <div class="modal-footer">
+            <span class="btn btn-primary float-right" data-dismiss="modal">Ok</span>
+        </div>
+    </div>
+</div>
+<div class="btn btn-default" id="deleteSelectedFailed" style="display:none" data-toggle="modal" data-target="#deleteSelectedFailed-action-alert"></div><script>$(function() {$('#deleteSelectedFailed').attr("data-toggle", "modal").attr("data-target", "#deleteSelectedFailed-action-alert")});</script></div>
+<div id="nothingSelectedAlert-action-alert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="nothingSelectedAlert-action-alert-title">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="nothingSelectedAlert-action-alert-title">Information</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="additional-text" id="nothingSelectedAlert-info"></div>
+            
+        </div>
+        <div class="modal-footer">
+            <span class="btn btn-primary float-right" data-dismiss="modal">Ok</span>
+        </div>
+    </div>
+</div>
+<div class="btn btn-default" id="nothingSelectedAlert" style="display:none" data-toggle="modal" data-target="#nothingSelectedAlert-action-alert"></div><script>$(function() {$('#nothingSelectedAlert').attr("data-toggle", "modal").attr("data-target", "#nothingSelectedAlert-action-alert")});</script></div>
+<div id="delete-selected-action-confirmation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-selected-action-confirmation-title">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">            
+            <h4 class="modal-title" id="delete-selected-action-confirmation-title">Are you sure?</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to perform this action?
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="delete-selected-action-confirmation-submit-button" class="btn btn-primary float-right">
+                Yes
+            </button>
+            <span class="btn btn-default float-right margin-r-5" data-dismiss="modal">No, cancel</span>
+        </div>
+    </div>
+</div>
+
+</div>
+
+        </div>
+        <div class="main-footer">
+            <div class="container-fluid">
+                <div class="col-md-12">
+                    <div class="row">
+                            <div class="col-md-4 col-xs-12 text-md-left text-center">
+                                Powered by <a href="https://www.nopcommerce.com/?utm_source=admin-panel&amp;utm_medium=footer&amp;utm_campaign=admin-panel" target="_blank">nopCommerce</a>
+                            </div>
+                        <div class="col-md-4 col-xs-12 text-center">
+                            Friday, September 11, 2026 12:14 PM
+                        </div>
+                        <div class="col-md-4 col-xs-12 text-md-right text-center">
+                            <b>nopCommerce version 4.90.6</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div id="sidebar-overlay"></div></div>
+
+    
+    <a id="backTop" class="btn btn-back-top bg-teal"></a>
+    
+    <script type="text/javascript" src="/js/2iwxoqhdshqfo43ldwwcba.scripts.js?v=T--d1P3jzEYnzubY-f0N1c-l8Zk"></script>
+    <script>
+    $(function() {
+        $("#SearchCategoryId").select2({
+            minimumResultsForSearch: 50 || Infinity
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        $("#SearchManufacturerId").select2({
+            minimumResultsForSearch: 50 || Infinity
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        $("#SearchVendorId").select2({
+            minimumResultsForSearch: 50 || Infinity
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        $("#SearchStoreId").select2({
+            minimumResultsForSearch: 50 || Infinity
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        $("#SearchWarehouseId").select2({
+            minimumResultsForSearch: 50 || Infinity
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        $("#SearchProductTypeId").select2({
+            minimumResultsForSearch: 50 || Infinity
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        $("#SearchPublishedId").select2({
+            minimumResultsForSearch: 50 || Infinity
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        $('#products-grid').DataTable({
+            
+
+
+
+        processing: true,
+    
+        serverSide: true,
+    
+        ajax:
+        {
+            url: '/Admin/Product/ProductList',
+            type: 'POST',
+            dataType: 'json',
+            dataSrc: 'Data',
+            beforeSend: function() {
+
+                        clearMasterCheckbox('#products-grid');
+                                },
+            data: function(data) {
+
+                                    data.SearchProductName = $('#SearchProductName').val();
+                                
+                                    data.SearchCategoryId = $('#SearchCategoryId').val();
+                                
+                                data.SearchIncludeSubCategories = $('#SearchIncludeSubCategories').is(':checked');
+                            
+                                    data.SearchManufacturerId = $('#SearchManufacturerId').val();
+                                
+                                    data.SearchStoreId = $('#SearchStoreId').val();
+                                
+                                    data.SearchWarehouseId = $('#SearchWarehouseId').val();
+                                
+                                    data.SearchVendorId = $('#SearchVendorId').val();
+                                
+                                    data.SearchProductTypeId = $('#SearchProductTypeId').val();
+                                
+                                    data.SearchPublishedId = $('#SearchPublishedId').val();
+                                                addAntiForgeryToken(data);
+                return data;
+            }
+        },
+    scrollX: true,
+preDrawCallback: function (data) {
+    data.nTableWrapper.querySelectorAll('colgroup').forEach((e) => e.remove());
+},
+autoWidth: false,
+info: true,
+paging: true,
+pagingType: 'simple_numbers',
+language: {
+    "emptyTable":     "No data available in table",
+    "info":           "_START_-_END_ of _TOTAL_ items",
+    "infoEmpty":      "No records",
+    "infoFiltered":   "(filtered from _MAX_ total entries)",
+    "thousands":      ",",
+    "lengthMenu":     "Show _MENU_ items",
+    "loadingRecords": "Loading...",
+    "processing":     "\u003Ci class=\u0027fas fa-refresh fa-spin\u0027\u003E\u003C/i\u003E",
+    "search":         "Search:",
+    "zeroRecords":    "No matching records found",
+    "paginate": {
+        "first":"First",
+        "last":"Last",
+        "next":"Next",
+        "previous":"Previous"
+    },
+    "aria": {
+        "sortAscending":  ": activate to sort column ascending",
+        "sortDescending": ": activate to sort column descending"
+    }
+},
+pageLength: 15,
+
+        lengthMenu: [7, 15, 20, 50, 100],
+    ordering: false,
+
+        buttons: [{
+            name: 'refresh',
+            text: '<i class="fas fa-rotate" style="padding: 0px"></i>',
+            action: function() {
+
+                        updateTable('#products-grid', true);
+                                }
+        }],
+    layout: {
+
+                    topStart: null,
+                
+                    topEnd: null,
+                
+                    bottomStart: [
+                    ],
+                
+                    bottomEnd: [
+                    ],
+                
+                    bottom: [
+
+                                'paging',
+                            
+                                'pageLength',
+                            
+                                'info',
+                            
+                                'buttons',
+                                                ],
+                },
+columns: [
+
+            {
+
+                                title: '<input class="mastercheckbox" type="checkbox" />',
+                                            width: '50',
+                visible: true,
+                searchable: false,
+
+                        className: 'text-center',
+                    
+                            render: function (data, type, row, meta) {
+                                return (data === true)
+                                    ? '<input name="checkbox_products" value="' + row.Id + '" type="checkbox" class="checkboxGroups" checked="checked" />'
+                                    : '<input name="checkbox_products" value="' + row.Id + '" type="checkbox" class="checkboxGroups" />';
+                            },
+                                        data: 'Id'
+            }
+,        
+            {
+
+                        title: 'Picture',
+                                    width: '100',
+                visible: true,
+                searchable: false,
+
+                            render: function (data, type, row, meta) {
+
+                                        return '<img src="' + data + '" width=100 />';
+                                                                },
+                                        data: 'PictureThumbnailUrl'
+            }
+,        
+            {
+
+                        title: 'Product name',
+                                    width: '',
+                visible: true,
+                searchable: false,
+
+                        render: function (data, type, row, meta) {
+                            return escapeHtml(data);
+                        },
+                                    data: 'Name'
+            }
+,        
+            {
+
+                        title: 'SKU',
+                                    width: '100',
+                visible: true,
+                searchable: false,
+
+                        render: function (data, type, row, meta) {
+                            return escapeHtml(data);
+                        },
+                                    data: 'Sku'
+            }
+,        
+            {
+
+                        title: 'Price',
+                                    width: '',
+                visible: true,
+                searchable: false,
+
+                        render: function (data, type, row, meta) {
+                            return escapeHtml(data);
+                        },
+                                    data: 'FormattedPrice'
+            }
+,        
+            {
+
+                        title: 'Stock quantity',
+                                    width: '',
+                visible: true,
+                searchable: false,
+
+                        render: function (data, type, row, meta) {
+                            return escapeHtml(data);
+                        },
+                                    data: 'StockQuantityStr'
+            }
+,        
+            {
+
+                        title: 'Published',
+                                    width: '80',
+                visible: true,
+                searchable: false,
+
+                        className: 'text-center',
+                    
+                            render: function (data, type, row) {
+                                return data
+                                    ? '<i class="fas fa-check true-icon" nop-value="true"></i>'
+                                    : '<i class="fas fa-times false-icon" nop-value="false"></i>';
+                            },
+                                        data: 'Published'
+            }
+,        
+            {
+
+                        title: 'Edit',
+                                    width: '80',
+                visible: true,
+                searchable: false,
+
+                        className: 'button-column',
+                    
+                            render: function (data, type, row, meta) {
+                                return '<a class="btn btn-default" href="/Admin/Product/Edit/' + data + '"><i class="fas fa-pencil"></i>Edit</a>';
+                            },
+                                        data: 'Id'
+            }
+        ]           
+        });
+
+
+            $('#search-products').click(function() {
+                $('#products-grid').DataTable().ajax.reload();
+                $('#products-grid .checkboxGroups').prop('checked', false).change();
+                selectedIds = [];
+                return false;
+            });
+            
+            $('.mastercheckbox', $('#products-grid').parents('.dt-scroll').first()).first().click(function () {
+                $('#products-grid .checkboxGroups').prop('checked', $(this).is(':checked')).change();
+            });
+
+            $('#products-grid').on('change', 'input[type=checkbox][class!=mastercheckbox][class=checkboxGroups]', function (e) {
+                var $check = $(this);
+                var checked = jQuery.inArray($check.val(), selectedIds);
+                if ($check.is(':checked') == true) {
+                    if (checked == -1) {
+                        selectedIds.push($check.val());
+                    }
+                } else if (checked > -1) {
+                    selectedIds = $.grep(selectedIds, function (item, index) {
+                        return item != $check.val();
+                    });
+                }
+                updateMasterCheckbox($('#products-grid').parents('.dt-scroll').first());
+            });
+                    $('#products-grid').DataTable().columns.adjust();
+
+    });
+</script>
+
+<script>                           
+
+                            $(function() {
+                                $('#delete-selected-action-confirmation-submit-button').on('click', function () {
+                                    var postData = {
+                                        selectedIds: selectedIds
+                                    };
+                                    addAntiForgeryToken(postData);
+                                    $.ajax({
+                                        cache: false,
+                                        type: "POST",
+                                        url: "/Admin/Product/DeleteSelected",
+                                        data: postData,
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            showAlert('deleteSelectedFailed', errorThrown);
+                                        },
+                                        complete: function (jqXHR, textStatus) {
+                                            if (jqXHR.status === 204)
+                                            {
+                                                showAlert('nothingSelectedAlert', 'Please select at least one record.');
+                                                return;
+                                            }
+                                            updateTable('#products-grid');
+                                        }
+                                    });
+                                    $('#delete-selected-action-confirmation').modal('toggle');
+                                    return false;
+                                });
+                            });
+
+                              </script>
+
+<script>
+        $(function() {
+            $("#GoDirectlyToSku").keydown(function (event) {
+                if (event.keyCode === 13) {
+                    $("#go-to-product-by-sku").trigger("click");
+                    return false;
+                }
+            });
+        });
+    </script>
+
+<script>
+    $(function() {
+        var displayModal = false;
+        if (displayModal) {
+            $('#license-window').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+
+            $('#license-window').on('shown.bs.modal', function (event) {
+                var modalCloseEl = $(this).find('button.close');
+                var closeTextEl = $('span', modalCloseEl);
+
+                var startFrom = 5;
+                closeTextEl.text(startFrom);
+
+                const timer = setInterval(function() {
+                    if (startFrom-- > 0)
+                        closeTextEl.text(startFrom);
+                }, 1000);
+
+                setTimeout(function() {
+                    closeTextEl.html('&times;');
+                    modalCloseEl.on('click', function() {
+                        $('#license-window').modal('hide')
+                    });
+                    clearInterval(timer);
+                }, startFrom*1000);
+            });
+        }
+    });
+</script>
+
+<script>
+    $(function() {
+        $('#exportxml-selected').click(function (e) {
+            e.preventDefault();
+            var ids = selectedIds.join(",");
+            if (!ids) {
+                $('#exportXmlSelected-info').text("No products selected");
+                $("#exportXmlSelected").trigger("click");
+            }
+            else {
+                $('#export-xml-selected-form #selectedIds').val(ids);
+                $('#export-xml-selected-form').submit();
+                updateTable('#products-grid');
+            }
+            return false;
+        });
+    });
+</script>
+
+<script>
+        $(function() {
+            $('#exportexcel-selected').click(function (e) {
+                e.preventDefault();
+                var ids = selectedIds.join(",");
+                if (!ids) {
+                    $('#exportExcelSelected-info').text("No products selected");
+                    $("#exportExcelSelected").trigger("click");
+                }
+                else {
+                    $('#export-excel-selected-form #selectedIds').val(ids);
+                    $('#export-excel-selected-form').submit();
+                    updateTable('#products-grid');
+                }
+                return false;
+            });
+        });
+    </script>
+
+<script>
+    $(function(){
+        const openerBtn = document.getElementById('delete-selected');
+
+        openerBtn.type = "button";
+        openerBtn.setAttribute("data-toggle", "modal");
+        openerBtn.setAttribute("data-target", "#delete-selected-action-confirmation")
+
+        $('#delete-selected-action-confirmation-submit-button').on('click', function() {
+            if (!openerBtn.name)
+                return;
+
+            openerBtn.type = "submit";
+            openerBtn.click();
+        });
+    });
+</script>
+
+<script>
+        var rootAppPath = '/';
+        var culture = "en";
+
+        //load cldr for current culture
+        $.when(
+            $.get({ url: rootAppPath + "lib_npm/cldr-data/supplemental/likelySubtags.json", dataType: "json"}),
+            $.get({ url: rootAppPath + "lib_npm/cldr-data/main/" + culture + "/numbers.json", dataType: "json"}),
+            $.get({ url: rootAppPath + "lib_npm/cldr-data/main/" + culture + "/currencies.json", dataType: "json"}),
+            $.get({ url: rootAppPath + "lib_npm/cldr-data/supplemental/numberingSystems.json", dataType: "json"}),
+            $.get({ url: rootAppPath + "lib_npm/cldr-data/main/" + culture + "/ca-gregorian.json", dataType: "json"}),
+            $.get({ url: rootAppPath + "lib_npm/cldr-data/main/" + culture + "/timeZoneNames.json", dataType: "json"}),
+            $.get({ url: rootAppPath + "lib_npm/cldr-data/supplemental/timeData.json", dataType: "json"}),
+            $.get({ url: rootAppPath + "lib_npm/cldr-data/supplemental/weekData.json", dataType: "json"}),
+        ).then(function () {
+            // Normalize $.get results, we only need the JSON, not the request statuses.
+            return [].slice.apply(arguments, [0]).map(function (result) {
+                return result[0];
+            });
+        }).then(Globalize.load).then(function () {
+            Globalize.locale(culture);
+        });
+</script>
+
+<script>
+                                                $(function() {
+                                                    $("#restart-application").click(function (e) {
+                                                        showThrobber('Restarting the application...');
+                                                    });
+                                                });
+                                            </script>
+
+<script>
+                            $(function() {
+                                Admin.Search.init();
+                            });
+                        </script>
+
+<script>
+        var AdminLTEOptions = {
+            boxWidgetOptions: {
+                boxWidgetIcons: {
+                    collapse: 'fa-minus',
+                    open: 'fa-plus'
+                }
+            }
+        };
+    </script>
+
+<script>
+        $(function() {
+            //enable "back top" arrow
+            $('#backTop').backTop();
+
+            //enable tooltips
+            $('[data-toggle="tooltip"]').tooltip({ placement: 'bottom' });
+        });
+    </script>
+
+
+
+</body></html>

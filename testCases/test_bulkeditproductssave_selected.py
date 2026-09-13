@@ -19,7 +19,7 @@ class Test_BulkEditProductSaveSelected_036:
     def test_bulkeditproductssaveselected(self, setup):
 
         self.logger.info(
-            "*** Test_BulkEditProductSaveSelected_035 ***"
+            "*** Test_BulkEditProductSaveSelected_036 ***"
         )
 
         self.driver = setup
@@ -40,10 +40,6 @@ class Test_BulkEditProductSaveSelected_036:
             "***** Login Successful *****"
         )
 
-        self.logger.info(
-            "***** Starting Bulk Edit Product Save Selected Test *****"
-        )
-
         # =====================================================
         # NAVIGATE TO PRODUCTS
         # =====================================================
@@ -54,7 +50,7 @@ class Test_BulkEditProductSaveSelected_036:
         self.addproduct.clickonProductMenuItem()
 
         # =====================================================
-        # BULK EDIT PRODUCTS
+        # OPEN BULK EDIT
         # =====================================================
 
         self.bulkedit = BulkEditProductPage(self.driver)
@@ -62,7 +58,7 @@ class Test_BulkEditProductSaveSelected_036:
         self.bulkedit.clickBulkEditProducts()
 
         # =====================================================
-        # ADD PRODUCT
+        # ADD NEW BULK EDIT ROW
         # =====================================================
 
         self.bulkedit.clickAddNew()
@@ -72,9 +68,6 @@ class Test_BulkEditProductSaveSelected_036:
         new_price = self.bulkedit.setNewPrice()
         old_price = self.bulkedit.setOldPrice()
         stock_quantity = self.bulkedit.setStockQuantity()
-
-        # Debug information
-        self.bulkedit.printProductRows()
 
         self.logger.info(
             f"Product Name: {product_name}"
@@ -97,7 +90,13 @@ class Test_BulkEditProductSaveSelected_036:
         )
 
         # =====================================================
-        # SELECT PRODUCT
+        # DEBUG - PRINT BULK EDIT ROWS
+        # =====================================================
+
+        self.bulkedit.printProductRows()
+
+        # =====================================================
+        # SELECT NEW PRODUCT
         # =====================================================
 
         self.bulkedit.selectProductByName(
@@ -105,7 +104,7 @@ class Test_BulkEditProductSaveSelected_036:
         )
 
         self.logger.info(
-            f"Product '{product_name}' selected for Save Selected"
+            f"Product '{product_name}' selected"
         )
 
         # =====================================================
@@ -117,7 +116,7 @@ class Test_BulkEditProductSaveSelected_036:
         self.bulkedit.clickConfirmSelected()
 
         self.logger.info(
-            "Bulk Edit Save Selected completed"
+            "Save Selected completed"
         )
 
         # =====================================================
@@ -126,19 +125,33 @@ class Test_BulkEditProductSaveSelected_036:
 
         self.bulkedit.clickBacktoProductsList()
 
+        self.logger.info(
+            "Returned to Products List"
+        )
+
         # =====================================================
-        # SEARCH PRODUCT
+        # CREATE SEARCH PRODUCT PAGE
         # =====================================================
 
         self.searchproduct = SearchProduct(
             self.driver
         )
 
+        # =====================================================
+        # SEARCH PRODUCT
+        # =====================================================
+
         self.searchproduct.setProductName(
             product_name
         )
 
         self.searchproduct.clickSearch()
+
+        self.logger.info(
+            f"Searching for product '{product_name}'"
+        )
+
+        self.searchproduct.printSearchResults()
 
         # =====================================================
         # VERIFY PRODUCT

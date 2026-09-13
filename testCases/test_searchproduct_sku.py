@@ -1,11 +1,4 @@
-import os
 import pytest
-import string
-import random
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 from pageObjects.LoginPage import LoginPage
 from pageObjects.AddProductPage import AddProduct
@@ -13,7 +6,9 @@ from pageObjects.SearchProductPage import SearchProduct
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen
 
+
 class Test_SearchProductBySKU_030:
+
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
@@ -21,11 +16,20 @@ class Test_SearchProductBySKU_030:
     logger = LogGen.loggen()
 
     @pytest.mark.regression
-    def test_searchproductbysku(self,setup):
-        self.logger.info("*****Test_SearchProductBySKU_030*****")
+    def test_searchproductbysku(self, setup):
+
+        self.logger.info(
+            "*****Test_SearchProductBySKU_030*****"
+        )
+
         self.driver = setup
+
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
+
+        # -------------------------------------------------
+        # LOGIN
+        # -------------------------------------------------
 
         self.lp = LoginPage(self.driver)
 
@@ -33,22 +37,81 @@ class Test_SearchProductBySKU_030:
         self.lp.setPassword(self.password)
         self.lp.clickLogin()
 
-        self.logger.info("*****Login Successful******")
+        self.logger.info(
+            "*****Login Successful******"
+        )
 
-        self.logger.info("*****Staring Search Product By SKU test*****")
+        # -------------------------------------------------
+        # OPEN PRODUCTS
+        # -------------------------------------------------
 
         self.addproduct = AddProduct(self.driver)
+
         self.addproduct.clickonCatalogMenu()
         self.addproduct.clickonProductMenuItem()
 
-        self.searchproduct = SearchProduct(self.driver)
-        self.searchproduct.setSKU("SKU64529")
+        self.searchproduct = SearchProduct(
+            self.driver
+        )
+
+        # -------------------------------------------------
+        # GET PRODUCT + SKU DYNAMICALLY
+        # -------------------------------------------------
+
+        product_name, sku = (
+            self.searchproduct.getFirstProductAndSKU()
+        )
+
+        assert product_name, (
+            "No product was found in the Products table"
+        )
+
+        assert sku, (
+            f"No SKU was found for product "
+            f"'{product_name}'"
+        )
+
+        print(
+            "========================================"
+        )
+
+        print(
+            "Dynamic Product Name:",
+            product_name
+        )
+
+        print(
+            "Dynamic SKU:",
+            sku
+        )
+
+        print(
+            "========================================"
+        )
+
+        # -------------------------------------------------
+        # SEARCH PRODUCT BY DYNAMIC SKU
+        # -------------------------------------------------
+
+        self.searchproduct.setSKU(sku)
+
         self.searchproduct.clickGo()
 
-        print("URL after Go:", self.driver.current_url)
-        print("Title after Go:", self.driver.title)
+        print(
+            "URL after Go:",
+            self.driver.current_url
+        )
 
-        assert self.searchproduct.verifySKU("SKU64529"),\
-        "Expected SKU was not found on the product page"
+        print(
+            "Title after Go:",
+            self.driver.title
+        )
 
+        # -------------------------------------------------
+        # VERIFY SKU ON EDIT PRODUCT PAGE
+        # -------------------------------------------------
 
+        assert self.searchproduct.verifySKU(sku), (
+            f"Expected SKU '{sku}' "
+            f"was not found on the product page"
+        )
