@@ -1133,103 +1133,144 @@ class BulkEditProductSearchPage:
     # SELECT BY VENDOR
     # =========================================================
 
-    def SelectByVendor(
-        self,
-        vendor
-    ):
+
+    def SelectByVendor(self, vendor):
+
+        print(f"Selecting Vendor: {vendor}")
 
         vendor = vendor.strip()
 
-        print(
-            f"Selecting Vendor: {vendor}"
-        )
-
-        # -----------------------------------------------------
-        # PRIMARY METHOD
-        # -----------------------------------------------------
-
         for attempt in range(1, 4):
 
-            print(
-                "Vendor selection "
-                f"(attempt {attempt}/3)"
-            )
+            try:
 
-            selected = (
-                self._select2_by_underlying_select(
-                    "SearchVendorId",
-                    self.vendorContainerId,
-                    vendor
+                print(
+                    f"Vendor selection "
+                    f"(attempt {attempt}/3)"
                 )
-            )
 
-            if selected:
+                # -----------------------------------------
+                # 1. Locate the actual Select2 container
+                # -----------------------------------------
+                dropdown = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, self.drpVendor)
+                    )
+                )
 
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    dropdown
+                )
+
+                # Click the real Select2 control
+                dropdown.click()
+
+                # -----------------------------------------
+                # 2. Wait for Select2 results
+                # -----------------------------------------
+                option_xpath = (
+                    "//li[contains("
+                    "@class,"
+                    "'select2-results__option'"
+                    ") and normalize-space(.)="
+                    f"'{vendor}']"
+                )
+
+                option = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.XPATH, option_xpath)
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    option
+                )
+
+                # -----------------------------------------
+                # 3. Click the actual Vendor1 option
+                # -----------------------------------------
+                self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, option_xpath)
+                    )
+                ).click()
+
+                # -----------------------------------------
+                # 4. Verify visible Select2 text
+                # -----------------------------------------
+                container = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (
+                            By.ID,
+                            self.vendorContainerId
+                        )
+                    )
+                )
+
+                selected_text = (
+                        container.text or ""
+                ).strip()
+
+                print(
+                    "Visible Select2 Vendor:",
+                    selected_text
+                )
+
+                if selected_text.lower() != vendor.lower():
+                    print(
+                        "Visible Select2 value mismatch. "
+                        f"Expected: {vendor}, "
+                        f"Actual: {selected_text}"
+                    )
+
+                    continue
+
+                # -----------------------------------------
+                # 5. Verify underlying select
+                # -----------------------------------------
                 if self._verify_select2_value(
-                    self.vendorContainerId,
-                    vendor
+                        self.vendorContainerId,
+                        vendor
                 ):
-
                     print(
                         f"Vendor '{vendor}' selected"
                     )
 
                     return
 
-            time.sleep(0.5)
-
-        # -----------------------------------------------------
-        # FALLBACK
-        # Vendor may populate through Select2 AJAX.
-        # -----------------------------------------------------
-
-        print(
-            "Falling back to Select2 UI "
-            "for Vendor"
-        )
-
-        for attempt in range(1, 4):
-
-            try:
-
-                opened = (
-                    self._open_select2_dropdown(
-                        (
-                            By.XPATH,
-                            self.drpVendor
-                        )
-                    )
+                print(
+                    "Underlying Vendor select "
+                    "verification failed"
                 )
 
-                if not opened:
-
-                    continue
-
-                self._click_select2_option(
-                    vendor
-                )
+            except StaleElementReferenceException:
 
                 print(
-                    f"Vendor '{vendor}' selected"
+                    "Vendor selection became stale. "
+                    "Retrying..."
                 )
 
-                return
+            except TimeoutException:
 
-            except (
-                TimeoutException,
-                StaleElementReferenceException,
-                NoSuchElementException,
-                ElementClickInterceptedException
-            ):
+                print(
+                    "Vendor option was not available. "
+                    "Retrying..."
+                )
 
-                pass
+            except ElementClickInterceptedException:
 
-            time.sleep(0.7)
+                print(
+                    "Vendor option click intercepted. "
+                    "Retrying..."
+                )
 
         raise TimeoutException(
-            f"Unable to select Vendor: "
-            f"{vendor}"
+            f"Unable to select vendor: {vendor}"
         )
+
+
 
     # =========================================================
     # SET PRODUCT NAME
@@ -1365,8 +1406,9 @@ class BulkEditProductSearchPage:
     # CLICK SEARCH
     # =========================================================
 
-    def clickSearch(self):
 
+
+    def clickSearch(self):
         print("\n========== CLICK SEARCH ==========")
 
         search_button = self.wait.until(
@@ -1385,14 +1427,35 @@ class BulkEditProductSearchPage:
         print("Search button clicked")
 
         # -------------------------------------------------
-        # Wait for DataTables processing to finish
+        # Wait for DataTables processing to START
         # -------------------------------------------------
-
         try:
-
             WebDriverWait(
                 self.driver,
                 5,
+                poll_frequency=0.1
+            ).until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, self.processing)
+                )
+            )
+
+            print("DataTables processing started")
+
+        except TimeoutException:
+            # Processing may be extremely fast, so don't fail here.
+            print(
+                "DataTables processing indicator "
+                "was not observed"
+            )
+
+        # -------------------------------------------------
+        # Wait for DataTables processing to FINISH
+        # -------------------------------------------------
+        try:
+            WebDriverWait(
+                self.driver,
+                20,
                 poll_frequency=0.2
             ).until(
                 EC.invisibility_of_element_located(
@@ -1400,26 +1463,23 @@ class BulkEditProductSearchPage:
                 )
             )
 
-            print(
-                "DataTables processing completed"
-            )
+            print("DataTables processing completed")
 
         except TimeoutException:
-
             print(
-                "DataTables processing wait timed out"
+                "DataTables processing completion "
+                "wait timed out"
             )
 
         # -------------------------------------------------
-        # Wait until Bulk Edit table has a result
+        # Wait until the table has a REAL final result
         # -------------------------------------------------
-
         def result_loaded(driver):
 
             try:
 
-                # Check for "No data available"
-                no_data = driver.find_elements(
+                # Check "No data available in table"
+                no_data_elements = driver.find_elements(
                     By.XPATH,
                     self.product_table
                     + "//tbody//td[contains("
@@ -1428,23 +1488,20 @@ class BulkEditProductSearchPage:
                       ")]"
                 )
 
-                for element in no_data:
+                for element in no_data_elements:
 
                     try:
-
                         if element.is_displayed():
                             print(
-                                "Bulk Edit search returned "
-                                "NO DATA"
+                                "Bulk Edit search returned NO DATA"
                             )
 
                             return True
 
                     except StaleElementReferenceException:
-
                         return False
 
-                # Check for actual product rows
+                # Check actual product rows
                 rows = driver.find_elements(
                     By.XPATH,
                     self.product_rows
@@ -1462,7 +1519,6 @@ class BulkEditProductSearchPage:
                 return False
 
             except StaleElementReferenceException:
-
                 return False
 
         try:
@@ -1476,11 +1532,14 @@ class BulkEditProductSearchPage:
         except TimeoutException:
 
             print(
-                "Timed out waiting for Bulk Edit "
-                "search result"
+                "Timed out waiting for "
+                "Bulk Edit search result"
             )
 
         print("==================================\n")
+
+
+
     # =========================================================
     # GET SEARCH RESULTS
     # =========================================================
