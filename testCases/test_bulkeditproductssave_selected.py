@@ -113,7 +113,7 @@ class Test_BulkEditProductSaveSelected_036:
 
         self.bulkedit.clickSaveSelected()
 
-        self.bulkedit.clickConfirmSelected()
+        self.bulkedit.confirmSaveSelected()
 
         self.logger.info(
             "Save Selected completed"

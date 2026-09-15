@@ -218,19 +218,66 @@ class SearchProduct:
 
         print("Search button clicked")
 
+        # ---------------------------------------------------------
+        # Wait for the Product List table itself
+        # ---------------------------------------------------------
+
         self.wait.until(
             EC.presence_of_element_located(
                 (By.XPATH, self.tbl_producttable_xpath)
             )
         )
 
-        self.wait.until(
-            lambda driver: len(
-                driver.find_elements(
-                    By.XPATH,
-                    self.tbl_producttable_xpath + "//tbody/tr"
+        # ---------------------------------------------------------
+        # Wait until DataTables finishes processing, if present
+        # ---------------------------------------------------------
+
+        processing_xpath = (
+                self.tbl_producttable_xpath +
+                "//ancestor::div[contains(@class,'dataTables_wrapper')]"
+                "//div[contains(@class,'dataTables_processing')]"
+        )
+
+        try:
+
+            WebDriverWait(self.driver, 5).until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, processing_xpath)
                 )
-            ) > 0
+            )
+
+            print("DataTables processing started")
+
+            WebDriverWait(self.driver, 20).until(
+                EC.invisibility_of_element_located(
+                    (By.XPATH, processing_xpath)
+                )
+            )
+
+            print("DataTables processing completed")
+
+        except TimeoutException:
+
+            print(
+                "DataTables processing indicator was not observed"
+            )
+
+        # ---------------------------------------------------------
+        # IMPORTANT:
+        # Do NOT simply wait for any row.
+        # Wait until DataTables has finished rendering the tbody.
+        # ---------------------------------------------------------
+
+        self.wait.until(
+            lambda driver: (
+                    len(
+                        driver.find_elements(
+                            By.XPATH,
+                            self.tbl_producttable_xpath +
+                            "//tbody//tr"
+                        )
+                    ) > 0
+            )
         )
 
         print("Search results table loaded")
@@ -308,7 +355,7 @@ class SearchProduct:
                             f"Retrying..."
                         )
 
-                        return False
+                        continue
 
                 return False
 

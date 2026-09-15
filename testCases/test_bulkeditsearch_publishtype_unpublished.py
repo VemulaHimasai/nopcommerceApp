@@ -19,61 +19,73 @@ class Test_BulkEditSearchPublishTypeUnPublished_042:
     def test_bulkeditsearch_publishtype_unpublished(self, setup):
 
         self.logger.info(
-            "***** Test_BulkEditProductSearchPublishTypeUnPublished_042 Started *****"
+            "***** Test_BulkEditSearchPublishTypeUnPublished_042 Started *****"
         )
 
         self.driver = setup
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
 
-        # ---------------- LOGIN ----------------
+        # Login
         self.lp = LoginPage(self.driver)
-
         self.lp.setUserName(self.username)
         self.lp.setPassword(self.password)
         self.lp.clickLogin()
 
-        self.logger.info(
-            "***** Login Successful *****"
-        )
-
-        # ---------------- NAVIGATE TO BULK EDIT ----------------
-        self.logger.info(
-            "***** Starting Bulk Edit Product Search Published Type Test *****"
-        )
-
+        # Open Product List
         self.addproduct = AddProduct(self.driver)
-
         self.addproduct.clickonCatalogMenu()
         self.addproduct.clickonProductMenuItem()
 
+        # Open Bulk Edit Products
         self.bulkedit = BulkEditProductPage(self.driver)
         self.bulkedit.clickBulkEditProducts()
 
-        # ---------------- INITIALIZE BULK EDIT SEARCH PAGE ----------------
-        self.bulkeditsearch = BulkEditProductSearchPage(
-            self.driver
-        )
+        self.bulkeditsearch = BulkEditProductSearchPage(self.driver)
 
-        # ---------------- SEARCH BY PUBLISHED TYPE ----------------
+        # Select Unpublished Only
         self.bulkeditsearch.SelectByPublishedType(
             "Unpublished only"
         )
 
+        self.logger.info(
+            "***** Published Type 'Unpublished only' selected *****"
+        )
+
+
+
+        # Search
         self.bulkeditsearch.clickSearch()
 
-        # ---------------- VERIFY NO DATA ----------------
-        assert self.bulkeditsearch.isNoDataAvailable(), (
-            "Expected 'No data available in table' "
-            "for Published Type: Unpublished only"
+        self.logger.info(
+            "***** Search completed for Published Type "
+            "'Unpublished only' *****"
         )
 
-        self.logger.info(
-            "***** Published Type 'Unpublished only' "
-            "correctly returned no data *****"
-        )
+        # Get search results
+        rows = self.bulkeditsearch.getSearchResults()
 
-        self.logger.info(
-            "***** Published Type 'Unpublished only' "
-            "Search Passed *****"
-        )
+        if len(rows) == 0:
+
+            self.logger.info(
+                "***** No unpublished products found. "
+                "'No data available in table' is expected. *****"
+            )
+
+            assert self.bulkeditsearch.isNoDataAvailable(), (
+                "Search returned 0 rows, but "
+                "'No data available in table' message "
+                "was not displayed."
+            )
+
+        else:
+
+            self.logger.info(
+                f"***** Found {len(rows)} "
+                "unpublished product(s) *****"
+            )
+
+            assert self.bulkeditsearch.areAllProductsUnpublished(), (
+                "Unpublished Only filter returned one "
+                "or more published products"
+            )

@@ -259,8 +259,8 @@ class EditProductPage:
             return message.is_displayed()
 
         except (
-            StaleElementReferenceException,
-            TimeoutException
+                StaleElementReferenceException,
+                TimeoutException
         ):
 
             print(
@@ -320,36 +320,115 @@ class EditProductPage:
             self.driver.execute_script("arguments[0].click();",checkbox)
             print(f"Product checkbox selected at row: {row_number}")
 
-
     def confirmDelete(self):
+        print("Waiting for Delete Confirmation...")
+
+        wait = WebDriverWait(
+            self.driver,
+            15,
+            poll_frequency=0.2
+        )
+
+        # Do not depend on Bootstrap ".modal.show".
+        # Exclude the original product-delete button so that
+        # Selenium does not click Delete twice.
+        confirm_button_xpath = (
+            "//button[normalize-space()='Delete' "
+            "and not(@id='product-delete') "
+            "and not(contains(@style,'display: none'))]"
+        )
+
         try:
 
-           delete_modal_xpath = (
-               "//div[contains(@class,'modal') and contains(@class,'show')]"
-           )
-           self.wait.until(EC.visibility_of_element_located(
-               (By.XPATH, delete_modal_xpath)
-           ))
-           print("Delete confirmation modal found")
-           confirm_button_xpath = (
-               "//button[normalize-space()='Delete' "
-               "and not(contains(@style,'display: none'))]"
-           )
-           confirm_button = self.wait.until(EC.element_to_be_clickable(
-               (By.XPATH, confirm_button_xpath)
-           ))
-           print("Delete Confirmation button found: ",confirm_button.text)
-           self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",confirm_button)
-           confirm_button.click()
-           print("Delete Confirmation clicked")
-           self.wait.until(EC.url_contains("/Admin/Product/List"))
-           print("Product List page loaded after deletion")
-           self.wait.until(EC.presence_of_element_located(
-               (By.XPATH,self.tbl_producttable_xpath)
-           ))
-           print("Product table found")
-           print("Product deletion completed")
+            for attempt in range(3):
+
+                try:
+
+                    print(
+                        f"Delete confirmation (attempt "
+                        f"{attempt + 1}/3)"
+                    )
+
+                    confirm_button = wait.until(
+                        EC.element_to_be_clickable(
+                            (By.XPATH, confirm_button_xpath)
+                        )
+                    )
+
+                    print(
+                        "Delete Confirmation button found:",
+                        confirm_button.text
+                    )
+
+                    self.driver.execute_script(
+                        "arguments[0].scrollIntoView({block:'center'});",
+                        confirm_button
+                    )
+
+                    try:
+                        confirm_button.click()
+
+                    except StaleElementReferenceException:
+
+                        print(
+                            "Delete confirmation button became stale. "
+                            "Finding it again..."
+                        )
+
+                        confirm_button = wait.until(
+                            EC.element_to_be_clickable(
+                                (By.XPATH, confirm_button_xpath)
+                            )
+                        )
+
+                        self.driver.execute_script(
+                            "arguments[0].click();",
+                            confirm_button
+                        )
+
+                    print("Delete Confirmation clicked")
+
+                    break
+
+                except (
+                        StaleElementReferenceException,
+                        TimeoutException
+                ):
+
+                    if attempt == 2:
+                        raise
+
+                    print(
+                        "Delete confirmation button not ready. "
+                        "Retrying..."
+                    )
+
+            # Wait for redirect back to Product List
+            # Wait for redirect back to Product List
+            try:
+                self.wait.until(
+                    EC.url_contains("/Admin/Product/List")
+                )
+                print("Product List page loaded after deletion")
+
+            except TimeoutException:
+                print("Timed out waiting for Product List redirect")
+                print("Current URL:", self.driver.current_url)
+                print("Current Title:", self.driver.title)
+                raise
+
+            # Wait for product table
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (By.XPATH, self.tbl_producttable_xpath)
+                )
+            )
+
+            print("Product table found")
+            print("Product deletion completed")
+
         except TimeoutException:
+
             print("Delete confirmation process timed out")
             print("Current URL:", self.driver.current_url)
             raise

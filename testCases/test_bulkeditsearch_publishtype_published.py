@@ -1,3 +1,4 @@
+
 import pytest
 
 from pageObjects.LoginPage import LoginPage
@@ -58,12 +59,18 @@ class Test_BulkEditSearchPublishTypePublished_041:
         # ---------------- VERIFY RESULTS ----------------
         rows = self.bulkeditsearch.getSearchResults()
 
-        self.logger.info(f"***** Products Found: {len(rows)} *****")
+        self.logger.info(
+            f"***** Products Found: {len(rows)} *****"
+        )
 
         assert len(rows) > 0, (
             "No products found for Published Type: Published Only"
         )
 
+        assert self.bulkeditsearch.areAllProductsPublished(), (
+            "Published Only filter returned one or more unpublished products"
+        )
+
         self.logger.info(
-            "***** Published Type 'Published' Search Passed *****"
+            "***** Published Type 'Published Only' Search Passed *****"
         )

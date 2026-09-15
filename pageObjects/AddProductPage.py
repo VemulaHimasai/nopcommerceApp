@@ -1,11 +1,12 @@
 import random
+import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import (
     StaleElementReferenceException,
-    TimeoutException
+    TimeoutException, ElementClickInterceptedException
 )
 #Add Product Page
 class AddProduct:
@@ -14,7 +15,10 @@ class AddProduct:
     lnkProducts_menuitem_xpath = "//a[@href='/Admin/Product/List']"
 
     #Add New Button
-    btnAddnew_xpath = "//a[normalize-space()='Add new']"
+    btnAddnew_xpath = (
+        "//a[contains(@href,'/Admin/Product/Create') "
+        "and contains(normalize-space(.),'Add new')]"
+    )
 
     #Product fields
     txtProductName_xpath = "//input[@id='Name']"
@@ -66,77 +70,251 @@ class AddProduct:
         self.wait = WebDriverWait(driver, 15)
 
     def clickonCatalogMenu(self):
+
         for attempt in range(3):
+
             try:
-                catalog_menu = self.wait.until(EC.presence_of_element_located(
-                    (By.XPATH, self.lnkCatalog_menu_xpath)
-                ))
-                self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", catalog_menu)
-                self.driver.execute_script("arguments[0].click();", catalog_menu)
-                self.wait.until(EC.presence_of_element_located(
-                    (By.XPATH,"//a[contains(@href,'/Admin/Product/List')]")
-                ))
+                print(
+                    f"Opening Catalog menu "
+                    f"(attempt {attempt + 1}/3)"
+                )
+
+                catalog_menu = self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.lnkCatalog_menu_xpath
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    catalog_menu
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    catalog_menu
+                )
+
+                # Wait for Products submenu to exist
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.lnkProducts_menuitem_xpath
+                        )
+                    )
+                )
+
                 print("Catalog menu opened")
-                return
-            except (StaleElementReferenceException, TimeoutException):
-                print(f"Catalog menu not ready."
-                      f"Retrying ({attempt+1}/3)...")
-                if attempt == 2:
-                    raise
+                return True
+
+            except (
+                    StaleElementReferenceException,
+                    TimeoutException
+            ):
+
+                print(
+                    f"Catalog menu not ready. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                time.sleep(0.5)
+
+        raise TimeoutException(
+            "Catalog menu could not be opened."
+        )
 
     def clickonProductMenuItem(self):
-        for attempt in range(3):
-            try:
-                product_menu_item = self.wait.until(EC.presence_of_element_located(
-                    (By.XPATH, self.lnkProducts_menuitem_xpath)
-                ))
-                self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", product_menu_item)
-                self.driver.execute_script("arguments[0].click();", product_menu_item)
-                self.wait.until(EC.url_contains("/Admin/Product/List"))
-                self.wait.until(EC.presence_of_element_located(
-                    (By.XPATH,self.btnAddnew_xpath)
-                ))
-                print("Product menu opened")
-                print("Current url: ",self.driver.current_url)
-                return
-            except (StaleElementReferenceException, TimeoutException):
-                print(f"Catalog menu not ready."
-                      f"Retrying ({attempt + 1}/3)...")
-                if attempt < 2:
-                    try:
-                        catalog_menu = self.wait.until(EC.element_to_be_clickable(
-                            (By.XPATH,self.lnkCatalog_menu_xpath)
-                        ))
-                        self.driver.execute_script("arguments[0].click();", catalog_menu)
-                    except (StaleElementReferenceException, TimeoutException):
-                        pass
-                else:
-                    raise
 
+        for attempt in range(3):
+
+            try:
+
+                print(
+                    f"Opening Product menu "
+                    f"(attempt {attempt + 1}/3)"
+                )
+
+                # -------------------------------------------------
+                # Re-open Catalog menu on every retry
+                # -------------------------------------------------
+
+                catalog_menu = self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.lnkCatalog_menu_xpath
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    catalog_menu
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    catalog_menu
+                )
+
+                # -------------------------------------------------
+                # Wait for Products submenu
+                # -------------------------------------------------
+
+                product_menu_item = self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.lnkProducts_menuitem_xpath
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    product_menu_item
+                )
+
+                # -------------------------------------------------
+                # JS click
+                # -------------------------------------------------
+
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    product_menu_item
+                )
+
+                # -------------------------------------------------
+                # Wait for Product List URL
+                # -------------------------------------------------
+
+                self.wait.until(
+                    EC.url_contains(
+                        "/Admin/Product/List"
+                    )
+                )
+
+                # -------------------------------------------------
+                # Wait for Product List page
+                # -------------------------------------------------
+
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.btnAddnew_xpath
+                        )
+                    )
+                )
+
+                print("Product menu opened")
+                print(
+                    "Current url:",
+                    self.driver.current_url
+                )
+
+                return True
+
+            except (
+                    StaleElementReferenceException,
+                    TimeoutException,
+                    ElementClickInterceptedException
+            ):
+
+                print(
+                    f"Product page not ready. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                time.sleep(0.5)
+
+        raise TimeoutException(
+            "Product menu could not be opened "
+            "after 3 attempts."
+        )
     # add new product
 
     def clickonAddNew(self):
-        add_new_button = self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH,self.btnAddnew_xpath)
-        ))
-        print("Button found:", add_new_button.text)
-        print("Button href:", add_new_button.get_attribute("href"))
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            add_new_button
-        )
-        # Firefox workaround: navigate using the actual href
-        self.driver.get(
-            add_new_button.get_attribute("href")
-        )
 
-        print("After Add New navigation")
-        print("Current URL:", self.driver.current_url)
-        print("Current Title:", self.driver.title)
+        for attempt in range(3):
 
-        self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH,self.txtProductName_xpath)
-        ))
+            try:
+
+                print(
+                    f"Opening Add New Product "
+                    f"(attempt {attempt + 1}/3)"
+                )
+
+                add_new_button = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, self.btnAddnew_xpath)
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    add_new_button
+                )
+
+                href = add_new_button.get_attribute("href")
+
+                print("Button found:", add_new_button.text)
+                print("Button href:", href)
+
+                if not href:
+                    raise TimeoutException(
+                        "Add New button href is empty"
+                    )
+
+                # Firefox workaround
+                self.driver.get(href)
+
+                self.wait.until(
+                    EC.url_contains("/Admin/Product/Create")
+                )
+
+                self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.XPATH, self.txtProductName_xpath)
+                    )
+                )
+
+                print("Add New Product page loaded")
+                print("Current URL:", self.driver.current_url)
+
+                return
+
+            except (
+                    StaleElementReferenceException,
+                    TimeoutException
+            ):
+
+                print(
+                    f"Add New Product page not ready. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
 
     # Product details
     def setProduct(self,product_name=None,short_description="Test product short description",

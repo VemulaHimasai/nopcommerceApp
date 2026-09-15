@@ -79,7 +79,7 @@ class Test_BulkEditProductSaveAll_035:
         # -------------------------------------------------
 
         self.bulkedit.clickSaveAll()
-        self.bulkedit.clickConfirmSaveAll()
+        self.bulkedit.confirmSaveAll()
 
         self.logger.info("Bulk Edit Save All completed")
 
