@@ -564,6 +564,10 @@ class SearchProduct:
             "//tbody//tr"
         )
 
+        expected_product_name = " ".join(
+            product_name.split()
+        ).strip().lower()
+
         def find_product(driver):
 
             try:
@@ -573,9 +577,14 @@ class SearchProduct:
                     rows_xpath
                 )
 
+                print(
+                    f"Product verification - "
+                    f"Rows found: {len(rows)}"
+                )
+
                 for index, row in enumerate(
-                    rows,
-                    start=1
+                        rows,
+                        start=1
                 ):
 
                     try:
@@ -588,7 +597,10 @@ class SearchProduct:
                         if row_text.lower() == "loading...":
                             continue
 
-                        if "No data available in table" in row_text:
+                        if (
+                                "No data available in table"
+                                in row_text
+                        ):
                             continue
 
                         print(
@@ -608,14 +620,26 @@ class SearchProduct:
                             cells[2].text.strip()
                         )
 
-                        if not actual_product_name:
-                            continue
+                        actual_product_name_normalized = (
+                            " ".join(
+                                actual_product_name.split()
+                            ).strip().lower()
+                        )
+
+                        print(
+                            f"Expected product: "
+                            f"{product_name}"
+                        )
+
+                        print(
+                            f"Actual product: "
+                            f"{actual_product_name}"
+                        )
 
                         if (
-                            actual_product_name
-                            == product_name
+                                actual_product_name_normalized
+                                == expected_product_name
                         ):
-
                             print(
                                 f"Product found: "
                                 f"{actual_product_name}"
@@ -636,13 +660,16 @@ class SearchProduct:
 
             except StaleElementReferenceException:
 
+                print(
+                    "Products grid became stale. "
+                    "Retrying..."
+                )
+
                 return False
 
         try:
 
-            self.wait.until(
-                find_product
-            )
+            self.wait.until(find_product)
 
             print(
                 f"Product '{product_name}' "
@@ -654,7 +681,7 @@ class SearchProduct:
         except TimeoutException:
 
             print(
-                f"Product not found in search results: "
+                f"\nProduct not found in search results: "
                 f"{product_name}"
             )
 
@@ -668,8 +695,53 @@ class SearchProduct:
                 self.driver.title
             )
 
-            return False
+            # -------------------------------------------------
+            # Debug Products Grid
+            # -------------------------------------------------
 
+            try:
+
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    rows_xpath
+                )
+
+                print(
+                    f"\n========== PRODUCTS GRID DEBUG =========="
+                )
+
+                print(
+                    f"Total rows found: {len(rows)}"
+                )
+
+                for index, row in enumerate(
+                        rows,
+                        start=1
+                ):
+
+                    try:
+
+                        print(
+                            f"ROW {index}: {row.text}"
+                        )
+
+                    except StaleElementReferenceException:
+
+                        print(
+                            f"ROW {index}: STALE"
+                        )
+
+                print(
+                    "========== END PRODUCTS GRID DEBUG ==========\n"
+                )
+
+            except Exception as e:
+
+                print(
+                    f"Unable to read Products grid: {e}"
+                )
+
+            return False
     # =========================================================
     # SKU
     # =========================================================
