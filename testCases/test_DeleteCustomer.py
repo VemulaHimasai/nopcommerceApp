@@ -54,7 +54,38 @@ class Test_DeleteCustomer_011:
 
         time.sleep(2)
 
+        # =================================================
+        # DEBUG CUSTOMER DATA
+        # =================================================
+
+        rows = self.driver.find_elements(
+            By.XPATH,
+            searchcust.tableRows_xpath
+        )
+
+        print(
+            f"\nDEBUG: Customers available before delete: {len(rows)}"
+        )
+
+        for i, row in enumerate(rows):
+
+            try:
+
+                print(
+                    f"DEBUG Customer {i}: {row.text}"
+                )
+
+            except Exception as e:
+
+                print(
+                    f"DEBUG Customer {i}: "
+                    f"Could not read row - {e}"
+                )
+
+        # =================================================
         # Select customer and click Edit
+        # =================================================
+
         searchcust.clickEditCustomer(2)
 
         self.logger.info(

@@ -1,7 +1,7 @@
 
 import time
 
-from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException, NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -452,6 +452,45 @@ class SearchCustomer:
                 (By.XPATH, self.table_xpath)
             )
         )
+
+    # =================================================
+    # WAIT FOR REAL CUSTOMER ROWS
+    # =================================================
+
+    def waitForCustomerRows(self):
+
+        def real_customer_rows_loaded(driver):
+
+            rows = driver.find_elements(
+                By.XPATH,
+                self.tableRows_xpath
+            )
+
+            for row in rows:
+
+                try:
+
+                    columns = row.find_elements(
+                        By.TAG_NAME,
+                        "td"
+                    )
+
+                    # A real customer row has at least 2 columns
+                    # and the Email column contains a value.
+                    if len(columns) >= 2:
+
+                        email = columns[1].text.strip()
+
+                        if email:
+                            return True
+
+                except StaleElementReferenceException:
+
+                    return False
+
+            return False
+
+        self.wait.until(real_customer_rows_loaded)
 
     # =================================================
     # NUMBER OF ROWS
@@ -919,163 +958,590 @@ class SearchCustomer:
 
     def clickEditCustomerByEmail(self, email):
 
-        for attempt in range(3):
+        email = email.strip()
+
+        max_pages = 100
+        page_count = 0
+
+        while page_count < max_pages:
+
+            page_count += 1
+
+            print(
+                f"\n========== CHECKING CUSTOMER PAGE {page_count} =========="
+            )
+
+            # =================================================
+            # WAIT FOR TABLE
+            # =================================================
+
+            self.waitForTable()
+
+            # =================================================
+            # WAIT FOR DATATABLES PROCESSING TO FINISH
+            # =================================================
+
+            processing_xpaths = [
+                "//div[@id='customers-grid_processing']",
+                "//div[contains(@class,'dataTables_processing')]"
+            ]
+
+            for processing_xpath in processing_xpaths:
+
+                try:
+
+                    processing_element = self.driver.find_element(
+                        By.XPATH,
+                        processing_xpath
+                    )
+
+                    if processing_element.is_displayed():
+                        print(
+                            "Customer DataTable is processing..."
+                        )
+
+                        self.wait.until(
+                            EC.invisibility_of_element_located(
+                                (
+                                    By.XPATH,
+                                    processing_xpath
+                                )
+                            )
+                        )
+
+                        print(
+                            "Customer DataTable processing completed."
+                        )
+
+                        break
+
+                except (
+                        NoSuchElementException,
+                        StaleElementReferenceException
+                ):
+                    continue
+
+                except TimeoutException:
+
+                    print(
+                        "DataTable processing indicator did not "
+                        "disappear within the expected time."
+                    )
+
+                    break
+
+            # =================================================
+            # WAIT FOR CUSTOMER ROWS
+            # =================================================
 
             try:
 
-                self.waitForTable()
-
-                while True:
-
-                    # -----------------------------------------
-                    # Search customer on current page
-                    # -----------------------------------------
-
-                    row_xpath = (
-                        f"{self.tableRows_xpath}"
-                        f'[td[2][normalize-space()="{email}"]]'
-                    )
-
-                    rows = self.driver.find_elements(
-                        By.XPATH,
-                        row_xpath
-                    )
-
-                    if rows:
-                        print(
-                            f"Customer found on current page: {email}"
-                        )
-
-                        edit_button_xpath = (
-                            f"{row_xpath}"
-                            f"//td[last()]//a"
-                        )
-
-                        edit_button = self.wait.until(
-                            EC.element_to_be_clickable(
-                                (
+                self.wait.until(
+                    lambda driver: (
+                            len(
+                                driver.find_elements(
                                     By.XPATH,
-                                    edit_button_xpath
+                                    self.tableRows_xpath
                                 )
-                            )
-                        )
-
-                        self.driver.execute_script(
-                            "arguments[0].scrollIntoView({block:'center'});",
-                            edit_button
-                        )
-
-                        edit_button.click()
-
-                        return
-
-                    # -----------------------------------------
-                    # Customer not found on current page
-                    # -----------------------------------------
-
-                    print(
-                        f"Customer '{email}' not found on current page."
+                            ) > 0
                     )
+                )
 
-                    # -----------------------------------------
-                    # Find Next button
-                    # -----------------------------------------
+            except TimeoutException:
 
-                    try:
+                raise AssertionError(
+                    f"No customer rows available on page "
+                    f"{page_count} while searching for '{email}'."
+                )
 
-                        next_button = self.wait.until(
-                            EC.presence_of_element_located(
-                                (
-                                    By.XPATH,
-                                    "//a[normalize-space()='Next']"
-                                )
-                            )
-                        )
+            # =================================================
+            # WAIT FOR TABLE TO STABILIZE
+            # =================================================
 
-                    except TimeoutException:
+            try:
 
-                        raise AssertionError(
-                            f"Customer {email} not found on any page"
-                        )
+                previous_row_count = 0
 
-                    # -----------------------------------------
-                    # Check if Next is disabled
-                    # -----------------------------------------
+                def rows_stable(driver):
 
-                    classes = (
-                            next_button.get_attribute("class")
-                            or ""
-                    )
+                    nonlocal previous_row_count
 
-                    if "disabled" in classes:
-                        raise AssertionError(
-                            f"Customer {email} not found on any page"
-                        )
-
-                    print(
-                        f"Moving to next page while searching "
-                        f"for '{email}'"
-                    )
-
-                    # -----------------------------------------
-                    # Save current page rows
-                    # -----------------------------------------
-
-                    old_rows = self.driver.find_elements(
+                    current_rows = driver.find_elements(
                         By.XPATH,
                         self.tableRows_xpath
                     )
 
-                    # -----------------------------------------
-                    # Click Next
-                    # -----------------------------------------
+                    current_row_count = len(current_rows)
 
-                    self.driver.execute_script(
-                        "arguments[0].scrollIntoView({block:'center'});",
-                        next_button
+                    print(
+                        f"Current customer row count: "
+                        f"{current_row_count}"
                     )
 
-                    self.driver.execute_script(
-                        "arguments[0].click();",
-                        next_button
+                    if current_row_count == 0:
+                        previous_row_count = 0
+                        return False
+
+                    if current_row_count == previous_row_count:
+                        return True
+
+                    previous_row_count = current_row_count
+                    return False
+
+                self.wait.until(rows_stable)
+
+            except TimeoutException:
+
+                print(
+                    "Customer table did not stabilize within "
+                    "the expected time. Continuing search..."
+                )
+
+            # =================================================
+            # SEARCH CURRENT PAGE
+            # =================================================
+
+            restart_current_page = False
+
+            try:
+
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    self.tableRows_xpath
+                )
+
+                print(
+                    f"Rows found on current page: {len(rows)}"
+                )
+
+                # =================================================
+                # DEBUG CURRENT ROWS
+                # =================================================
+
+                for row_number, row in enumerate(
+                        rows,
+                        start=1
+                ):
+
+                    try:
+
+                        row_text = row.text.strip()
+
+                        print(
+                            f"Row {row_number}: "
+                            f"{row_text[:200]}"
+                        )
+
+                    except StaleElementReferenceException:
+
+                        print(
+                            f"Row {row_number} became stale "
+                            f"during debug."
+                        )
+
+                # =================================================
+                # SEARCH EACH ROW
+                # =================================================
+
+                for row_index in range(len(rows)):
+
+                    row_xpath = (
+                        f"({self.tableRows_xpath})"
+                        f"[{row_index + 1}]"
                     )
 
-                    # -----------------------------------------
-                    # Wait for table refresh
-                    # -----------------------------------------
+                    try:
 
-                    if old_rows:
+                        # -------------------------------------------------
+                        # Re-locate exact row
+                        # -------------------------------------------------
 
-                        try:
+                        row = self.driver.find_element(
+                            By.XPATH,
+                            row_xpath
+                        )
 
-                            self.wait.until(
-                                EC.staleness_of(old_rows[0])
+                        columns = row.find_elements(
+                            By.TAG_NAME,
+                            "td"
+                        )
+
+                        if len(columns) < 2:
+                            continue
+
+                        row_email = columns[1].text.strip()
+
+                        print(
+                            f"Row {row_index + 1} email: "
+                            f"{row_email}"
+                        )
+
+                        # =================================================
+                        # CUSTOMER FOUND
+                        # =================================================
+
+                        if row_email == email:
+                            print(
+                                f"\nCustomer found: '{email}'"
                             )
 
-                        except StaleElementReferenceException:
-                            pass
+                            print(
+                                f"Customer row position: "
+                                f"{row_index + 1}"
+                            )
 
-                    # -----------------------------------------
-                    # Wait for new table
-                    # -----------------------------------------
+                            # -------------------------------------------------
+                            # Exact Edit button inside matching row
+                            # -------------------------------------------------
 
-                    self.waitForTable()
+                            edit_button_xpath = (
+                                f"{row_xpath}"
+                                f"//td[last()]//a"
+                            )
+
+                            # -------------------------------------------------
+                            # Wait for Edit button
+                            # -------------------------------------------------
+
+                            self.wait.until(
+                                EC.presence_of_element_located(
+                                    (
+                                        By.XPATH,
+                                        edit_button_xpath
+                                    )
+                                )
+                            )
+
+                            # -------------------------------------------------
+                            # Scroll to Edit button
+                            # -------------------------------------------------
+
+                            edit_button = self.driver.find_element(
+                                By.XPATH,
+                                edit_button_xpath
+                            )
+
+                            self.driver.execute_script(
+                                """
+                                arguments[0].scrollIntoView({
+                                    block: 'center',
+                                    inline: 'nearest'
+                                });
+                                """,
+                                edit_button
+                            )
+
+                            # -------------------------------------------------
+                            # Wait until clickable
+                            # -------------------------------------------------
+
+                            self.wait.until(
+                                EC.element_to_be_clickable(
+                                    (
+                                        By.XPATH,
+                                        edit_button_xpath
+                                    )
+                                )
+                            )
+
+                            # -------------------------------------------------
+                            # Final re-location
+                            # -------------------------------------------------
+
+                            edit_button = self.driver.find_element(
+                                By.XPATH,
+                                edit_button_xpath
+                            )
+
+                            print(
+                                "Clicking Edit button..."
+                            )
+
+                            # -------------------------------------------------
+                            # JavaScript click
+                            # -------------------------------------------------
+
+                            self.driver.execute_script(
+                                "arguments[0].click();",
+                                edit_button
+                            )
+
+                            print(
+                                f"Edit clicked successfully "
+                                f"for '{email}'"
+                            )
+
+                            return
+
+                    except StaleElementReferenceException:
+
+                        print(
+                            f"Row {row_index + 1} became stale."
+                        )
+
+                        print(
+                            "Restarting search from the beginning "
+                            "of the CURRENT page..."
+                        )
+
+                        restart_current_page = True
+                        break
 
             except StaleElementReferenceException:
 
                 print(
-                    f"Customer table refreshed while searching "
-                    f"'{email}'. "
-                    f"Retrying ({attempt + 1}/3)..."
+                    "Customer table became stale while searching."
                 )
 
-                if attempt == 2:
-                    raise
+                restart_current_page = True
 
-                time.sleep(1)
+            # =================================================
+            # RESTART CURRENT PAGE AFTER STALE ELEMENT
+            # =================================================
+
+            if restart_current_page:
+
+                time.sleep(0.5)
+
+                try:
+
+                    self.wait.until(
+                        lambda driver: len(
+                            driver.find_elements(
+                                By.XPATH,
+                                self.tableRows_xpath
+                            )
+                        ) > 0
+                    )
+
+                except TimeoutException:
+
+                    raise AssertionError(
+                        f"Customer table did not recover on "
+                        f"page {page_count}."
+                    )
+
+                print(
+                    f"Current page {page_count} refreshed. "
+                    f"Searching again..."
+                )
+
+                continue
+
+            # =================================================
+            # CUSTOMER NOT FOUND ON CURRENT PAGE
+            # =================================================
+
+            print(
+                f"Customer '{email}' not found on page "
+                f"{page_count}."
+            )
+
+            # =================================================
+            # NEXT BUTTON
+            # =================================================
+
+            next_button_xpath = (
+                "//div[@id='customers-grid_wrapper']"
+                "//a[contains(@class,'paginate_button') "
+                "and normalize-space()='Next']"
+            )
+
+            try:
+
+                next_button = self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            next_button_xpath
+                        )
+                    )
+                )
+
+            except TimeoutException:
+
+                raise AssertionError(
+                    f"Customer '{email}' was not found. "
+                    f"'Next' button is not available."
+                )
+
+            # =================================================
+            # CHECK NEXT BUTTON STATUS
+            # =================================================
+
+            classes = (
+                    next_button.get_attribute("class")
+                    or ""
+            )
+
+            aria_disabled = (
+                    next_button.get_attribute("aria-disabled")
+                    or ""
+            )
+
+            print(
+                "Next button class:",
+                classes
+            )
+
+            print(
+                "Next aria-disabled:",
+                aria_disabled
+            )
+
+            if (
+                    "disabled" in classes
+                    or
+                    aria_disabled.lower() == "true"
+            ):
+                raise AssertionError(
+                    f"Customer '{email}' was not found "
+                    f"on any customer page."
+                )
+
+            # =================================================
+            # CAPTURE CURRENT FIRST ROW EMAIL
+            # =================================================
+
+            old_first_email = ""
+
+            try:
+
+                old_first_row = self.driver.find_element(
+                    By.XPATH,
+                    f"({self.tableRows_xpath})[1]"
+                )
+
+                old_columns = old_first_row.find_elements(
+                    By.TAG_NAME,
+                    "td"
+                )
+
+                if len(old_columns) >= 2:
+                    old_first_email = (
+                        old_columns[1]
+                        .text
+                        .strip()
+                    )
+
+            except (
+                    StaleElementReferenceException,
+                    TimeoutException
+            ):
+
+                old_first_email = ""
+
+            print(
+                "Current first-row email:",
+                old_first_email
+            )
+
+            # =================================================
+            # CLICK NEXT
+            # =================================================
+
+            self.driver.execute_script(
+                """
+                arguments[0].scrollIntoView({
+                    block: 'center',
+                    inline: 'nearest'
+                });
+                """,
+                next_button
+            )
+
+            # Re-locate Next
+            next_button = self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        next_button_xpath
+                    )
+                )
+            )
+
+            print(
+                "Clicking Next..."
+            )
+
+            self.driver.execute_script(
+                "arguments[0].click();",
+                next_button
+            )
+
+            print(
+                "Next button clicked."
+            )
+
+            # =================================================
+            # WAIT FOR NEXT PAGE CONTENT
+            # =================================================
+
+            if old_first_email:
+
+                try:
+
+                    self.wait.until(
+                        lambda driver: (
+                                len(
+                                    driver.find_elements(
+                                        By.XPATH,
+                                        self.tableRows_xpath
+                                    )
+                                ) > 0
+                                and
+                                len(
+                                    driver.find_elements(
+                                        By.XPATH,
+                                        f"({self.tableRows_xpath})[1]//td"
+                                    )
+                                ) >= 2
+                                and
+                                driver.find_element(
+                                    By.XPATH,
+                                    f"({self.tableRows_xpath})[1]//td[2]"
+                                ).text.strip()
+                                != old_first_email
+                        )
+                    )
+
+                    print(
+                        "Customer table contents changed."
+                    )
+
+                except TimeoutException:
+
+                    print(
+                        "First row did not change within "
+                        "the expected time."
+                    )
+
+                    print(
+                        "Checking the current table anyway..."
+                    )
+
+            # =================================================
+            # WAIT FOR NEW PAGE ROWS
+            # =================================================
+
+            self.wait.until(
+                lambda driver: len(
+                    driver.find_elements(
+                        By.XPATH,
+                        self.tableRows_xpath
+                    )
+                ) > 0
+            )
+
+            print(
+                f"Page {page_count + 1} is ready."
+            )
+
+        # =================================================
+        # MAX PAGE LIMIT
+        # =================================================
 
         raise AssertionError(
-            f"Unable to find/edit customer with email: {email}"
+            f"Unable to find/edit customer with email: {email} "
+            f"after checking {max_pages} pages."
         )
-
-

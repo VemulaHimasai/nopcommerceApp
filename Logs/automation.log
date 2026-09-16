@@ -13283,3 +13283,1854 @@ The new customer has been added successfully.
 09/15/2026 04:34:18 PM: INFO: ********Starting_SearchVendor_Role_025******
 09/15/2026 04:34:29 PM: INFO: Normal table customer count: 15
 09/15/2026 04:34:30 PM: INFO: Vendor search result count: 0
+09/15/2026 08:22:38 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/15/2026 08:22:44 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/15/2026 08:22:49 PM: INFO: ********** Login Successful **********
+09/15/2026 08:22:51 PM: INFO: ********** Products page opened successfully **********
+09/15/2026 08:22:59 PM: INFO: ********** Product search performed for Vendor1 **********
+09/15/2026 08:22:59 PM: INFO: ********** 'No data available in table' validated **********
+09/15/2026 08:22:59 PM: INFO: ********** 'No records' validated **********
+09/15/2026 08:22:59 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/15/2026 08:24:15 PM: INFO: ******* Deleting Customer *******
+09/15/2026 08:24:33 PM: INFO: ******* Login Successful *****
+09/15/2026 08:24:35 PM: INFO: ******* Customers page opened *******
+09/15/2026 08:24:39 PM: INFO: ******* Edit Customer button clicked *******
+09/15/2026 08:24:41 PM: INFO: ******* Edit Customer page opened successfully *******
+09/15/2026 08:24:41 PM: INFO: ******* Delete Customer button clicked *******
+09/15/2026 08:24:53 PM: INFO: ******* Delete confirmation accepted *******
+09/15/2026 08:24:54 PM: INFO: ********* Delete Customer test passed **********
+09/15/2026 08:24:55 PM: INFO: ****** Ending Delete Customer Test *******
+09/15/2026 08:25:07 PM: INFO: *****Test_DeleteProduct_Select_033*****
+09/15/2026 08:25:14 PM: INFO: *****Login Successful******
+09/15/2026 08:25:14 PM: INFO: *****Starting Delete Selected Product test*****
+09/15/2026 08:25:16 PM: INFO: ***** Product 'Test Product 1489' was deleted successfully *****
+09/15/2026 08:25:30 PM: INFO: *****Test_DeleteProduct_032*****
+09/15/2026 08:25:35 PM: INFO: *****Login Successful******
+09/15/2026 08:25:35 PM: INFO: *****Staring Delete Product test*****
+09/15/2026 08:25:40 PM: INFO: ***** Product deleted successfully *****
+09/15/2026 08:26:18 PM: INFO: ******* Editing Customer *******
+09/15/2026 08:26:25 PM: INFO: ******* Login Successful *****
+09/15/2026 08:26:26 PM: INFO: ******* Customers page opened *******
+09/15/2026 08:26:57 PM: INFO: ***** Test_EditProduct_032 *****
+09/15/2026 08:27:02 PM: INFO: ***** Login Successful *****
+09/15/2026 08:27:02 PM: INFO: ***** Opening Catalog -> Products *****
+09/15/2026 08:27:05 PM: INFO: ***** Dynamic Product Selected: Test Product 6389 *****
+09/15/2026 08:27:06 PM: INFO: ***** Edit page opened for: Test Product 6389 *****
+09/15/2026 08:27:07 PM: INFO: ***** Product details updated: SKU=SKU91341, Price=999 *****
+09/15/2026 08:27:07 PM: INFO: ***** Save button clicked *****
+09/15/2026 08:27:08 PM: INFO: ***** Product updated successfully *****
+09/15/2026 08:27:21 PM: INFO: ******* Test_EditVendor_015 *******
+09/15/2026 08:27:29 PM: INFO: *********** Login Successful **********
+09/15/2026 08:27:31 PM: INFO: ******** Starting Edit Vendor Test ********
+09/15/2026 08:27:33 PM: INFO: Vendor selected for editing: Vendor1
+09/15/2026 08:27:33 PM: INFO: Vendor 'Vendor1' found successfully
+09/15/2026 08:27:47 PM: INFO: ******VerifyActivityTypeDisplayed******
+09/15/2026 08:27:52 PM: INFO: ***********Login Successful**********
+09/15/2026 08:27:52 PM: INFO: ********Starting Verify Activity Type**********
+09/15/2026 08:27:54 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/15/2026 08:27:54 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/15/2026 08:28:08 PM: INFO: ********** Test_003_AddCustomer **********
+09/15/2026 08:28:14 PM: INFO: ********* Login Successful **********
+09/15/2026 08:28:14 PM: INFO: ********* Starting Add Customer Test *********
+09/15/2026 08:28:17 PM: INFO: ******** Providing customer information ********
+09/15/2026 08:28:19 PM: INFO: ******** Customer information provided ********
+09/15/2026 08:28:19 PM: INFO: ******** Saving customer information ********
+09/15/2026 08:28:20 PM: INFO: Success message: ×
+The new customer has been added successfully.
+09/15/2026 08:28:20 PM: INFO: ******** Customer added successfully ********
+09/15/2026 08:28:20 PM: INFO: ******** Verifying customer in Customers grid ********
+09/15/2026 08:28:35 PM: INFO: ******** Customers page opened ********
+09/15/2026 08:28:37 PM: INFO: ******** Searching for l0fy23e9@gmail.com ********
+09/15/2026 08:28:37 PM: INFO: ******** Customer found in Customers grid ********
+09/15/2026 08:28:37 PM: INFO: ******** Add customer test passed ********
+09/15/2026 08:28:51 PM: INFO: *****Test_AddProduct_028*****
+09/15/2026 08:28:57 PM: INFO: *****Login Successful******
+09/15/2026 08:28:57 PM: INFO: *****Staring Add Product test*****
+09/15/2026 08:29:00 PM: INFO: *****Providing product details*******
+09/15/2026 08:29:17 PM: INFO: ******* Test_012_AddVendor *******
+09/15/2026 08:29:21 PM: INFO: ***** Login Successfully *****
+09/15/2026 08:29:21 PM: INFO: ****** Starting Add Vendor Test ******
+09/15/2026 08:29:25 PM: INFO: ****** Providing Vendor Info ******
+09/15/2026 08:29:27 PM: INFO: After Save URL: https://localhost:59579/Admin/Vendor/List
+09/15/2026 08:29:27 PM: INFO: ******Vendor added successfully******
+09/15/2026 08:29:41 PM: INFO: *** Test_BulkEditProductSaveAll_035 ***
+09/15/2026 08:29:47 PM: INFO: ***** Login Successful *****
+09/15/2026 08:29:47 PM: INFO: ***** Starting Bulk Edit Product Save All Test *****
+09/15/2026 08:29:52 PM: INFO: Product Name: Test Product 9803
+09/15/2026 08:29:52 PM: INFO: SKU: SKU39123
+09/15/2026 08:29:52 PM: INFO: New Price: 2000
+09/15/2026 08:29:52 PM: INFO: Old Price: 1000
+09/15/2026 08:29:52 PM: INFO: Stock Quantity: 1000
+09/15/2026 08:29:53 PM: INFO: Bulk Edit Save All completed
+09/15/2026 08:30:00 PM: INFO: Product 'Test Product 9803' successfully found in Products table
+09/15/2026 08:30:14 PM: INFO: *** Test_BulkEditProductSaveSelected_036 ***
+09/15/2026 08:30:21 PM: INFO: ***** Login Successful *****
+09/15/2026 08:30:25 PM: INFO: Product Name: Test Product 3252
+09/15/2026 08:30:25 PM: INFO: SKU: SKU42484
+09/15/2026 08:30:25 PM: INFO: New Price: 2000
+09/15/2026 08:30:25 PM: INFO: Old Price: 1000
+09/15/2026 08:30:25 PM: INFO: Stock Quantity: 1000
+09/15/2026 08:30:27 PM: INFO: Product 'Test Product 3252' selected
+09/15/2026 08:30:28 PM: INFO: Save Selected completed
+09/15/2026 08:30:28 PM: INFO: Returned to Products List
+09/15/2026 08:30:35 PM: INFO: Searching for product 'Test Product 3252'
+09/15/2026 08:31:05 PM: INFO: ***** Test_BulkEditSearchProductName_037 *****
+09/15/2026 08:31:11 PM: INFO: ***** Login Successful *****
+09/15/2026 08:31:11 PM: INFO: ***** Starting Bulk Edit Product Search By Name Test *****
+09/15/2026 08:31:13 PM: INFO: Dynamic product selected: Test Product 6389
+09/15/2026 08:31:19 PM: INFO: Product 'Test Product 6389' displayed successfully
+09/15/2026 08:31:33 PM: INFO: ***** Test_BulkEditSearchProductTypeAll_039 *****
+09/15/2026 08:31:39 PM: INFO: ***** Login Successful *****
+09/15/2026 08:31:52 PM: INFO: ***** Product Type 'All' search returned 46 products *****
+09/15/2026 08:32:09 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Started *****
+09/15/2026 08:32:13 PM: INFO: ***** Login Successful *****
+09/15/2026 08:32:23 PM: INFO: ***** Product Type 'Grouped (product with variants)' returned no products as expected *****
+09/15/2026 08:32:23 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Passed *****
+09/15/2026 08:32:39 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Started *****
+09/15/2026 08:32:45 PM: INFO: ***** Login Successful *****
+09/15/2026 08:32:55 PM: INFO: ***** Product Type 'Simple' search returned 46 products *****
+09/15/2026 08:32:55 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Passed *****
+09/15/2026 08:33:12 PM: INFO: ***** Test_BulkEditProductSearchPublishType_040 Started *****
+09/15/2026 08:33:18 PM: INFO: ***** Login Successful *****
+09/15/2026 08:33:18 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/15/2026 08:33:26 PM: INFO: ***** Products Found: 46 *****
+09/15/2026 08:33:26 PM: INFO: ***** Published Type 'All' Search Passed *****
+09/15/2026 08:33:40 PM: INFO: ***** Test_BulkEditProductSearchPublishTypePublished_041 Started *****
+09/15/2026 08:33:45 PM: INFO: ***** Login Successful *****
+09/15/2026 08:33:45 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/15/2026 08:33:53 PM: INFO: ***** Products Found: 92 *****
+09/15/2026 08:33:56 PM: INFO: ***** Published Type 'Published Only' Search Passed *****
+09/15/2026 08:34:10 PM: INFO: ***** Test_BulkEditSearchPublishTypeUnPublished_042 Started *****
+09/15/2026 08:34:19 PM: INFO: ***** Published Type 'Unpublished only' selected *****
+09/15/2026 08:34:24 PM: INFO: ***** Search completed for Published Type 'Unpublished only' *****
+09/15/2026 08:34:24 PM: INFO: ***** No unpublished products found. 'No data available in table' is expected. *****
+09/15/2026 08:34:37 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/15/2026 08:34:41 PM: INFO: ***** Login Successful *****
+09/15/2026 08:34:41 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/15/2026 08:35:05 PM: INFO: *****Clear_ActivityLogs_020*****
+09/15/2026 08:35:13 PM: INFO: ***********Login Successful**********
+09/15/2026 08:35:13 PM: INFO: **********Starting Clear_ActivityLogs_020**********
+09/15/2026 08:35:16 PM: INFO: **********Clear_ActivityLogs_020 completed**********
+09/15/2026 08:35:29 PM: INFO: *****Delete_SingleActivity_019*****
+09/15/2026 08:35:34 PM: INFO: ***********Login Successful**********
+09/15/2026 08:35:34 PM: INFO: **********Starting Delete_SingleActivity_019**********
+09/15/2026 08:35:36 PM: INFO: Customers available for export: 15
+09/15/2026 08:35:42 PM: INFO: ******Customers exported successfully*******
+09/15/2026 08:35:44 PM: INFO: Activity Log records found: 1
+09/15/2026 08:35:45 PM: INFO: ******Activity Log delete clicked*******
+09/15/2026 08:36:04 PM: INFO: ******* Exporting All Customers to Excel *******
+09/15/2026 08:36:07 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/15/2026 08:36:10 PM: INFO: ******* Login Successful *****
+09/15/2026 08:36:10 PM: INFO: ****** Starting Export All Customers *******
+09/15/2026 08:36:12 PM: INFO: ****** Customers page opened ******
+09/15/2026 08:36:20 PM: INFO: ******* Export All Customers Excel button clicked *******
+09/15/2026 08:36:20 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/15/2026 08:36:20 PM: INFO: ******* Excel File Verification Successful *******
+09/15/2026 08:36:39 PM: INFO: ******* Exporting All Customers to XML *******
+09/15/2026 08:36:45 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/15/2026 08:36:48 PM: INFO: ******* Login Successful *****
+09/15/2026 08:36:48 PM: INFO: ****** Starting Export All Customers *******
+09/15/2026 08:36:49 PM: INFO: ****** Customers page opened ******
+09/15/2026 08:36:57 PM: INFO: ******* Export All Customers XML button clicked *******
+09/15/2026 08:36:57 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/15/2026 08:36:57 PM: INFO: ******* XML File Verification Successful *******
+09/15/2026 08:37:16 PM: INFO: ******* Exporting Selected Customers to Excel *******
+09/15/2026 08:37:19 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/15/2026 08:37:22 PM: INFO: ******* Login Successful *****
+09/15/2026 08:37:22 PM: INFO: ****** Navigating to Customers ******
+09/15/2026 08:37:24 PM: INFO: ****** Customers page opened ******
+09/15/2026 08:37:26 PM: INFO: ******* Customers Selected Successfully *******
+09/15/2026 08:37:32 PM: INFO: ******* Export Selected Excel button clicked *******
+09/15/2026 08:37:32 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/15/2026 08:37:32 PM: INFO: ******* Excel File Verification Successful *******
+09/15/2026 08:37:50 PM: INFO: ******* Exporting Selected Customers to XML *******
+09/15/2026 08:37:53 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/15/2026 08:38:00 PM: INFO: ******* Login Successful *****
+09/15/2026 08:38:00 PM: INFO: ****** Navigating to Customers ******
+09/15/2026 08:38:01 PM: INFO: ****** Customers page opened ******
+09/15/2026 08:38:03 PM: INFO: ******* Customers Selected Successfully *******
+09/15/2026 08:38:09 PM: INFO: ******* Export Selected XML button clicked *******
+09/15/2026 08:38:09 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/15/2026 08:38:09 PM: INFO: ******* XML File Verification Successful *******
+09/15/2026 08:38:28 PM: INFO: ********Verify Login Test********
+09/15/2026 08:38:34 PM: INFO: ********Login test Passed********
+09/15/2026 08:38:49 PM: INFO: **********Test_002_DDT_Login********
+09/15/2026 08:38:49 PM: INFO: ********Verify Login DDT Test********
+09/15/2026 08:38:56 PM: INFO: Row 2: *****Test Passed*****
+09/15/2026 08:38:59 PM: INFO: Row 3: *****Test Passed*****
+09/15/2026 08:39:02 PM: INFO: Row 4: *****Test Passed*****
+09/15/2026 08:39:05 PM: INFO: Row 5: *****Test Passed*****
+09/15/2026 08:39:08 PM: INFO: Row 6: *****Test Passed*****
+09/15/2026 08:39:08 PM: INFO: ****Login DDT Test Passed****
+09/15/2026 08:39:09 PM: INFO: ****End of Login DDT Test****
+09/15/2026 08:39:09 PM: INFO: *****Completed TC_LoginDDT_002******
+09/15/2026 08:39:21 PM: INFO: ******* SearchCustomerByEmail_004 *********
+09/15/2026 08:39:28 PM: INFO: *********** Login Successful **********
+09/15/2026 08:39:28 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+09/15/2026 08:39:29 PM: INFO: ******** Searching customer by email ID ***********
+09/15/2026 08:39:31 PM: INFO: ******** Customer found successfully ********
+09/15/2026 08:39:31 PM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+09/15/2026 08:39:39 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=54697): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/f52fff5e-b49f-4321-8def-e5aabff1660f
+09/15/2026 08:39:43 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=54697): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/f52fff5e-b49f-4321-8def-e5aabff1660f
+09/15/2026 08:39:50 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=54697): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/f52fff5e-b49f-4321-8def-e5aabff1660f
+09/15/2026 08:40:09 PM: INFO: ******* SearchCustomerByName_005 *********
+09/15/2026 08:40:18 PM: INFO: *********** Login Successful **********
+09/15/2026 08:40:18 PM: INFO: ********** Starting SearchCustomerByName_005 **********
+09/15/2026 08:40:19 PM: INFO: ******** Customers page opened ********
+09/15/2026 08:40:19 PM: INFO: ******** Searching customer by Name ***********
+09/15/2026 08:40:20 PM: INFO: ******** TC_SearchCustomerByName_005 Finished **********
+09/15/2026 08:40:34 PM: INFO: *****SearchVendorByName_013*****
+09/15/2026 08:40:38 PM: INFO: ***********Login Successful**********
+09/15/2026 08:40:38 PM: INFO: **********Starting SearchVendorByName_013**********
+09/15/2026 08:40:40 PM: INFO: ******** searching vendor by Email***********
+09/15/2026 08:40:44 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
+09/15/2026 08:40:57 PM: INFO: *****SearchVendorByName_013*****
+09/15/2026 08:41:03 PM: INFO: ***********Login Successful**********
+09/15/2026 08:41:03 PM: INFO: **********Starting SearchVendorByName_013**********
+09/15/2026 08:41:04 PM: INFO: ******** searching vendor by Name***********
+09/15/2026 08:41:05 PM: INFO: Selected Vendor Name: Vendor1
+09/15/2026 08:41:05 PM: INFO: *******Searching Vendor by Name: {vendor_name}********
+09/15/2026 08:41:08 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********
+09/15/2026 08:41:22 PM: INFO: ***** SearchActivityDate_016 *****
+09/15/2026 08:41:28 PM: INFO: *********** Login Successful **********
+09/15/2026 08:41:28 PM: INFO: ********** Starting SearchActivityDate_016 **********
+09/15/2026 08:41:30 PM: INFO: Activity log rows found: 6
+09/15/2026 08:41:44 PM: INFO: *****SearchActivityIP_017*****
+09/15/2026 08:41:50 PM: INFO: ***********Login Successful**********
+09/15/2026 08:41:50 PM: INFO: **********Starting SearchActivityIP_017**********
+09/15/2026 08:42:05 PM: INFO: *****SearchActivity_LogType_018*****
+09/15/2026 08:42:10 PM: INFO: ***********Login Successful**********
+09/15/2026 08:42:10 PM: INFO: **********Starting SearchActivity_LogType_018**********
+09/15/2026 08:42:27 PM: INFO: *****SearchCustomer_RoleAdministrator_021*****
+09/15/2026 08:42:31 PM: INFO: ***********Login Successful**********
+09/15/2026 08:42:35 PM: INFO: Administrator search result count: 1
+09/15/2026 08:42:48 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+09/15/2026 08:42:52 PM: INFO: ***********Login Successful**********
+09/15/2026 08:42:55 PM: INFO: Forum Moderator search result count: 1
+09/15/2026 08:43:08 PM: INFO: *****SearchCustomer_Role_Guests_024*****
+09/15/2026 08:43:13 PM: INFO: ***********Login Successful**********
+09/15/2026 08:43:13 PM: INFO: ********Starting_SearchGuest_Role_024******
+09/15/2026 08:43:16 PM: INFO: Normal table customer count: 15
+09/15/2026 08:43:18 PM: INFO: Guests search result count: 15
+09/15/2026 08:43:31 PM: INFO: ***** Test_SearchProductByName_029 *****
+09/15/2026 08:43:34 PM: INFO: ***** Login Successful *****
+09/15/2026 08:43:34 PM: INFO: ***** Starting Search Product By Name Test *****
+09/15/2026 08:43:38 PM: INFO: Dynamic product selected: Test Product 6389
+09/15/2026 08:43:43 PM: INFO: Product 'Test Product 6389' found successfully
+09/15/2026 08:43:57 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/15/2026 08:44:02 PM: INFO: *****Login Successful******
+09/15/2026 08:44:23 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/15/2026 08:44:24 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/15/2026 08:44:27 PM: INFO: ********** Login Successful **********
+09/15/2026 08:44:29 PM: INFO: ********** Products page opened successfully **********
+09/15/2026 08:44:38 PM: INFO: ********** Product search performed for Vendor1 **********
+09/15/2026 08:44:38 PM: INFO: ********** 'No data available in table' validated **********
+09/15/2026 08:44:38 PM: INFO: ********** 'No records' validated **********
+09/15/2026 08:44:38 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/15/2026 08:44:52 PM: INFO: *****SearchCustomer_RoleRegistered_022*****
+09/15/2026 08:44:57 PM: INFO: ***********Login Successful**********
+09/15/2026 08:45:00 PM: INFO: Normal table customer count: 15
+09/15/2026 08:45:01 PM: INFO: Registered search result count: 2
+09/15/2026 08:45:14 PM: INFO: *****SearchCustomer_Role_Vendors_025*****
+09/15/2026 08:45:18 PM: INFO: ***********Login Successful**********
+09/15/2026 08:45:18 PM: INFO: ********Starting_SearchVendor_Role_025******
+09/15/2026 08:45:22 PM: INFO: Normal table customer count: 15
+09/15/2026 08:45:22 PM: INFO: Vendor search result count: 0
+09/15/2026 08:48:12 PM: INFO: *** Test_BulkEditProductSaveSelected_036 ***
+09/15/2026 08:48:20 PM: INFO: ***** Login Successful *****
+09/15/2026 08:48:25 PM: INFO: Product Name: Test Product 5036
+09/15/2026 08:48:25 PM: INFO: SKU: SKU50504
+09/15/2026 08:48:25 PM: INFO: New Price: 2000
+09/15/2026 08:48:25 PM: INFO: Old Price: 1000
+09/15/2026 08:48:25 PM: INFO: Stock Quantity: 1000
+09/15/2026 08:48:26 PM: INFO: Product 'Test Product 5036' selected
+09/15/2026 08:48:28 PM: INFO: Save Selected completed
+09/15/2026 08:48:28 PM: INFO: Returned to Products List
+09/15/2026 08:48:35 PM: INFO: Searching for product 'Test Product 5036'
+09/15/2026 08:49:36 PM: INFO: *** Test_BulkEditProductSaveSelected_036 ***
+09/15/2026 08:49:53 PM: INFO: ***** Login Successful *****
+09/15/2026 08:49:56 PM: INFO: Product Name: Test Product 2403
+09/15/2026 08:49:56 PM: INFO: SKU: SKU59610
+09/15/2026 08:49:56 PM: INFO: New Price: 2000
+09/15/2026 08:49:56 PM: INFO: Old Price: 1000
+09/15/2026 08:49:56 PM: INFO: Stock Quantity: 1000
+09/15/2026 08:49:57 PM: INFO: Product 'Test Product 2403' selected
+09/15/2026 08:49:59 PM: INFO: Save Selected completed
+09/15/2026 08:49:59 PM: INFO: Returned to Products List
+09/15/2026 08:50:06 PM: INFO: Searching for product 'Test Product 2403'
+09/15/2026 08:50:06 PM: INFO: Product 'Test Product 2403' successfully found in Products table
+09/15/2026 08:51:22 PM: INFO: ******* Editing Customer *******
+09/15/2026 08:51:28 PM: INFO: ******* Login Successful *****
+09/15/2026 08:51:29 PM: INFO: ******* Customers page opened *******
+09/15/2026 08:51:34 PM: INFO: ******* Edit Customer button clicked *******
+09/15/2026 08:51:34 PM: INFO: ******* Edit Customer page opened successfully *******
+09/15/2026 08:51:35 PM: INFO: ********* Edit Customer test passed **********
+09/15/2026 08:51:37 PM: INFO: ****** Ending Edit Customer Test *******
+09/15/2026 08:53:00 PM: INFO: ******* Deleting Customer *******
+09/15/2026 08:53:10 PM: INFO: ******* Login Successful *****
+09/15/2026 08:53:11 PM: INFO: ******* Customers page opened *******
+09/15/2026 08:53:14 PM: INFO: ******* Edit Customer button clicked *******
+09/15/2026 08:53:16 PM: INFO: ******* Edit Customer page opened successfully *******
+09/15/2026 08:53:17 PM: INFO: ******* Delete Customer button clicked *******
+09/15/2026 08:53:28 PM: INFO: ******* Delete confirmation accepted *******
+09/15/2026 08:53:29 PM: INFO: ********* Delete Customer test passed **********
+09/15/2026 08:53:30 PM: INFO: ****** Ending Delete Customer Test *******
+09/15/2026 08:53:44 PM: INFO: *****Test_DeleteProduct_Select_033*****
+09/15/2026 08:53:51 PM: INFO: *****Login Successful******
+09/15/2026 08:53:51 PM: INFO: *****Starting Delete Selected Product test*****
+09/15/2026 08:53:57 PM: INFO: ***** Product 'Test Product 3501' was deleted successfully *****
+09/15/2026 08:54:10 PM: INFO: *****Test_DeleteProduct_032*****
+09/15/2026 08:54:14 PM: INFO: *****Login Successful******
+09/15/2026 08:54:14 PM: INFO: *****Staring Delete Product test*****
+09/15/2026 08:54:20 PM: INFO: ***** Product deleted successfully *****
+09/15/2026 08:55:01 PM: INFO: ******* Editing Customer *******
+09/15/2026 08:55:08 PM: INFO: ******* Login Successful *****
+09/15/2026 08:55:10 PM: INFO: ******* Customers page opened *******
+09/15/2026 08:55:41 PM: INFO: ***** Test_EditProduct_032 *****
+09/15/2026 08:55:48 PM: INFO: ***** Login Successful *****
+09/15/2026 08:55:48 PM: INFO: ***** Opening Catalog -> Products *****
+09/15/2026 08:55:50 PM: INFO: ***** Dynamic Product Selected: Test Product 6389 *****
+09/15/2026 08:55:53 PM: INFO: ***** Edit page opened for: Test Product 6389 *****
+09/15/2026 08:55:54 PM: INFO: ***** Product details updated: SKU=SKU99308, Price=999 *****
+09/15/2026 08:55:54 PM: INFO: ***** Save button clicked *****
+09/15/2026 08:55:54 PM: INFO: ***** Product updated successfully *****
+09/15/2026 08:56:11 PM: INFO: ******* Test_EditVendor_015 *******
+09/15/2026 08:56:17 PM: INFO: *********** Login Successful **********
+09/15/2026 08:56:19 PM: INFO: ******** Starting Edit Vendor Test ********
+09/15/2026 08:56:21 PM: INFO: Vendor selected for editing: Vendor1
+09/15/2026 08:56:22 PM: INFO: Vendor 'Vendor1' found successfully
+09/15/2026 08:56:35 PM: INFO: ******VerifyActivityTypeDisplayed******
+09/15/2026 08:56:40 PM: INFO: ***********Login Successful**********
+09/15/2026 08:56:40 PM: INFO: ********Starting Verify Activity Type**********
+09/15/2026 08:56:42 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/15/2026 08:56:42 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/15/2026 08:56:55 PM: INFO: ********** Test_003_AddCustomer **********
+09/15/2026 08:57:00 PM: INFO: ********* Login Successful **********
+09/15/2026 08:57:00 PM: INFO: ********* Starting Add Customer Test *********
+09/15/2026 08:57:04 PM: INFO: ******** Providing customer information ********
+09/15/2026 08:57:06 PM: INFO: ******** Customer information provided ********
+09/15/2026 08:57:07 PM: INFO: ******** Saving customer information ********
+09/15/2026 08:57:07 PM: INFO: Success message: ×
+The new customer has been added successfully.
+09/15/2026 08:57:07 PM: INFO: ******** Customer added successfully ********
+09/15/2026 08:57:07 PM: INFO: ******** Verifying customer in Customers grid ********
+09/15/2026 08:57:23 PM: INFO: ******** Customers page opened ********
+09/15/2026 08:57:25 PM: INFO: ******** Searching for i4omoydb@gmail.com ********
+09/15/2026 08:57:26 PM: INFO: ******** Customer found in Customers grid ********
+09/15/2026 08:57:26 PM: INFO: ******** Add customer test passed ********
+09/15/2026 08:57:44 PM: INFO: *****Test_AddProduct_028*****
+09/15/2026 08:57:54 PM: INFO: *****Login Successful******
+09/15/2026 08:57:54 PM: INFO: *****Staring Add Product test*****
+09/15/2026 08:58:05 PM: INFO: *****Providing product details*******
+09/15/2026 08:58:45 PM: INFO: ******* Test_012_AddVendor *******
+09/15/2026 08:58:54 PM: INFO: ***** Login Successfully *****
+09/15/2026 08:58:54 PM: INFO: ****** Starting Add Vendor Test ******
+09/15/2026 08:59:02 PM: INFO: ****** Providing Vendor Info ******
+09/15/2026 08:59:05 PM: INFO: After Save URL: https://localhost:59579/Admin/Vendor/List
+09/15/2026 08:59:05 PM: INFO: ******Vendor added successfully******
+09/15/2026 08:59:28 PM: INFO: *** Test_BulkEditProductSaveAll_035 ***
+09/15/2026 08:59:37 PM: INFO: ***** Login Successful *****
+09/15/2026 08:59:37 PM: INFO: ***** Starting Bulk Edit Product Save All Test *****
+09/15/2026 08:59:49 PM: INFO: Product Name: Test Product 4547
+09/15/2026 08:59:49 PM: INFO: SKU: SKU18793
+09/15/2026 08:59:49 PM: INFO: New Price: 2000
+09/15/2026 08:59:49 PM: INFO: Old Price: 1000
+09/15/2026 08:59:49 PM: INFO: Stock Quantity: 1000
+09/15/2026 08:59:51 PM: INFO: Bulk Edit Save All completed
+09/15/2026 09:00:01 PM: INFO: Product 'Test Product 4547' successfully found in Products table
+09/15/2026 09:00:28 PM: INFO: *** Test_BulkEditProductSaveSelected_036 ***
+09/15/2026 09:00:51 PM: INFO: ***** Login Successful *****
+09/15/2026 09:00:58 PM: INFO: Product Name: Test Product 9157
+09/15/2026 09:00:58 PM: INFO: SKU: SKU25808
+09/15/2026 09:00:58 PM: INFO: New Price: 2000
+09/15/2026 09:00:58 PM: INFO: Old Price: 1000
+09/15/2026 09:00:58 PM: INFO: Stock Quantity: 1000
+09/15/2026 09:01:02 PM: INFO: Product 'Test Product 9157' selected
+09/15/2026 09:01:04 PM: INFO: Save Selected completed
+09/15/2026 09:01:05 PM: INFO: Returned to Products List
+09/15/2026 09:01:10 PM: INFO: Searching for product 'Test Product 9157'
+09/15/2026 09:01:11 PM: INFO: Product 'Test Product 9157' successfully found in Products table
+09/15/2026 09:01:31 PM: INFO: ***** Test_BulkEditSearchProductName_037 *****
+09/15/2026 09:01:41 PM: INFO: ***** Login Successful *****
+09/15/2026 09:01:41 PM: INFO: ***** Starting Bulk Edit Product Search By Name Test *****
+09/15/2026 09:01:47 PM: INFO: Dynamic product selected: Test Product 6389
+09/15/2026 09:02:00 PM: INFO: Product 'Test Product 6389' displayed successfully
+09/15/2026 09:02:22 PM: INFO: ***** Test_BulkEditSearchProductTypeAll_039 *****
+09/15/2026 09:02:37 PM: INFO: ***** Login Successful *****
+09/15/2026 09:02:56 PM: INFO: ***** Product Type 'All' search returned 46 products *****
+09/15/2026 09:03:18 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Started *****
+09/15/2026 09:03:25 PM: INFO: ***** Login Successful *****
+09/15/2026 09:03:47 PM: INFO: ***** Product Type 'Grouped (product with variants)' returned no products as expected *****
+09/15/2026 09:03:47 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Passed *****
+09/15/2026 09:04:05 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Started *****
+09/15/2026 09:04:08 PM: INFO: ***** Login Successful *****
+09/15/2026 09:04:21 PM: INFO: ***** Product Type 'Simple' search returned 46 products *****
+09/15/2026 09:04:21 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Passed *****
+09/15/2026 09:04:35 PM: INFO: ***** Test_BulkEditProductSearchPublishType_040 Started *****
+09/15/2026 09:04:42 PM: INFO: ***** Login Successful *****
+09/15/2026 09:04:42 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/15/2026 09:04:50 PM: INFO: ***** Products Found: 92 *****
+09/15/2026 09:04:50 PM: INFO: ***** Published Type 'All' Search Passed *****
+09/15/2026 09:05:03 PM: INFO: ***** Test_BulkEditProductSearchPublishTypePublished_041 Started *****
+09/15/2026 09:05:08 PM: INFO: ***** Login Successful *****
+09/15/2026 09:05:08 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/15/2026 09:05:17 PM: INFO: ***** Products Found: 92 *****
+09/15/2026 09:05:19 PM: INFO: ***** Published Type 'Published Only' Search Passed *****
+09/15/2026 09:05:32 PM: INFO: ***** Test_BulkEditSearchPublishTypeUnPublished_042 Started *****
+09/15/2026 09:05:38 PM: INFO: ***** Published Type 'Unpublished only' selected *****
+09/15/2026 09:05:44 PM: INFO: ***** Search completed for Published Type 'Unpublished only' *****
+09/15/2026 09:05:44 PM: INFO: ***** No unpublished products found. 'No data available in table' is expected. *****
+09/15/2026 09:05:57 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/15/2026 09:06:02 PM: INFO: ***** Login Successful *****
+09/15/2026 09:06:02 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/15/2026 09:06:25 PM: INFO: *****Clear_ActivityLogs_020*****
+09/15/2026 09:06:31 PM: INFO: ***********Login Successful**********
+09/15/2026 09:06:31 PM: INFO: **********Starting Clear_ActivityLogs_020**********
+09/15/2026 09:06:32 PM: INFO: **********Clear_ActivityLogs_020 completed**********
+09/15/2026 09:06:46 PM: INFO: *****Delete_SingleActivity_019*****
+09/15/2026 09:06:50 PM: INFO: ***********Login Successful**********
+09/15/2026 09:06:50 PM: INFO: **********Starting Delete_SingleActivity_019**********
+09/15/2026 09:06:53 PM: INFO: Customers available for export: 15
+09/15/2026 09:06:58 PM: INFO: ******Customers exported successfully*******
+09/15/2026 09:07:00 PM: INFO: Activity Log records found: 1
+09/15/2026 09:07:00 PM: INFO: ******Activity Log delete clicked*******
+09/15/2026 09:07:16 PM: INFO: ******* Exporting All Customers to Excel *******
+09/15/2026 09:07:19 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/15/2026 09:07:21 PM: INFO: ******* Login Successful *****
+09/15/2026 09:07:21 PM: INFO: ****** Starting Export All Customers *******
+09/15/2026 09:07:24 PM: INFO: ****** Customers page opened ******
+09/15/2026 09:07:32 PM: INFO: ******* Export All Customers Excel button clicked *******
+09/15/2026 09:07:32 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/15/2026 09:07:32 PM: INFO: ******* Excel File Verification Successful *******
+09/15/2026 09:07:49 PM: INFO: ******* Exporting All Customers to XML *******
+09/15/2026 09:07:52 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/15/2026 09:07:54 PM: INFO: ******* Login Successful *****
+09/15/2026 09:07:54 PM: INFO: ****** Starting Export All Customers *******
+09/15/2026 09:07:59 PM: INFO: ****** Customers page opened ******
+09/15/2026 09:08:07 PM: INFO: ******* Export All Customers XML button clicked *******
+09/15/2026 09:08:07 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/15/2026 09:08:07 PM: INFO: ******* XML File Verification Successful *******
+09/15/2026 09:08:27 PM: INFO: ******* Exporting Selected Customers to Excel *******
+09/15/2026 09:08:29 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/15/2026 09:08:33 PM: INFO: ******* Login Successful *****
+09/15/2026 09:08:33 PM: INFO: ****** Navigating to Customers ******
+09/15/2026 09:08:35 PM: INFO: ****** Customers page opened ******
+09/15/2026 09:08:37 PM: INFO: ******* Customers Selected Successfully *******
+09/15/2026 09:08:44 PM: INFO: ******* Export Selected Excel button clicked *******
+09/15/2026 09:08:44 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/15/2026 09:08:44 PM: INFO: ******* Excel File Verification Successful *******
+09/15/2026 09:09:00 PM: INFO: ******* Exporting Selected Customers to XML *******
+09/15/2026 09:09:03 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/15/2026 09:09:05 PM: INFO: ******* Login Successful *****
+09/15/2026 09:09:05 PM: INFO: ****** Navigating to Customers ******
+09/15/2026 09:09:07 PM: INFO: ****** Customers page opened ******
+09/15/2026 09:09:09 PM: INFO: ******* Customers Selected Successfully *******
+09/15/2026 09:09:18 PM: INFO: ******* Export Selected XML button clicked *******
+09/15/2026 09:09:18 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/15/2026 09:09:18 PM: INFO: ******* XML File Verification Successful *******
+09/15/2026 09:09:34 PM: INFO: ********Verify Login Test********
+09/15/2026 09:09:39 PM: INFO: ********Login test Passed********
+09/15/2026 09:10:01 PM: INFO: **********Test_002_DDT_Login********
+09/15/2026 09:10:01 PM: INFO: ********Verify Login DDT Test********
+09/15/2026 09:10:10 PM: INFO: Row 2: *****Test Passed*****
+09/15/2026 09:10:13 PM: INFO: Row 3: *****Test Passed*****
+09/15/2026 09:10:16 PM: INFO: Row 4: *****Test Passed*****
+09/15/2026 09:10:18 PM: INFO: Row 5: *****Test Passed*****
+09/15/2026 09:10:21 PM: INFO: Row 6: *****Test Passed*****
+09/15/2026 09:10:21 PM: INFO: ****Login DDT Test Passed****
+09/15/2026 09:10:22 PM: INFO: ****End of Login DDT Test****
+09/15/2026 09:10:22 PM: INFO: *****Completed TC_LoginDDT_002******
+09/15/2026 09:10:35 PM: INFO: ******* SearchCustomerByEmail_004 *********
+09/15/2026 09:10:40 PM: INFO: *********** Login Successful **********
+09/15/2026 09:10:40 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+09/15/2026 09:10:41 PM: INFO: ******** Searching customer by email ID ***********
+09/15/2026 09:10:42 PM: INFO: ******** Customer found successfully ********
+09/15/2026 09:10:42 PM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+09/15/2026 09:10:55 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=58054): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/b963da90-1d36-4061-a63c-7256642c3594
+09/15/2026 09:10:59 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=58054): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/b963da90-1d36-4061-a63c-7256642c3594
+09/15/2026 09:11:03 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=58054): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/b963da90-1d36-4061-a63c-7256642c3594
+09/15/2026 09:11:17 PM: INFO: ******* SearchCustomerByName_005 *********
+09/15/2026 09:11:22 PM: INFO: *********** Login Successful **********
+09/15/2026 09:11:22 PM: INFO: ********** Starting SearchCustomerByName_005 **********
+09/15/2026 09:11:23 PM: INFO: ******** Customers page opened ********
+09/15/2026 09:11:23 PM: INFO: ******** Searching customer by Name ***********
+09/15/2026 09:11:23 PM: INFO: ******** TC_SearchCustomerByName_005 Finished **********
+09/15/2026 09:11:37 PM: INFO: *****SearchVendorByName_013*****
+09/15/2026 09:11:41 PM: INFO: ***********Login Successful**********
+09/15/2026 09:11:41 PM: INFO: **********Starting SearchVendorByName_013**********
+09/15/2026 09:11:43 PM: INFO: ******** searching vendor by Email***********
+09/15/2026 09:11:47 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
+09/15/2026 09:12:01 PM: INFO: *****SearchVendorByName_013*****
+09/15/2026 09:12:06 PM: INFO: ***********Login Successful**********
+09/15/2026 09:12:06 PM: INFO: **********Starting SearchVendorByName_013**********
+09/15/2026 09:12:08 PM: INFO: ******** searching vendor by Name***********
+09/15/2026 09:12:09 PM: INFO: Selected Vendor Name: Vendor1
+09/15/2026 09:12:09 PM: INFO: *******Searching Vendor by Name: {vendor_name}********
+09/15/2026 09:12:12 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********
+09/15/2026 09:12:26 PM: INFO: ***** SearchActivityDate_016 *****
+09/15/2026 09:12:31 PM: INFO: *********** Login Successful **********
+09/15/2026 09:12:31 PM: INFO: ********** Starting SearchActivityDate_016 **********
+09/15/2026 09:12:33 PM: INFO: Activity log rows found: 6
+09/15/2026 09:12:48 PM: INFO: *****SearchActivityIP_017*****
+09/15/2026 09:12:53 PM: INFO: ***********Login Successful**********
+09/15/2026 09:12:53 PM: INFO: **********Starting SearchActivityIP_017**********
+09/15/2026 09:13:09 PM: INFO: *****SearchActivity_LogType_018*****
+09/15/2026 09:13:13 PM: INFO: ***********Login Successful**********
+09/15/2026 09:13:13 PM: INFO: **********Starting SearchActivity_LogType_018**********
+09/15/2026 09:13:31 PM: INFO: *****SearchCustomer_RoleAdministrator_021*****
+09/15/2026 09:13:34 PM: INFO: ***********Login Successful**********
+09/15/2026 09:13:39 PM: INFO: Administrator search result count: 1
+09/15/2026 09:13:53 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+09/15/2026 09:13:58 PM: INFO: ***********Login Successful**********
+09/15/2026 09:14:01 PM: INFO: Forum Moderator search result count: 1
+09/15/2026 09:14:15 PM: INFO: *****SearchCustomer_Role_Guests_024*****
+09/15/2026 09:14:20 PM: INFO: ***********Login Successful**********
+09/15/2026 09:14:20 PM: INFO: ********Starting_SearchGuest_Role_024******
+09/15/2026 09:14:23 PM: INFO: Normal table customer count: 15
+09/15/2026 09:14:25 PM: INFO: Guests search result count: 15
+09/15/2026 09:14:38 PM: INFO: ***** Test_SearchProductByName_029 *****
+09/15/2026 09:14:42 PM: INFO: ***** Login Successful *****
+09/15/2026 09:14:42 PM: INFO: ***** Starting Search Product By Name Test *****
+09/15/2026 09:14:45 PM: INFO: Dynamic product selected: Test Product 6389
+09/15/2026 09:14:51 PM: INFO: Product 'Test Product 6389' found successfully
+09/15/2026 09:15:04 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/15/2026 09:15:08 PM: INFO: *****Login Successful******
+09/15/2026 09:15:27 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/15/2026 09:15:30 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/15/2026 09:15:31 PM: INFO: ********** Login Successful **********
+09/15/2026 09:15:34 PM: INFO: ********** Products page opened successfully **********
+09/15/2026 09:16:00 PM: INFO: ********** Product search performed for Vendor1 **********
+09/15/2026 09:16:00 PM: INFO: ********** 'No data available in table' validated **********
+09/15/2026 09:16:00 PM: INFO: ********** 'No records' validated **********
+09/15/2026 09:16:00 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/15/2026 09:16:13 PM: INFO: *****SearchCustomer_RoleRegistered_022*****
+09/15/2026 09:16:18 PM: INFO: ***********Login Successful**********
+09/15/2026 09:16:21 PM: INFO: Normal table customer count: 15
+09/15/2026 09:16:22 PM: INFO: Registered search result count: 2
+09/15/2026 09:16:35 PM: INFO: *****SearchCustomer_Role_Vendors_025*****
+09/15/2026 09:16:39 PM: INFO: ***********Login Successful**********
+09/15/2026 09:16:39 PM: INFO: ********Starting_SearchVendor_Role_025******
+09/15/2026 09:16:43 PM: INFO: Normal table customer count: 15
+09/15/2026 09:16:43 PM: INFO: Vendor search result count: 0
+09/15/2026 09:17:50 PM: INFO: ******* Deleting Customer *******
+09/15/2026 09:17:55 PM: INFO: ******* Login Successful *****
+09/15/2026 09:17:57 PM: INFO: ******* Customers page opened *******
+09/15/2026 09:18:00 PM: INFO: ******* Edit Customer button clicked *******
+09/15/2026 09:18:02 PM: INFO: ******* Edit Customer page opened successfully *******
+09/15/2026 09:18:03 PM: INFO: ******* Delete Customer button clicked *******
+09/15/2026 09:18:14 PM: INFO: ******* Delete confirmation accepted *******
+09/15/2026 09:18:15 PM: INFO: ********* Delete Customer test passed **********
+09/15/2026 09:18:16 PM: INFO: ****** Ending Delete Customer Test *******
+09/15/2026 09:18:28 PM: INFO: ******* Editing Customer *******
+09/15/2026 09:18:34 PM: INFO: ******* Login Successful *****
+09/15/2026 09:18:36 PM: INFO: ******* Customers page opened *******
+09/15/2026 09:24:18 PM: INFO: ******* Deleting Customer *******
+09/15/2026 09:24:24 PM: INFO: ******* Login Successful *****
+09/15/2026 09:24:26 PM: INFO: ******* Customers page opened *******
+09/15/2026 09:24:29 PM: INFO: ******* Edit Customer button clicked *******
+09/15/2026 09:24:31 PM: INFO: ******* Edit Customer page opened successfully *******
+09/15/2026 09:24:31 PM: INFO: ******* Delete Customer button clicked *******
+09/15/2026 09:24:43 PM: INFO: ******* Delete confirmation accepted *******
+09/15/2026 09:24:44 PM: INFO: ********* Delete Customer test passed **********
+09/15/2026 09:24:45 PM: INFO: ****** Ending Delete Customer Test *******
+09/16/2026 11:32:00 AM: INFO: ******* Editing Customer *******
+09/16/2026 11:32:09 AM: INFO: ******* Login Successful *****
+09/16/2026 11:32:12 AM: INFO: ******* Customers page opened *******
+09/16/2026 11:38:00 AM: INFO: ******* Editing Customer *******
+09/16/2026 11:38:08 AM: INFO: ******* Login Successful *****
+09/16/2026 11:38:09 AM: INFO: ******* Customers page opened *******
+09/16/2026 11:49:41 AM: INFO: ******* SearchCustomerByEmail_004 *********
+09/16/2026 11:50:10 AM: INFO: *********** Login Successful **********
+09/16/2026 11:50:10 AM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+09/16/2026 11:50:18 AM: INFO: ******** Searching customer by email ID ***********
+09/16/2026 11:50:20 AM: INFO: ******** Customer found successfully ********
+09/16/2026 11:50:20 AM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+09/16/2026 11:50:34 AM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=54074): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/3994492b-4cce-44c0-b9f2-7c630c05b9b4
+09/16/2026 11:50:38 AM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=54074): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/3994492b-4cce-44c0-b9f2-7c630c05b9b4
+09/16/2026 11:50:42 AM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=54074): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/3994492b-4cce-44c0-b9f2-7c630c05b9b4
+09/16/2026 11:52:48 AM: INFO: ******* Editing Customer *******
+09/16/2026 11:52:54 AM: INFO: ******* Login Successful *****
+09/16/2026 11:52:56 AM: INFO: ******* Customers page opened *******
+09/16/2026 11:52:57 AM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 11:52:58 AM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 11:53:00 AM: INFO: ********* Edit Customer test passed **********
+09/16/2026 11:53:01 AM: INFO: ****** Ending Edit Customer Test *******
+09/16/2026 11:54:11 AM: INFO: ******* Deleting Customer *******
+09/16/2026 11:54:19 AM: INFO: ******* Login Successful *****
+09/16/2026 11:54:26 AM: INFO: ******* Customers page opened *******
+09/16/2026 11:54:30 AM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 11:54:33 AM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 11:54:34 AM: INFO: ******* Delete Customer button clicked *******
+09/16/2026 11:54:46 AM: INFO: ******* Delete confirmation accepted *******
+09/16/2026 11:54:49 AM: INFO: ********* Delete Customer test passed **********
+09/16/2026 11:54:52 AM: INFO: ****** Ending Delete Customer Test *******
+09/16/2026 11:55:13 AM: INFO: *****Test_DeleteProduct_Select_033*****
+09/16/2026 11:55:27 AM: INFO: *****Login Successful******
+09/16/2026 11:55:27 AM: INFO: *****Starting Delete Selected Product test*****
+09/16/2026 11:55:34 AM: INFO: ***** Product 'Test Product 7735' was deleted successfully *****
+09/16/2026 11:55:50 AM: INFO: *****Test_DeleteProduct_032*****
+09/16/2026 11:55:53 AM: INFO: *****Login Successful******
+09/16/2026 11:55:53 AM: INFO: *****Staring Delete Product test*****
+09/16/2026 11:56:58 AM: INFO: ******* Editing Customer *******
+09/16/2026 11:57:02 AM: INFO: ******* Login Successful *****
+09/16/2026 11:57:04 AM: INFO: ******* Customers page opened *******
+09/16/2026 11:57:33 AM: INFO: ***** Test_EditProduct_032 *****
+09/16/2026 11:57:37 AM: INFO: ***** Login Successful *****
+09/16/2026 11:57:37 AM: INFO: ***** Opening Catalog -> Products *****
+09/16/2026 11:57:40 AM: INFO: ***** Dynamic Product Selected: Test Product 6389 *****
+09/16/2026 11:57:41 AM: INFO: ***** Edit page opened for: Test Product 6389 *****
+09/16/2026 11:57:42 AM: INFO: ***** Product details updated: SKU=SKU80765, Price=999 *****
+09/16/2026 11:57:42 AM: INFO: ***** Save button clicked *****
+09/16/2026 11:57:43 AM: INFO: ***** Product updated successfully *****
+09/16/2026 11:57:57 AM: INFO: ******* Test_EditVendor_015 *******
+09/16/2026 11:58:03 AM: INFO: *********** Login Successful **********
+09/16/2026 11:58:04 AM: INFO: ******** Starting Edit Vendor Test ********
+09/16/2026 11:58:07 AM: INFO: Vendor selected for editing: Vendor1
+09/16/2026 11:58:07 AM: INFO: Vendor 'Vendor1' found successfully
+09/16/2026 11:58:21 AM: INFO: ******VerifyActivityTypeDisplayed******
+09/16/2026 11:58:24 AM: INFO: ***********Login Successful**********
+09/16/2026 11:58:24 AM: INFO: ********Starting Verify Activity Type**********
+09/16/2026 11:58:27 AM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 11:58:27 AM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 11:58:41 AM: INFO: ********** Test_003_AddCustomer **********
+09/16/2026 11:58:46 AM: INFO: ********* Login Successful **********
+09/16/2026 11:58:46 AM: INFO: ********* Starting Add Customer Test *********
+09/16/2026 11:58:48 AM: INFO: ******** Providing customer information ********
+09/16/2026 11:58:50 AM: INFO: ******** Customer information provided ********
+09/16/2026 11:58:51 AM: INFO: ******** Saving customer information ********
+09/16/2026 11:58:51 AM: INFO: Success message: ×
+The new customer has been added successfully.
+09/16/2026 11:58:51 AM: INFO: ******** Customer added successfully ********
+09/16/2026 11:58:51 AM: INFO: ******** Verifying customer in Customers grid ********
+09/16/2026 11:59:06 AM: INFO: ******** Customers page opened ********
+09/16/2026 11:59:09 AM: INFO: ******** Searching for jwmokzy0@gmail.com ********
+09/16/2026 11:59:10 AM: INFO: ******** Customer found in Customers grid ********
+09/16/2026 11:59:10 AM: INFO: ******** Add customer test passed ********
+09/16/2026 11:59:23 AM: INFO: *****Test_AddProduct_028*****
+09/16/2026 11:59:26 AM: INFO: *****Login Successful******
+09/16/2026 11:59:26 AM: INFO: *****Staring Add Product test*****
+09/16/2026 11:59:31 AM: INFO: *****Providing product details*******
+09/16/2026 11:59:49 AM: INFO: ******* Test_012_AddVendor *******
+09/16/2026 11:59:54 AM: INFO: ***** Login Successfully *****
+09/16/2026 11:59:54 AM: INFO: ****** Starting Add Vendor Test ******
+09/16/2026 11:59:56 AM: INFO: ****** Providing Vendor Info ******
+09/16/2026 11:59:58 AM: INFO: After Save URL: https://localhost:59579/Admin/Vendor/List
+09/16/2026 11:59:58 AM: INFO: ******Vendor added successfully******
+09/16/2026 12:00:12 PM: INFO: *** Test_BulkEditProductSaveAll_035 ***
+09/16/2026 12:00:15 PM: INFO: ***** Login Successful *****
+09/16/2026 12:00:15 PM: INFO: ***** Starting Bulk Edit Product Save All Test *****
+09/16/2026 12:00:21 PM: INFO: Product Name: Test Product 1669
+09/16/2026 12:00:21 PM: INFO: SKU: SKU22137
+09/16/2026 12:00:21 PM: INFO: New Price: 2000
+09/16/2026 12:00:21 PM: INFO: Old Price: 1000
+09/16/2026 12:00:21 PM: INFO: Stock Quantity: 1000
+09/16/2026 12:00:23 PM: INFO: Bulk Edit Save All completed
+09/16/2026 12:00:29 PM: INFO: Product 'Test Product 1669' successfully found in Products table
+09/16/2026 12:00:43 PM: INFO: *** Test_BulkEditProductSaveSelected_036 ***
+09/16/2026 12:00:46 PM: INFO: ***** Login Successful *****
+09/16/2026 12:00:50 PM: INFO: Product Name: Test Product 3295
+09/16/2026 12:00:50 PM: INFO: SKU: SKU25063
+09/16/2026 12:00:50 PM: INFO: New Price: 2000
+09/16/2026 12:00:50 PM: INFO: Old Price: 1000
+09/16/2026 12:00:50 PM: INFO: Stock Quantity: 1000
+09/16/2026 12:00:52 PM: INFO: Product 'Test Product 3295' selected
+09/16/2026 12:00:54 PM: INFO: Save Selected completed
+09/16/2026 12:00:54 PM: INFO: Returned to Products List
+09/16/2026 12:01:00 PM: INFO: Searching for product 'Test Product 3295'
+09/16/2026 12:01:00 PM: INFO: Product 'Test Product 3295' successfully found in Products table
+09/16/2026 12:01:14 PM: INFO: ***** Test_BulkEditSearchProductName_037 *****
+09/16/2026 12:01:19 PM: INFO: ***** Login Successful *****
+09/16/2026 12:01:19 PM: INFO: ***** Starting Bulk Edit Product Search By Name Test *****
+09/16/2026 12:01:21 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 12:01:28 PM: INFO: Product 'Test Product 6389' displayed successfully
+09/16/2026 12:01:41 PM: INFO: ***** Test_BulkEditSearchProductTypeAll_039 *****
+09/16/2026 12:01:44 PM: INFO: ***** Login Successful *****
+09/16/2026 12:02:01 PM: INFO: ***** Product Type 'All' search returned 47 products *****
+09/16/2026 12:02:17 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Started *****
+09/16/2026 12:02:22 PM: INFO: ***** Login Successful *****
+09/16/2026 12:02:33 PM: INFO: ***** Product Type 'Grouped (product with variants)' returned no products as expected *****
+09/16/2026 12:02:33 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Passed *****
+09/16/2026 12:02:48 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Started *****
+09/16/2026 12:02:52 PM: INFO: ***** Login Successful *****
+09/16/2026 12:03:04 PM: INFO: ***** Product Type 'Simple' search returned 47 products *****
+09/16/2026 12:03:04 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Passed *****
+09/16/2026 12:03:20 PM: INFO: ***** Test_BulkEditProductSearchPublishType_040 Started *****
+09/16/2026 12:03:24 PM: INFO: ***** Login Successful *****
+09/16/2026 12:03:24 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 12:03:33 PM: INFO: ***** Products Found: 94 *****
+09/16/2026 12:03:33 PM: INFO: ***** Published Type 'All' Search Passed *****
+09/16/2026 12:03:46 PM: INFO: ***** Test_BulkEditProductSearchPublishTypePublished_041 Started *****
+09/16/2026 12:03:50 PM: INFO: ***** Login Successful *****
+09/16/2026 12:03:50 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 12:03:59 PM: INFO: ***** Products Found: 47 *****
+09/16/2026 12:04:00 PM: INFO: ***** Published Type 'Published Only' Search Passed *****
+09/16/2026 12:04:14 PM: INFO: ***** Test_BulkEditSearchPublishTypeUnPublished_042 Started *****
+09/16/2026 12:04:20 PM: INFO: ***** Published Type 'Unpublished only' selected *****
+09/16/2026 12:04:26 PM: INFO: ***** Search completed for Published Type 'Unpublished only' *****
+09/16/2026 12:04:26 PM: INFO: ***** No unpublished products found. 'No data available in table' is expected. *****
+09/16/2026 12:04:40 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/16/2026 12:04:44 PM: INFO: ***** Login Successful *****
+09/16/2026 12:04:44 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/16/2026 12:05:07 PM: INFO: *****Clear_ActivityLogs_020*****
+09/16/2026 12:05:12 PM: INFO: ***********Login Successful**********
+09/16/2026 12:05:12 PM: INFO: **********Starting Clear_ActivityLogs_020**********
+09/16/2026 12:05:13 PM: INFO: **********Clear_ActivityLogs_020 completed**********
+09/16/2026 12:05:28 PM: INFO: *****Delete_SingleActivity_019*****
+09/16/2026 12:05:31 PM: INFO: ***********Login Successful**********
+09/16/2026 12:05:31 PM: INFO: **********Starting Delete_SingleActivity_019**********
+09/16/2026 12:05:35 PM: INFO: Customers available for export: 15
+09/16/2026 12:05:40 PM: INFO: ******Customers exported successfully*******
+09/16/2026 12:05:42 PM: INFO: Activity Log records found: 1
+09/16/2026 12:05:43 PM: INFO: ******Activity Log delete clicked*******
+09/16/2026 12:06:06 PM: INFO: ******* Exporting All Customers to Excel *******
+09/16/2026 12:06:08 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 12:06:10 PM: INFO: ******* Login Successful *****
+09/16/2026 12:06:10 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 12:06:13 PM: INFO: ****** Customers page opened ******
+09/16/2026 12:06:22 PM: INFO: ******* Export All Customers Excel button clicked *******
+09/16/2026 12:06:22 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 12:06:22 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 12:06:38 PM: INFO: ******* Exporting All Customers to XML *******
+09/16/2026 12:06:40 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 12:06:51 PM: INFO: ******* Login Successful *****
+09/16/2026 12:06:51 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 12:06:52 PM: INFO: ****** Customers page opened ******
+09/16/2026 12:07:00 PM: INFO: ******* Export All Customers XML button clicked *******
+09/16/2026 12:07:00 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 12:07:00 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 12:07:20 PM: INFO: ******* Exporting Selected Customers to Excel *******
+09/16/2026 12:07:24 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 12:07:26 PM: INFO: ******* Login Successful *****
+09/16/2026 12:07:26 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 12:07:27 PM: INFO: ****** Customers page opened ******
+09/16/2026 12:07:29 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 12:07:36 PM: INFO: ******* Export Selected Excel button clicked *******
+09/16/2026 12:07:36 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 12:07:36 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 12:07:55 PM: INFO: ******* Exporting Selected Customers to XML *******
+09/16/2026 12:07:57 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 12:08:00 PM: INFO: ******* Login Successful *****
+09/16/2026 12:08:00 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 12:08:11 PM: INFO: ****** Customers page opened ******
+09/16/2026 12:08:13 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 12:08:20 PM: INFO: ******* Export Selected XML button clicked *******
+09/16/2026 12:08:20 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 12:08:20 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 12:08:39 PM: INFO: ********Verify Login Test********
+09/16/2026 12:08:42 PM: INFO: ********Login test Passed********
+09/16/2026 12:09:06 PM: INFO: **********Test_002_DDT_Login********
+09/16/2026 12:09:06 PM: INFO: ********Verify Login DDT Test********
+09/16/2026 12:09:14 PM: INFO: Row 2: *****Test Passed*****
+09/16/2026 12:09:17 PM: INFO: Row 3: *****Test Passed*****
+09/16/2026 12:09:20 PM: INFO: Row 4: *****Test Passed*****
+09/16/2026 12:09:23 PM: INFO: Row 5: *****Test Passed*****
+09/16/2026 12:09:26 PM: INFO: Row 6: *****Test Passed*****
+09/16/2026 12:09:26 PM: INFO: ****Login DDT Test Passed****
+09/16/2026 12:09:27 PM: INFO: ****End of Login DDT Test****
+09/16/2026 12:09:27 PM: INFO: *****Completed TC_LoginDDT_002******
+09/16/2026 12:09:39 PM: INFO: ******* SearchCustomerByEmail_004 *********
+09/16/2026 12:09:44 PM: INFO: *********** Login Successful **********
+09/16/2026 12:09:44 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+09/16/2026 12:09:46 PM: INFO: ******** Searching customer by email ID ***********
+09/16/2026 12:09:46 PM: INFO: ******** Customer found successfully ********
+09/16/2026 12:09:46 PM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+09/16/2026 12:09:54 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=55807): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/81779244-3ab5-4434-a3ad-53ffdf3cc7ce
+09/16/2026 12:09:58 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=55807): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/81779244-3ab5-4434-a3ad-53ffdf3cc7ce
+09/16/2026 12:10:02 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=55807): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/81779244-3ab5-4434-a3ad-53ffdf3cc7ce
+09/16/2026 12:10:17 PM: INFO: ******* SearchCustomerByName_005 *********
+09/16/2026 12:10:21 PM: INFO: *********** Login Successful **********
+09/16/2026 12:10:21 PM: INFO: ********** Starting SearchCustomerByName_005 **********
+09/16/2026 12:10:23 PM: INFO: ******** Customers page opened ********
+09/16/2026 12:10:23 PM: INFO: ******** Searching customer by Name ***********
+09/16/2026 12:10:23 PM: INFO: ******** TC_SearchCustomerByName_005 Finished **********
+09/16/2026 12:10:37 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 12:10:41 PM: INFO: ***********Login Successful**********
+09/16/2026 12:10:41 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 12:10:42 PM: INFO: ******** searching vendor by Email***********
+09/16/2026 12:10:46 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
+09/16/2026 12:11:00 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 12:11:05 PM: INFO: ***********Login Successful**********
+09/16/2026 12:11:05 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 12:11:07 PM: INFO: ******** searching vendor by Name***********
+09/16/2026 12:11:07 PM: INFO: Selected Vendor Name: Vendor1
+09/16/2026 12:11:07 PM: INFO: *******Searching Vendor by Name: {vendor_name}********
+09/16/2026 12:11:11 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********
+09/16/2026 12:13:38 PM: INFO: ***** SearchActivityDate_016 *****
+09/16/2026 12:13:52 PM: INFO: *********** Login Successful **********
+09/16/2026 12:13:52 PM: INFO: ********** Starting SearchActivityDate_016 **********
+09/16/2026 12:14:00 PM: INFO: Activity log rows found: 6
+09/16/2026 12:14:28 PM: INFO: *****SearchActivityIP_017*****
+09/16/2026 12:14:35 PM: INFO: ***********Login Successful**********
+09/16/2026 12:14:35 PM: INFO: **********Starting SearchActivityIP_017**********
+09/16/2026 12:15:20 PM: INFO: *****SearchActivity_LogType_018*****
+09/16/2026 12:15:29 PM: INFO: ***********Login Successful**********
+09/16/2026 12:15:29 PM: INFO: **********Starting SearchActivity_LogType_018**********
+09/16/2026 12:15:58 PM: INFO: *****SearchCustomer_RoleAdministrator_021*****
+09/16/2026 12:16:08 PM: INFO: ***********Login Successful**********
+09/16/2026 12:16:16 PM: INFO: Administrator search result count: 1
+09/16/2026 12:16:39 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+09/16/2026 12:16:49 PM: INFO: ***********Login Successful**********
+09/16/2026 12:16:55 PM: INFO: Forum Moderator search result count: 1
+09/16/2026 12:17:20 PM: INFO: *****SearchCustomer_Role_Guests_024*****
+09/16/2026 12:17:32 PM: INFO: ***********Login Successful**********
+09/16/2026 12:17:32 PM: INFO: ********Starting_SearchGuest_Role_024******
+09/16/2026 12:17:37 PM: INFO: Normal table customer count: 15
+09/16/2026 12:17:41 PM: INFO: Guests search result count: 15
+09/16/2026 12:18:05 PM: INFO: ***** Test_SearchProductByName_029 *****
+09/16/2026 12:18:20 PM: INFO: ***** Login Successful *****
+09/16/2026 12:18:20 PM: INFO: ***** Starting Search Product By Name Test *****
+09/16/2026 12:18:25 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 12:18:31 PM: INFO: Product 'Test Product 6389' found successfully
+09/16/2026 12:18:59 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/16/2026 12:19:10 PM: INFO: *****Login Successful******
+09/16/2026 12:19:58 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/16/2026 12:20:02 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/16/2026 12:20:10 PM: INFO: ********** Login Successful **********
+09/16/2026 12:20:13 PM: INFO: ********** Products page opened successfully **********
+09/16/2026 12:20:22 PM: INFO: ********** Product search performed for Vendor1 **********
+09/16/2026 12:20:22 PM: INFO: ********** 'No data available in table' validated **********
+09/16/2026 12:20:23 PM: INFO: ********** 'No records' validated **********
+09/16/2026 12:20:23 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/16/2026 12:20:51 PM: INFO: *****SearchCustomer_RoleRegistered_022*****
+09/16/2026 12:21:01 PM: INFO: ***********Login Successful**********
+09/16/2026 12:21:05 PM: INFO: Normal table customer count: 15
+09/16/2026 12:21:06 PM: INFO: Registered search result count: 1
+09/16/2026 12:21:33 PM: INFO: *****SearchCustomer_Role_Vendors_025*****
+09/16/2026 12:21:43 PM: INFO: ***********Login Successful**********
+09/16/2026 12:21:43 PM: INFO: ********Starting_SearchVendor_Role_025******
+09/16/2026 12:21:52 PM: INFO: Normal table customer count: 15
+09/16/2026 12:21:54 PM: INFO: Vendor search result count: 0
+09/16/2026 01:09:44 PM: INFO: ******* Editing Customer *******
+09/16/2026 01:10:03 PM: INFO: ******* Login Successful *****
+09/16/2026 01:10:09 PM: INFO: ******* Customers page opened *******
+09/16/2026 01:18:59 PM: INFO: ******* Editing Customer *******
+09/16/2026 01:19:11 PM: INFO: ******* Login Successful *****
+09/16/2026 01:19:13 PM: INFO: ******* Customers page opened *******
+09/16/2026 01:19:16 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 01:19:17 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 01:19:21 PM: INFO: ********* Edit Customer test passed **********
+09/16/2026 01:19:23 PM: INFO: ****** Ending Edit Customer Test *******
+09/16/2026 01:20:53 PM: INFO: ******* Deleting Customer *******
+09/16/2026 01:21:03 PM: INFO: ******* Login Successful *****
+09/16/2026 01:21:09 PM: INFO: ******* Customers page opened *******
+09/16/2026 01:21:16 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 01:21:19 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 01:21:19 PM: INFO: ******* Delete Customer button clicked *******
+09/16/2026 01:21:32 PM: INFO: ******* Delete confirmation accepted *******
+09/16/2026 01:21:36 PM: INFO: ********* Delete Customer test passed **********
+09/16/2026 01:21:40 PM: INFO: ****** Ending Delete Customer Test *******
+09/16/2026 01:22:01 PM: INFO: *****Test_DeleteProduct_Select_033*****
+09/16/2026 01:22:12 PM: INFO: *****Login Successful******
+09/16/2026 01:22:12 PM: INFO: *****Starting Delete Selected Product test*****
+09/16/2026 01:22:18 PM: INFO: ***** Product 'Test Product 2553' was deleted successfully *****
+09/16/2026 01:22:49 PM: INFO: *****Test_DeleteProduct_032*****
+09/16/2026 01:23:01 PM: INFO: *****Login Successful******
+09/16/2026 01:23:01 PM: INFO: *****Staring Delete Product test*****
+09/16/2026 01:23:18 PM: INFO: ***** Product deleted successfully *****
+09/16/2026 01:24:33 PM: INFO: ******* Editing Customer *******
+09/16/2026 01:24:40 PM: INFO: ******* Login Successful *****
+09/16/2026 01:24:42 PM: INFO: ******* Customers page opened *******
+09/16/2026 01:24:46 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 01:24:47 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 01:25:40 PM: INFO: ***** Test_EditProduct_032 *****
+09/16/2026 01:25:50 PM: INFO: ***** Login Successful *****
+09/16/2026 01:25:50 PM: INFO: ***** Opening Catalog -> Products *****
+09/16/2026 01:25:54 PM: INFO: ***** Dynamic Product Selected: Test Product 6389 *****
+09/16/2026 01:25:59 PM: INFO: ***** Edit page opened for: Test Product 6389 *****
+09/16/2026 01:26:01 PM: INFO: ***** Product details updated: SKU=SKU65676, Price=999 *****
+09/16/2026 01:26:02 PM: INFO: ***** Save button clicked *****
+09/16/2026 01:26:04 PM: INFO: ***** Product updated successfully *****
+09/16/2026 01:26:26 PM: INFO: ******* Test_EditVendor_015 *******
+09/16/2026 01:26:41 PM: INFO: *********** Login Successful **********
+09/16/2026 01:26:44 PM: INFO: ******** Starting Edit Vendor Test ********
+09/16/2026 01:26:48 PM: INFO: Vendor selected for editing: Vendor1
+09/16/2026 01:26:49 PM: INFO: Vendor 'Vendor1' found successfully
+09/16/2026 01:27:12 PM: INFO: ******VerifyActivityTypeDisplayed******
+09/16/2026 01:27:25 PM: INFO: ***********Login Successful**********
+09/16/2026 01:27:25 PM: INFO: ********Starting Verify Activity Type**********
+09/16/2026 01:27:29 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 01:27:29 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 01:27:54 PM: INFO: ********** Test_003_AddCustomer **********
+09/16/2026 01:28:05 PM: INFO: ********* Login Successful **********
+09/16/2026 01:28:05 PM: INFO: ********* Starting Add Customer Test *********
+09/16/2026 01:28:11 PM: INFO: ******** Providing customer information ********
+09/16/2026 01:28:17 PM: INFO: ******** Customer information provided ********
+09/16/2026 01:28:20 PM: INFO: ******** Saving customer information ********
+09/16/2026 01:28:20 PM: INFO: Success message: ×
+The new customer has been added successfully.
+09/16/2026 01:28:20 PM: INFO: ******** Customer added successfully ********
+09/16/2026 01:28:20 PM: INFO: ******** Verifying customer in Customers grid ********
+09/16/2026 01:28:36 PM: INFO: ******** Customers page opened ********
+09/16/2026 01:28:38 PM: INFO: ******** Searching for 2ccsyjfe@gmail.com ********
+09/16/2026 01:28:39 PM: INFO: ******** Customer found in Customers grid ********
+09/16/2026 01:28:39 PM: INFO: ******** Add customer test passed ********
+09/16/2026 01:29:03 PM: INFO: *****Test_AddProduct_028*****
+09/16/2026 01:29:12 PM: INFO: *****Login Successful******
+09/16/2026 01:29:12 PM: INFO: *****Staring Add Product test*****
+09/16/2026 01:29:20 PM: INFO: *****Providing product details*******
+09/16/2026 01:29:51 PM: INFO: ******* Test_012_AddVendor *******
+09/16/2026 01:30:02 PM: INFO: ***** Login Successfully *****
+09/16/2026 01:30:02 PM: INFO: ****** Starting Add Vendor Test ******
+09/16/2026 01:30:10 PM: INFO: ****** Providing Vendor Info ******
+09/16/2026 01:30:18 PM: INFO: After Save URL: https://localhost:59579/Admin/Vendor/List
+09/16/2026 01:30:18 PM: INFO: ******Vendor added successfully******
+09/16/2026 01:30:43 PM: INFO: *** Test_BulkEditProductSaveAll_035 ***
+09/16/2026 01:30:49 PM: INFO: ***** Login Successful *****
+09/16/2026 01:30:49 PM: INFO: ***** Starting Bulk Edit Product Save All Test *****
+09/16/2026 01:30:59 PM: INFO: Product Name: Test Product 1835
+09/16/2026 01:30:59 PM: INFO: SKU: SKU65871
+09/16/2026 01:30:59 PM: INFO: New Price: 2000
+09/16/2026 01:30:59 PM: INFO: Old Price: 1000
+09/16/2026 01:30:59 PM: INFO: Stock Quantity: 1000
+09/16/2026 01:31:01 PM: INFO: Bulk Edit Save All completed
+09/16/2026 01:31:11 PM: INFO: Product 'Test Product 1835' successfully found in Products table
+09/16/2026 01:31:39 PM: INFO: *** Test_BulkEditProductSaveSelected_036 ***
+09/16/2026 01:31:47 PM: INFO: ***** Login Successful *****
+09/16/2026 01:31:55 PM: INFO: Product Name: Test Product 4983
+09/16/2026 01:31:55 PM: INFO: SKU: SKU71473
+09/16/2026 01:31:55 PM: INFO: New Price: 2000
+09/16/2026 01:31:55 PM: INFO: Old Price: 1000
+09/16/2026 01:31:55 PM: INFO: Stock Quantity: 1000
+09/16/2026 01:31:59 PM: INFO: Product 'Test Product 4983' selected
+09/16/2026 01:32:01 PM: INFO: Save Selected completed
+09/16/2026 01:32:05 PM: INFO: Returned to Products List
+09/16/2026 01:32:11 PM: INFO: Searching for product 'Test Product 4983'
+09/16/2026 01:32:11 PM: INFO: Product 'Test Product 4983' successfully found in Products table
+09/16/2026 01:32:32 PM: INFO: ***** Test_BulkEditSearchProductName_037 *****
+09/16/2026 01:32:43 PM: INFO: ***** Login Successful *****
+09/16/2026 01:32:43 PM: INFO: ***** Starting Bulk Edit Product Search By Name Test *****
+09/16/2026 01:32:46 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 01:32:53 PM: INFO: Product 'Test Product 6389' displayed successfully
+09/16/2026 01:33:14 PM: INFO: ***** Test_BulkEditSearchProductTypeAll_039 *****
+09/16/2026 01:33:18 PM: INFO: ***** Login Successful *****
+09/16/2026 01:33:33 PM: INFO: ***** Product Type 'All' search returned 46 products *****
+09/16/2026 01:33:48 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Started *****
+09/16/2026 01:33:52 PM: INFO: ***** Login Successful *****
+09/16/2026 01:34:03 PM: INFO: ***** Product Type 'Grouped (product with variants)' returned no products as expected *****
+09/16/2026 01:34:03 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Passed *****
+09/16/2026 01:34:18 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Started *****
+09/16/2026 01:34:23 PM: INFO: ***** Login Successful *****
+09/16/2026 01:34:33 PM: INFO: ***** Product Type 'Simple' search returned 46 products *****
+09/16/2026 01:34:33 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Passed *****
+09/16/2026 01:34:48 PM: INFO: ***** Test_BulkEditProductSearchPublishType_040 Started *****
+09/16/2026 01:35:00 PM: INFO: ***** Login Successful *****
+09/16/2026 01:35:00 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 01:35:08 PM: INFO: ***** Products Found: 92 *****
+09/16/2026 01:35:08 PM: INFO: ***** Published Type 'All' Search Passed *****
+09/16/2026 01:35:21 PM: INFO: ***** Test_BulkEditProductSearchPublishTypePublished_041 Started *****
+09/16/2026 01:35:28 PM: INFO: ***** Login Successful *****
+09/16/2026 01:35:28 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 01:35:36 PM: INFO: ***** Products Found: 92 *****
+09/16/2026 01:35:39 PM: INFO: ***** Published Type 'Published Only' Search Passed *****
+09/16/2026 01:35:52 PM: INFO: ***** Test_BulkEditSearchPublishTypeUnPublished_042 Started *****
+09/16/2026 01:35:59 PM: INFO: ***** Published Type 'Unpublished only' selected *****
+09/16/2026 01:36:05 PM: INFO: ***** Search completed for Published Type 'Unpublished only' *****
+09/16/2026 01:36:05 PM: INFO: ***** No unpublished products found. 'No data available in table' is expected. *****
+09/16/2026 01:36:18 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/16/2026 01:36:21 PM: INFO: ***** Login Successful *****
+09/16/2026 01:36:21 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/16/2026 01:36:44 PM: INFO: *****Clear_ActivityLogs_020*****
+09/16/2026 01:36:49 PM: INFO: ***********Login Successful**********
+09/16/2026 01:36:49 PM: INFO: **********Starting Clear_ActivityLogs_020**********
+09/16/2026 01:36:50 PM: INFO: **********Clear_ActivityLogs_020 completed**********
+09/16/2026 01:37:04 PM: INFO: *****Delete_SingleActivity_019*****
+09/16/2026 01:37:07 PM: INFO: ***********Login Successful**********
+09/16/2026 01:37:07 PM: INFO: **********Starting Delete_SingleActivity_019**********
+09/16/2026 01:37:10 PM: INFO: Customers available for export: 15
+09/16/2026 01:37:15 PM: INFO: ******Customers exported successfully*******
+09/16/2026 01:37:17 PM: INFO: Activity Log records found: 1
+09/16/2026 01:37:17 PM: INFO: ******Activity Log delete clicked*******
+09/16/2026 01:37:33 PM: INFO: ******* Exporting All Customers to Excel *******
+09/16/2026 01:37:34 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 01:37:37 PM: INFO: ******* Login Successful *****
+09/16/2026 01:37:37 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 01:37:39 PM: INFO: ****** Customers page opened ******
+09/16/2026 01:37:50 PM: INFO: ******* Export All Customers Excel button clicked *******
+09/16/2026 01:37:50 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 01:37:50 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 01:38:07 PM: INFO: ******* Exporting All Customers to XML *******
+09/16/2026 01:38:09 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 01:38:11 PM: INFO: ******* Login Successful *****
+09/16/2026 01:38:11 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 01:38:17 PM: INFO: ****** Customers page opened ******
+09/16/2026 01:38:25 PM: INFO: ******* Export All Customers XML button clicked *******
+09/16/2026 01:38:25 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 01:38:25 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 01:38:40 PM: INFO: ******* Exporting Selected Customers to Excel *******
+09/16/2026 01:38:41 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 01:38:45 PM: INFO: ******* Login Successful *****
+09/16/2026 01:38:45 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 01:38:51 PM: INFO: ****** Customers page opened ******
+09/16/2026 01:38:53 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 01:39:00 PM: INFO: ******* Export Selected Excel button clicked *******
+09/16/2026 01:39:00 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 01:39:00 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 01:39:17 PM: INFO: ******* Exporting Selected Customers to XML *******
+09/16/2026 01:39:18 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 01:39:21 PM: INFO: ******* Login Successful *****
+09/16/2026 01:39:21 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 01:39:23 PM: INFO: ****** Customers page opened ******
+09/16/2026 01:39:26 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 01:39:32 PM: INFO: ******* Export Selected XML button clicked *******
+09/16/2026 01:39:32 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 01:39:32 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 01:39:49 PM: INFO: ********Verify Login Test********
+09/16/2026 01:39:53 PM: INFO: ********Login test Passed********
+09/16/2026 01:40:09 PM: INFO: **********Test_002_DDT_Login********
+09/16/2026 01:40:09 PM: INFO: ********Verify Login DDT Test********
+09/16/2026 01:40:16 PM: INFO: Row 2: *****Test Passed*****
+09/16/2026 01:40:20 PM: INFO: Row 3: *****Test Passed*****
+09/16/2026 01:40:23 PM: INFO: Row 4: *****Test Passed*****
+09/16/2026 01:40:26 PM: INFO: Row 5: *****Test Passed*****
+09/16/2026 01:40:29 PM: INFO: Row 6: *****Test Passed*****
+09/16/2026 01:40:29 PM: INFO: ****Login DDT Test Passed****
+09/16/2026 01:40:31 PM: INFO: ****End of Login DDT Test****
+09/16/2026 01:40:31 PM: INFO: *****Completed TC_LoginDDT_002******
+09/16/2026 01:40:46 PM: INFO: ******* SearchCustomerByEmail_004 *********
+09/16/2026 01:40:50 PM: INFO: *********** Login Successful **********
+09/16/2026 01:40:50 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+09/16/2026 01:40:52 PM: INFO: ******** Searching customer by email ID ***********
+09/16/2026 01:40:53 PM: INFO: ******** Customer found successfully ********
+09/16/2026 01:40:53 PM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+09/16/2026 01:41:01 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=50224): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/2b2a774f-9a9a-44c6-83e8-440bd593bddb
+09/16/2026 01:41:05 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=50224): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/2b2a774f-9a9a-44c6-83e8-440bd593bddb
+09/16/2026 01:41:09 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=50224): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/2b2a774f-9a9a-44c6-83e8-440bd593bddb
+09/16/2026 01:41:24 PM: INFO: ******* SearchCustomerByName_005 *********
+09/16/2026 01:41:34 PM: INFO: *********** Login Successful **********
+09/16/2026 01:41:34 PM: INFO: ********** Starting SearchCustomerByName_005 **********
+09/16/2026 01:41:35 PM: INFO: ******** Customers page opened ********
+09/16/2026 01:41:35 PM: INFO: ******** Searching customer by Name ***********
+09/16/2026 01:41:36 PM: INFO: ******** TC_SearchCustomerByName_005 Finished **********
+09/16/2026 01:41:50 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 01:41:55 PM: INFO: ***********Login Successful**********
+09/16/2026 01:41:55 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 01:41:57 PM: INFO: ******** searching vendor by Email***********
+09/16/2026 01:42:01 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
+09/16/2026 01:42:18 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 01:42:21 PM: INFO: ***********Login Successful**********
+09/16/2026 01:42:21 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 01:42:24 PM: INFO: ******** searching vendor by Name***********
+09/16/2026 01:42:25 PM: INFO: Selected Vendor Name: Vendor1
+09/16/2026 01:42:25 PM: INFO: *******Searching Vendor by Name: {vendor_name}********
+09/16/2026 01:42:28 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********
+09/16/2026 01:42:45 PM: INFO: ***** SearchActivityDate_016 *****
+09/16/2026 01:42:49 PM: INFO: *********** Login Successful **********
+09/16/2026 01:42:49 PM: INFO: ********** Starting SearchActivityDate_016 **********
+09/16/2026 01:42:52 PM: INFO: Activity log rows found: 6
+09/16/2026 01:43:06 PM: INFO: *****SearchActivityIP_017*****
+09/16/2026 01:43:11 PM: INFO: ***********Login Successful**********
+09/16/2026 01:43:11 PM: INFO: **********Starting SearchActivityIP_017**********
+09/16/2026 01:43:32 PM: INFO: *****SearchActivity_LogType_018*****
+09/16/2026 01:43:36 PM: INFO: ***********Login Successful**********
+09/16/2026 01:43:36 PM: INFO: **********Starting SearchActivity_LogType_018**********
+09/16/2026 01:43:52 PM: INFO: *****SearchCustomer_RoleAdministrator_021*****
+09/16/2026 01:43:58 PM: INFO: ***********Login Successful**********
+09/16/2026 01:44:01 PM: INFO: Administrator search result count: 1
+09/16/2026 01:44:14 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+09/16/2026 01:44:17 PM: INFO: ***********Login Successful**********
+09/16/2026 01:44:22 PM: INFO: Forum Moderator search result count: 1
+09/16/2026 01:44:34 PM: INFO: *****SearchCustomer_Role_Guests_024*****
+09/16/2026 01:44:38 PM: INFO: ***********Login Successful**********
+09/16/2026 01:44:38 PM: INFO: ********Starting_SearchGuest_Role_024******
+09/16/2026 01:44:41 PM: INFO: Normal table customer count: 15
+09/16/2026 01:44:43 PM: INFO: Guests search result count: 15
+09/16/2026 01:44:56 PM: INFO: ***** Test_SearchProductByName_029 *****
+09/16/2026 01:45:01 PM: INFO: ***** Login Successful *****
+09/16/2026 01:45:01 PM: INFO: ***** Starting Search Product By Name Test *****
+09/16/2026 01:45:03 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 01:45:08 PM: INFO: Product 'Test Product 6389' found successfully
+09/16/2026 01:45:23 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/16/2026 01:45:27 PM: INFO: *****Login Successful******
+09/16/2026 01:45:46 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/16/2026 01:45:48 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/16/2026 01:45:49 PM: INFO: ********** Login Successful **********
+09/16/2026 01:45:50 PM: INFO: ********** Products page opened successfully **********
+09/16/2026 01:45:59 PM: INFO: ********** Product search performed for Vendor1 **********
+09/16/2026 01:45:59 PM: INFO: ********** 'No data available in table' validated **********
+09/16/2026 01:45:59 PM: INFO: ********** 'No records' validated **********
+09/16/2026 01:45:59 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/16/2026 01:46:13 PM: INFO: *****SearchCustomer_RoleRegistered_022*****
+09/16/2026 01:46:17 PM: INFO: ***********Login Successful**********
+09/16/2026 01:46:20 PM: INFO: Normal table customer count: 15
+09/16/2026 01:46:20 PM: INFO: Registered search result count: 2
+09/16/2026 01:46:34 PM: INFO: *****SearchCustomer_Role_Vendors_025*****
+09/16/2026 01:46:38 PM: INFO: ***********Login Successful**********
+09/16/2026 01:46:38 PM: INFO: ********Starting_SearchVendor_Role_025******
+09/16/2026 01:46:44 PM: INFO: Normal table customer count: 15
+09/16/2026 01:46:46 PM: INFO: Vendor search result count: 0
+09/16/2026 01:51:39 PM: INFO: ******* Editing Customer *******
+09/16/2026 01:51:45 PM: INFO: ******* Login Successful *****
+09/16/2026 01:51:47 PM: INFO: ******* Customers page opened *******
+09/16/2026 01:51:50 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 01:51:50 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 02:10:29 PM: INFO: ******* Editing Customer *******
+09/16/2026 02:10:44 PM: INFO: ******* Login Successful *****
+09/16/2026 02:10:48 PM: INFO: ******* Customers page opened *******
+09/16/2026 02:10:55 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 02:10:55 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 02:23:53 PM: INFO: ******* Editing Customer *******
+09/16/2026 02:23:58 PM: INFO: ******* Login Successful *****
+09/16/2026 02:24:00 PM: INFO: ******* Customers page opened *******
+09/16/2026 02:24:02 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 02:24:02 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 02:24:06 PM: INFO: ********* Edit Customer test passed **********
+09/16/2026 02:24:08 PM: INFO: ****** Ending Edit Customer Test *******
+09/16/2026 02:25:33 PM: INFO: ******* Deleting Customer *******
+09/16/2026 02:25:37 PM: INFO: ******* Login Successful *****
+09/16/2026 02:25:39 PM: INFO: ******* Customers page opened *******
+09/16/2026 02:25:43 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 02:25:45 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 02:25:46 PM: INFO: ******* Delete Customer button clicked *******
+09/16/2026 02:25:57 PM: INFO: ******* Delete confirmation accepted *******
+09/16/2026 02:25:59 PM: INFO: ********* Delete Customer test passed **********
+09/16/2026 02:26:01 PM: INFO: ****** Ending Delete Customer Test *******
+09/16/2026 02:26:15 PM: INFO: *****Test_DeleteProduct_Select_033*****
+09/16/2026 02:26:20 PM: INFO: *****Login Successful******
+09/16/2026 02:26:20 PM: INFO: *****Starting Delete Selected Product test*****
+09/16/2026 02:26:28 PM: INFO: ***** Product 'Test Product 3305' was deleted successfully *****
+09/16/2026 02:26:45 PM: INFO: *****Test_DeleteProduct_032*****
+09/16/2026 02:26:51 PM: INFO: *****Login Successful******
+09/16/2026 02:26:51 PM: INFO: *****Staring Delete Product test*****
+09/16/2026 02:27:08 PM: INFO: ***** Product deleted successfully *****
+09/16/2026 02:28:06 PM: INFO: ******* Editing Customer *******
+09/16/2026 02:28:10 PM: INFO: ******* Login Successful *****
+09/16/2026 02:28:14 PM: INFO: ******* Customers page opened *******
+09/16/2026 02:28:18 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 02:28:19 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 02:28:23 PM: INFO: ********* Edit Customer test passed **********
+09/16/2026 02:28:25 PM: INFO: ****** Ending Edit Customer Test *******
+09/16/2026 02:28:42 PM: INFO: ***** Test_EditProduct_032 *****
+09/16/2026 02:28:50 PM: INFO: ***** Login Successful *****
+09/16/2026 02:28:50 PM: INFO: ***** Opening Catalog -> Products *****
+09/16/2026 02:28:52 PM: INFO: ***** Dynamic Product Selected: Test Product 6389 *****
+09/16/2026 02:28:54 PM: INFO: ***** Edit page opened for: Test Product 6389 *****
+09/16/2026 02:28:55 PM: INFO: ***** Product details updated: SKU=SKU82562, Price=999 *****
+09/16/2026 02:28:55 PM: INFO: ***** Save button clicked *****
+09/16/2026 02:28:57 PM: INFO: ***** Product updated successfully *****
+09/16/2026 02:29:21 PM: INFO: ******* Test_EditVendor_015 *******
+09/16/2026 02:29:33 PM: INFO: *********** Login Successful **********
+09/16/2026 02:29:36 PM: INFO: ******** Starting Edit Vendor Test ********
+09/16/2026 02:29:39 PM: INFO: Vendor selected for editing: Vendor1
+09/16/2026 02:29:40 PM: INFO: Vendor 'Vendor1' found successfully
+09/16/2026 02:30:06 PM: INFO: ******VerifyActivityTypeDisplayed******
+09/16/2026 02:30:26 PM: INFO: ***********Login Successful**********
+09/16/2026 02:30:26 PM: INFO: ********Starting Verify Activity Type**********
+09/16/2026 02:30:36 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 02:30:36 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 02:30:55 PM: INFO: ********** Test_003_AddCustomer **********
+09/16/2026 02:31:03 PM: INFO: ********* Login Successful **********
+09/16/2026 02:31:03 PM: INFO: ********* Starting Add Customer Test *********
+09/16/2026 02:31:08 PM: INFO: ******** Providing customer information ********
+09/16/2026 02:31:11 PM: INFO: ******** Customer information provided ********
+09/16/2026 02:31:14 PM: INFO: ******** Saving customer information ********
+09/16/2026 02:31:15 PM: INFO: Success message: ×
+The new customer has been added successfully.
+09/16/2026 02:31:15 PM: INFO: ******** Customer added successfully ********
+09/16/2026 02:31:15 PM: INFO: ******** Verifying customer in Customers grid ********
+09/16/2026 02:31:31 PM: INFO: ******** Customers page opened ********
+09/16/2026 02:31:33 PM: INFO: ******** Searching for 1alo4avu@gmail.com ********
+09/16/2026 02:31:33 PM: INFO: ******** Customer found in Customers grid ********
+09/16/2026 02:31:33 PM: INFO: ******** Add customer test passed ********
+09/16/2026 02:31:49 PM: INFO: *****Test_AddProduct_028*****
+09/16/2026 02:31:58 PM: INFO: *****Login Successful******
+09/16/2026 02:31:58 PM: INFO: *****Staring Add Product test*****
+09/16/2026 02:32:03 PM: INFO: *****Providing product details*******
+09/16/2026 02:32:25 PM: INFO: ******* Test_012_AddVendor *******
+09/16/2026 02:32:35 PM: INFO: ***** Login Successfully *****
+09/16/2026 02:32:35 PM: INFO: ****** Starting Add Vendor Test ******
+09/16/2026 02:32:39 PM: INFO: ****** Providing Vendor Info ******
+09/16/2026 02:32:42 PM: INFO: After Save URL: https://localhost:59579/Admin/Vendor/List
+09/16/2026 02:32:42 PM: INFO: ******Vendor added successfully******
+09/16/2026 02:32:58 PM: INFO: *** Test_BulkEditProductSaveAll_035 ***
+09/16/2026 02:33:03 PM: INFO: ***** Login Successful *****
+09/16/2026 02:33:03 PM: INFO: ***** Starting Bulk Edit Product Save All Test *****
+09/16/2026 02:33:10 PM: INFO: Product Name: Test Product 6961
+09/16/2026 02:33:10 PM: INFO: SKU: SKU38884
+09/16/2026 02:33:10 PM: INFO: New Price: 2000
+09/16/2026 02:33:10 PM: INFO: Old Price: 1000
+09/16/2026 02:33:10 PM: INFO: Stock Quantity: 1000
+09/16/2026 02:33:14 PM: INFO: Bulk Edit Save All completed
+09/16/2026 02:33:20 PM: INFO: Product 'Test Product 6961' successfully found in Products table
+09/16/2026 02:33:34 PM: INFO: *** Test_BulkEditProductSaveSelected_036 ***
+09/16/2026 02:33:43 PM: INFO: ***** Login Successful *****
+09/16/2026 02:33:48 PM: INFO: Product Name: Test Product 5956
+09/16/2026 02:33:48 PM: INFO: SKU: SKU42786
+09/16/2026 02:33:48 PM: INFO: New Price: 2000
+09/16/2026 02:33:48 PM: INFO: Old Price: 1000
+09/16/2026 02:33:48 PM: INFO: Stock Quantity: 1000
+09/16/2026 02:33:50 PM: INFO: Product 'Test Product 5956' selected
+09/16/2026 02:33:52 PM: INFO: Save Selected completed
+09/16/2026 02:33:52 PM: INFO: Returned to Products List
+09/16/2026 02:33:58 PM: INFO: Searching for product 'Test Product 5956'
+09/16/2026 02:33:58 PM: INFO: Product 'Test Product 5956' successfully found in Products table
+09/16/2026 02:34:12 PM: INFO: ***** Test_BulkEditSearchProductName_037 *****
+09/16/2026 02:34:19 PM: INFO: ***** Login Successful *****
+09/16/2026 02:34:19 PM: INFO: ***** Starting Bulk Edit Product Search By Name Test *****
+09/16/2026 02:34:24 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 02:34:32 PM: INFO: Product 'Test Product 6389' displayed successfully
+09/16/2026 02:34:51 PM: INFO: ***** Test_BulkEditSearchProductTypeAll_039 *****
+09/16/2026 02:35:23 PM: INFO: ***** Login Successful *****
+09/16/2026 02:35:46 PM: INFO: ***** Product Type 'All' search returned 45 products *****
+09/16/2026 02:36:05 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Started *****
+09/16/2026 02:36:10 PM: INFO: ***** Login Successful *****
+09/16/2026 02:36:30 PM: INFO: ***** Product Type 'Grouped (product with variants)' returned no products as expected *****
+09/16/2026 02:36:30 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Passed *****
+09/16/2026 02:36:48 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Started *****
+09/16/2026 02:36:52 PM: INFO: ***** Login Successful *****
+09/16/2026 02:37:09 PM: INFO: ***** Product Type 'Simple' search returned 45 products *****
+09/16/2026 02:37:09 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Passed *****
+09/16/2026 02:37:30 PM: INFO: ***** Test_BulkEditProductSearchPublishType_040 Started *****
+09/16/2026 02:37:40 PM: INFO: ***** Login Successful *****
+09/16/2026 02:37:40 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 02:37:49 PM: INFO: ***** Products Found: 90 *****
+09/16/2026 02:37:49 PM: INFO: ***** Published Type 'All' Search Passed *****
+09/16/2026 02:38:12 PM: INFO: ***** Test_BulkEditProductSearchPublishTypePublished_041 Started *****
+09/16/2026 02:38:23 PM: INFO: ***** Login Successful *****
+09/16/2026 02:38:23 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 02:38:35 PM: INFO: ***** Products Found: 90 *****
+09/16/2026 02:38:43 PM: INFO: ***** Published Type 'Published Only' Search Passed *****
+09/16/2026 02:39:01 PM: INFO: ***** Test_BulkEditSearchPublishTypeUnPublished_042 Started *****
+09/16/2026 02:39:18 PM: INFO: ***** Published Type 'Unpublished only' selected *****
+09/16/2026 02:39:23 PM: INFO: ***** Search completed for Published Type 'Unpublished only' *****
+09/16/2026 02:39:23 PM: INFO: ***** No unpublished products found. 'No data available in table' is expected. *****
+09/16/2026 02:39:48 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/16/2026 02:39:57 PM: INFO: ***** Login Successful *****
+09/16/2026 02:39:57 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/16/2026 02:40:22 PM: INFO: *****Clear_ActivityLogs_020*****
+09/16/2026 02:40:45 PM: INFO: ***********Login Successful**********
+09/16/2026 02:40:45 PM: INFO: **********Starting Clear_ActivityLogs_020**********
+09/16/2026 02:40:47 PM: INFO: **********Clear_ActivityLogs_020 completed**********
+09/16/2026 02:41:02 PM: INFO: *****Delete_SingleActivity_019*****
+09/16/2026 02:41:05 PM: INFO: ***********Login Successful**********
+09/16/2026 02:41:05 PM: INFO: **********Starting Delete_SingleActivity_019**********
+09/16/2026 02:41:07 PM: INFO: Customers available for export: 15
+09/16/2026 02:41:12 PM: INFO: ******Customers exported successfully*******
+09/16/2026 02:41:14 PM: INFO: Activity Log records found: 6
+09/16/2026 02:41:15 PM: INFO: ******Activity Log delete clicked*******
+09/16/2026 02:41:38 PM: INFO: ******* Exporting All Customers to Excel *******
+09/16/2026 02:41:39 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 02:41:42 PM: INFO: ******* Login Successful *****
+09/16/2026 02:41:42 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 02:41:43 PM: INFO: ****** Customers page opened ******
+09/16/2026 02:41:54 PM: INFO: ******* Export All Customers Excel button clicked *******
+09/16/2026 02:50:24 PM: INFO: ******* Exporting All Customers to XML *******
+09/16/2026 02:50:28 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 02:50:30 PM: INFO: ******* Login Successful *****
+09/16/2026 02:50:30 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 02:50:32 PM: INFO: ****** Customers page opened ******
+09/16/2026 02:50:43 PM: INFO: ******* Export All Customers XML button clicked *******
+09/16/2026 02:50:43 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 02:50:43 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 02:51:01 PM: INFO: ******* Exporting Selected Customers to Excel *******
+09/16/2026 02:51:03 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 02:51:06 PM: INFO: ******* Login Successful *****
+09/16/2026 02:51:06 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 02:51:13 PM: INFO: ****** Customers page opened ******
+09/16/2026 02:51:15 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 02:51:21 PM: INFO: ******* Export Selected Excel button clicked *******
+09/16/2026 02:51:22 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 02:51:22 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 02:51:44 PM: INFO: ******* Exporting Selected Customers to XML *******
+09/16/2026 02:51:47 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 02:51:57 PM: INFO: ******* Login Successful *****
+09/16/2026 02:51:57 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 02:52:06 PM: INFO: ****** Customers page opened ******
+09/16/2026 02:52:10 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 02:52:20 PM: INFO: ******* Export Selected XML button clicked *******
+09/16/2026 02:52:20 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 02:52:20 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 02:52:56 PM: INFO: ********Verify Login Test********
+09/16/2026 02:53:02 PM: INFO: ********Login test Passed********
+09/16/2026 02:53:25 PM: INFO: **********Test_002_DDT_Login********
+09/16/2026 02:53:25 PM: INFO: ********Verify Login DDT Test********
+09/16/2026 02:53:42 PM: INFO: Row 2: *****Test Passed*****
+09/16/2026 02:53:46 PM: INFO: Row 3: *****Test Passed*****
+09/16/2026 02:53:50 PM: INFO: Row 4: *****Test Passed*****
+09/16/2026 02:53:53 PM: INFO: Row 5: *****Test Passed*****
+09/16/2026 02:53:57 PM: INFO: Row 6: *****Test Passed*****
+09/16/2026 02:53:57 PM: INFO: ****Login DDT Test Passed****
+09/16/2026 02:54:00 PM: INFO: ****End of Login DDT Test****
+09/16/2026 02:54:00 PM: INFO: *****Completed TC_LoginDDT_002******
+09/16/2026 02:54:18 PM: INFO: ******* SearchCustomerByEmail_004 *********
+09/16/2026 02:54:26 PM: INFO: *********** Login Successful **********
+09/16/2026 02:54:26 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+09/16/2026 02:54:28 PM: INFO: ******** Searching customer by email ID ***********
+09/16/2026 02:54:30 PM: INFO: ******** Customer found successfully ********
+09/16/2026 02:54:30 PM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+09/16/2026 02:54:38 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=62726): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/e573f9e5-78c9-4906-bcdb-f2540a11a512
+09/16/2026 02:54:43 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=62726): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/e573f9e5-78c9-4906-bcdb-f2540a11a512
+09/16/2026 02:54:47 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=62726): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/e573f9e5-78c9-4906-bcdb-f2540a11a512
+09/16/2026 02:55:06 PM: INFO: ******* SearchCustomerByName_005 *********
+09/16/2026 02:55:11 PM: INFO: *********** Login Successful **********
+09/16/2026 02:55:11 PM: INFO: ********** Starting SearchCustomerByName_005 **********
+09/16/2026 02:55:16 PM: INFO: ******** Customers page opened ********
+09/16/2026 02:55:16 PM: INFO: ******** Searching customer by Name ***********
+09/16/2026 02:55:20 PM: INFO: ******** TC_SearchCustomerByName_005 Finished **********
+09/16/2026 02:55:38 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 02:55:46 PM: INFO: ***********Login Successful**********
+09/16/2026 02:55:46 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 02:55:49 PM: INFO: ******** searching vendor by Email***********
+09/16/2026 02:55:53 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
+09/16/2026 02:56:18 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 02:56:32 PM: INFO: ***********Login Successful**********
+09/16/2026 02:56:32 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 02:56:36 PM: INFO: ******** searching vendor by Name***********
+09/16/2026 02:56:37 PM: INFO: Selected Vendor Name: Vendor1
+09/16/2026 02:56:37 PM: INFO: *******Searching Vendor by Name: {vendor_name}********
+09/16/2026 02:56:42 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********
+09/16/2026 02:57:15 PM: INFO: ***** SearchActivityDate_016 *****
+09/16/2026 02:57:29 PM: INFO: *********** Login Successful **********
+09/16/2026 02:57:29 PM: INFO: ********** Starting SearchActivityDate_016 **********
+09/16/2026 02:57:40 PM: INFO: Activity log rows found: 15
+09/16/2026 02:58:04 PM: INFO: *****SearchActivityIP_017*****
+09/16/2026 02:58:20 PM: INFO: ***********Login Successful**********
+09/16/2026 02:58:20 PM: INFO: **********Starting SearchActivityIP_017**********
+09/16/2026 02:58:52 PM: INFO: *****SearchActivity_LogType_018*****
+09/16/2026 02:58:59 PM: INFO: ***********Login Successful**********
+09/16/2026 02:58:59 PM: INFO: **********Starting SearchActivity_LogType_018**********
+09/16/2026 02:59:31 PM: INFO: *****SearchCustomer_RoleAdministrator_021*****
+09/16/2026 02:59:39 PM: INFO: ***********Login Successful**********
+09/16/2026 02:59:50 PM: INFO: Administrator search result count: 1
+09/16/2026 03:00:11 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+09/16/2026 03:00:19 PM: INFO: ***********Login Successful**********
+09/16/2026 03:00:28 PM: INFO: Forum Moderator search result count: 1
+09/16/2026 03:01:05 PM: INFO: *****SearchCustomer_Role_Guests_024*****
+09/16/2026 03:01:18 PM: INFO: ***********Login Successful**********
+09/16/2026 03:01:18 PM: INFO: ********Starting_SearchGuest_Role_024******
+09/16/2026 03:01:22 PM: INFO: Normal table customer count: 15
+09/16/2026 03:01:24 PM: INFO: Guests search result count: 15
+09/16/2026 03:01:52 PM: INFO: ***** Test_SearchProductByName_029 *****
+09/16/2026 03:02:06 PM: INFO: ***** Login Successful *****
+09/16/2026 03:02:06 PM: INFO: ***** Starting Search Product By Name Test *****
+09/16/2026 03:02:17 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 03:02:23 PM: INFO: Product 'Test Product 6389' found successfully
+09/16/2026 03:02:52 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/16/2026 03:03:03 PM: INFO: *****Login Successful******
+09/16/2026 03:03:38 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/16/2026 03:03:40 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/16/2026 03:03:49 PM: INFO: ********** Login Successful **********
+09/16/2026 03:03:52 PM: INFO: ********** Products page opened successfully **********
+09/16/2026 03:04:00 PM: INFO: ********** Product search performed for Vendor1 **********
+09/16/2026 03:04:00 PM: INFO: ********** 'No data available in table' validated **********
+09/16/2026 03:04:00 PM: INFO: ********** 'No records' validated **********
+09/16/2026 03:04:00 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/16/2026 03:04:16 PM: INFO: *****SearchCustomer_RoleRegistered_022*****
+09/16/2026 03:04:22 PM: INFO: ***********Login Successful**********
+09/16/2026 03:04:26 PM: INFO: Normal table customer count: 15
+09/16/2026 03:04:26 PM: INFO: Registered search result count: 1
+09/16/2026 03:04:54 PM: INFO: *****SearchCustomer_Role_Vendors_025*****
+09/16/2026 03:05:12 PM: INFO: ***********Login Successful**********
+09/16/2026 03:05:12 PM: INFO: ********Starting_SearchVendor_Role_025******
+09/16/2026 03:05:19 PM: INFO: Normal table customer count: 15
+09/16/2026 03:05:20 PM: INFO: Vendor search result count: 0
+09/16/2026 03:22:05 PM: INFO: ******* Exporting All Customers to Excel *******
+09/16/2026 03:22:09 PM: INFO: ******* Previous downloads cleared *******
+09/16/2026 03:22:15 PM: INFO: ******* Login Successful *****
+09/16/2026 03:22:15 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 03:22:24 PM: INFO: ****** Customers page opened ******
+09/16/2026 03:22:34 PM: INFO: ******* Export All Customers Excel button clicked *******
+09/16/2026 03:22:38 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 03:22:39 PM: INFO: Excel file exists.
+09/16/2026 03:22:39 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 03:24:07 PM: INFO: ******* Deleting Customer *******
+09/16/2026 03:24:13 PM: INFO: ******* Login Successful *****
+09/16/2026 03:24:15 PM: INFO: ******* Customers page opened *******
+09/16/2026 03:24:19 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 03:24:21 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 03:24:21 PM: INFO: ******* Delete Customer button clicked *******
+09/16/2026 03:24:33 PM: INFO: ******* Delete confirmation accepted *******
+09/16/2026 03:24:34 PM: INFO: ********* Delete Customer test passed **********
+09/16/2026 03:24:36 PM: INFO: ****** Ending Delete Customer Test *******
+09/16/2026 03:24:48 PM: INFO: *****Test_DeleteProduct_Select_033*****
+09/16/2026 03:24:53 PM: INFO: *****Login Successful******
+09/16/2026 03:24:53 PM: INFO: *****Starting Delete Selected Product test*****
+09/16/2026 03:24:58 PM: INFO: ***** Product 'Test Product 7684' was deleted successfully *****
+09/16/2026 03:25:13 PM: INFO: *****Test_DeleteProduct_032*****
+09/16/2026 03:25:17 PM: INFO: *****Login Successful******
+09/16/2026 03:25:17 PM: INFO: *****Staring Delete Product test*****
+09/16/2026 03:25:23 PM: INFO: ***** Product deleted successfully *****
+09/16/2026 03:26:03 PM: INFO: ******* Editing Customer *******
+09/16/2026 03:26:07 PM: INFO: ******* Login Successful *****
+09/16/2026 03:26:10 PM: INFO: ******* Customers page opened *******
+09/16/2026 03:26:12 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 03:26:13 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 03:26:16 PM: INFO: ********* Edit Customer test passed **********
+09/16/2026 03:26:18 PM: INFO: ****** Ending Edit Customer Test *******
+09/16/2026 03:26:36 PM: INFO: ***** Test_EditProduct_032 *****
+09/16/2026 03:26:39 PM: INFO: ***** Login Successful *****
+09/16/2026 03:26:39 PM: INFO: ***** Opening Catalog -> Products *****
+09/16/2026 03:26:43 PM: INFO: ***** Dynamic Product Selected: Test Product 6389 *****
+09/16/2026 03:26:45 PM: INFO: ***** Edit page opened for: Test Product 6389 *****
+09/16/2026 03:26:45 PM: INFO: ***** Product details updated: SKU=SKU56133, Price=999 *****
+09/16/2026 03:26:46 PM: INFO: ***** Save button clicked *****
+09/16/2026 03:26:47 PM: INFO: ***** Product updated successfully *****
+09/16/2026 03:27:02 PM: INFO: ******* Test_EditVendor_015 *******
+09/16/2026 03:27:07 PM: INFO: *********** Login Successful **********
+09/16/2026 03:27:09 PM: INFO: ******** Starting Edit Vendor Test ********
+09/16/2026 03:27:11 PM: INFO: Vendor selected for editing: Vendor1
+09/16/2026 03:27:12 PM: INFO: Vendor 'Vendor1' found successfully
+09/16/2026 03:27:26 PM: INFO: ******VerifyActivityTypeDisplayed******
+09/16/2026 03:27:30 PM: INFO: ***********Login Successful**********
+09/16/2026 03:27:30 PM: INFO: ********Starting Verify Activity Type**********
+09/16/2026 03:27:32 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 03:27:32 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 03:27:46 PM: INFO: ********** Test_003_AddCustomer **********
+09/16/2026 03:27:50 PM: INFO: ********* Login Successful **********
+09/16/2026 03:27:50 PM: INFO: ********* Starting Add Customer Test *********
+09/16/2026 03:27:53 PM: INFO: ******** Providing customer information ********
+09/16/2026 03:27:56 PM: INFO: ******** Customer information provided ********
+09/16/2026 03:27:57 PM: INFO: ******** Saving customer information ********
+09/16/2026 03:27:57 PM: INFO: Success message: ×
+The new customer has been added successfully.
+09/16/2026 03:27:57 PM: INFO: ******** Customer added successfully ********
+09/16/2026 03:27:57 PM: INFO: ******** Verifying customer in Customers grid ********
+09/16/2026 03:28:13 PM: INFO: ******** Customers page opened ********
+09/16/2026 03:28:15 PM: INFO: ******** Searching for 1zu3mdm3@gmail.com ********
+09/16/2026 03:28:15 PM: INFO: ******** Customer found in Customers grid ********
+09/16/2026 03:28:15 PM: INFO: ******** Add customer test passed ********
+09/16/2026 03:28:30 PM: INFO: *****Test_AddProduct_028*****
+09/16/2026 03:28:34 PM: INFO: *****Login Successful******
+09/16/2026 03:28:34 PM: INFO: *****Staring Add Product test*****
+09/16/2026 03:28:37 PM: INFO: *****Providing product details*******
+09/16/2026 03:28:56 PM: INFO: ******* Test_012_AddVendor *******
+09/16/2026 03:29:00 PM: INFO: ***** Login Successfully *****
+09/16/2026 03:29:00 PM: INFO: ****** Starting Add Vendor Test ******
+09/16/2026 03:29:03 PM: INFO: ****** Providing Vendor Info ******
+09/16/2026 03:29:05 PM: INFO: After Save URL: https://localhost:59579/Admin/Vendor/List
+09/16/2026 03:29:05 PM: INFO: ******Vendor added successfully******
+09/16/2026 03:29:20 PM: INFO: *** Test_BulkEditProductSaveAll_035 ***
+09/16/2026 03:29:26 PM: INFO: ***** Login Successful *****
+09/16/2026 03:29:26 PM: INFO: ***** Starting Bulk Edit Product Save All Test *****
+09/16/2026 03:29:30 PM: INFO: Product Name: Test Product 4354
+09/16/2026 03:29:30 PM: INFO: SKU: SKU76959
+09/16/2026 03:29:30 PM: INFO: New Price: 2000
+09/16/2026 03:29:30 PM: INFO: Old Price: 1000
+09/16/2026 03:29:30 PM: INFO: Stock Quantity: 1000
+09/16/2026 03:29:31 PM: INFO: Bulk Edit Save All completed
+09/16/2026 03:29:38 PM: INFO: Product 'Test Product 4354' successfully found in Products table
+09/16/2026 03:29:52 PM: INFO: *** Test_BulkEditProductSaveSelected_036 ***
+09/16/2026 03:29:57 PM: INFO: ***** Login Successful *****
+09/16/2026 03:30:00 PM: INFO: Product Name: Test Product 8113
+09/16/2026 03:30:00 PM: INFO: SKU: SKU80050
+09/16/2026 03:30:00 PM: INFO: New Price: 2000
+09/16/2026 03:30:00 PM: INFO: Old Price: 1000
+09/16/2026 03:30:00 PM: INFO: Stock Quantity: 1000
+09/16/2026 03:30:03 PM: INFO: Product 'Test Product 8113' selected
+09/16/2026 03:30:05 PM: INFO: Save Selected completed
+09/16/2026 03:30:05 PM: INFO: Returned to Products List
+09/16/2026 03:30:11 PM: INFO: Searching for product 'Test Product 8113'
+09/16/2026 03:30:11 PM: INFO: Product 'Test Product 8113' successfully found in Products table
+09/16/2026 03:30:27 PM: INFO: ***** Test_BulkEditSearchProductName_037 *****
+09/16/2026 03:30:31 PM: INFO: ***** Login Successful *****
+09/16/2026 03:30:31 PM: INFO: ***** Starting Bulk Edit Product Search By Name Test *****
+09/16/2026 03:30:35 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 03:30:42 PM: INFO: Product 'Test Product 6389' displayed successfully
+09/16/2026 03:30:57 PM: INFO: ***** Test_BulkEditSearchProductTypeAll_039 *****
+09/16/2026 03:31:01 PM: INFO: ***** Login Successful *****
+09/16/2026 03:31:15 PM: INFO: ***** Product Type 'All' search returned 45 products *****
+09/16/2026 03:31:29 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Started *****
+09/16/2026 03:31:33 PM: INFO: ***** Login Successful *****
+09/16/2026 03:31:45 PM: INFO: ***** Product Type 'Grouped (product with variants)' returned no products as expected *****
+09/16/2026 03:31:45 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Passed *****
+09/16/2026 03:31:58 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Started *****
+09/16/2026 03:32:02 PM: INFO: ***** Login Successful *****
+09/16/2026 03:32:15 PM: INFO: ***** Product Type 'Simple' search returned 45 products *****
+09/16/2026 03:32:15 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Passed *****
+09/16/2026 03:32:30 PM: INFO: ***** Test_BulkEditProductSearchPublishType_040 Started *****
+09/16/2026 03:32:35 PM: INFO: ***** Login Successful *****
+09/16/2026 03:32:35 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 03:32:43 PM: INFO: ***** Products Found: 45 *****
+09/16/2026 03:32:43 PM: INFO: ***** Published Type 'All' Search Passed *****
+09/16/2026 03:32:57 PM: INFO: ***** Test_BulkEditProductSearchPublishTypePublished_041 Started *****
+09/16/2026 03:33:02 PM: INFO: ***** Login Successful *****
+09/16/2026 03:33:02 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 03:33:10 PM: INFO: ***** Products Found: 45 *****
+09/16/2026 03:33:12 PM: INFO: ***** Published Type 'Published Only' Search Passed *****
+09/16/2026 03:33:26 PM: INFO: ***** Test_BulkEditSearchPublishTypeUnPublished_042 Started *****
+09/16/2026 03:33:34 PM: INFO: ***** Published Type 'Unpublished only' selected *****
+09/16/2026 03:33:39 PM: INFO: ***** Search completed for Published Type 'Unpublished only' *****
+09/16/2026 03:33:39 PM: INFO: ***** No unpublished products found. 'No data available in table' is expected. *****
+09/16/2026 03:33:53 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/16/2026 03:33:57 PM: INFO: ***** Login Successful *****
+09/16/2026 03:33:57 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/16/2026 03:34:21 PM: INFO: *****Clear_ActivityLogs_020*****
+09/16/2026 03:34:24 PM: INFO: ***********Login Successful**********
+09/16/2026 03:34:24 PM: INFO: **********Starting Clear_ActivityLogs_020**********
+09/16/2026 03:34:29 PM: INFO: **********Clear_ActivityLogs_020 completed**********
+09/16/2026 03:34:43 PM: INFO: *****Delete_SingleActivity_019*****
+09/16/2026 03:34:48 PM: INFO: ***********Login Successful**********
+09/16/2026 03:34:48 PM: INFO: **********Starting Delete_SingleActivity_019**********
+09/16/2026 03:34:50 PM: INFO: Customers available for export: 15
+09/16/2026 03:34:55 PM: INFO: ******Customers exported successfully*******
+09/16/2026 03:34:57 PM: INFO: Activity Log records found: 1
+09/16/2026 03:34:58 PM: INFO: ******Activity Log delete clicked*******
+09/16/2026 03:35:14 PM: INFO: ******* Exporting All Customers to Excel *******
+09/16/2026 03:35:17 PM: INFO: ******* Previous downloads cleared *******
+09/16/2026 03:35:21 PM: INFO: ******* Login Successful *****
+09/16/2026 03:35:21 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 03:35:24 PM: INFO: ****** Customers page opened ******
+09/16/2026 03:35:32 PM: INFO: ******* Export All Customers Excel button clicked *******
+09/16/2026 03:35:33 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 03:35:33 PM: INFO: Excel file exists.
+09/16/2026 03:35:33 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 03:35:49 PM: INFO: ******* Exporting All Customers to XML *******
+09/16/2026 03:35:51 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 03:35:55 PM: INFO: ******* Login Successful *****
+09/16/2026 03:35:55 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 03:35:57 PM: INFO: ****** Customers page opened ******
+09/16/2026 03:36:05 PM: INFO: ******* Export All Customers XML button clicked *******
+09/16/2026 03:36:06 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 03:36:06 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 03:36:22 PM: INFO: ******* Exporting Selected Customers to Excel *******
+09/16/2026 03:36:25 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 03:36:28 PM: INFO: ******* Login Successful *****
+09/16/2026 03:36:28 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 03:36:30 PM: INFO: ****** Customers page opened ******
+09/16/2026 03:36:32 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 03:36:39 PM: INFO: ******* Export Selected Excel button clicked *******
+09/16/2026 03:36:40 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 03:36:40 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 03:36:56 PM: INFO: ******* Exporting Selected Customers to XML *******
+09/16/2026 03:36:58 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 03:37:00 PM: INFO: ******* Login Successful *****
+09/16/2026 03:37:00 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 03:37:03 PM: INFO: ****** Customers page opened ******
+09/16/2026 03:37:06 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 03:37:12 PM: INFO: ******* Export Selected XML button clicked *******
+09/16/2026 03:37:13 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 03:37:13 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 03:37:27 PM: INFO: ********Verify Login Test********
+09/16/2026 03:37:31 PM: INFO: ********Login test Passed********
+09/16/2026 03:37:48 PM: INFO: **********Test_002_DDT_Login********
+09/16/2026 03:37:48 PM: INFO: ********Verify Login DDT Test********
+09/16/2026 03:37:55 PM: INFO: Row 2: *****Test Passed*****
+09/16/2026 03:37:58 PM: INFO: Row 3: *****Test Passed*****
+09/16/2026 03:38:01 PM: INFO: Row 4: *****Test Passed*****
+09/16/2026 03:38:04 PM: INFO: Row 5: *****Test Passed*****
+09/16/2026 03:38:07 PM: INFO: Row 6: *****Test Passed*****
+09/16/2026 03:38:07 PM: INFO: ****Login DDT Test Passed****
+09/16/2026 03:38:09 PM: INFO: ****End of Login DDT Test****
+09/16/2026 03:38:09 PM: INFO: *****Completed TC_LoginDDT_002******
+09/16/2026 03:38:22 PM: INFO: ******* SearchCustomerByEmail_004 *********
+09/16/2026 03:38:30 PM: INFO: *********** Login Successful **********
+09/16/2026 03:38:30 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+09/16/2026 03:38:31 PM: INFO: ******** Searching customer by email ID ***********
+09/16/2026 03:38:32 PM: INFO: ******** Customer found successfully ********
+09/16/2026 03:38:32 PM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+09/16/2026 03:38:40 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=49752): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/ca6395aa-707d-41c1-a66c-be0097421cfb
+09/16/2026 03:38:44 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=49752): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/ca6395aa-707d-41c1-a66c-be0097421cfb
+09/16/2026 03:38:48 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=49752): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/ca6395aa-707d-41c1-a66c-be0097421cfb
+09/16/2026 03:39:03 PM: INFO: ******* SearchCustomerByName_005 *********
+09/16/2026 03:39:07 PM: INFO: *********** Login Successful **********
+09/16/2026 03:39:07 PM: INFO: ********** Starting SearchCustomerByName_005 **********
+09/16/2026 03:39:11 PM: INFO: ******** Customers page opened ********
+09/16/2026 03:39:11 PM: INFO: ******** Searching customer by Name ***********
+09/16/2026 03:39:12 PM: INFO: ******** TC_SearchCustomerByName_005 Finished **********
+09/16/2026 03:39:27 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 03:39:32 PM: INFO: ***********Login Successful**********
+09/16/2026 03:39:32 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 03:39:34 PM: INFO: ******** searching vendor by Email***********
+09/16/2026 03:39:37 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
+09/16/2026 04:58:19 PM: INFO: ***** SearchActivityDate_016 *****
+09/16/2026 04:58:28 PM: INFO: *********** Login Successful **********
+09/16/2026 04:58:28 PM: INFO: ********** Starting SearchActivityDate_016 **********
+09/16/2026 04:58:33 PM: INFO: Activity log rows found: 6
+09/16/2026 04:59:04 PM: INFO: *****SearchActivityIP_017*****
+09/16/2026 04:59:11 PM: INFO: ***********Login Successful**********
+09/16/2026 04:59:11 PM: INFO: **********Starting SearchActivityIP_017**********
+09/16/2026 04:59:29 PM: INFO: *****SearchActivity_LogType_018*****
+09/16/2026 04:59:34 PM: INFO: ***********Login Successful**********
+09/16/2026 04:59:34 PM: INFO: **********Starting SearchActivity_LogType_018**********
+09/16/2026 04:59:55 PM: INFO: *****SearchCustomer_RoleAdministrator_021*****
+09/16/2026 05:00:06 PM: INFO: ***********Login Successful**********
+09/16/2026 05:00:10 PM: INFO: Administrator search result count: 1
+09/16/2026 05:00:24 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+09/16/2026 05:00:28 PM: INFO: ***********Login Successful**********
+09/16/2026 05:00:33 PM: INFO: Forum Moderator search result count: 1
+09/16/2026 05:00:48 PM: INFO: *****SearchCustomer_Role_Guests_024*****
+09/16/2026 05:00:53 PM: INFO: ***********Login Successful**********
+09/16/2026 05:00:53 PM: INFO: ********Starting_SearchGuest_Role_024******
+09/16/2026 05:00:56 PM: INFO: Normal table customer count: 7
+09/16/2026 05:00:57 PM: INFO: Guests search result count: 6
+09/16/2026 05:01:12 PM: INFO: ***** Test_SearchProductByName_029 *****
+09/16/2026 05:01:16 PM: INFO: ***** Login Successful *****
+09/16/2026 05:01:16 PM: INFO: ***** Starting Search Product By Name Test *****
+09/16/2026 05:01:19 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 05:01:26 PM: INFO: Product 'Test Product 6389' found successfully
+09/16/2026 05:01:40 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/16/2026 05:01:43 PM: INFO: *****Login Successful******
+09/16/2026 05:02:05 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/16/2026 05:02:07 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/16/2026 05:02:10 PM: INFO: ********** Login Successful **********
+09/16/2026 05:02:12 PM: INFO: ********** Products page opened successfully **********
+09/16/2026 05:02:37 PM: INFO: ********** Product search performed for Vendor1 **********
+09/16/2026 05:02:37 PM: INFO: ********** 'No data available in table' validated **********
+09/16/2026 05:02:37 PM: INFO: ********** 'No records' validated **********
+09/16/2026 05:02:37 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/16/2026 05:02:51 PM: INFO: *****SearchCustomer_RoleRegistered_022*****
+09/16/2026 05:02:55 PM: INFO: ***********Login Successful**********
+09/16/2026 05:03:00 PM: INFO: Normal table customer count: 11
+09/16/2026 05:03:01 PM: INFO: Registered search result count: 1
+09/16/2026 05:03:15 PM: INFO: *****SearchCustomer_Role_Vendors_025*****
+09/16/2026 05:03:23 PM: INFO: ***********Login Successful**********
+09/16/2026 05:03:23 PM: INFO: ********Starting_SearchVendor_Role_025******
+09/16/2026 05:03:26 PM: INFO: Normal table customer count: 12
+09/16/2026 05:03:27 PM: INFO: Vendor search result count: 0
+09/16/2026 05:15:50 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 05:15:56 PM: INFO: ***********Login Successful**********
+09/16/2026 05:15:56 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 05:15:58 PM: INFO: ******** searching vendor by Name***********
+09/16/2026 05:15:58 PM: INFO: Selected Vendor Name: Vendor1
+09/16/2026 05:15:58 PM: INFO: *******Searching Vendor by Name: {vendor_name}********
+09/16/2026 05:16:02 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********
+09/16/2026 05:17:08 PM: INFO: ******* Deleting Customer *******
+09/16/2026 05:17:13 PM: INFO: ******* Login Successful *****
+09/16/2026 05:17:16 PM: INFO: ******* Customers page opened *******
+09/16/2026 05:17:19 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 05:17:21 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 05:17:22 PM: INFO: ******* Delete Customer button clicked *******
+09/16/2026 05:17:33 PM: INFO: ******* Delete confirmation accepted *******
+09/16/2026 05:17:34 PM: INFO: ********* Delete Customer test passed **********
+09/16/2026 05:17:36 PM: INFO: ****** Ending Delete Customer Test *******
+09/16/2026 05:17:49 PM: INFO: *****Test_DeleteProduct_Select_033*****
+09/16/2026 05:17:56 PM: INFO: *****Login Successful******
+09/16/2026 05:17:56 PM: INFO: *****Starting Delete Selected Product test*****
+09/16/2026 05:18:00 PM: INFO: ***** Product 'Test Product 5308' was deleted successfully *****
+09/16/2026 05:18:16 PM: INFO: *****Test_DeleteProduct_032*****
+09/16/2026 05:18:18 PM: INFO: *****Login Successful******
+09/16/2026 05:18:18 PM: INFO: *****Staring Delete Product test*****
+09/16/2026 05:18:24 PM: INFO: ***** Product deleted successfully *****
+09/16/2026 05:19:15 PM: INFO: ******* Editing Customer *******
+09/16/2026 05:19:21 PM: INFO: ******* Login Successful *****
+09/16/2026 05:19:23 PM: INFO: ******* Customers page opened *******
+09/16/2026 05:19:26 PM: INFO: ******* Edit Customer button clicked *******
+09/16/2026 05:19:26 PM: INFO: ******* Edit Customer page opened successfully *******
+09/16/2026 05:19:29 PM: INFO: ********* Edit Customer test passed **********
+09/16/2026 05:19:31 PM: INFO: ****** Ending Edit Customer Test *******
+09/16/2026 05:19:44 PM: INFO: ***** Test_EditProduct_032 *****
+09/16/2026 05:19:49 PM: INFO: ***** Login Successful *****
+09/16/2026 05:19:49 PM: INFO: ***** Opening Catalog -> Products *****
+09/16/2026 05:19:51 PM: INFO: ***** Dynamic Product Selected: Test Product 6389 *****
+09/16/2026 05:19:52 PM: INFO: ***** Edit page opened for: Test Product 6389 *****
+09/16/2026 05:19:53 PM: INFO: ***** Product details updated: SKU=SKU53391, Price=999 *****
+09/16/2026 05:19:53 PM: INFO: ***** Save button clicked *****
+09/16/2026 05:19:54 PM: INFO: ***** Product updated successfully *****
+09/16/2026 05:20:09 PM: INFO: ******* Test_EditVendor_015 *******
+09/16/2026 05:20:14 PM: INFO: *********** Login Successful **********
+09/16/2026 05:20:16 PM: INFO: ******** Starting Edit Vendor Test ********
+09/16/2026 05:20:18 PM: INFO: Vendor selected for editing: Vendor1
+09/16/2026 05:20:18 PM: INFO: Vendor 'Vendor1' found successfully
+09/16/2026 05:20:33 PM: INFO: ******VerifyActivityTypeDisplayed******
+09/16/2026 05:20:39 PM: INFO: ***********Login Successful**********
+09/16/2026 05:20:39 PM: INFO: ********Starting Verify Activity Type**********
+09/16/2026 05:20:41 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 05:20:41 PM: INFO: fActivity Type '{activity_name}' Status: {result}
+09/16/2026 05:20:55 PM: INFO: ********** Test_003_AddCustomer **********
+09/16/2026 05:21:01 PM: INFO: ********* Login Successful **********
+09/16/2026 05:21:01 PM: INFO: ********* Starting Add Customer Test *********
+09/16/2026 05:21:04 PM: INFO: ******** Providing customer information ********
+09/16/2026 05:21:07 PM: INFO: ******** Customer information provided ********
+09/16/2026 05:21:08 PM: INFO: ******** Saving customer information ********
+09/16/2026 05:21:08 PM: INFO: Success message: ×
+The new customer has been added successfully.
+09/16/2026 05:21:08 PM: INFO: ******** Customer added successfully ********
+09/16/2026 05:21:08 PM: INFO: ******** Verifying customer in Customers grid ********
+09/16/2026 05:21:23 PM: INFO: ******** Customers page opened ********
+09/16/2026 05:21:25 PM: INFO: ******** Searching for zecd2wd5@gmail.com ********
+09/16/2026 05:21:25 PM: INFO: ******** Customer found in Customers grid ********
+09/16/2026 05:21:25 PM: INFO: ******** Add customer test passed ********
+09/16/2026 05:21:40 PM: INFO: *****Test_AddProduct_028*****
+09/16/2026 05:21:44 PM: INFO: *****Login Successful******
+09/16/2026 05:21:44 PM: INFO: *****Staring Add Product test*****
+09/16/2026 05:21:48 PM: INFO: *****Providing product details*******
+09/16/2026 05:22:07 PM: INFO: ******* Test_012_AddVendor *******
+09/16/2026 05:22:12 PM: INFO: ***** Login Successfully *****
+09/16/2026 05:22:12 PM: INFO: ****** Starting Add Vendor Test ******
+09/16/2026 05:22:15 PM: INFO: ****** Providing Vendor Info ******
+09/16/2026 05:22:17 PM: INFO: After Save URL: https://localhost:59579/Admin/Vendor/List
+09/16/2026 05:22:17 PM: INFO: ******Vendor added successfully******
+09/16/2026 05:22:30 PM: INFO: *** Test_BulkEditProductSaveAll_035 ***
+09/16/2026 05:22:36 PM: INFO: ***** Login Successful *****
+09/16/2026 05:22:36 PM: INFO: ***** Starting Bulk Edit Product Save All Test *****
+09/16/2026 05:22:41 PM: INFO: Product Name: Test Product 2004
+09/16/2026 05:22:41 PM: INFO: SKU: SKU56151
+09/16/2026 05:22:41 PM: INFO: New Price: 2000
+09/16/2026 05:22:41 PM: INFO: Old Price: 1000
+09/16/2026 05:22:41 PM: INFO: Stock Quantity: 1000
+09/16/2026 05:22:43 PM: INFO: Bulk Edit Save All completed
+09/16/2026 05:22:50 PM: INFO: Product 'Test Product 2004' successfully found in Products table
+09/16/2026 05:23:04 PM: INFO: *** Test_BulkEditProductSaveSelected_036 ***
+09/16/2026 05:23:08 PM: INFO: ***** Login Successful *****
+09/16/2026 05:23:13 PM: INFO: Product Name: Test Product 9157
+09/16/2026 05:23:13 PM: INFO: SKU: SKU59293
+09/16/2026 05:23:13 PM: INFO: New Price: 2000
+09/16/2026 05:23:13 PM: INFO: Old Price: 1000
+09/16/2026 05:23:13 PM: INFO: Stock Quantity: 1000
+09/16/2026 05:23:15 PM: INFO: Product 'Test Product 9157' selected
+09/16/2026 05:23:16 PM: INFO: Save Selected completed
+09/16/2026 05:23:17 PM: INFO: Returned to Products List
+09/16/2026 05:23:22 PM: INFO: Searching for product 'Test Product 9157'
+09/16/2026 05:23:23 PM: INFO: Product 'Test Product 9157' successfully found in Products table
+09/16/2026 05:23:37 PM: INFO: ***** Test_BulkEditSearchProductName_037 *****
+09/16/2026 05:23:41 PM: INFO: ***** Login Successful *****
+09/16/2026 05:23:41 PM: INFO: ***** Starting Bulk Edit Product Search By Name Test *****
+09/16/2026 05:23:45 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 05:23:52 PM: INFO: Product 'Test Product 6389' displayed successfully
+09/16/2026 05:24:06 PM: INFO: ***** Test_BulkEditSearchProductTypeAll_039 *****
+09/16/2026 05:24:10 PM: INFO: ***** Login Successful *****
+09/16/2026 05:24:25 PM: INFO: ***** Product Type 'All' search returned 45 products *****
+09/16/2026 05:24:40 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Started *****
+09/16/2026 05:24:44 PM: INFO: ***** Login Successful *****
+09/16/2026 05:24:57 PM: INFO: ***** Product Type 'Grouped (product with variants)' returned no products as expected *****
+09/16/2026 05:24:57 PM: INFO: ***** Test_BulkEditSearchProductTypeGrouped_044 Passed *****
+09/16/2026 05:25:11 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Started *****
+09/16/2026 05:25:16 PM: INFO: ***** Login Successful *****
+09/16/2026 05:25:28 PM: INFO: ***** Product Type 'Simple' search returned 45 products *****
+09/16/2026 05:25:28 PM: INFO: ***** Test_BulkEditSearchProductTypeSimple_043 Passed *****
+09/16/2026 05:25:42 PM: INFO: ***** Test_BulkEditProductSearchPublishType_040 Started *****
+09/16/2026 05:25:46 PM: INFO: ***** Login Successful *****
+09/16/2026 05:25:46 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 05:25:57 PM: INFO: ***** Products Found: 90 *****
+09/16/2026 05:25:57 PM: INFO: ***** Published Type 'All' Search Passed *****
+09/16/2026 05:26:12 PM: INFO: ***** Test_BulkEditProductSearchPublishTypePublished_041 Started *****
+09/16/2026 05:26:17 PM: INFO: ***** Login Successful *****
+09/16/2026 05:26:17 PM: INFO: ***** Starting Bulk Edit Product Search Published Type Test *****
+09/16/2026 05:26:25 PM: INFO: ***** Products Found: 90 *****
+09/16/2026 05:26:28 PM: INFO: ***** Published Type 'Published Only' Search Passed *****
+09/16/2026 05:26:41 PM: INFO: ***** Test_BulkEditSearchPublishTypeUnPublished_042 Started *****
+09/16/2026 05:26:50 PM: INFO: ***** Published Type 'Unpublished only' selected *****
+09/16/2026 05:26:55 PM: INFO: ***** Search completed for Published Type 'Unpublished only' *****
+09/16/2026 05:26:55 PM: INFO: ***** No unpublished products found. 'No data available in table' is expected. *****
+09/16/2026 05:27:10 PM: INFO: ***** Test_BulkEditProductSearchVendor_037*****
+09/16/2026 05:27:15 PM: INFO: ***** Login Successful *****
+09/16/2026 05:27:15 PM: INFO: ***** Starting Bulk Edit Product Search Vendor Test *****
+09/16/2026 05:27:38 PM: INFO: *****Clear_ActivityLogs_020*****
+09/16/2026 05:27:44 PM: INFO: ***********Login Successful**********
+09/16/2026 05:27:44 PM: INFO: **********Starting Clear_ActivityLogs_020**********
+09/16/2026 05:27:46 PM: INFO: **********Clear_ActivityLogs_020 completed**********
+09/16/2026 05:28:02 PM: INFO: *****Delete_SingleActivity_019*****
+09/16/2026 05:28:08 PM: INFO: ***********Login Successful**********
+09/16/2026 05:28:08 PM: INFO: **********Starting Delete_SingleActivity_019**********
+09/16/2026 05:28:10 PM: INFO: Customers available for export: 15
+09/16/2026 05:28:15 PM: INFO: ******Customers exported successfully*******
+09/16/2026 05:28:17 PM: INFO: Activity Log records found: 1
+09/16/2026 05:28:17 PM: INFO: ******Activity Log delete clicked*******
+09/16/2026 05:28:33 PM: INFO: ******* Exporting All Customers to Excel *******
+09/16/2026 05:28:35 PM: INFO: ******* Previous downloads cleared *******
+09/16/2026 05:28:37 PM: INFO: ******* Login Successful *****
+09/16/2026 05:28:37 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 05:28:40 PM: INFO: ****** Customers page opened ******
+09/16/2026 05:28:49 PM: INFO: ******* Export All Customers Excel button clicked *******
+09/16/2026 05:28:50 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 05:28:50 PM: INFO: Excel file exists.
+09/16/2026 05:28:50 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 05:29:05 PM: INFO: ******* Exporting All Customers to XML *******
+09/16/2026 05:29:07 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 05:29:10 PM: INFO: ******* Login Successful *****
+09/16/2026 05:29:10 PM: INFO: ****** Starting Export All Customers *******
+09/16/2026 05:29:14 PM: INFO: ****** Customers page opened ******
+09/16/2026 05:29:22 PM: INFO: ******* Export All Customers XML button clicked *******
+09/16/2026 05:29:23 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 05:29:23 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 05:29:39 PM: INFO: ******* Exporting Selected Customers to Excel *******
+09/16/2026 05:29:40 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 05:29:44 PM: INFO: ******* Login Successful *****
+09/16/2026 05:29:44 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 05:29:47 PM: INFO: ****** Customers page opened ******
+09/16/2026 05:29:49 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 05:29:56 PM: INFO: ******* Export Selected Excel button clicked *******
+09/16/2026 05:29:57 PM: INFO: ******* Excel Downloaded Successfully: customers.xlsx *******
+09/16/2026 05:29:57 PM: INFO: ******* Excel File Verification Successful *******
+09/16/2026 05:30:14 PM: INFO: ******* Exporting Selected Customers to XML *******
+09/16/2026 05:30:17 PM: INFO: ******* Download directory: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *******
+09/16/2026 05:30:20 PM: INFO: ******* Login Successful *****
+09/16/2026 05:30:20 PM: INFO: ****** Navigating to Customers ******
+09/16/2026 05:30:22 PM: INFO: ****** Customers page opened ******
+09/16/2026 05:30:24 PM: INFO: ******* Customers Selected Successfully *******
+09/16/2026 05:30:30 PM: INFO: ******* Export Selected XML button clicked *******
+09/16/2026 05:30:31 PM: INFO: ******* XML Downloaded Successfully: customers.xml *******
+09/16/2026 05:30:31 PM: INFO: ******* XML File Verification Successful *******
+09/16/2026 05:30:48 PM: INFO: ********Verify Login Test********
+09/16/2026 05:30:53 PM: INFO: ********Login test Passed********
+09/16/2026 05:31:08 PM: INFO: **********Test_002_DDT_Login********
+09/16/2026 05:31:08 PM: INFO: ********Verify Login DDT Test********
+09/16/2026 05:31:16 PM: INFO: Row 2: *****Test Passed*****
+09/16/2026 05:31:20 PM: INFO: Row 3: *****Test Passed*****
+09/16/2026 05:31:23 PM: INFO: Row 4: *****Test Passed*****
+09/16/2026 05:31:26 PM: INFO: Row 5: *****Test Passed*****
+09/16/2026 05:31:29 PM: INFO: Row 6: *****Test Passed*****
+09/16/2026 05:31:29 PM: INFO: ****Login DDT Test Passed****
+09/16/2026 05:31:31 PM: INFO: ****End of Login DDT Test****
+09/16/2026 05:31:31 PM: INFO: *****Completed TC_LoginDDT_002******
+09/16/2026 05:31:44 PM: INFO: ******* SearchCustomerByEmail_004 *********
+09/16/2026 05:31:49 PM: INFO: *********** Login Successful **********
+09/16/2026 05:31:49 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+09/16/2026 05:31:51 PM: INFO: ******** Searching customer by email ID ***********
+09/16/2026 05:31:52 PM: INFO: ******** Customer found successfully ********
+09/16/2026 05:31:52 PM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+09/16/2026 05:31:59 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=60007): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/20aee2f5-bb23-49e3-bda4-b155e705bffa
+09/16/2026 05:32:03 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=60007): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/20aee2f5-bb23-49e3-bda4-b155e705bffa
+09/16/2026 05:32:07 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=60007): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/20aee2f5-bb23-49e3-bda4-b155e705bffa
+09/16/2026 05:58:40 PM: INFO: ******* SearchCustomerByName_005 *********
+09/16/2026 05:58:49 PM: INFO: *********** Login Successful **********
+09/16/2026 05:58:49 PM: INFO: ********** Starting SearchCustomerByName_005 **********
+09/16/2026 05:58:58 PM: INFO: ******** Customers page opened ********
+09/16/2026 05:58:58 PM: INFO: ******** Searching customer by Name ***********
+09/16/2026 05:59:05 PM: INFO: ******** TC_SearchCustomerByName_005 Finished **********
+09/16/2026 05:59:52 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 06:00:23 PM: INFO: ***********Login Successful**********
+09/16/2026 06:00:23 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 06:00:31 PM: INFO: ******** searching vendor by Email***********
+09/16/2026 06:00:35 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
+09/16/2026 06:01:03 PM: INFO: *****SearchVendorByName_013*****
+09/16/2026 06:01:30 PM: INFO: ***********Login Successful**********
+09/16/2026 06:01:30 PM: INFO: **********Starting SearchVendorByName_013**********
+09/16/2026 06:01:35 PM: INFO: ******** searching vendor by Name***********
+09/16/2026 06:01:39 PM: INFO: Selected Vendor Name: Vendor1
+09/16/2026 06:01:39 PM: INFO: *******Searching Vendor by Name: {vendor_name}********
+09/16/2026 06:01:43 PM: INFO: ********TC_SearchvendorrByName_013 Finished**********
+09/16/2026 06:02:15 PM: INFO: ***** SearchActivityDate_016 *****
+09/16/2026 06:02:34 PM: INFO: *********** Login Successful **********
+09/16/2026 06:02:34 PM: INFO: ********** Starting SearchActivityDate_016 **********
+09/16/2026 06:02:39 PM: INFO: Activity log rows found: 6
+09/16/2026 06:03:04 PM: INFO: *****SearchActivityIP_017*****
+09/16/2026 06:03:14 PM: INFO: ***********Login Successful**********
+09/16/2026 06:03:14 PM: INFO: **********Starting SearchActivityIP_017**********
+09/16/2026 06:03:42 PM: INFO: *****SearchActivity_LogType_018*****
+09/16/2026 06:03:53 PM: INFO: ***********Login Successful**********
+09/16/2026 06:03:53 PM: INFO: **********Starting SearchActivity_LogType_018**********
+09/16/2026 06:04:26 PM: INFO: *****SearchCustomer_RoleAdministrator_021*****
+09/16/2026 06:04:53 PM: INFO: ***********Login Successful**********
+09/16/2026 06:05:02 PM: INFO: Administrator search result count: 1
+09/16/2026 06:05:27 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+09/16/2026 06:05:43 PM: INFO: ***********Login Successful**********
+09/16/2026 06:05:55 PM: INFO: Forum Moderator search result count: 1
+09/16/2026 06:06:28 PM: INFO: *****SearchCustomer_Role_Guests_024*****
+09/16/2026 06:06:42 PM: INFO: ***********Login Successful**********
+09/16/2026 06:06:42 PM: INFO: ********Starting_SearchGuest_Role_024******
+09/16/2026 06:06:52 PM: INFO: Normal table customer count: 10
+09/16/2026 06:06:54 PM: INFO: Guests search result count: 9
+09/16/2026 06:07:24 PM: INFO: ***** Test_SearchProductByName_029 *****
+09/16/2026 06:07:37 PM: INFO: ***** Login Successful *****
+09/16/2026 06:07:37 PM: INFO: ***** Starting Search Product By Name Test *****
+09/16/2026 06:07:45 PM: INFO: Dynamic product selected: Test Product 6389
+09/16/2026 06:07:52 PM: INFO: Product 'Test Product 6389' found successfully
+09/16/2026 06:08:24 PM: INFO: *****Test_SearchProductBySKU_030*****
+09/16/2026 06:08:36 PM: INFO: *****Login Successful******
+09/16/2026 06:09:44 PM: INFO: ********** Test_SearchProductByVendor_031 Started **********
+09/16/2026 06:09:48 PM: INFO: Application URL opened: https://localhost:59579/admin
+09/16/2026 06:10:08 PM: INFO: ********** Login Successful **********
+09/16/2026 06:10:15 PM: INFO: ********** Products page opened successfully **********
+09/16/2026 06:10:27 PM: INFO: ********** Product search performed for Vendor1 **********
+09/16/2026 06:10:27 PM: INFO: ********** 'No data available in table' validated **********
+09/16/2026 06:10:27 PM: INFO: ********** 'No records' validated **********
+09/16/2026 06:10:27 PM: INFO: ********** Test_SearchProductByVendor_031 Passed **********
+09/16/2026 06:10:53 PM: INFO: *****SearchCustomer_RoleRegistered_022*****
+09/16/2026 06:11:11 PM: INFO: ***********Login Successful**********
+09/16/2026 06:11:19 PM: INFO: Normal table customer count: 14
+09/16/2026 06:11:23 PM: INFO: Registered search result count: 1
+09/16/2026 06:11:52 PM: INFO: *****SearchCustomer_Role_Vendors_025*****
+09/16/2026 06:12:04 PM: INFO: ***********Login Successful**********
+09/16/2026 06:12:04 PM: INFO: ********Starting_SearchVendor_Role_025******
+09/16/2026 06:12:10 PM: INFO: Normal table customer count: 15
+09/16/2026 06:12:12 PM: INFO: Vendor search result count: 0

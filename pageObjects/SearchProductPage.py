@@ -1,8 +1,10 @@
+import time
 
 from selenium.common.exceptions import (
     StaleElementReferenceException,
     TimeoutException
 )
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -52,6 +54,7 @@ class SearchProduct:
     txtsku_edit_xpath = "//input[@id='Sku']"
 
     def __init__(self, driver):
+
         self.driver = driver
         self.wait = WebDriverWait(driver, 15)
 
@@ -61,49 +64,106 @@ class SearchProduct:
 
     def selectVendor(self, vendor):
 
-        vendor_dropdown = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, self.drp_vendor_xpath)
-            )
+        print("\n========== SELECT VENDOR ==========")
+        print("Selecting Vendor:", vendor)
+
+        for attempt in range(1, 4):
+
+            try:
+
+                vendor_dropdown = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, self.drp_vendor_xpath)
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    vendor_dropdown
+                )
+
+                print(
+                    f"Vendor dropdown found "
+                    f"(attempt {attempt}/3)"
+                )
+
+                vendor_dropdown.click()
+
+                print("Vendor dropdown clicked")
+
+                vendor_option_xpath = (
+                    "//li[contains(@class,'select2-results__option') "
+                    f"and normalize-space(.)='{vendor}' "
+                    "and not(contains(@class,'select2-results__message'))]"
+                )
+
+                vendor_option = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, vendor_option_xpath)
+                    )
+                )
+
+                print(
+                    "Vendor option found:",
+                    vendor_option.text
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    vendor_option
+                )
+
+                vendor_option.click()
+
+                # -------------------------------------------------
+                # Verify that Select2 actually selected the vendor
+                # -------------------------------------------------
+
+                selected_vendor_xpath = (
+                    "//span[contains("
+                    "@class,'select2-selection__rendered') "
+                    f"and normalize-space(.)='{vendor}']"
+                )
+
+                self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.XPATH, selected_vendor_xpath)
+                    )
+                )
+
+                print(
+                    f"Vendor '{vendor}' selected successfully"
+                )
+
+                return
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Vendor element became stale. "
+                    f"Retrying ({attempt}/3)..."
+                )
+
+                if attempt == 3:
+                    raise
+
+                time.sleep(1)
+
+            except TimeoutException:
+
+                print(
+                    f"Vendor selection timed out. "
+                    f"Retrying ({attempt}/3)..."
+                )
+
+                if attempt == 3:
+                    raise
+
+                time.sleep(1)
+
+        raise AssertionError(
+            f"Unable to select vendor: {vendor}"
         )
-
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            vendor_dropdown
-        )
-
-        print("Vendor dropdown found")
-
-        vendor_dropdown.click()
-
-        print("Vendor dropdown clicked")
-
-        # -------------------------------------------------
-        # Wait directly for the required Select2 option.
-        # Do NOT wait separately for the <ul> container.
-        # -------------------------------------------------
-        vendor_option_xpath = (
-            "//li[contains(@class,'select2-results__option') "
-            f"and normalize-space(.)='{vendor}' "
-            "and not(contains(@class,'select2-results__message'))]"
-        )
-
-        vendor_option = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, vendor_option_xpath)
-            )
-        )
-
-        print("Vendor option found:", vendor_option.text)
-
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            vendor_option
-        )
-
-        vendor_option.click()
-
-        print(f"Vendor '{vendor}' selected")
 
     # =========================================================
     # PRODUCT TYPE
@@ -111,27 +171,65 @@ class SearchProduct:
 
     def selectProductType(self, producttype):
 
-        producttype_dropdown = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, self.drp_producttype)
-            )
+        print("\n========== SELECT PRODUCT TYPE ==========")
+        print("Selecting Product Type:", producttype)
+
+        for attempt in range(1, 4):
+
+            try:
+
+                producttype_dropdown = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, self.drp_producttype)
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    producttype_dropdown
+                )
+
+                producttype_dropdown.click()
+
+                producttype_xpath = (
+                    "//li[contains(@class,'select2-results__option') "
+                    f"and normalize-space(.)='{producttype}' "
+                    "and not(contains(@class,'select2-results__message'))]"
+                )
+
+                producttype_option = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, producttype_xpath)
+                    )
+                )
+
+                producttype_option.click()
+
+                print(
+                    "Product Type selected:",
+                    producttype
+                )
+
+                return
+
+            except (
+                StaleElementReferenceException,
+                TimeoutException
+            ):
+
+                print(
+                    f"Product Type selection retry "
+                    f"({attempt}/3)..."
+                )
+
+                if attempt == 3:
+                    raise
+
+                time.sleep(1)
+
+        raise AssertionError(
+            f"Unable to select Product Type: {producttype}"
         )
-
-        producttype_dropdown.click()
-
-        producttype_xpath = (
-            f"//li[normalize-space(.)='{producttype}']"
-        )
-
-        producttype_option = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, producttype_xpath)
-            )
-        )
-
-        producttype_option.click()
-
-        print("Product Type selected:", producttype)
 
     # =========================================================
     # PUBLISHED
@@ -139,27 +237,65 @@ class SearchProduct:
 
     def selectPublishedItem(self, published):
 
-        published_dropdown = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, self.drp_published)
-            )
+        print("\n========== SELECT PUBLISHED ==========")
+        print("Selecting Published:", published)
+
+        for attempt in range(1, 4):
+
+            try:
+
+                published_dropdown = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, self.drp_published)
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    published_dropdown
+                )
+
+                published_dropdown.click()
+
+                published_item_xpath = (
+                    "//li[contains(@class,'select2-results__option') "
+                    f"and normalize-space(.)='{published}' "
+                    "and not(contains(@class,'select2-results__message'))]"
+                )
+
+                published_option = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, published_item_xpath)
+                    )
+                )
+
+                published_option.click()
+
+                print(
+                    "Published Item selected:",
+                    published
+                )
+
+                return
+
+            except (
+                StaleElementReferenceException,
+                TimeoutException
+            ):
+
+                print(
+                    f"Published selection retry "
+                    f"({attempt}/3)..."
+                )
+
+                if attempt == 3:
+                    raise
+
+                time.sleep(1)
+
+        raise AssertionError(
+            f"Unable to select Published: {published}"
         )
-
-        published_dropdown.click()
-
-        published_item_xpath = (
-            f"//li[normalize-space(.)='{published}']"
-        )
-
-        published_option = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, published_item_xpath)
-            )
-        )
-
-        published_option.click()
-
-        print("Published Item selected:", published)
 
     # =========================================================
     # PRODUCT NAME
@@ -176,7 +312,10 @@ class SearchProduct:
         product_name_field.clear()
         product_name_field.send_keys(product_name)
 
-        print("Product name entered:", product_name)
+        print(
+            "Product name entered:",
+            product_name
+        )
 
     # ---------------------------------------------------------
     # Clear Product Name
@@ -200,6 +339,8 @@ class SearchProduct:
 
     def clickSearch(self):
 
+        print("\n========== CLICK SEARCH ==========")
+
         search_button = self.wait.until(
             EC.element_to_be_clickable(
                 (By.XPATH, self.btnSearch_xpath)
@@ -218,69 +359,180 @@ class SearchProduct:
 
         print("Search button clicked")
 
-        # ---------------------------------------------------------
-        # Wait for the Product List table itself
-        # ---------------------------------------------------------
-
-        self.wait.until(
-            EC.presence_of_element_located(
-                (By.XPATH, self.tbl_producttable_xpath)
-            )
-        )
-
-        # ---------------------------------------------------------
-        # Wait until DataTables finishes processing, if present
-        # ---------------------------------------------------------
-
-        processing_xpath = (
-                self.tbl_producttable_xpath +
-                "//ancestor::div[contains(@class,'dataTables_wrapper')]"
-                "//div[contains(@class,'dataTables_processing')]"
-        )
+        # -----------------------------------------------------
+        # Wait for Product List table
+        # -----------------------------------------------------
 
         try:
 
-            WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located(
-                    (By.XPATH, processing_xpath)
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        self.tbl_producttable_xpath
+                    )
                 )
             )
 
-            print("DataTables processing started")
-
-            WebDriverWait(self.driver, 20).until(
-                EC.invisibility_of_element_located(
-                    (By.XPATH, processing_xpath)
-                )
-            )
-
-            print("DataTables processing completed")
+            print("Product table found")
 
         except TimeoutException:
 
             print(
-                "DataTables processing indicator was not observed"
+                "Product table was not found after search"
             )
 
-        # ---------------------------------------------------------
-        # IMPORTANT:
-        # Do NOT simply wait for any row.
-        # Wait until DataTables has finished rendering the tbody.
-        # ---------------------------------------------------------
-
-        self.wait.until(
-            lambda driver: (
-                    len(
-                        driver.find_elements(
-                            By.XPATH,
-                            self.tbl_producttable_xpath +
-                            "//tbody//tr"
-                        )
-                    ) > 0
+            print(
+                "Current URL:",
+                self.driver.current_url
             )
+
+            print(
+                "Current Title:",
+                self.driver.title
+            )
+
+            raise
+
+        # -----------------------------------------------------
+        # DataTables processing
+        # -----------------------------------------------------
+
+        processing_xpath = (
+            self.tbl_producttable_xpath
+            + "//ancestor::div[contains(@class,"
+              "'dataTables_wrapper')]"
+            + "//div[contains(@class,"
+              "'dataTables_processing')]"
         )
 
-        print("Search results table loaded")
+        try:
+
+            WebDriverWait(
+                self.driver,
+                5
+            ).until(
+                EC.visibility_of_element_located(
+                    (
+                        By.XPATH,
+                        processing_xpath
+                    )
+                )
+            )
+
+            print(
+                "DataTables processing started"
+            )
+
+            WebDriverWait(
+                self.driver,
+                20
+            ).until(
+                EC.invisibility_of_element_located(
+                    (
+                        By.XPATH,
+                        processing_xpath
+                    )
+                )
+            )
+
+            print(
+                "DataTables processing completed"
+            )
+
+        except TimeoutException:
+
+            print(
+                "DataTables processing indicator "
+                "was not observed"
+            )
+
+        # -----------------------------------------------------
+        # IMPORTANT
+        #
+        # Do NOT require an actual product row.
+        #
+        # A valid search may return:
+        #
+        # No data available in table
+        #
+        # which is itself rendered as a table row.
+        # -----------------------------------------------------
+
+        tbody_xpath = (
+            self.tbl_producttable_xpath
+            + "//tbody"
+        )
+
+        try:
+
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        tbody_xpath
+                    )
+                )
+            )
+
+            print(
+                "Product table tbody rendered"
+            )
+
+        except TimeoutException:
+
+            print(
+                "Product table tbody was not rendered"
+            )
+
+            raise
+
+        # -----------------------------------------------------
+        # Print table state for debugging
+        # -----------------------------------------------------
+
+        try:
+
+            rows = self.driver.find_elements(
+                By.XPATH,
+                self.tbl_producttable_xpath
+                + "//tbody//tr"
+            )
+
+            print(
+                "Number of table rows:",
+                len(rows)
+            )
+
+            for index, row in enumerate(
+                rows,
+                start=1
+            ):
+
+                try:
+
+                    print(
+                        f"Search Row {index}:",
+                        row.text.strip()
+                    )
+
+                except StaleElementReferenceException:
+
+                    print(
+                        f"Search Row {index}: STALE"
+                    )
+
+        except Exception as e:
+
+            print(
+                "Unable to inspect search rows:",
+                type(e).__name__,
+                str(e)
+            )
+
+        print(
+            "Search results table loaded"
+        )
 
     # =========================================================
     # PRODUCT PRESENT
@@ -302,13 +554,15 @@ class SearchProduct:
                     rows_xpath
                 )
 
-                for index, row in enumerate(rows, start=1):
+                for index, row in enumerate(
+                    rows,
+                    start=1
+                ):
 
                     try:
 
                         row_text = row.text.strip()
 
-                        # Ignore DataTables temporary/empty rows
                         if not row_text:
                             continue
 
@@ -328,7 +582,6 @@ class SearchProduct:
                             "td"
                         )
 
-                        # Product name is normally column 3
                         if len(cells) < 3:
                             continue
 
@@ -336,11 +589,14 @@ class SearchProduct:
                             cells[2].text.strip()
                         )
 
-                        # Ignore blank/incomplete rows
                         if not actual_product_name:
                             continue
 
-                        if actual_product_name == product_name:
+                        if (
+                            actual_product_name
+                            == product_name
+                        ):
+
                             print(
                                 f"Product found: "
                                 f"{actual_product_name}"
@@ -394,6 +650,7 @@ class SearchProduct:
             )
 
             return False
+
     # =========================================================
     # SKU
     # =========================================================
@@ -437,7 +694,10 @@ class SearchProduct:
         print("Go button text:", go_button.text)
         print("Go button type:", go_button.get_attribute("type"))
         print("Go button id:", go_button.get_attribute("id"))
-        print("Go button disabled:", go_button.get_attribute("disabled"))
+        print(
+            "Go button disabled:",
+            go_button.get_attribute("disabled")
+        )
 
         print(
             "SKU before Go:",
@@ -455,11 +715,14 @@ class SearchProduct:
 
         print("Go button clicked")
 
-        # Wait a few seconds for any AJAX/redirect operation
         try:
 
-            WebDriverWait(self.driver, 5).until(
-                lambda driver: driver.current_url != old_url
+            WebDriverWait(
+                self.driver,
+                5
+            ).until(
+                lambda driver:
+                driver.current_url != old_url
             )
 
             print(
@@ -483,9 +746,9 @@ class SearchProduct:
             self.driver.title
         )
 
-        # ---------------------------------------------------------
-        # Check whether SKU edit field exists
-        # ---------------------------------------------------------
+        # -----------------------------------------------------
+        # Check SKU edit field
+        # -----------------------------------------------------
 
         sku_fields = self.driver.find_elements(
             By.XPATH,
@@ -497,56 +760,90 @@ class SearchProduct:
             len(sku_fields)
         )
 
-        # ---------------------------------------------------------
-        # Check for validation/error messages
-        # ---------------------------------------------------------
+        # -----------------------------------------------------
+        # Check validation/error messages
+        # -----------------------------------------------------
 
         body_text = self.driver.find_element(
             By.TAG_NAME,
             "body"
         ).text
 
-        print("----- PAGE TEXT AFTER GO -----")
-        print(body_text[:3000])
-        print("----- END PAGE TEXT -----")
+        print(
+            "----- PAGE TEXT AFTER GO -----"
+        )
+
+        print(
+            body_text[:3000]
+        )
+
+        print(
+            "----- END PAGE TEXT -----"
+        )
+
     # =========================================================
     # VERIFY SKU
     # =========================================================
 
     def verifySKU(self, expected_sku):
 
-        print("Verifying SKU:", expected_sku)
+        print(
+            "Verifying SKU:",
+            expected_sku
+        )
 
-        expected_sku = str(expected_sku).strip()
+        expected_sku = str(
+            expected_sku
+        ).strip()
 
         try:
+
             self.wait.until(
                 lambda driver: (
-                                       driver.find_element(
-                                           By.XPATH,
-                                           self.txtsku_edit_xpath
-                                       ).get_attribute("value") or ""
-                               ).strip() != ""
+                    driver.find_element(
+                        By.XPATH,
+                        self.txtsku_edit_xpath
+                    ).get_attribute("value")
+                    or ""
+                ).strip() != ""
             )
 
             sku_field = self.wait.until(
                 EC.visibility_of_element_located(
-                    (By.XPATH, self.txtsku_edit_xpath)
+                    (
+                        By.XPATH,
+                        self.txtsku_edit_xpath
+                    )
                 )
             )
 
             actual_sku = (
-                    sku_field.get_attribute("value") or ""
+                sku_field.get_attribute("value")
+                or ""
             ).strip()
 
-            print("Expected SKU:", expected_sku)
-            print("Actual SKU:", actual_sku)
+            print(
+                "Expected SKU:",
+                expected_sku
+            )
+
+            print(
+                "Actual SKU:",
+                actual_sku
+            )
 
             if actual_sku == expected_sku:
-                print("SKU verification PASSED")
+
+                print(
+                    "SKU verification PASSED"
+                )
+
                 return True
 
-            print("SKU verification FAILED")
+            print(
+                "SKU verification FAILED"
+            )
+
             return False
 
         except TimeoutException:
@@ -556,8 +853,15 @@ class SearchProduct:
                 self.txtsku_edit_xpath
             )
 
-            print("Current URL:", self.driver.current_url)
-            print("Current Title:", self.driver.title)
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            print(
+                "Current Title:",
+                self.driver.title
+            )
 
             return False
 
@@ -639,35 +943,74 @@ class SearchProduct:
 
     def isNoDataAvailable(self):
 
-        no_data_xpath = (
-            f"{self.tbl_producttable_xpath}"
-            f"//tbody//td[contains(@class,'dt-empty')]"
+        print(
+            "\n========== CHECK NO DATA =========="
         )
 
-        try:
+        no_data_xpaths = [
 
-            no_data = self.wait.until(
-                EC.visibility_of_element_located(
-                    (By.XPATH, no_data_xpath)
+            # Standard DataTables empty cell
+            (
+                self.tbl_producttable_xpath
+                + "//tbody//td[contains(@class,'dt-empty')]"
+            ),
+
+            # Fallback based on exact text
+            (
+                self.tbl_producttable_xpath
+                + "//tbody//td[contains("
+                  "normalize-space(.),"
+                  "'No data available in table'"
+                  ")]"
+            )
+        ]
+
+        for xpath in no_data_xpaths:
+
+            try:
+
+                no_data = WebDriverWait(
+                    self.driver,
+                    5
+                ).until(
+                    EC.visibility_of_element_located(
+                        (
+                            By.XPATH,
+                            xpath
+                        )
+                    )
                 )
-            )
 
-            actual_text = no_data.text.strip()
+                actual_text = (
+                    no_data.text.strip()
+                )
 
-            print(
-                "Search result message:",
-                actual_text
-            )
+                print(
+                    "Search result message:",
+                    actual_text
+                )
 
-            return actual_text == "No data available in table"
+                if (
+                    actual_text
+                    == "No data available in table"
+                ):
 
-        except TimeoutException:
+                    print(
+                        "NO DATA confirmed"
+                    )
 
-            print(
-                "No 'No data available in table' message found"
-            )
+                    return True
 
-            return False
+            except TimeoutException:
+
+                continue
+
+        print(
+            "No 'No data available in table' "
+            "message found"
+        )
+
+        return False
 
     # =========================================================
     # NO RECORDS
@@ -675,44 +1018,114 @@ class SearchProduct:
 
     def isNoRecordsDisplayed(self):
 
-        records_xpath = (
-            "//div[contains(@class,'dt-info')]"
+        print(
+            "\n========== CHECK NO RECORDS =========="
         )
 
-        try:
+        records_xpaths = [
 
-            records = self.wait.until(
-                EC.visibility_of_element_located(
-                    (By.XPATH, records_xpath)
+            "//div[contains(@class,'dt-info')]",
+
+            "//div[contains(@class,'dataTables_info')]",
+
+            (
+                "//div[contains(@class,"
+                "'dataTables_wrapper')]"
+                "//div[contains(@class,'dt-info')]"
+            ),
+
+            (
+                "//div[contains(@class,"
+                "'dataTables_wrapper')]"
+                "//div[contains(@class,"
+                "'dataTables_info')]"
+            )
+        ]
+
+        for xpath in records_xpaths:
+
+            try:
+
+                records = WebDriverWait(
+                    self.driver,
+                    5
+                ).until(
+                    EC.visibility_of_element_located(
+                        (
+                            By.XPATH,
+                            xpath
+                        )
+                    )
                 )
-            )
 
-            actual_text = records.text.strip()
+                actual_text = (
+                    records.text.strip()
+                )
 
-            print(
-                "Records:",
-                actual_text
-            )
+                print(
+                    "Records information:",
+                    actual_text
+                )
 
-            return actual_text == "No records"
+                if actual_text == "No records":
 
-        except TimeoutException:
+                    print(
+                        "NO RECORDS confirmed"
+                    )
 
-            print(
-                "No 'No records' text found"
-            )
+                    return True
 
-            return False
+                if "No records" in actual_text:
+
+                    print(
+                        "NO RECORDS text confirmed"
+                    )
+
+                    return True
+
+            except TimeoutException:
+
+                continue
+
+        print(
+            "No 'No records' text found"
+        )
+
+        return False
+
+    # =========================================================
+    # PRINT SEARCH RESULTS
+    # =========================================================
 
     def printSearchResults(self):
-        rows = self.driver.find_elements(By.XPATH,"//table[@id='products-grid']//tbody//tr")
-        print(f"Total rows: {len(rows)}")
-        for index,row in enumerate(rows,start=1):
+
+        rows = self.driver.find_elements(
+            By.XPATH,
+            "//table[@id='products-grid']"
+            "//tbody//tr"
+        )
+
+        print(
+            f"Total rows: {len(rows)}"
+        )
+
+        for index, row in enumerate(
+            rows,
+            start=1
+        ):
+
             try:
-                print(f"Search Row {index}: "
-                f"{row.text.strip()}")
+
+                print(
+                    f"Search Row {index}: "
+                    f"{row.text.strip()}"
+                )
+
             except StaleElementReferenceException:
-                print(f"Search Row {index}: STALE")
+
+                print(
+                    f"Search Row {index}: STALE"
+                )
 
     # =========================================================
     # GET SKU BY PRODUCT NAME
@@ -722,7 +1135,6 @@ class SearchProduct:
 
         product_name = product_name.strip()
 
-        # Search product by name
         self.setProductName(product_name)
         self.clickSearch()
 
@@ -744,7 +1156,10 @@ class SearchProduct:
 
                     try:
 
-                        cells = row.find_elements(By.TAG_NAME, "td")
+                        cells = row.find_elements(
+                            By.TAG_NAME,
+                            "td"
+                        )
 
                         row_text = row.text.strip()
 
@@ -760,21 +1175,22 @@ class SearchProduct:
                                 product_name
                             )
 
-                            # Print all columns so we can confirm
-                            # the SKU column position
-                            for index, cell in enumerate(cells):
+                            for index, cell in enumerate(
+                                cells
+                            ):
+
                                 print(
                                     f"Column {index}:",
                                     cell.text.strip()
                                 )
 
-                            # SKU is normally column 4 in nopCommerce
                             sku = cells[3].text.strip()
 
                             if sku:
                                 return sku
 
                     except StaleElementReferenceException:
+
                         continue
 
                 return False
@@ -782,10 +1198,13 @@ class SearchProduct:
             sku = WebDriverWait(
                 self.driver,
                 20
-            ).until(find_product_sku)
+            ).until(
+                find_product_sku
+            )
 
             print(
-                f"Dynamic SKU for '{product_name}':",
+                f"Dynamic SKU for "
+                f"'{product_name}':",
                 sku
             )
 
@@ -822,7 +1241,10 @@ class SearchProduct:
                     rows_xpath
                 )
 
-                for index, row in enumerate(rows, start=1):
+                for index, row in enumerate(
+                    rows,
+                    start=1
+                ):
 
                     try:
 
@@ -833,14 +1255,16 @@ class SearchProduct:
                             f"{row_text}"
                         )
 
-                        # Ignore temporary DataTables rows
                         if not row_text:
                             continue
 
                         if row_text.lower() == "loading...":
                             continue
 
-                        if "No data available in table" in row_text:
+                        if (
+                            "No data available in table"
+                            in row_text
+                        ):
                             continue
 
                         cells = row.find_elements(
@@ -848,13 +1272,16 @@ class SearchProduct:
                             "td"
                         )
 
-                        # Product name = cells[2]
-                        # SKU         = cells[3]
                         if len(cells) < 4:
                             continue
 
-                        product_name = cells[2].text.strip()
-                        sku = cells[3].text.strip()
+                        product_name = (
+                            cells[2].text.strip()
+                        )
+
+                        sku = (
+                            cells[3].text.strip()
+                        )
 
                         if not product_name:
                             continue
@@ -877,7 +1304,8 @@ class SearchProduct:
                     except StaleElementReferenceException:
 
                         print(
-                            f"Row {index} became stale. Retrying..."
+                            f"Row {index} became stale. "
+                            f"Retrying..."
                         )
 
                         continue
@@ -887,7 +1315,9 @@ class SearchProduct:
             result = WebDriverWait(
                 self.driver,
                 20
-            ).until(find_valid_product)
+            ).until(
+                find_valid_product
+            )
 
             return result
 
@@ -932,7 +1362,10 @@ class SearchProduct:
                     rows_xpath
                 )
 
-                for index, row in enumerate(rows, start=1):
+                for index, row in enumerate(
+                    rows,
+                    start=1
+                ):
 
                     try:
 
@@ -943,22 +1376,17 @@ class SearchProduct:
                             f"{row_text}"
                         )
 
-                        # -------------------------------------------------
-                        # Ignore DataTables temporary/loading rows
-                        # -------------------------------------------------
-
                         if not row_text:
                             continue
 
                         if row_text.lower() == "loading...":
                             continue
 
-                        if "No data available in table" in row_text:
+                        if (
+                            "No data available in table"
+                            in row_text
+                        ):
                             continue
-
-                        # -------------------------------------------------
-                        # Get cells
-                        # -------------------------------------------------
 
                         cells = row.find_elements(
                             By.TAG_NAME,
@@ -968,11 +1396,9 @@ class SearchProduct:
                         if len(cells) < 3:
                             continue
 
-                        # -------------------------------------------------
-                        # Product name is column index 2
-                        # -------------------------------------------------
-
-                        product_name = cells[2].text.strip()
+                        product_name = (
+                            cells[2].text.strip()
+                        )
 
                         if not product_name:
                             continue
@@ -994,16 +1420,12 @@ class SearchProduct:
 
                 return False
 
-            # ---------------------------------------------------------
-            # IMPORTANT:
-            # Wait until an actual product is available,
-            # not merely until the table exists.
-            # ---------------------------------------------------------
-
             product_name = WebDriverWait(
                 self.driver,
                 20
-            ).until(find_valid_product)
+            ).until(
+                find_valid_product
+            )
 
             return product_name
 
@@ -1027,6 +1449,7 @@ class SearchProduct:
             self.printSearchResults()
 
             return None
+
     # =========================================================
     # CLICK EDIT FOR PRODUCT NAME
     # =========================================================
@@ -1043,8 +1466,8 @@ class SearchProduct:
         )
 
         edit_button_xpath = (
-                row_xpath +
-                "//a[contains(@href,'/Admin/Product/Edit')]"
+            row_xpath
+            + "//a[contains(@href,'/Admin/Product/Edit')]"
         )
 
         try:
@@ -1078,13 +1501,15 @@ class SearchProduct:
                             )
 
                             driver.execute_script(
-                                "arguments[0].scrollIntoView({block:'center'});",
+                                "arguments[0].scrollIntoView("
+                                "{block:'center'});",
                                 row
                             )
 
                             edit_buttons = row.find_elements(
                                 By.XPATH,
-                                ".//a[contains(@href,'/Admin/Product/Edit')]"
+                                ".//a[contains("
+                                "@href,'/Admin/Product/Edit')]"
                             )
 
                             if not edit_buttons:
@@ -1101,20 +1526,26 @@ class SearchProduct:
                             return edit_button
 
                         except StaleElementReferenceException:
+
                             print(
-                                "Product row became stale. Retrying..."
+                                "Product row became stale. "
+                                "Retrying..."
                             )
+
                             continue
 
                     return False
 
                 except StaleElementReferenceException:
+
                     return False
 
             edit_button = WebDriverWait(
                 self.driver,
                 20
-            ).until(find_edit_button)
+            ).until(
+                find_edit_button
+            )
 
             print(
                 "Edit button found for:",
@@ -1127,6 +1558,7 @@ class SearchProduct:
             )
 
             try:
+
                 edit_button.click()
 
             except StaleElementReferenceException:
@@ -1139,7 +1571,9 @@ class SearchProduct:
                 edit_button = WebDriverWait(
                     self.driver,
                     10
-                ).until(find_edit_button)
+                ).until(
+                    find_edit_button
+                )
 
                 self.driver.execute_script(
                     "arguments[0].scrollIntoView({block:'center'});",
@@ -1154,7 +1588,9 @@ class SearchProduct:
             )
 
             self.wait.until(
-                EC.url_contains("/Admin/Product/Edit")
+                EC.url_contains(
+                    "/Admin/Product/Edit"
+                )
             )
 
             print(
