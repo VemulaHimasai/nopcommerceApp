@@ -53,6 +53,25 @@ class SearchProduct:
     # ---------------------------------------------------------
     txtsku_edit_xpath = "//input[@id='Sku']"
 
+    # ---------------------------------------------------------
+    # Export
+    # ---------------------------------------------------------
+    btn_export_xpath = "//button[@class='btn btn-success dropdown-toggle']"
+
+    btn_export_selected_xml_xpath = "//button[@id='exportxml-selected']"
+    btn_export_all_xml_xpath = "//button[normalize-space()='Export to XML (all found)']"
+
+    #Export Excel
+    btn_export_selected_excel_xpath = "//button[@id='exportexcel-selected']"
+    btn_export_all_excel_xpath = "//button[normalize-space()='Export to Excel (all found)']"
+
+    #Product Checkboxes
+
+    checkboxes_xpath = (
+        "//table[@id='products-grid']//tbody/tr/td[1]"
+        "//input[@type='checkbox']"
+    )
+
     def __init__(self, driver):
 
         self.driver = driver
@@ -1610,6 +1629,281 @@ class SearchProduct:
             print(
                 "Current URL:",
                 self.driver.current_url
+            )
+
+            self.printSearchResults()
+
+            return False
+
+    # =========================================================
+    # CLICK EXPORT DROPDOWN
+    # =========================================================
+
+    def clickExport(self):
+
+        print("\n========== CLICK EXPORT DROPDOWN ==========")
+
+        export_button = self.wait.until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    self.btn_export_xpath
+                )
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            export_button
+        )
+
+        export_button.click()
+
+        print("Export dropdown opened")
+
+    # =========================================================
+    # EXPORT SELECTED PRODUCTS TO XML
+    # =========================================================
+
+    def clickExportSelectedXML(self):
+
+        print(
+            "\n========== EXPORT SELECTED PRODUCTS TO XML =========="
+        )
+
+        button = self.wait.until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    self.btn_export_selected_xml_xpath
+                )
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            button
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            button
+        )
+
+        print("Export selected products to XML clicked")
+
+    # =========================================================
+    # EXPORT ALL FOUND PRODUCTS TO XML
+    # =========================================================
+
+    def clickExportAllXML(self):
+
+        print(
+            "\n========== EXPORT ALL FOUND PRODUCTS TO XML =========="
+        )
+
+        button = self.wait.until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    self.btn_export_all_xml_xpath
+                )
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            button
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            button
+        )
+
+        print("Export all found products to XML clicked")
+
+    # =========================================================
+    # EXPORT SELECTED PRODUCTS TO EXCEL
+    # =========================================================
+
+    def clickExportSelectedExcel(self):
+
+        print(
+            "\n========== EXPORT SELECTED PRODUCTS TO EXCEL =========="
+        )
+
+        button = self.wait.until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    self.btn_export_selected_excel_xpath
+                )
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            button
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            button
+        )
+
+        print("Export selected products to Excel clicked")
+
+    # =========================================================
+    # EXPORT ALL FOUND PRODUCTS TO EXCEL
+    # =========================================================
+
+    def clickExportAllExcel(self):
+
+        print(
+            "\n========== EXPORT ALL FOUND PRODUCTS TO EXCEL =========="
+        )
+
+        button = self.wait.until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    self.btn_export_all_excel_xpath
+                )
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            button
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            button
+        )
+
+        print("Export all found products to Excel clicked")
+
+    # =========================================================
+    # SELECT FIRST PRODUCT CHECKBOX
+    # =========================================================
+
+    def selectFirstProduct(self):
+
+        print("\n========== SELECT FIRST PRODUCT ==========")
+
+        try:
+
+            def find_checkbox(driver):
+
+                checkboxes = driver.find_elements(
+                    By.XPATH,
+                    self.checkboxes_xpath
+                )
+
+                print(
+                    "Product checkboxes found:",
+                    len(checkboxes)
+                )
+
+                for index, checkbox in enumerate(
+                        checkboxes,
+                        start=1
+                ):
+
+                    try:
+
+                        if not checkbox.is_displayed():
+                            continue
+
+                        return checkbox
+
+                    except StaleElementReferenceException:
+
+                        print(
+                            f"Checkbox {index} became stale"
+                        )
+
+                        continue
+
+                return False
+
+            checkbox = WebDriverWait(
+                self.driver,
+                20
+            ).until(
+                find_checkbox
+            )
+
+            self.driver.execute_script(
+                "arguments[0].scrollIntoView({block:'center'});",
+                checkbox
+            )
+
+            if not checkbox.is_selected():
+
+                try:
+                    checkbox.click()
+
+                except (
+                        StaleElementReferenceException,
+                        TimeoutException
+                ):
+
+                    checkbox = WebDriverWait(
+                        self.driver,
+                        10
+                    ).until(
+                        find_checkbox
+                    )
+
+                    self.driver.execute_script(
+                        "arguments[0].click();",
+                        checkbox
+                    )
+
+            # -------------------------------------------------
+            # Verify selection
+            # -------------------------------------------------
+
+            def checkbox_selected(driver):
+
+                try:
+
+                    checkboxes = driver.find_elements(
+                        By.XPATH,
+                        self.checkboxes_xpath
+                    )
+
+                    for checkbox in checkboxes:
+
+                        if checkbox.is_displayed():
+                            return checkbox.is_selected()
+
+                    return False
+
+                except StaleElementReferenceException:
+
+                    return False
+
+            WebDriverWait(
+                self.driver,
+                10
+            ).until(
+                checkbox_selected
+            )
+
+            print(
+                "First product checkbox selected successfully"
+            )
+
+            return True
+
+        except TimeoutException:
+
+            print(
+                "Unable to find/select a product checkbox"
             )
 
             self.printSearchResults()
