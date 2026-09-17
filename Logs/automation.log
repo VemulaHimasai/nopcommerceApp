@@ -15590,3 +15590,13 @@ The new customer has been added successfully.
 09/17/2026 01:22:30 PM: INFO: ****Login DDT Test Passed****
 09/17/2026 01:22:30 PM: INFO: ****End of Login DDT Test****
 09/17/2026 01:22:30 PM: INFO: *****Completed TC_LoginDDT_002******
+09/17/2026 02:20:38 PM: INFO: ******* Editing Customer *******
+09/17/2026 02:20:46 PM: INFO: ******* Login Successful *****
+09/17/2026 02:20:49 PM: INFO: ******* Customers page opened *******
+09/17/2026 02:20:53 PM: INFO: ******* Edit Customer button clicked *******
+09/17/2026 02:20:53 PM: INFO: ******* Edit Customer page opened successfully *******
+09/17/2026 02:21:00 PM: INFO: ******* Customer Save button clicked *******
+09/17/2026 02:21:00 PM: INFO: ******* Customer update success message verified *******
+09/17/2026 02:21:00 PM: INFO: ******* Customer List grid loaded *******
+09/17/2026 02:21:02 PM: INFO: ******* Updated customer verified in grid *******
+09/17/2026 02:21:02 PM: INFO: ********* Edit Customer test passed **********

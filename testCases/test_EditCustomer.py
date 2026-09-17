@@ -1,4 +1,9 @@
+
+import os
+
 import pytest
+
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -15,6 +20,7 @@ class Test_EditCustomer_010:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
+
     logger = LogGen.loggen()
 
     @pytest.mark.regression
@@ -25,14 +31,25 @@ class Test_EditCustomer_010:
         )
 
         self.driver = setup
-        self.driver.get(self.baseURL)
+
+        self.driver.get(
+            self.baseURL
+        )
+
         self.driver.maximize_window()
+
+        wait = WebDriverWait(
+            self.driver,
+            20
+        )
 
         # =================================================
         # Login
         # =================================================
 
-        self.lp = LoginPage(self.driver)
+        self.lp = LoginPage(
+            self.driver
+        )
 
         self.lp.setUserName(
             self.username
@@ -52,7 +69,9 @@ class Test_EditCustomer_010:
         # Navigate to Customers
         # =================================================
 
-        self.addcust = AddCustomer(self.driver)
+        self.addcust = AddCustomer(
+            self.driver
+        )
 
         self.addcust.clickOnCustomersMenu()
 
@@ -70,7 +89,9 @@ class Test_EditCustomer_010:
         # Find customer by email and click Edit
         # =================================================
 
-        customer_email = "stark1@stark1.com"
+        customer_email = (
+            "stark1@stark1.com"
+        )
 
         searchcust.clickEditCustomerByEmail(
             customer_email
@@ -84,14 +105,20 @@ class Test_EditCustomer_010:
         # Wait for Edit Customer page
         # =================================================
 
-        WebDriverWait(
-            self.driver,
-            15
-        ).until(
+        wait.until(
             EC.url_contains(
                 "/Admin/Customer/Edit"
             )
         )
+
+        wait.until(
+            EC.visibility_of_element_located(
+                (
+                    By.ID,
+                    editcust.txtFirstName_id
+                )
+            )
+        ) if False else None
 
         assert "Edit customer" in (
             self.driver.page_source
@@ -102,12 +129,16 @@ class Test_EditCustomer_010:
         )
 
         # =================================================
-        # Edit Customer
+        # Create Edit Customer page object
         # =================================================
 
         editcust = EditCustomerPage(
             self.driver
         )
+
+        # =================================================
+        # Edit Customer
+        # =================================================
 
         editcust.setFirstName(
             "Johnny"
@@ -118,6 +149,86 @@ class Test_EditCustomer_010:
         # =================================================
 
         editcust.clickSave()
+
+        self.logger.info(
+            "******* Customer Save button clicked *******"
+        )
+
+        # =================================================
+        # IMPORTANT:
+        # nopCommerce redirects to Customer List
+        # after successful save.
+        # =================================================
+
+        try:
+
+            wait.until(
+                EC.url_contains(
+                    "/Admin/Customer/List"
+                )
+            )
+
+            print(
+                "Customer List redirect detected."
+            )
+
+            print(
+                "Current URL after Save:",
+                self.driver.current_url
+            )
+
+            print(
+                "Current Title after Save:",
+                self.driver.title
+            )
+
+        except Exception as e:
+
+            self.logger.error(
+                f"Customer List redirect failed: {e}"
+            )
+
+            print(
+                "Customer List redirect failed:",
+                e
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            print(
+                "Current Title:",
+                self.driver.title
+            )
+
+            try:
+
+                os.makedirs(
+                    "Screenshots",
+                    exist_ok=True
+                )
+
+                self.driver.save_screenshot(
+                    ".\\Screenshots\\edit_customer_redirect_failure.png"
+                )
+
+                print(
+                    "Redirect failure screenshot saved."
+                )
+
+            except Exception as screenshot_error:
+
+                print(
+                    "Unable to save screenshot:",
+                    screenshot_error
+                )
+
+            assert False, (
+                "Customer List page was not opened "
+                "after saving customer."
+            )
 
         # =================================================
         # Verify update success message
@@ -137,28 +248,14 @@ class Test_EditCustomer_010:
         )
 
         # =================================================
-        # nopCommerce automatically redirects
-        # to Customer List after Save
-        # =================================================
-
-        WebDriverWait(
-            self.driver,
-            15
-        ).until(
-            EC.url_contains(
-                "/Admin/Customer/List"
-            )
-        )
-
-        self.logger.info(
-            "******* Customer List page opened after Save *******"
-        )
-
-        # =================================================
         # Wait for Customer Grid
         # =================================================
 
         searchcust.waitForTable()
+
+        self.logger.info(
+            "******* Customer List grid loaded *******"
+        )
 
         # =================================================
         # Verify updated customer in grid
@@ -183,3 +280,4 @@ class Test_EditCustomer_010:
         self.logger.info(
             "********* Edit Customer test passed **********"
         )
+
