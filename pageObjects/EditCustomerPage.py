@@ -33,17 +33,21 @@ class EditCustomerPage:
 
     btnDelete_xpath = "//span[@id='customer-delete']"
 
-    # Delete confirmation modal
-    delete_confirmation_form_xpath = (
-        "//form[contains(@action,'/Admin/Customer/Delete/')]"
+    delete_confirmation_modal_xpath = (
+        "//div[@id='customermodel-Delete-delete-confirmation' "
+        "and @role='dialog']"
     )
 
-    # Delete button inside confirmation modal
     btnConfirmDelete_xpath = (
-        "//form[contains(@action,'/Admin/Customer/Delete/')]"
+        "//div[@id='customermodel-Delete-delete-confirmation']"
         "//button[@type='submit' "
         "and contains(@class,'btn-danger') "
         "and normalize-space()='Delete']"
+    )
+
+    # Back to customer list
+    btnBackToCustomerList_xpath = (
+        "//a[normalize-space()='back to customer list']"
     )
 
     # -------------------------------------------------
@@ -348,6 +352,10 @@ class EditCustomerPage:
 
     def isCustomerUpdatedSuccessfully(self):
 
+        expected_message = (
+            "The customer has been updated successfully"
+        )
+
         try:
 
             print(
@@ -363,18 +371,34 @@ class EditCustomerPage:
                 )
             )
 
-            message = success_message.text.strip()
+            try:
+
+                message = success_message.text.strip()
+
+            except StaleElementReferenceException:
+
+                print(
+                    "Success message became stale. "
+                    "Retrying verification..."
+                )
+
+                success_message = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (
+                            By.XPATH,
+                            self.success_message_xpath
+                        )
+                    )
+                )
+
+                message = success_message.text.strip()
 
             print(
                 "Success message:",
                 repr(message)
             )
 
-            if (
-                "The customer has been updated successfully"
-                in message
-            ):
-
+            if expected_message in message:
                 print(
                     "Customer update verified successfully."
                 )
@@ -412,10 +436,10 @@ class EditCustomerPage:
             try:
 
                 current_first_name = (
-                    self.driver.find_element(
-                        By.ID,
-                        self.txtFirstName_id
-                    ).get_attribute("value") or ""
+                        self.driver.find_element(
+                            By.ID,
+                            self.txtFirstName_id
+                        ).get_attribute("value") or ""
                 ).strip()
 
                 print(
@@ -460,13 +484,17 @@ class EditCustomerPage:
 
             try:
 
-                self.driver.save_screenshot(
+                screenshot_path = (
                     ".\\Screenshots\\edit_customer_failure.png"
                 )
 
+                self.driver.save_screenshot(
+                    screenshot_path
+                )
+
                 print(
-                    "Failure screenshot saved:"
-                    " .\\Screenshots\\edit_customer_failure.png"
+                    "Failure screenshot saved:",
+                    screenshot_path
                 )
 
             except Exception as e:
@@ -481,42 +509,169 @@ class EditCustomerPage:
         except StaleElementReferenceException:
 
             print(
-                "Success message became stale. "
-                "Retrying verification..."
+                "Success message became stale "
+                "during verification."
             )
+
+            return False
+
+    # =================================================
+    # Back to Customer List
+    # =================================================
+
+    def clickBackToCustomerList(self):
+
+        print(
+            "Waiting for Back to Customer List link..."
+        )
+
+        for attempt in range(1, 4):
 
             try:
 
-                success_message = self.wait.until(
-                    EC.visibility_of_element_located(
+                # -------------------------------------------------
+                # Locate link
+                # -------------------------------------------------
+
+                back_button = self.wait.until(
+                    EC.presence_of_element_located(
                         (
                             By.XPATH,
-                            self.success_message_xpath
+                            self.btnBackToCustomerList_xpath
                         )
                     )
                 )
 
-                message = success_message.text.strip()
+                print(
+                    "Back to Customer List link found."
+                )
+
+                # -------------------------------------------------
+                # Scroll into view
+                # -------------------------------------------------
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    back_button
+                )
+
+                # -------------------------------------------------
+                # Re-locate after scrolling
+                # -------------------------------------------------
+
+                back_button = self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.btnBackToCustomerList_xpath
+                        )
+                    )
+                )
 
                 print(
-                    "Success message after retry:",
-                    repr(message)
+                    "Back to Customer List link is present."
                 )
 
-                return (
-                    "The customer has been updated successfully"
-                    in message
-                )
+                # -------------------------------------------------
+                # Click using JavaScript
+                # -------------------------------------------------
 
-            except Exception as e:
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    back_button
+                )
 
                 print(
-                    "Unable to verify success message "
-                    "after retry:",
-                    e
+                    "Back to Customer List clicked."
                 )
 
-                return False
+                # -------------------------------------------------
+                # Wait for Customer List URL
+                # -------------------------------------------------
+
+                self.wait.until(
+                    EC.url_contains(
+                        "/Admin/Customer/List"
+                    )
+                )
+
+                print(
+                    "Customer List page opened successfully."
+                )
+
+                return True
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Back link became stale. "
+                    f"Retrying ({attempt}/3)..."
+                )
+
+                time.sleep(1)
+
+            except TimeoutException:
+
+                print(
+                    f"Back link timeout. Attempt {attempt}/3"
+                )
+
+                # -------------------------------------------------
+                # Diagnostic information
+                # -------------------------------------------------
+
+                try:
+
+                    print(
+                        "Current URL:",
+                        self.driver.current_url
+                    )
+
+                    print(
+                        "Page title:",
+                        self.driver.title
+                    )
+
+                    count = self.driver.execute_script(
+                        """
+                        return document.evaluate(
+                            arguments[0],
+                            document,
+                            null,
+                            XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                            null
+                        ).snapshotLength;
+                        """,
+                        self.btnBackToCustomerList_xpath
+                    )
+
+                    print(
+                        "Back link XPath match count:",
+                        count
+                    )
+
+                except Exception as e:
+
+                    print(
+                        "Unable to collect diagnostics:",
+                        e
+                    )
+
+                if attempt < 3:
+
+                    time.sleep(1)
+
+                    continue
+
+                raise
+
+        return False
+
 
     # =================================================
     # Click Delete
@@ -570,21 +725,77 @@ class EditCustomerPage:
             "Waiting for delete confirmation modal..."
         )
 
-        self.wait.until(
-            EC.visibility_of_element_located(
+        # =================================================
+        # Wait only for modal presence in DOM
+        # =================================================
+
+        modal = self.wait.until(
+            EC.presence_of_element_located(
                 (
                     By.XPATH,
-                    self.delete_confirmation_form_xpath
+                    self.delete_confirmation_modal_xpath
                 )
             )
         )
 
         print(
-            "Delete confirmation modal is visible."
+            "Delete confirmation modal found in DOM."
         )
 
+        # =================================================
+        # Debug modal state
+        # =================================================
+
+        modal_state = self.driver.execute_script(
+            """
+            const modal = arguments[0];
+
+            const style =
+                window.getComputedStyle(modal);
+
+            return {
+                id: modal.id,
+                className: modal.className,
+                display: style.display,
+                visibility: style.visibility,
+                opacity: style.opacity
+            };
+            """,
+            modal
+        )
+
+        print(
+            "Delete modal state:",
+            modal_state
+        )
+
+        # =================================================
+        # Verify confirmation message
+        # =================================================
+
+        modal_message = self.wait.until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    self.delete_confirmation_modal_xpath
+                    + "//div[contains(@class,'modal-body')]"
+                )
+            )
+        )
+
+        print(
+            "Delete confirmation message:",
+            repr(
+                modal_message.text.strip()
+            )
+        )
+
+        # =================================================
+        # Find confirmation Delete button
+        # =================================================
+
         confirm_delete_button = self.wait.until(
-            EC.element_to_be_clickable(
+            EC.presence_of_element_located(
                 (
                     By.XPATH,
                     self.btnConfirmDelete_xpath
@@ -593,13 +804,19 @@ class EditCustomerPage:
         )
 
         print(
-            "Confirmation delete button:",
-            confirm_delete_button.text
+            "Confirmation Delete button found."
         )
 
-        # -------------------------------------------------
-        # Scroll into view
-        # -------------------------------------------------
+        print(
+            "Confirmation button text:",
+            repr(
+                confirm_delete_button.text.strip()
+            )
+        )
+
+        # =================================================
+        # Scroll to confirmation button
+        # =================================================
 
         self.driver.execute_script(
             """
@@ -611,12 +828,12 @@ class EditCustomerPage:
             confirm_delete_button
         )
 
-        # -------------------------------------------------
-        # Re-locate after scrolling
-        # -------------------------------------------------
+        # =================================================
+        # Re-locate button after scrolling
+        # =================================================
 
         confirm_delete_button = self.wait.until(
-            EC.element_to_be_clickable(
+            EC.presence_of_element_located(
                 (
                     By.XPATH,
                     self.btnConfirmDelete_xpath
@@ -624,34 +841,53 @@ class EditCustomerPage:
             )
         )
 
-        confirm_delete_button.click()
+        # =================================================
+        # Click Delete using JavaScript
+        # =================================================
+
+        print(
+            "Clicking confirmation Delete button..."
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            confirm_delete_button
+        )
 
         print(
             "Delete confirmation submitted."
         )
 
-        # -------------------------------------------------
-        # Wait for modal to disappear
-        # -------------------------------------------------
+        # =================================================
+        # Wait for Customer List redirect
+        # =================================================
 
         try:
 
-            self.wait.until(
-                EC.invisibility_of_element_located(
-                    (
-                        By.XPATH,
-                        self.delete_confirmation_form_xpath
-                    )
+            WebDriverWait(
+                self.driver,
+                15
+            ).until(
+                EC.url_contains(
+                    "/Admin/Customer/List"
                 )
             )
 
             print(
-                "Customer delete confirmed."
+                "Customer List page opened after delete."
             )
 
         except TimeoutException:
 
             print(
-                "Delete confirmation modal did not "
-                "disappear within the expected time."
+                "Customer List redirect did not occur."
             )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            raise
+
+

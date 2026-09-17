@@ -1,7 +1,9 @@
 
 import time
 
-from selenium.common.exceptions import StaleElementReferenceException, TimeoutException, NoSuchElementException
+from selenium.common.exceptions import (StaleElementReferenceException,
+                                        TimeoutException,
+                                        NoSuchElementException)
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -1545,3 +1547,441 @@ class SearchCustomer:
             f"Unable to find/edit customer with email: {email} "
             f"after checking {max_pages} pages."
         )
+
+
+
+    def isCustomerFirstNameUpdated(
+            self,
+            email,
+            expected_first_name
+    ):
+
+        print(
+            f"\nVerifying customer '{email}' "
+            f"has First Name '{expected_first_name}'..."
+        )
+
+        for attempt in range(3):
+
+            try:
+
+                # -------------------------------------------------
+                # Wait for customer table
+                # -------------------------------------------------
+
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.table_xpath
+                        )
+                    )
+                )
+
+                # -------------------------------------------------
+                # Wait for real customer rows
+                # -------------------------------------------------
+
+                self.waitForCustomerRows()
+
+                # -------------------------------------------------
+                # Get current rows
+                # -------------------------------------------------
+
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    self.tableRows_xpath
+                )
+
+                print(
+                    f"Rows available for verification: {len(rows)}"
+                )
+
+                # -------------------------------------------------
+                # Search customer by email
+                # -------------------------------------------------
+
+                for row_index in range(len(rows)):
+
+                    row_xpath = (
+                        f"({self.tableRows_xpath})"
+                        f"[{row_index + 1}]"
+                    )
+
+                    try:
+
+                        row = self.driver.find_element(
+                            By.XPATH,
+                            row_xpath
+                        )
+
+                        cells = row.find_elements(
+                            By.TAG_NAME,
+                            "td"
+                        )
+
+                        if len(cells) < 3:
+                            continue
+
+                        # -----------------------------------------
+                        # Email = td[2]
+                        # -----------------------------------------
+
+                        actual_email = (
+                            cells[1]
+                            .text
+                            .strip()
+                        )
+
+                        if actual_email != email:
+                            continue
+
+                        # -----------------------------------------
+                        # Customer Name = td[3]
+                        # -----------------------------------------
+
+                        customer_name = (
+                            cells[2]
+                            .text
+                            .strip()
+                        )
+
+                        print(
+                            f"Customer found at row "
+                            f"{row_index + 1}"
+                        )
+
+                        print(
+                            "Customer email:",
+                            repr(actual_email)
+                        )
+
+                        print(
+                            "Customer name:",
+                            repr(customer_name)
+                        )
+
+                        # -----------------------------------------
+                        # Extract First Name
+                        # -----------------------------------------
+
+                        name_parts = customer_name.split()
+
+                        if not name_parts:
+                            print(
+                                "Customer name is empty."
+                            )
+
+                            return False
+
+                        actual_first_name = name_parts[0]
+
+                        print(
+                            "Expected First Name:",
+                            repr(expected_first_name)
+                        )
+
+                        print(
+                            "Actual First Name  :",
+                            repr(actual_first_name)
+                        )
+
+                        # -----------------------------------------
+                        # Verify
+                        # -----------------------------------------
+
+                        if actual_first_name == expected_first_name:
+                            print(
+                                "Customer First Name "
+                                "updated successfully."
+                            )
+
+                            return True
+
+                        print(
+                            "Customer First Name "
+                            "was not updated."
+                        )
+
+                        return False
+
+                    except StaleElementReferenceException:
+
+                        print(
+                            f"Row {row_index + 1} became stale "
+                            f"during verification."
+                        )
+
+                        raise
+
+                # -------------------------------------------------
+                # Customer not found on current page
+                # -------------------------------------------------
+
+                print(
+                    f"Customer '{email}' was not found "
+                    f"on the current page."
+                )
+
+                return False
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Customer table became stale. "
+                    f"Retrying verification "
+                    f"({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+                time.sleep(1)
+
+            except TimeoutException:
+
+                print(
+                    "Customer table or rows were not available "
+                    "for verification."
+                )
+
+                if attempt == 2:
+                    return False
+
+                time.sleep(1)
+
+        return False
+
+    # ==========================================================
+    # VERIFY CUSTOMER NAME AFTER EDIT
+    # ==========================================================
+
+    def isCustomerNameUpdated(self, email, expected_name):
+
+        print(
+            f"\n========== VERIFY CUSTOMER UPDATE =========="
+        )
+        print(
+            f"Searching email   : {email}"
+        )
+        print(
+            f"Expected name     : {expected_name}"
+        )
+
+        max_retries = 3
+
+        for attempt in range(1, max_retries + 1):
+
+            try:
+
+                self.waitForTable()
+
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    self.tableRows_xpath
+                )
+
+                print(
+                    f"Attempt {attempt}: "
+                    f"Found {len(rows)} customer rows"
+                )
+
+                for row_index, row in enumerate(rows, start=1):
+
+                    cells = row.find_elements(
+                        By.TAG_NAME,
+                        "td"
+                    )
+
+                    if len(cells) < 3:
+                        continue
+
+                    actual_email = cells[1].text.strip()
+                    actual_name = cells[2].text.strip()
+
+                    print(
+                        f"Row {row_index}: "
+                        f"{actual_email} | {actual_name}"
+                    )
+
+                    if actual_email.lower() == email.lower():
+
+                        print(
+                            f"Customer found: {email}"
+                        )
+
+                        print(
+                            f"Actual name  : {actual_name}"
+                        )
+
+                        print(
+                            f"Expected name: {expected_name}"
+                        )
+
+                        if actual_name == expected_name:
+
+                            print(
+                                "Customer name updated successfully."
+                            )
+
+                            return True
+
+                        print(
+                            "Customer found, but name "
+                            "does not match expected value."
+                        )
+
+                        return False
+
+                print(
+                    f"Customer with email '{email}' "
+                    f"not found on current page."
+                )
+
+                return False
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Attempt {attempt}: "
+                    "Stale element detected. Retrying..."
+                )
+
+                time.sleep(1)
+
+            except TimeoutException:
+
+                print(
+                    f"Attempt {attempt}: "
+                    "Timeout while verifying customer."
+                )
+
+                if attempt == max_retries:
+                    return False
+
+                time.sleep(1)
+
+            except Exception as e:
+
+                print(
+                    f"Unexpected error while verifying "
+                    f"customer: {e}"
+                )
+
+                return False
+
+        return False
+
+    def isCustomerDeleted(self, email):
+
+        print(
+            "\n========== VERIFY CUSTOMER DELETED =========="
+        )
+
+        print(
+            "Searching for deleted email:",
+            email
+        )
+
+        max_retries = 3
+
+        for attempt in range(1, max_retries + 1):
+
+            try:
+
+                self.waitForTable()
+
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    self.tableRows_xpath
+                )
+
+                print(
+                    f"Attempt {attempt}: "
+                    f"Found {len(rows)} customer rows"
+                )
+
+                for row_index, row in enumerate(
+                        rows,
+                        start=1
+                ):
+
+                    cells = row.find_elements(
+                        By.TAG_NAME,
+                        "td"
+                    )
+
+                    if len(cells) < 3:
+                        continue
+
+                    actual_email = (
+                        cells[1].text.strip()
+                    )
+
+                    print(
+                        f"Row {row_index}: "
+                        f"{actual_email}"
+                    )
+
+                    if (
+                            actual_email.lower()
+                            == email.lower()
+                    ):
+                        print(
+                            f"Customer still exists: {email}"
+                        )
+
+                        return False
+
+                print(
+                    f"Customer '{email}' "
+                    f"is not present in the grid."
+                )
+
+                print(
+                    "Customer deletion verified successfully."
+                )
+
+                return True
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Attempt {attempt}: "
+                    "Stale element detected. Retrying..."
+                )
+
+                if attempt < max_retries:
+                    time.sleep(1)
+                    continue
+
+                return False
+
+            except TimeoutException:
+
+                print(
+                    f"Attempt {attempt}: "
+                    "Timeout while verifying deletion."
+                )
+
+                if attempt < max_retries:
+                    time.sleep(1)
+                    continue
+
+                return False
+
+            except Exception as e:
+
+                print(
+                    "Unexpected error while verifying "
+                    f"customer deletion: {e}"
+                )
+
+                return False
+
+        return False
+
+
+
+
+
