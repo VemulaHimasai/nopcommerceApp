@@ -303,92 +303,248 @@ class OnlineCustomersPage:
     # Select Customer Role
     # -------------------------------------------------
 
+
+
     def selectCustomerRole(self, role):
 
-        role_xpaths = {
-
-            "Administrators":
-                self.lst_Administrators_xpath,
-
-            "Forum Moderators":
-                self.lst_ForumModerators_xpath,
-
-            "Registered":
-                self.lst_Registered_xpath,
-
-            "Guests":
-                self.lst_Guests_xpath,
-
-            "Vendors":
-                self.lst_Vendors_xpath
+        role_values = {
+            "Administrators": "1",
+            "Forum Moderators": "2",
+            "Registered": "3",
+            "Guests": "4",
+            "Vendors": "5"
         }
 
-        if role not in role_xpaths:
+        if role not in role_values:
             raise ValueError(
                 f"Invalid role selected: {role}"
             )
+
+        expected_value = role_values[role]
+
+        print("\n========== SELECT CUSTOMER ROLE ==========")
+        print(f"Requested role: {role}")
+        print(f"Expected value: {expected_value}")
+
+        select_xpath = (
+            "//select[@id='SelectedCustomerRoleIds']"
+        )
 
         for attempt in range(3):
 
             try:
 
                 # -------------------------------------------------
-                # Locate Role Search Input
+                # Locate actual Customer Roles select
                 # -------------------------------------------------
 
-                role_input = self.wait.until(
-                    EC.element_to_be_clickable(
+                select_element = self.wait.until(
+                    EC.presence_of_element_located(
                         (
                             By.XPATH,
-                            self.txt_Customer_Roles_xpath
+                            select_xpath
                         )
                     )
                 )
-
-                role_input.click()
-                role_input.clear()
-                role_input.send_keys(role)
-
-                # -------------------------------------------------
-                # IMPORTANT:
-                # After typing, Select2 may refresh the DOM.
-                # Therefore locate the option again.
-                # -------------------------------------------------
-
-                role_option = self.wait.until(
-                    EC.element_to_be_clickable(
-                        (
-                            By.XPATH,
-                            role_xpaths[role]
-                        )
-                    )
-                )
-
-                role_option.click()
 
                 print(
-                    "Selected Customer Role:",
-                    role
+                    "Customer Roles select found:",
+                    select_element.get_attribute("id")
                 )
 
-                return
+                # -------------------------------------------------
+                # Select role through Select2 / jQuery
+                # -------------------------------------------------
+
+                self.driver.execute_script(
+                    """
+                    const select = arguments[0];
+                    const value = arguments[1];
+
+                    if (!window.jQuery) {
+                        throw new Error(
+                            "jQuery is not available on the page."
+                        );
+                    }
+
+                    window.jQuery(select)
+                        .val([value])
+                        .trigger('change');
+                    """,
+                    select_element,
+                    expected_value
+                )
+
+                print(
+                    f"Requested Select2 value update: "
+                    f"{expected_value}"
+                )
+
+                # -------------------------------------------------
+                # Verify actual option.selected state
+                # -------------------------------------------------
+
+                def role_is_selected(driver):
+
+                    return driver.execute_script(
+                        """
+                        const select = document.getElementById(
+                            'SelectedCustomerRoleIds'
+                        );
+
+                        if (!select) {
+                            return false;
+                        }
+
+                        return Array.from(select.options).some(
+                            option =>
+                                option.value === arguments[0]
+                                && option.selected === true
+                        );
+                        """,
+                        expected_value
+                    )
+
+                self.wait.until(role_is_selected)
+
+                # -------------------------------------------------
+                # Read selected roles
+                # -------------------------------------------------
+
+                selected_roles = self.driver.execute_script(
+                    """
+                    const select = document.getElementById(
+                        'SelectedCustomerRoleIds'
+                    );
+
+                    if (!select) {
+                        return [];
+                    }
+
+                    return Array.from(select.selectedOptions)
+                        .map(option => ({
+                            text: option.text.trim(),
+                            value: option.value
+                        }));
+                    """
+                )
+
+                print(
+                    "Selected Customer Roles:",
+                    selected_roles
+                )
+
+                # -------------------------------------------------
+                # Verify requested role
+                # -------------------------------------------------
+
+                role_found = any(
+                    item["value"] == expected_value
+                    for item in selected_roles
+                )
+
+                if not role_found:
+                    raise AssertionError(
+                        f"Customer role '{role}' was not selected. "
+                        f"Actual values: {selected_roles}"
+                    )
+
+                # -------------------------------------------------
+                # Verify actual select value
+                # -------------------------------------------------
+
+                actual_value = self.driver.execute_script(
+                    """
+                    const select = document.getElementById(
+                        'SelectedCustomerRoleIds'
+                    );
+
+                    return select ? select.value : '';
+                    """
+                )
+
+                print(
+                    "Actual Customer Role value:",
+                    actual_value
+                )
+
+                if actual_value != expected_value:
+                    raise AssertionError(
+                        f"Expected Customer Role value "
+                        f"'{expected_value}', "
+                        f"but actual value is "
+                        f"'{actual_value}'."
+                    )
+
+                # -------------------------------------------------
+                # Verify visible Select2 value
+                # -------------------------------------------------
+
+                visible_role = self.driver.execute_script(
+                    """
+                    const select = document.getElementById(
+                        'SelectedCustomerRoleIds'
+                    );
+
+                    if (!select) {
+                        return '';
+                    }
+
+                    const container = select
+                        .parentElement
+                        .querySelector(
+                            '.select2-selection__rendered'
+                        );
+
+                    return container
+                        ? container.innerText.trim()
+                        : '';
+                    """
+                )
+
+                print(
+                    "Visible Select2 role:",
+                    repr(visible_role)
+                )
+
+                print(
+                    f"Customer Role selected successfully: "
+                    f"{role}"
+                )
+
+                return True
 
             except StaleElementReferenceException:
 
                 print(
-                    f"StaleElementReferenceException while selecting "
-                    f"'{role}'. Retrying "
+                    f"Customer Roles select became stale. "
+                    f"Retrying "
                     f"({attempt + 1}/3)..."
                 )
 
                 if attempt == 2:
                     raise
 
-                time.sleep(1)
+                time.sleep(0.5)
 
-        raise AssertionError(
+            except TimeoutException:
+
+                print(
+                    f"Timeout while selecting role "
+                    f"'{role}' "
+                    f"(attempt {attempt + 1}/3)."
+                )
+
+                if attempt == 2:
+                    raise
+
+                time.sleep(0.5)
+
+        raise TimeoutException(
             f"Unable to select customer role: {role}"
         )
+
+
 
     # -------------------------------------------------
     # Search

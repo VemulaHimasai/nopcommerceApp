@@ -108,6 +108,8 @@ class BulkEditProductPage:
         self.new_product_old_price_id = None
         self.new_product_quantity_id = None
 
+        self.new_product_name = None
+
     # ============================================================
     # GENERIC HELPERS
     # ============================================================
@@ -759,7 +761,6 @@ class BulkEditProductPage:
     def setProductName(self, product_name=None):
 
         if product_name is None:
-
             product_name = (
                 f"Test Product "
                 f"{random.randint(1000, 9999)}"
@@ -773,6 +774,10 @@ class BulkEditProductPage:
 
         field.clear()
         field.send_keys(product_name)
+
+        # Store the actual product name so Save All
+        # completion can verify it dynamically.
+        self.new_product_name = product_name
 
         print(
             f"Product name entered: "
@@ -1122,6 +1127,8 @@ class BulkEditProductPage:
             "Save All clicked."
         )
 
+
+
     # ============================================================
     # CONFIRM SAVE ALL
     # ============================================================
@@ -1149,6 +1156,12 @@ class BulkEditProductPage:
             "Save All confirmation clicked."
         )
 
+        # --------------------------------------------------------
+        # IMPORTANT:
+        # Wait until nopCommerce has actually processed
+        # the Save All operation.
+        # --------------------------------------------------------
+
         self.waitForSaveCompletion()
 
     # ============================================================
@@ -1163,6 +1176,36 @@ class BulkEditProductPage:
             "=========="
         )
 
+        # --------------------------------------------------------
+        # 1. Wait for confirmation modal to close
+        # --------------------------------------------------------
+
+        try:
+
+            self.wait.until(
+                EC.invisibility_of_element_located(
+                    (
+                        By.XPATH,
+                        self.confirmSaveAll_xpath
+                    )
+                )
+            )
+
+            print(
+                "Save All confirmation modal closed."
+            )
+
+        except TimeoutException:
+
+            print(
+                "Save All confirmation button did not "
+                "become invisible within expected time."
+            )
+
+        # --------------------------------------------------------
+        # 2. Wait for modal backdrop to disappear
+        # --------------------------------------------------------
+
         try:
 
             self.wait.until(
@@ -1174,12 +1217,20 @@ class BulkEditProductPage:
                 )
             )
 
+            print(
+                "Save All modal backdrop disappeared."
+            )
+
         except TimeoutException:
 
             print(
                 "Modal backdrop did not disappear "
                 "within expected time."
             )
+
+        # --------------------------------------------------------
+        # 3. Wait for Bulk Edit table
+        # --------------------------------------------------------
 
         self.wait.until(
             EC.presence_of_element_located(
@@ -1191,9 +1242,137 @@ class BulkEditProductPage:
         )
 
         print(
-            "Save operation completed / "
-            "table available."
+            "Bulk Edit table is available."
         )
+
+        # --------------------------------------------------------
+        # 4. Wait until newly added product field contains
+        #    a value.
+        #
+        # IMPORTANT:
+        # Do not rely only on the generated element ID for
+        # database verification.
+        # --------------------------------------------------------
+
+        if self.new_product_name_id:
+
+            print(
+                "Waiting for newly saved product field..."
+            )
+
+            def saved_product_available(driver):
+
+                try:
+
+                    element = driver.find_element(
+                        By.ID,
+                        self.new_product_name_id
+                    )
+
+                    if not element.is_displayed():
+                        return False
+
+                    value = (
+                            element.get_attribute("value")
+                            or ""
+                    ).strip()
+
+                    return bool(value)
+
+                except (
+                        NoSuchElementException,
+                        StaleElementReferenceException
+                ):
+
+                    return False
+
+            try:
+
+                self.wait.until(
+                    saved_product_available
+                )
+
+                print(
+                    "New product field is populated "
+                    "after Save All."
+                )
+
+            except TimeoutException:
+
+                print(
+                    "New product field could not be "
+                    "verified after Save All."
+                )
+
+        # --------------------------------------------------------
+        # 5. Wait for Bulk Edit rows
+        # --------------------------------------------------------
+
+        try:
+
+            self.waitForProductRows(
+                minimum_rows=1,
+                timeout=20
+            )
+
+            print(
+                "Bulk Edit product rows are available."
+            )
+
+        except TimeoutException:
+
+            print(
+                "Bulk Edit product rows were not "
+                "available after Save All."
+            )
+
+            raise
+
+        # --------------------------------------------------------
+        # 6. IMPORTANT:
+        #    If product name is available, verify that the
+        #    product still exists in the Bulk Edit table.
+        #
+        #    This uses the PRODUCT NAME rather than the dynamic
+        #    generated input ID.
+        # --------------------------------------------------------
+
+        if getattr(self, "new_product_name", None):
+
+            print(
+                "\nWaiting for saved product by name:"
+            )
+
+            print(
+                f"Product Name: {self.new_product_name}"
+            )
+
+            try:
+
+                self.waitForProductByName(
+                    self.new_product_name,
+                    timeout=20
+                )
+
+                print(
+                    f"Product '{self.new_product_name}' "
+                    "is available after Save All."
+                )
+
+            except TimeoutException:
+
+                print(
+                    f"Product '{self.new_product_name}' "
+                    "was NOT found in Bulk Edit "
+                    "after Save All."
+                )
+
+                raise
+
+        print(
+            "\nSave All operation completed."
+        )
+
 
     # ============================================================
     # SELECT ALL PRODUCTS
