@@ -15600,3 +15600,7 @@ The new customer has been added successfully.
 09/17/2026 02:21:00 PM: INFO: ******* Customer List grid loaded *******
 09/17/2026 02:21:02 PM: INFO: ******* Updated customer verified in grid *******
 09/17/2026 02:21:02 PM: INFO: ********* Edit Customer test passed **********
+09/17/2026 02:58:12 PM: INFO: *****Test_DeleteProduct_032*****
+09/17/2026 02:58:20 PM: INFO: *****Login Successful******
+09/17/2026 02:58:20 PM: INFO: *****Staring Delete Product test*****
+09/17/2026 02:58:26 PM: INFO: ***** Product deleted successfully *****
