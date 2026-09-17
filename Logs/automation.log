@@ -15570,3 +15570,23 @@ The new customer has been added successfully.
 09/17/2026 11:48:05 AM: INFO: ******* Customer deletion verified in grid *******
 09/17/2026 11:48:06 AM: INFO: ******* Delete success message verified *******
 09/17/2026 11:48:06 AM: INFO: ********* Delete Customer test passed **********
+09/17/2026 01:08:44 PM: INFO: **********Test_002_DDT_Login********
+09/17/2026 01:08:44 PM: INFO: ********Verify Login DDT Test********
+09/17/2026 01:10:07 PM: INFO: Row 2: *****Test Passed*****
+09/17/2026 01:10:42 PM: INFO: Row 3: *****Test Passed*****
+09/17/2026 01:10:55 PM: INFO: Row 4: *****Test Passed*****
+09/17/2026 01:11:01 PM: INFO: Row 5: *****Test Passed*****
+09/17/2026 01:11:06 PM: INFO: Row 6: *****Test Passed*****
+09/17/2026 01:11:06 PM: INFO: ****Login DDT Test Passed****
+09/17/2026 01:11:06 PM: INFO: ****End of Login DDT Test****
+09/17/2026 01:11:06 PM: INFO: *****Completed TC_LoginDDT_002******
+09/17/2026 01:21:48 PM: INFO: **********Test_002_DDT_Login********
+09/17/2026 01:21:48 PM: INFO: ********Verify Login DDT Test********
+09/17/2026 01:22:11 PM: INFO: Row 2: *****Test Passed*****
+09/17/2026 01:22:22 PM: INFO: Row 3: *****Test Passed*****
+09/17/2026 01:22:26 PM: INFO: Row 4: *****Test Passed*****
+09/17/2026 01:22:28 PM: INFO: Row 5: *****Test Passed*****
+09/17/2026 01:22:30 PM: INFO: Row 6: *****Test Passed*****
+09/17/2026 01:22:30 PM: INFO: ****Login DDT Test Passed****
+09/17/2026 01:22:30 PM: INFO: ****End of Login DDT Test****
+09/17/2026 01:22:30 PM: INFO: *****Completed TC_LoginDDT_002******
