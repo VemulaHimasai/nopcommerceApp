@@ -69,18 +69,90 @@ class EditCustomerPage:
 
     def clearFirstName(self):
 
-        first_name = self.wait.until(
-            EC.visibility_of_element_located(
-                (By.ID, self.txtFirstName_id)
-            )
+        print(
+            "Waiting for First Name field..."
         )
 
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            first_name
-        )
+        for attempt in range(1, 4):
 
-        first_name.clear()
+            try:
+
+                first_name = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (
+                            By.ID,
+                            self.txtFirstName_id
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    first_name
+                )
+
+                first_name = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.ID,
+                            self.txtFirstName_id
+                        )
+                    )
+                )
+
+                first_name.click()
+                first_name.clear()
+
+                actual_value = (
+                    self.driver.find_element(
+                        By.ID,
+                        self.txtFirstName_id
+                    ).get_attribute("value") or ""
+                ).strip()
+
+                if actual_value == "":
+
+                    print(
+                        "First Name field cleared successfully."
+                    )
+
+                    return
+
+                print(
+                    "First Name field was not cleared."
+                )
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"First Name field became stale. "
+                    f"Retrying ({attempt}/3)..."
+                )
+
+                if attempt < 3:
+                    time.sleep(0.5)
+
+            except TimeoutException:
+
+                print(
+                    f"First Name field timeout. "
+                    f"Attempt {attempt}/3"
+                )
+
+                if attempt < 3:
+                    time.sleep(0.5)
+
+                else:
+                    raise
+
+        raise AssertionError(
+            "Unable to clear First Name field."
+        )
 
     # =================================================
     # Set First Name
@@ -96,13 +168,13 @@ class EditCustomerPage:
                 "First name cannot be empty."
             )
 
-        for attempt in range(3):
+        for attempt in range(1, 4):
 
             try:
 
                 print(
                     f"Setting First Name: {firstName} "
-                    f"(attempt {attempt + 1}/3)"
+                    f"(attempt {attempt}/3)"
                 )
 
                 # -------------------------------------------------
@@ -111,7 +183,10 @@ class EditCustomerPage:
 
                 first_name = self.wait.until(
                     EC.visibility_of_element_located(
-                        (By.ID, self.txtFirstName_id)
+                        (
+                            By.ID,
+                            self.txtFirstName_id
+                        )
                     )
                 )
 
@@ -135,7 +210,10 @@ class EditCustomerPage:
 
                 first_name = self.wait.until(
                     EC.element_to_be_clickable(
-                        (By.ID, self.txtFirstName_id)
+                        (
+                            By.ID,
+                            self.txtFirstName_id
+                        )
                     )
                 )
 
@@ -202,12 +280,11 @@ class EditCustomerPage:
 
                 print(
                     f"First Name field became stale. "
-                    f"Retrying ({attempt + 1}/3)..."
+                    f"Retrying ({attempt}/3)..."
                 )
 
-                if attempt < 2:
-
-                    time.sleep(1)
+                if attempt < 3:
+                    time.sleep(0.5)
 
                     continue
 
@@ -217,7 +294,7 @@ class EditCustomerPage:
 
                 print(
                     f"First Name value verification timed out. "
-                    f"Attempt {attempt + 1}/3"
+                    f"Attempt {attempt}/3"
                 )
 
                 try:
@@ -226,8 +303,8 @@ class EditCustomerPage:
                         self.driver.find_element(
                             By.ID,
                             self.txtFirstName_id
-                        ).get_attribute("value")
-                    )
+                        ).get_attribute("value") or ""
+                    ).strip()
 
                     print(
                         "Current First Name field value:",
@@ -241,9 +318,9 @@ class EditCustomerPage:
                         e
                     )
 
-                if attempt < 2:
+                if attempt < 3:
 
-                    time.sleep(1)
+                    time.sleep(0.5)
 
                     continue
 
@@ -263,45 +340,103 @@ class EditCustomerPage:
             "Waiting for Save button..."
         )
 
-        save_button = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, self.btnSave_xpath)
-            )
-        )
+        for attempt in range(1, 4):
 
-        # -------------------------------------------------
-        # Scroll Save button into view
-        # -------------------------------------------------
+            try:
 
-        self.driver.execute_script(
-            """
-            arguments[0].scrollIntoView({
-                block: 'center',
-                inline: 'nearest'
-            });
-            """,
-            save_button
-        )
+                save_button = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            self.btnSave_xpath
+                        )
+                    )
+                )
 
-        # -------------------------------------------------
-        # Re-locate after scrolling
-        # -------------------------------------------------
+                # -------------------------------------------------
+                # Scroll Save button into view
+                # -------------------------------------------------
 
-        save_button = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, self.btnSave_xpath)
-            )
-        )
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    save_button
+                )
 
-        print(
-            "Clicking Save..."
-        )
+                # -------------------------------------------------
+                # Re-locate after scrolling
+                # -------------------------------------------------
 
-        save_button.click()
+                save_button = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            self.btnSave_xpath
+                        )
+                    )
+                )
 
-        print(
-            "Save button clicked."
-        )
+                print(
+                    "Clicking Save..."
+                )
+
+                try:
+
+                    save_button.click()
+
+                except StaleElementReferenceException:
+
+                    print(
+                        "Save button became stale. "
+                        "Re-locating..."
+                    )
+
+                    save_button = self.wait.until(
+                        EC.element_to_be_clickable(
+                            (
+                                By.XPATH,
+                                self.btnSave_xpath
+                            )
+                        )
+                    )
+
+                    self.driver.execute_script(
+                        "arguments[0].click();",
+                        save_button
+                    )
+
+                print(
+                    "Save button clicked."
+                )
+
+                break
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Save button became stale. "
+                    f"Retrying ({attempt}/3)..."
+                )
+
+                if attempt < 3:
+                    time.sleep(0.5)
+
+            except TimeoutException:
+
+                print(
+                    f"Save button timeout. "
+                    f"Attempt {attempt}/3"
+                )
+
+                if attempt < 3:
+                    time.sleep(0.5)
+
+                else:
+                    raise
 
         # =================================================
         # WAIT FOR AJAX PROCESSING
@@ -309,22 +444,55 @@ class EditCustomerPage:
 
         try:
 
-            ajax_busy_xpath = (
-                "//*[@id='ajaxBusy']"
+            ajax_busy_xpath = "//*[@id='ajaxBusy']"
+
+            ajax_busy_elements = self.driver.find_elements(
+                By.XPATH,
+                ajax_busy_xpath
             )
 
-            self.wait.until(
-                EC.invisibility_of_element_located(
-                    (
-                        By.XPATH,
-                        ajax_busy_xpath
+            if ajax_busy_elements:
+
+                try:
+
+                    if ajax_busy_elements[0].is_displayed():
+
+                        print(
+                            "AJAX processing detected. "
+                            "Waiting for completion..."
+                        )
+
+                        self.wait.until(
+                            EC.invisibility_of_element_located(
+                                (
+                                    By.XPATH,
+                                    ajax_busy_xpath
+                                )
+                            )
+                        )
+
+                        print(
+                            "AJAX processing completed."
+                        )
+
+                    else:
+
+                        print(
+                            "AJAX busy indicator is already hidden."
+                        )
+
+                except StaleElementReferenceException:
+
+                    print(
+                        "AJAX busy element became stale. "
+                        "Continuing..."
                     )
-                )
-            )
 
-            print(
-                "AJAX processing completed."
-            )
+            else:
+
+                print(
+                    "AJAX busy indicator not present."
+                )
 
         except TimeoutException:
 
@@ -340,11 +508,54 @@ class EditCustomerPage:
                 e
             )
 
-        # -------------------------------------------------
-        # Allow notification rendering
-        # -------------------------------------------------
+        # =================================================
+        # WAIT FOR CUSTOMER LIST REDIRECT
+        # =================================================
 
-        time.sleep(0.5)
+        print(
+            "Waiting for Customer List redirect..."
+        )
+
+        try:
+
+            self.wait.until(
+                EC.url_contains(
+                    "/Admin/Customer/List"
+                )
+            )
+
+            print(
+                "Customer List redirect detected."
+            )
+
+            print(
+                "Current URL after Save:",
+                self.driver.current_url
+            )
+
+            print(
+                "Current Title after Save:",
+                self.driver.title
+            )
+
+        except TimeoutException:
+
+            print(
+                "Customer List redirect was not detected "
+                "after Save."
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            print(
+                "Current Title:",
+                self.driver.title
+            )
+
+            raise
 
     # =================================================
     # Verify Customer Updated Successfully
@@ -356,31 +567,13 @@ class EditCustomerPage:
             "The customer has been updated successfully"
         )
 
-        try:
+        print(
+            "Waiting for customer update success message..."
+        )
 
-            print(
-                "Waiting for customer update success message..."
-            )
-
-            success_message = self.wait.until(
-                EC.visibility_of_element_located(
-                    (
-                        By.XPATH,
-                        self.success_message_xpath
-                    )
-                )
-            )
+        for attempt in range(1, 4):
 
             try:
-
-                message = success_message.text.strip()
-
-            except StaleElementReferenceException:
-
-                print(
-                    "Success message became stale. "
-                    "Retrying verification..."
-                )
 
                 success_message = self.wait.until(
                     EC.visibility_of_element_located(
@@ -391,129 +584,169 @@ class EditCustomerPage:
                     )
                 )
 
-                message = success_message.text.strip()
+                try:
+
+                    message = success_message.text.strip()
+
+                except StaleElementReferenceException:
+
+                    print(
+                        "Success message became stale. "
+                        "Re-locating..."
+                    )
+
+                    success_message = self.wait.until(
+                        EC.visibility_of_element_located(
+                            (
+                                By.XPATH,
+                                self.success_message_xpath
+                            )
+                        )
+                    )
+
+                    message = success_message.text.strip()
+
+                print(
+                    "Success message:",
+                    repr(message)
+                )
+
+                if expected_message in message:
+
+                    print(
+                        "Customer update verified successfully."
+                    )
+
+                    return True
+
+                print(
+                    "Unexpected success message:",
+                    repr(message)
+                )
+
+                if attempt < 3:
+                    time.sleep(0.5)
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Success message became stale. "
+                    f"Attempt {attempt}/3"
+                )
+
+                if attempt < 3:
+                    time.sleep(0.5)
+
+            except TimeoutException:
+
+                print(
+                    f"Customer update success message "
+                    f"was not found. Attempt {attempt}/3"
+                )
+
+                if attempt < 3:
+
+                    time.sleep(0.5)
+
+                    continue
+
+                break
+
+        # =================================================
+        # FAILURE DIAGNOSTICS
+        # =================================================
+
+        print(
+            "Customer update success message "
+            "was not found."
+        )
+
+        print(
+            "Current URL:",
+            self.driver.current_url
+        )
+
+        print(
+            "Page title:",
+            self.driver.title
+        )
+
+        # -------------------------------------------------
+        # Print current First Name
+        # -------------------------------------------------
+
+        try:
+
+            current_first_name = (
+                self.driver.find_element(
+                    By.ID,
+                    self.txtFirstName_id
+                ).get_attribute("value") or ""
+            ).strip()
 
             print(
-                "Success message:",
-                repr(message)
+                "Current First Name after Save:",
+                repr(current_first_name)
             )
 
-            if expected_message in message:
-                print(
-                    "Customer update verified successfully."
-                )
-
-                return True
+        except Exception as e:
 
             print(
-                "Unexpected success message:",
-                repr(message)
+                "Unable to read First Name after Save:",
+                e
             )
 
-            return False
+        # -------------------------------------------------
+        # Print body text
+        # -------------------------------------------------
 
-        except TimeoutException:
+        try:
 
             print(
-                "Customer update success message "
-                "was not found."
+                "Body text after Save:"
             )
 
             print(
-                "Current URL:",
-                self.driver.current_url
+                self.driver.find_element(
+                    By.TAG_NAME,
+                    "body"
+                ).text
+            )
+
+        except Exception as e:
+
+            print(
+                "Unable to read body text:",
+                e
+            )
+
+        # -------------------------------------------------
+        # Save screenshot
+        # -------------------------------------------------
+
+        try:
+
+            screenshot_path = (
+                ".\\Screenshots\\edit_customer_failure.png"
+            )
+
+            self.driver.save_screenshot(
+                screenshot_path
             )
 
             print(
-                "Page title:",
-                self.driver.title
+                "Failure screenshot saved:",
+                screenshot_path
             )
 
-            # -------------------------------------------------
-            # Print current First Name
-            # -------------------------------------------------
-
-            try:
-
-                current_first_name = (
-                        self.driver.find_element(
-                            By.ID,
-                            self.txtFirstName_id
-                        ).get_attribute("value") or ""
-                ).strip()
-
-                print(
-                    "Current First Name after Save:",
-                    repr(current_first_name)
-                )
-
-            except Exception as e:
-
-                print(
-                    "Unable to read First Name after Save:",
-                    e
-                )
-
-            # -------------------------------------------------
-            # Print body text
-            # -------------------------------------------------
-
-            try:
-
-                print(
-                    "Body text after Save:"
-                )
-
-                print(
-                    self.driver.find_element(
-                        By.TAG_NAME,
-                        "body"
-                    ).text
-                )
-
-            except Exception as e:
-
-                print(
-                    "Unable to read body text:",
-                    e
-                )
-
-            # -------------------------------------------------
-            # Save screenshot
-            # -------------------------------------------------
-
-            try:
-
-                screenshot_path = (
-                    ".\\Screenshots\\edit_customer_failure.png"
-                )
-
-                self.driver.save_screenshot(
-                    screenshot_path
-                )
-
-                print(
-                    "Failure screenshot saved:",
-                    screenshot_path
-                )
-
-            except Exception as e:
-
-                print(
-                    "Unable to save failure screenshot:",
-                    e
-                )
-
-            return False
-
-        except StaleElementReferenceException:
+        except Exception as e:
 
             print(
-                "Success message became stale "
-                "during verification."
+                "Unable to save failure screenshot:",
+                e
             )
 
-            return False
+        return False
 
     # =================================================
     # Back to Customer List
@@ -613,7 +846,8 @@ class EditCustomerPage:
                     f"Retrying ({attempt}/3)..."
                 )
 
-                time.sleep(1)
+                if attempt < 3:
+                    time.sleep(0.5)
 
             except TimeoutException:
 
@@ -664,14 +898,13 @@ class EditCustomerPage:
 
                 if attempt < 3:
 
-                    time.sleep(1)
+                    time.sleep(0.5)
 
                     continue
 
                 raise
 
         return False
-
 
     # =================================================
     # Click Delete
@@ -685,7 +918,10 @@ class EditCustomerPage:
 
         delete_button = self.wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH, self.btnDelete_xpath)
+                (
+                    By.XPATH,
+                    self.btnDelete_xpath
+                )
             )
         )
 
@@ -701,7 +937,10 @@ class EditCustomerPage:
 
         delete_button = self.wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH, self.btnDelete_xpath)
+                (
+                    By.XPATH,
+                    self.btnDelete_xpath
+                )
             )
         )
 
@@ -709,31 +948,169 @@ class EditCustomerPage:
             "Clicking Delete..."
         )
 
-        delete_button.click()
+        try:
+
+            delete_button.click()
+
+        except StaleElementReferenceException:
+
+            print(
+                "Delete button became stale. "
+                "Re-locating..."
+            )
+
+            delete_button = self.wait.until(
+                EC.element_to_be_clickable(
+                    (
+                        By.XPATH,
+                        self.btnDelete_xpath
+                    )
+                )
+            )
+
+            self.driver.execute_script(
+                "arguments[0].click();",
+                delete_button
+            )
 
         print(
             "Delete button clicked."
         )
 
+        # =================================================
+        # Wait briefly for normal Bootstrap activation
+        # =================================================
+
+        modal_xpath = (
+            "//div[@id='customermodel-Delete-delete-confirmation' "
+            "and @role='dialog']"
+        )
+
+        try:
+
+            self.wait.until(
+                lambda driver: driver.execute_script(
+                    """
+                    const modal = document.getElementById(
+                        'customermodel-Delete-delete-confirmation'
+                    );
+
+                    if (!modal) {
+                        return false;
+                    }
+
+                    const style =
+                        window.getComputedStyle(modal);
+
+                    return (
+                        modal.classList.contains('show') &&
+                        style.display !== 'none' &&
+                        parseFloat(style.opacity) > 0
+                    );
+                    """
+                )
+            )
+
+            print(
+                "Delete confirmation modal opened normally."
+            )
+
+            return
+
+        except TimeoutException:
+
+            print(
+                "Normal Bootstrap modal activation did not "
+                "complete. Using Bootstrap API fallback..."
+            )
+
+        # =================================================
+        # Bootstrap API fallback
+        # =================================================
+
+        bootstrap_result = self.driver.execute_script(
+            """
+            const modalId =
+                '#customermodel-Delete-delete-confirmation';
+
+            if (
+                typeof window.jQuery === 'undefined' ||
+                typeof jQuery.fn.modal !== 'function'
+            ) {
+                return {
+                    success: false,
+                    reason: 'jQuery/Bootstrap modal API unavailable'
+                };
+            }
+
+            jQuery(modalId).modal('show');
+
+            return {
+                success: true
+            };
+            """
+        )
+
+        print(
+            "Bootstrap fallback result:",
+            bootstrap_result
+        )
+
+        # =================================================
+        # Verify modal is active
+        # =================================================
+
+        self.wait.until(
+            lambda driver: driver.execute_script(
+                """
+                const modal = document.getElementById(
+                    'customermodel-Delete-delete-confirmation'
+                );
+
+                if (!modal) {
+                    return false;
+                }
+
+                const style =
+                    window.getComputedStyle(modal);
+
+                return (
+                    modal.classList.contains('show') &&
+                    style.display !== 'none' &&
+                    parseFloat(style.opacity) > 0
+                );
+                """
+            )
+        )
+
+        print(
+            "Delete confirmation modal opened successfully."
+        )
     # =================================================
     # Confirm Delete
     # =================================================
 
-    def confirmDelete(self):
 
+    def confirmDelete(self):
         print(
             "Waiting for delete confirmation modal..."
         )
 
         # =================================================
-        # Wait only for modal presence in DOM
+        # Modal locator
+        # =================================================
+
+        modal_xpath = self.delete_confirmation_modal_xpath
+
+        # =================================================
+        # Wait for modal to exist in DOM
         # =================================================
 
         modal = self.wait.until(
             EC.presence_of_element_located(
                 (
                     By.XPATH,
-                    self.delete_confirmation_modal_xpath
+                    modal_xpath
                 )
             )
         )
@@ -743,42 +1120,128 @@ class EditCustomerPage:
         )
 
         # =================================================
-        # Debug modal state
+        # Wait for Bootstrap modal to become active
+        #
+        # Bootstrap normally changes:
+        #
+        # class="modal fade"
+        #
+        # to:
+        #
+        # class="modal fade show"
+        #
+        # and display becomes block.
         # =================================================
 
-        modal_state = self.driver.execute_script(
-            """
-            const modal = arguments[0];
+        try:
 
-            const style =
-                window.getComputedStyle(modal);
+            self.wait.until(
+                lambda driver: driver.execute_script(
+                    """
+                    const modal = arguments[0];
+    
+                    if (!modal) {
+                        return false;
+                    }
+    
+                    const style =
+                        window.getComputedStyle(modal);
+    
+                    return (
+                        modal.classList.contains('show') &&
+                        style.display !== 'none' &&
+                        style.opacity !== '0'
+                    );
+                    """,
+                    driver.find_element(
+                        By.XPATH,
+                        modal_xpath
+                    )
+                )
+            )
 
-            return {
-                id: modal.id,
-                className: modal.className,
-                display: style.display,
-                visibility: style.visibility,
-                opacity: style.opacity
-            };
-            """,
-            modal
-        )
+        except TimeoutException:
+
+            print(
+                "Delete confirmation modal did not become "
+                "active within the expected time."
+            )
+
+            # =================================================
+            # Debug final modal state
+            # =================================================
+
+            try:
+
+                modal = self.driver.find_element(
+                    By.XPATH,
+                    modal_xpath
+                )
+
+                modal_state = self.driver.execute_script(
+                    """
+                    const modal = arguments[0];
+    
+                    const style =
+                        window.getComputedStyle(modal);
+    
+                    return {
+                        id: modal.id,
+                        className: modal.className,
+                        display: style.display,
+                        visibility: style.visibility,
+                        opacity: style.opacity,
+                        ariaHidden: modal.getAttribute('aria-hidden')
+                    };
+                    """,
+                    modal
+                )
+
+                print(
+                    "Final delete modal state:",
+                    modal_state
+                )
+
+            except Exception as e:
+
+                print(
+                    "Unable to inspect delete modal state:",
+                    str(e)
+                )
+
+            raise
 
         print(
-            "Delete modal state:",
-            modal_state
+            "Delete confirmation modal is active."
+        )
+
+        # =================================================
+        # Re-locate modal
+        # =================================================
+
+        modal = self.wait.until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    modal_xpath
+                )
+            )
         )
 
         # =================================================
         # Verify confirmation message
         # =================================================
 
+        modal_message_xpath = (
+                modal_xpath
+                + "//div[contains(@class,'modal-body')]"
+        )
+
         modal_message = self.wait.until(
             EC.presence_of_element_located(
                 (
                     By.XPATH,
-                    self.delete_confirmation_modal_xpath
-                    + "//div[contains(@class,'modal-body')]"
+                    modal_message_xpath
                 )
             )
         )
@@ -815,8 +1278,43 @@ class EditCustomerPage:
         )
 
         # =================================================
-        # Scroll to confirmation button
+        # Wait until confirmation button is displayed
         # =================================================
+
+        self.wait.until(
+            lambda driver: driver.execute_script(
+                """
+                const button = arguments[0];
+    
+                if (!button) {
+                    return false;
+                }
+    
+                const style =
+                    window.getComputedStyle(button);
+    
+                return (
+                    style.display !== 'none' &&
+                    style.visibility !== 'hidden' &&
+                    button.offsetWidth > 0 &&
+                    button.offsetHeight > 0
+                );
+                """,
+                driver.find_element(
+                    By.XPATH,
+                    self.btnConfirmDelete_xpath
+                )
+            )
+        )
+
+        # =================================================
+        # Scroll confirmation button into view
+        # =================================================
+
+        confirm_delete_button = self.driver.find_element(
+            By.XPATH,
+            self.btnConfirmDelete_xpath
+        )
 
         self.driver.execute_script(
             """
@@ -842,17 +1340,40 @@ class EditCustomerPage:
         )
 
         # =================================================
-        # Click Delete using JavaScript
+        # Click confirmation Delete
         # =================================================
 
         print(
             "Clicking confirmation Delete button..."
         )
 
-        self.driver.execute_script(
-            "arguments[0].click();",
-            confirm_delete_button
-        )
+        try:
+
+            self.driver.execute_script(
+                "arguments[0].click();",
+                confirm_delete_button
+            )
+
+        except StaleElementReferenceException:
+
+            print(
+                "Confirmation Delete button became stale. "
+                "Re-locating..."
+            )
+
+            confirm_delete_button = self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        self.btnConfirmDelete_xpath
+                    )
+                )
+            )
+
+            self.driver.execute_script(
+                "arguments[0].click();",
+                confirm_delete_button
+            )
 
         print(
             "Delete confirmation submitted."
@@ -864,10 +1385,7 @@ class EditCustomerPage:
 
         try:
 
-            WebDriverWait(
-                self.driver,
-                15
-            ).until(
+            self.wait.until(
                 EC.url_contains(
                     "/Admin/Customer/List"
                 )
@@ -875,6 +1393,11 @@ class EditCustomerPage:
 
             print(
                 "Customer List page opened after delete."
+            )
+
+            print(
+                "Current URL after delete:",
+                self.driver.current_url
             )
 
         except TimeoutException:
@@ -889,5 +1412,3 @@ class EditCustomerPage:
             )
 
             raise
-
-

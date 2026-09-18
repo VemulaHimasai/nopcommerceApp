@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from pageObjects.ActivityPage import ActivityPage
 from pageObjects.LoginPage import LoginPage
-from pageObjects.AddcustomerPage import AddCustomer
+from pageObjects.AddCustomerPage import AddCustomer
 from pageObjects.OnlineCustomersPage import OnlineCustomersPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen

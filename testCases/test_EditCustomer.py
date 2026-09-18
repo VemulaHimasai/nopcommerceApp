@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from pageObjects.LoginPage import LoginPage
-from pageObjects.AddcustomerPage import AddCustomer
+from pageObjects.AddCustomerPage import AddCustomer
 from pageObjects.SearchCustomerPage import SearchCustomer
 from pageObjects.EditCustomerPage import EditCustomerPage
 from utilities.readproperties import ReadConfig

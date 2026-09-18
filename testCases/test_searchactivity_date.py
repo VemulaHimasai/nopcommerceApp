@@ -3,7 +3,7 @@ import pytest
 from datetime import datetime
 
 from pageObjects.LoginPage import LoginPage
-from pageObjects.AddcustomerPage import AddCustomer
+from pageObjects.AddCustomerPage import AddCustomer
 from pageObjects.ActivityPage import ActivityPage
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen

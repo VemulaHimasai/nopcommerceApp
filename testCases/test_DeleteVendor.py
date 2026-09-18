@@ -3,7 +3,7 @@ import pytest
 from pageObjects.AddVendorPage import AddVendor
 from pageObjects.LoginPage import LoginPage
 from pageObjects.SearchVendorPage import SearchVendorPage
-from pageObjects.AddcustomerPage import AddCustomer
+from pageObjects.AddCustomerPage import AddCustomer
 from utilities.readproperties import ReadConfig
 
 

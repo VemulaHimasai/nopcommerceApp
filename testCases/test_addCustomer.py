@@ -13,7 +13,7 @@ from selenium.common.exceptions import (
 )
 
 from pageObjects.LoginPage import LoginPage
-from pageObjects.AddcustomerPage import AddCustomer
+from pageObjects.AddCustomerPage import AddCustomer
 from pageObjects.SearchCustomerPage import SearchCustomer
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen

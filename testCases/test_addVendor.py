@@ -5,7 +5,7 @@ import random
 from selenium.webdriver.support.ui import WebDriverWait
 
 from pageObjects.LoginPage import LoginPage
-from pageObjects.AddcustomerPage import AddCustomer
+from pageObjects.AddCustomerPage import AddCustomer
 from pageObjects.AddVendorPage import AddVendor
 from utilities.readproperties import ReadConfig
 from utilities.customLogger import LogGen

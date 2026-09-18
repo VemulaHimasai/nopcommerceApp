@@ -3,7 +3,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pageObjects.LoginPage import LoginPage
-from pageObjects.AddcustomerPage import AddCustomer
+from pageObjects.AddCustomerPage import AddCustomer
 from pageObjects.SearchCustomerPage import SearchCustomer
 from pageObjects.SearchVendorPage import SearchVendorPage
 from pageObjects.AddVendorPage import AddVendor
