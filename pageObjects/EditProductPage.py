@@ -480,24 +480,136 @@ class EditProductPage:
     def confirmDelete(self):
 
         print(
-            "Waiting for Delete Confirmation..."
+            "Waiting for Product Delete Confirmation..."
         )
 
+        # -------------------------------------------------
+        # Product delete confirmation modal
+        # -------------------------------------------------
+        modal_xpath = (
+            "//div[contains(@class,'modal') "
+            "and @role='dialog']"
+            "[.//button[normalize-space()='Delete']]"
+        )
+
+        # -------------------------------------------------
+        # Confirmation Delete button inside the modal
+        # -------------------------------------------------
         confirm_button_xpath = (
-            "//button["
-            "normalize-space()='Delete' "
-            "and not(@id='product-delete') "
-            "and not(contains(@style,'display: none'))"
-            "]"
+                modal_xpath
+                + "//button["
+                  "normalize-space()='Delete'"
+                  "and not(@id='product-delete')"
+                  "]"
         )
 
         try:
 
-            # -------------------------------------------------
-            # Wait for confirmation button
-            # -------------------------------------------------
+            # =================================================
+            # Wait for confirmation modal to exist
+            # =================================================
+
+            print(
+                "Waiting for Product Delete confirmation modal..."
+            )
+
+            modal = self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        modal_xpath
+                    )
+                )
+            )
+
+            print(
+                "Product Delete confirmation modal found."
+            )
+
+            # =================================================
+            # Wait for modal to become visible/active
+            # =================================================
+
+            self.wait.until(
+                lambda driver: driver.execute_script(
+                    """
+                    const modal = arguments[0];
+
+                    if (!modal) {
+                        return false;
+                    }
+
+                    const style =
+                        window.getComputedStyle(modal);
+
+                    const rect =
+                        modal.getBoundingClientRect();
+
+                    return (
+                        modal.classList.contains('show') &&
+                        style.display !== 'none' &&
+                        style.visibility !== 'hidden' &&
+                        parseFloat(style.opacity) > 0 &&
+                        rect.width > 0 &&
+                        rect.height > 0
+                    );
+                    """,
+                    self.driver.find_element(
+                        By.XPATH,
+                        modal_xpath
+                    )
+                )
+            )
+
+            print(
+                "Product Delete confirmation modal is active."
+            )
+
+            # =================================================
+            # Print modal message for diagnostics
+            # =================================================
+
+            try:
+
+                modal_message = self.driver.execute_script(
+                    """
+                    const modal = arguments[0];
+
+                    const body =
+                        modal.querySelector('.modal-body');
+
+                    return body
+                        ? body.innerText.trim()
+                        : '';
+                    """,
+                    self.driver.find_element(
+                        By.XPATH,
+                        modal_xpath
+                    )
+                )
+
+                print(
+                    "Delete confirmation message:",
+                    repr(modal_message)
+                )
+
+            except Exception as e:
+
+                print(
+                    "Unable to read confirmation message:",
+                    e
+                )
+
+            # =================================================
+            # Locate confirmation button
+            # =================================================
+
+            print(
+                "Waiting for confirmation Delete button..."
+            )
+
             confirm_button = self.wait.until(
-                EC.element_to_be_clickable(
+                EC.presence_of_element_located(
                     (
                         By.XPATH,
                         confirm_button_xpath
@@ -506,31 +618,100 @@ class EditProductPage:
             )
 
             print(
-                "Delete Confirmation button found:",
-                confirm_button.text
+                "Confirmation Delete button found:",
+                repr(confirm_button.text.strip())
+            )
+
+            # =================================================
+            # Wait until button is actually visible
+            # =================================================
+
+            self.wait.until(
+                lambda driver: driver.execute_script(
+                    """
+                    const button = arguments[0];
+
+                    if (!button) {
+                        return false;
+                    }
+
+                    const style =
+                        window.getComputedStyle(button);
+
+                    const rect =
+                        button.getBoundingClientRect();
+
+                    return (
+                        style.display !== 'none' &&
+                        style.visibility !== 'hidden' &&
+                        parseFloat(style.opacity) > 0 &&
+                        rect.width > 0 &&
+                        rect.height > 0
+                    );
+                    """,
+                    self.driver.find_element(
+                        By.XPATH,
+                        confirm_button_xpath
+                    )
+                )
+            )
+
+            # =================================================
+            # Scroll button into view
+            # =================================================
+
+            confirm_button = self.driver.find_element(
+                By.XPATH,
+                confirm_button_xpath
             )
 
             self.driver.execute_script(
-                "arguments[0].scrollIntoView({block:'center'});",
+                """
+                arguments[0].scrollIntoView({
+                    block: 'center',
+                    inline: 'nearest'
+                });
+                """,
                 confirm_button
             )
 
-            # -------------------------------------------------
-            # Click confirmation button
-            # -------------------------------------------------
+            # =================================================
+            # Re-locate after scrolling
+            # =================================================
+
+            confirm_button = self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        confirm_button_xpath
+                    )
+                )
+            )
+
+            print(
+                "Clicking confirmation Delete button..."
+            )
+
+            # =================================================
+            # JS click
+            # =================================================
+
             try:
 
-                confirm_button.click()
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    confirm_button
+                )
 
             except StaleElementReferenceException:
 
                 print(
-                    "Delete confirmation button became stale. "
-                    "Finding it again..."
+                    "Confirmation button became stale. "
+                    "Re-locating..."
                 )
 
                 confirm_button = self.wait.until(
-                    EC.element_to_be_clickable(
+                    EC.presence_of_element_located(
                         (
                             By.XPATH,
                             confirm_button_xpath
@@ -544,12 +725,17 @@ class EditProductPage:
                 )
 
             print(
-                "Delete Confirmation clicked"
+                "Product Delete confirmation clicked."
             )
 
-            # -------------------------------------------------
+            # =================================================
             # Wait for Product List redirect
-            # -------------------------------------------------
+            # =================================================
+
+            print(
+                "Waiting for Product List redirect..."
+            )
+
             self.wait.until(
                 EC.url_contains(
                     "/Admin/Product/List"
@@ -557,7 +743,7 @@ class EditProductPage:
             )
 
             print(
-                "Product List page loaded after deletion"
+                "Product List page loaded after deletion."
             )
 
             print(
@@ -565,9 +751,10 @@ class EditProductPage:
                 self.driver.current_url
             )
 
-            # -------------------------------------------------
-            # Wait for product grid
-            # -------------------------------------------------
+            # =================================================
+            # Wait for Product grid
+            # =================================================
+
             self.wait.until(
                 EC.presence_of_element_located(
                     (
@@ -578,17 +765,17 @@ class EditProductPage:
             )
 
             print(
-                "Product table found"
+                "Product table found."
             )
 
             print(
-                "Product deletion completed"
+                "Product deletion completed successfully."
             )
 
         except TimeoutException:
 
             print(
-                "Delete confirmation process timed out"
+                "\n========== DELETE CONFIRMATION FAILURE =========="
             )
 
             print(
@@ -601,10 +788,122 @@ class EditProductPage:
                 self.driver.title
             )
 
+            # -------------------------------------------------
+            # Count possible Delete buttons
+            # -------------------------------------------------
+
+            try:
+
+                delete_buttons = self.driver.find_elements(
+                    By.XPATH,
+                    "//button[normalize-space()='Delete']"
+                )
+
+                print(
+                    "Total Delete buttons on page:",
+                    len(delete_buttons)
+                )
+
+                for index, button in enumerate(
+                        delete_buttons,
+                        start=1
+                ):
+
+                    try:
+
+                        print(
+                            f"Delete button {index}:",
+                            {
+                                "id": button.get_attribute("id"),
+                                "class": button.get_attribute("class"),
+                                "style": button.get_attribute("style"),
+                                "displayed": button.is_displayed(),
+                                "enabled": button.is_enabled(),
+                                "text": button.text.strip()
+                            }
+                        )
+
+                    except StaleElementReferenceException:
+
+                        print(
+                            f"Delete button {index} became stale."
+                        )
+
+            except Exception as e:
+
+                print(
+                    "Unable to inspect Delete buttons:",
+                    e
+                )
+
+            # -------------------------------------------------
+            # Inspect modal elements
+            # -------------------------------------------------
+
+            try:
+
+                modals = self.driver.find_elements(
+                    By.XPATH,
+                    "//div[contains(@class,'modal')]"
+                )
+
+                print(
+                    "Total modal elements:",
+                    len(modals)
+                )
+
+                for index, current_modal in enumerate(
+                        modals,
+                        start=1
+                ):
+
+                    try:
+
+                        print(
+                            f"Modal {index}:",
+                            self.driver.execute_script(
+                                """
+                                const modal = arguments[0];
+                                const style =
+                                    window.getComputedStyle(modal);
+
+                                return {
+                                    id: modal.id,
+                                    className: modal.className,
+                                    display: style.display,
+                                    visibility: style.visibility,
+                                    opacity: style.opacity,
+                                    ariaHidden:
+                                        modal.getAttribute(
+                                            'aria-hidden'
+                                        )
+                                };
+                                """,
+                                current_modal
+                            )
+                        )
+
+                    except StaleElementReferenceException:
+
+                        print(
+                            f"Modal {index} became stale."
+                        )
+
+            except Exception as e:
+
+                print(
+                    "Unable to inspect modals:",
+                    e
+                )
+
+            # -------------------------------------------------
+            # Body text
+            # -------------------------------------------------
+
             try:
 
                 print(
-                    "Current page body:"
+                    "\nCurrent page body:"
                 )
 
                 print(
@@ -620,6 +919,10 @@ class EditProductPage:
                     "Unable to read page body:",
                     e
                 )
+
+            # -------------------------------------------------
+            # Screenshot
+            # -------------------------------------------------
 
             try:
 
@@ -643,6 +946,10 @@ class EditProductPage:
                     "Unable to save screenshot:",
                     e
                 )
+
+            print(
+                "===============================================\n"
+            )
 
             raise
 
