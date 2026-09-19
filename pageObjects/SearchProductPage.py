@@ -72,6 +72,9 @@ class SearchProduct:
         "//input[@type='checkbox']"
     )
 
+    # Download Catalog as PDF
+    btnDownloadCatalogPdf_xpath = "//button[normalize-space()='Download catalog as PDF']"
+
     def __init__(self, driver):
 
         self.driver = driver
@@ -1981,3 +1984,24 @@ class SearchProduct:
             self.printSearchResults()
 
             return False
+
+    def clickDownloadCatalogAsPDF(self):
+        print("Waiting for Download catalog as PDF button...")
+
+        download_button = self.wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, self.btnDownloadCatalogPdf_xpath)
+            )
+        )
+
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({block:'center'});",
+            download_button
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            download_button
+        )
+
+        print("Download catalog as PDF button clicked")
