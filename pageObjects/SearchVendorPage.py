@@ -258,16 +258,69 @@ class SearchVendorPage:
         return True
 
     def clickDeleteButton(self):
-        delete_button = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH, self.delete_button_xpath)
-        ))
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});",delete_button)
-        self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH, self.delete_button_xpath)
-        ))
-        delete_button.click()
-        print("Delete button clicked successfully")
 
+        print("Waiting for Vendor Delete button...")
+
+        try:
+
+            delete_button = self.wait.until(
+                EC.presence_of_element_located(
+                    (By.XPATH, self.delete_button_xpath)
+                )
+            )
+
+            print(
+                "Delete button found. "
+                "Displayed:",
+                delete_button.is_displayed(),
+                "Enabled:",
+                delete_button.is_enabled()
+            )
+
+            self.driver.execute_script(
+                """
+                arguments[0].scrollIntoView({
+                    block: 'center',
+                    inline: 'nearest'
+                });
+                """,
+                delete_button
+            )
+
+            self.wait.until(
+                EC.element_to_be_clickable(
+                    (By.XPATH, self.delete_button_xpath)
+                )
+            )
+
+            # Re-find immediately before clicking
+            delete_button = self.driver.find_element(
+                By.XPATH,
+                self.delete_button_xpath
+            )
+
+            self.driver.execute_script(
+                "arguments[0].click();",
+                delete_button
+            )
+
+            print("Delete button clicked successfully")
+
+        except TimeoutException:
+
+            print("TIMEOUT: Vendor Delete button was not clickable")
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            print(
+                "Page title:",
+                self.driver.title
+            )
+
+            raise
 
     def clickConfirmDelete(self):
 
@@ -275,152 +328,118 @@ class SearchVendorPage:
 
         wait = WebDriverWait(
             self.driver,
-            15,
-            poll_frequency=0.2
+            20,
+            poll_frequency=0.5
         )
 
-        # nopCommerce delete confirmation button
-        confirm_delete_xpath = (
+        confirm_xpath = (
             "//button[normalize-space()='Delete']"
         )
 
-        for attempt in range(1, 4):
+        try:
 
-            try:
-
-                print(
-                    f"Delete confirmation "
-                    f"(attempt {attempt}/3)"
+            confirm_button = wait.until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, confirm_xpath)
                 )
+            )
 
-                confirm_button = wait.until(
-                    EC.visibility_of_element_located(
-                        (
-                            By.XPATH,
-                            confirm_delete_xpath
-                        )
-                    )
+            print(
+                "Delete confirmation button found:",
+                repr(confirm_button.text)
+            )
+
+            self.driver.execute_script(
+                """
+                arguments[0].scrollIntoView({
+                    block: 'center',
+                    inline: 'nearest'
+                });
+                """,
+                confirm_button
+            )
+
+            wait.until(
+                EC.element_to_be_clickable(
+                    (By.XPATH, confirm_xpath)
                 )
+            )
 
-                print(
-                    "Delete Confirmation button found:",
-                    confirm_button.text
-                )
+            # Re-find immediately before clicking
+            confirm_button = self.driver.find_element(
+                By.XPATH,
+                confirm_xpath
+            )
 
-                self.driver.execute_script(
-                    """
-                    arguments[0].scrollIntoView({
-                        block: 'center',
-                        inline: 'nearest'
-                    });
-                    """,
-                    confirm_button
-                )
+            self.driver.execute_script(
+                "arguments[0].click();",
+                confirm_button
+            )
 
-                try:
+            print("Delete confirmation clicked successfully")
 
-                    self.wait.until(
-                        EC.element_to_be_clickable(
-                            (
-                                By.XPATH,
-                                confirm_delete_xpath
-                            )
-                        )
-                    )
+        except TimeoutException:
 
-                    # Re-find immediately before clicking.
-                    confirm_button = self.driver.find_element(
-                        By.XPATH,
-                        confirm_delete_xpath
-                    )
+            print(
+                "TIMEOUT: Delete confirmation button "
+                "was not found/clickable."
+            )
 
-                    self.driver.execute_script(
-                        "arguments[0].click();",
-                        confirm_button
-                    )
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
 
-                except StaleElementReferenceException:
+            print(
+                "Page title:",
+                self.driver.title
+            )
 
-                    print(
-                        "Delete confirmation button became "
-                        "stale. Reacquiring..."
-                    )
-
-                    confirm_button = wait.until(
-                        EC.element_to_be_clickable(
-                            (
-                                By.XPATH,
-                                confirm_delete_xpath
-                            )
-                        )
-                    )
-
-                    self.driver.execute_script(
-                        "arguments[0].click();",
-                        confirm_button
-                    )
-
-                print(
-                    "Delete confirmation clicked successfully"
-                )
-
-                # -------------------------------------------------
-                # Wait until we leave the Vendor Edit page
-                # -------------------------------------------------
-                try:
-
-                    wait.until(
-                        lambda driver:
-                        "/Admin/Vendor/Edit/"
-                        not in driver.current_url
-                    )
-
-                    print(
-                        "Vendor List page loaded after deletion"
-                    )
-
-                except TimeoutException:
-
-                    print(
-                        "Vendor Edit URL is still active "
-                        "after delete confirmation."
-                    )
-
-                return
-
-            except StaleElementReferenceException:
-
-                print(
-                    "Delete confirmation became stale. "
-                    "Retrying..."
-                )
-
-            except TimeoutException:
-
-                print(
-                    "Delete Confirmation button "
-                    "was not found on this attempt."
-                )
-
-                if attempt == 3:
-                    print(
-                        "Delete confirmation process timed out"
-                    )
-
-                    print(
-                        "Current URL:",
-                        self.driver.current_url
-                    )
-
-                    raise
-
-
+            raise
 
     def getSuccessMessage(self):
-        message = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH, self.success_message_xpath)
-        ))
-        return message.text.strip()
+
+        print("Waiting for vendor deletion success message...")
+
+        try:
+
+            message = WebDriverWait(
+                self.driver,
+                20,
+                poll_frequency=0.5
+            ).until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, self.success_message_xpath)
+                )
+            )
+
+            text = message.text.strip()
+
+            print(
+                "Vendor deletion success message:",
+                repr(text)
+            )
+
+            return text
+
+        except TimeoutException:
+
+            print(
+                "TIMEOUT: Vendor deletion success message "
+                "was not found."
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            print(
+                "Page title:",
+                self.driver.title
+            )
+
+            raise
 
     def getVendorNameByOverallRow(self,overall_row_number):
         if overall_row_number < 1:

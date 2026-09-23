@@ -23,21 +23,144 @@ class AddVendor:
         self.wait = WebDriverWait(driver, 15)
 
     def clickonVendorMenuItem(self):
-        vendor_menu_item = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH,self.lnkVendors_menu_item_xpath)
-            )
-        )
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", vendor_menu_item)
-        self.driver.execute_script("arguments[0].click();", vendor_menu_item)
 
-        #wait until vendors page is loaded
-        self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH,self.btnAddVendor_xpath)
-            )
-        )
+        print("Waiting for Vendor menu item...")
 
+        try:
+
+            # -------------------------------------------------
+            # Wait until Vendor menu item exists in the DOM
+            # -------------------------------------------------
+            vendor_menu_item = self.wait.until(
+                EC.presence_of_element_located(
+                    (By.XPATH, self.lnkVendors_menu_item_xpath)
+                )
+            )
+
+            print("Vendor menu item found in DOM.")
+
+            print(
+                "Vendor menu displayed:",
+                vendor_menu_item.is_displayed()
+            )
+
+            print(
+                "Vendor menu enabled:",
+                vendor_menu_item.is_enabled()
+            )
+
+            # -------------------------------------------------
+            # Scroll into view
+            # -------------------------------------------------
+            self.driver.execute_script(
+                """
+                arguments[0].scrollIntoView({
+                    block: 'center',
+                    inline: 'nearest'
+                });
+                """,
+                vendor_menu_item
+            )
+
+            # -------------------------------------------------
+            # Re-find immediately before clicking
+            # -------------------------------------------------
+            vendor_menu_item = self.driver.find_element(
+                By.XPATH,
+                self.lnkVendors_menu_item_xpath
+            )
+
+            # -------------------------------------------------
+            # JavaScript click
+            # -------------------------------------------------
+            self.driver.execute_script(
+                "arguments[0].click();",
+                vendor_menu_item
+            )
+
+            print(
+                "Vendor menu item clicked successfully."
+            )
+
+            # -------------------------------------------------
+            # Wait for Vendor List navigation
+            # -------------------------------------------------
+            self.wait.until(
+                EC.url_contains("/Admin/Vendor/List")
+            )
+
+            print(
+                "Vendor list page loaded."
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            print(
+                "Page title:",
+                self.driver.title
+            )
+
+        except TimeoutException:
+
+            print(
+                "TIMEOUT while opening Vendor List."
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            print(
+                "Page title:",
+                self.driver.title
+            )
+
+            # -------------------------------------------------
+            # Diagnostic: check Vendor link
+            # -------------------------------------------------
+            try:
+
+                vendor_links = self.driver.find_elements(
+                    By.XPATH,
+                    self.lnkVendors_menu_item_xpath
+                )
+
+                print(
+                    "Vendor menu elements found:",
+                    len(vendor_links)
+                )
+
+                for index, element in enumerate(vendor_links):
+
+                    try:
+
+                        print(
+                            f"Vendor link {index}: "
+                            f"displayed={element.is_displayed()}, "
+                            f"enabled={element.is_enabled()}, "
+                            f"text={repr(element.text)}, "
+                            f"href={element.get_attribute('href')}"
+                        )
+
+                    except Exception:
+
+                        print(
+                            f"Vendor link {index}: "
+                            "could not read element state"
+                        )
+
+            except Exception as diagnostic_error:
+
+                print(
+                    "Vendor link diagnostic failed:",
+                    diagnostic_error
+                )
+
+            raise
 
     #Add New Vendor
     def clickonAddNew(self):
