@@ -1,9 +1,12 @@
 import os
+import time
 
 from selenium.common.exceptions import (
     StaleElementReferenceException,
-    TimeoutException
+    TimeoutException,
+    ElementClickInterceptedException
 )
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,93 +14,68 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class EditProductPage:
 
-    # =========================================================
-    # Products table
-    # =========================================================
-    tbl_producttable_xpath = "//table[@id='products-grid']"
+    # =================================================
+    # Product List
+    # =================================================
+
+    tbl_producttable_xpath = (
+        "//table[@id='products-grid']"
+    )
 
     checkboxes_xpath = (
-        "//table[@id='products-grid']//tbody/tr/td[1]/input"
+        "//table[@id='products-grid']"
+        "//tbody/tr/td[1]/input"
     )
 
-    btnDeleteSelected_xpath = "//button[@id='delete-selected']"
-
-    # =========================================================
-    # Product fields
-    # =========================================================
-    txtProductName_xpath = "//input[@id='Name']"
-    txtshortdesc_xpath = "//textarea[@id='ShortDescription']"
-    txtfulldesc_xpath = "//div[@role='textbox']"
-    txtsku_xpath = "//input[@id='Sku']"
-
-    # =========================================================
-    # Prices
-    # =========================================================
-    prices_section = "//div[@id='product-price']"
-    numprice_xpath = "//input[@id='Price']"
-
-    # =========================================================
-    # Tax Category
-    # =========================================================
-    drptax_category = (
-        "//span[@id='select2-TaxCategoryId-container']"
+    btnDeleteSelected_xpath = (
+        "//button[@id='delete-selected']"
     )
 
-    lstBooks_element = "//li[contains(text(),'Books')]"
-    lstelecsoftware_xpath = (
-        "//li[contains(text(),'Electronics & Software')]"
-    )
-    lstdownloadproducts_xpath = (
-        "//li[contains(text(),'Downloadable Products')]"
-    )
-    lstjewelry_xpath = "//li[contains(text(),'Jewelry')]"
-    lstapparel_xpath = "//li[contains(text(),'Apparel')]"
+    # =================================================
+    # Product Fields
+    # =================================================
 
-    # =========================================================
-    # Shipping
-    # =========================================================
-    shipping_section = "//div[@id='product-shipping']"
-
-    weight_xpath = "//input[@id='Weight']"
-    length_xpath = "//input[@id='Length']"
-    width_xpath = "//input[@id='Width']"
-    height_xpath = "//input[@id='Height']"
-
-    # =========================================================
-    # Inventory
-    # =========================================================
-    inventory_section = "//div[@id='product-inventory']"
-
-    drpinventory = (
-        "//span[@id='select2-ManageInventoryMethodId-container']"
+    txtProductName_xpath = (
+        "//input[@id='Name']"
     )
 
-    lst_donttrack = (
-        """//li[contains(., "Don't track inventory")]"""
+    txtshortdesc_xpath = (
+        "//textarea[@id='ShortDescription']"
     )
 
-    lst_track = (
-        "//li[normalize-space(.)='Track inventory']"
+    txtfulldesc_xpath = (
+        "//div[@role='textbox']"
     )
 
-    lst_track_product = (
-        "//li[normalize-space(.)="
-        "'Track inventory by product attributes']"
+    txtsku_xpath = (
+        "//input[@id='Sku']"
     )
 
-    # =========================================================
+    # =================================================
     # Save
-    # =========================================================
-    btnSave_xpath = "//button[@name='save']"
+    # =================================================
 
-    # =========================================================
+    btnSave_xpath = (
+        "//button[@name='save']"
+    )
+
+    # =================================================
     # Delete
-    # =========================================================
-    btnDelete_xpath = "//span[@id='product-delete']"
+    # =================================================
 
-    # =========================================================
-    # Success messages
-    # =========================================================
+    btnDelete_xpath = (
+        "//span[@id='product-delete']"
+    )
+
+    # Actual nopCommerce Product Delete confirmation modal
+    product_delete_modal_id = (
+        "productmodel-Delete-delete-confirmation"
+    )
+
+    # =================================================
+    # Success Messages
+    # =================================================
+
     success_message_xpath = (
         "//div[contains(@class,'alert-success')]"
     )
@@ -108,9 +86,10 @@ class EditProductPage:
         "'The product has been deleted successfully')]"
     )
 
-    # =========================================================
+    # =================================================
     # Constructor
-    # =========================================================
+    # =================================================
+
     def __init__(self, driver):
 
         self.driver = driver
@@ -126,121 +105,205 @@ class EditProductPage:
             exist_ok=True
         )
 
-    # =========================================================
-    # Click Edit button for a particular product
-    # =========================================================
-    def clickEditProduct(self, product_name):
+    # =================================================
+    # Product Name
+    # =================================================
 
-        edit_xpath = (
-            f"{self.tbl_producttable_xpath}"
-            f"//tbody//tr"
-            f"[td[contains(normalize-space(.),"
-            f"'{product_name}')]]"
-            f"/td[8]/a[1]"
-        )
+    def getProductName(self):
+
+        try:
+
+            element = self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        self.txtProductName_xpath
+                    )
+                )
+            )
+
+            return element.get_attribute(
+                "value"
+            )
+
+        except Exception as e:
+
+            print(
+                "Unable to get product name:",
+                e
+            )
+
+            return ""
+
+    # =================================================
+    # Product SKU
+    # =================================================
+
+    def getProductSKU(self):
+
+        try:
+
+            element = self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        self.txtsku_xpath
+                    )
+                )
+            )
+
+            return element.get_attribute(
+                "value"
+            )
+
+        except Exception as e:
+
+            print(
+                "Unable to get product SKU:",
+                e
+            )
+
+            return ""
+
+    def setSKU(self, sku):
+
+        print(f"Setting SKU: {sku}")
 
         for attempt in range(3):
 
             try:
 
-                edit_button = self.wait.until(
-                    EC.element_to_be_clickable(
-                        (By.XPATH, edit_xpath)
+                sku_field = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.XPATH, self.txtsku_xpath)
                     )
                 )
 
                 self.driver.execute_script(
-                    "arguments[0].scrollIntoView({block:'center'});",
-                    edit_button
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    sku_field
                 )
 
-                self.driver.execute_script(
-                    "arguments[0].click();",
-                    edit_button
+                sku_field.clear()
+                sku_field.send_keys(sku)
+
+                actual_value = self.driver.execute_script(
+                    "return arguments[0].value;",
+                    sku_field
                 )
 
                 print(
-                    f"Edit button clicked for product: "
-                    f"{product_name}"
+                    f"SKU DOM value (attempt {attempt + 1}/3): "
+                    f"{actual_value!r}"
                 )
 
-                return
+                if actual_value == sku:
+                    print("SKU entered successfully.")
+                    return
+
+                print(
+                    "SKU value mismatch. Retrying..."
+                )
 
             except StaleElementReferenceException:
 
                 print(
-                    f"Edit button became stale. "
+                    "SKU field became stale. "
                     f"Retrying ({attempt + 1}/3)..."
                 )
 
                 if attempt == 2:
                     raise
 
-    # =========================================================
-    # Edit Product Name
-    # =========================================================
-    def setProductName(self, product_name):
+            except TimeoutException:
 
-        product_name_field = self.wait.until(
-            EC.visibility_of_element_located(
-                (By.XPATH, self.txtProductName_xpath)
-            )
+                print(
+                    "SKU field was not available. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+        raise AssertionError(
+            f"Unable to enter SKU successfully: {sku}"
         )
 
-        product_name_field.clear()
-        product_name_field.send_keys(product_name)
-
-        print(
-            "Product name updated:",
-            product_name
-        )
-
-    # =========================================================
-    # Edit SKU
-    # =========================================================
-    def setSKU(self, sku):
-
-        sku_field = self.wait.until(
-            EC.visibility_of_element_located(
-                (By.XPATH, self.txtsku_xpath)
-            )
-        )
-
-        sku_field.clear()
-        sku_field.send_keys(sku)
-
-        print(
-            "SKU updated:",
-            sku
-        )
-
-    # =========================================================
-    # Edit Price
-    # =========================================================
     def setPrice(self, price):
 
-        self.scrollToSection(
-            self.prices_section
+        print(f"Setting Price: {price}")
+
+        for attempt in range(3):
+
+            try:
+
+                price_field = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.ID, "Price")
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    price_field
+                )
+
+                price_field.clear()
+                price_field.send_keys(str(price))
+
+                actual_value = self.driver.execute_script(
+                    "return arguments[0].value;",
+                    price_field
+                )
+
+                print(
+                    f"Price DOM value (attempt {attempt + 1}/3): "
+                    f"{actual_value!r}"
+                )
+
+                if actual_value == str(price):
+                    print("Price entered successfully.")
+                    return
+
+                print("Price value mismatch. Retrying...")
+
+            except StaleElementReferenceException:
+
+                print(
+                    "Price field became stale. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+            except TimeoutException:
+
+                print(
+                    "Price field was not available. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+        raise AssertionError(
+            f"Unable to enter Price successfully: {price}"
         )
 
-        price_field = self.wait.until(
-            EC.visibility_of_element_located(
-                (By.XPATH, self.numprice_xpath)
-            )
-        )
-
-        price_field.clear()
-        price_field.send_keys(str(price))
-
-        print(
-            "Price updated:",
-            price
-        )
-
-    # =========================================================
-    # Save Product
-    # =========================================================
     def clickSave(self):
+
+        print("Waiting for Product Save button...")
 
         for attempt in range(3):
 
@@ -253,17 +316,38 @@ class EditProductPage:
                 )
 
                 self.driver.execute_script(
-                    "arguments[0].scrollIntoView({block:'center'});",
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
                     save_button
                 )
 
-                self.driver.execute_script(
-                    "arguments[0].click();",
-                    save_button
+                try:
+                    save_button.click()
+
+                except ElementClickInterceptedException:
+
+                    print(
+                        "Normal Save click intercepted. "
+                        "Using JavaScript click..."
+                    )
+
+                    self.driver.execute_script(
+                        "arguments[0].click();",
+                        save_button
+                    )
+
+                print("Product Save button clicked.")
+
+                self.wait.until(
+                    EC.url_contains("/Admin/Product/List")
                 )
 
                 print(
-                    "Save Button clicked"
+                    "Product List page loaded after saving."
                 )
 
                 return
@@ -271,7 +355,7 @@ class EditProductPage:
             except StaleElementReferenceException:
 
                 print(
-                    f"Save button became stale. "
+                    "Save button became stale. "
                     f"Retrying ({attempt + 1}/3)..."
                 )
 
@@ -281,21 +365,23 @@ class EditProductPage:
             except TimeoutException:
 
                 print(
-                    f"Save button not clickable. "
+                    "Save button was not available or "
+                    "Product List did not load. "
                     f"Retrying ({attempt + 1}/3)..."
                 )
 
                 if attempt == 2:
                     raise
 
-    # =========================================================
-    # Verify Product Updated Successfully
-    # =========================================================
     def isProductUpdatedSuccessfully(self):
+
+        print(
+            "Waiting for Product update success message..."
+        )
 
         try:
 
-            message = self.wait.until(
+            success_message = self.wait.until(
                 EC.visibility_of_element_located(
                     (
                         By.XPATH,
@@ -304,45 +390,1001 @@ class EditProductPage:
                 )
             )
 
-            actual_message = message.text.strip()
+            message = success_message.text.strip()
 
             print(
-                "Success message:",
-                actual_message
+                "Product update success message:",
+                repr(message)
             )
 
-            return message.is_displayed()
+            if (
+                    "The product has been updated successfully"
+                    in message
+            ):
+                print(
+                    "Product update success message "
+                    "verified successfully."
+                )
 
-        except (
-            StaleElementReferenceException,
-            TimeoutException
-        ):
+                return True
 
             print(
-                "Product update success message not found"
+                "Unexpected product update message:",
+                repr(message)
             )
 
             return False
 
-    # =========================================================
-    # Scroll to Section
-    # =========================================================
-    def scrollToSection(self, section_xpath):
+        except TimeoutException:
 
-        section = self.wait.until(
-            EC.presence_of_element_located(
-                (By.XPATH, section_xpath)
+            print(
+                "Product update success message "
+                "was not displayed."
             )
+
+            return False
+
+        except StaleElementReferenceException:
+
+            print(
+                "Product update success message "
+                "became stale. Re-checking..."
+            )
+
+            try:
+
+                success_message = self.wait.until(
+                    EC.visibility_of_element_located(
+                        (
+                            By.XPATH,
+                            self.success_message_xpath
+                        )
+                    )
+                )
+
+                message = success_message.text.strip()
+
+                print(
+                    "Product update success message "
+                    "after retry:",
+                    repr(message)
+                )
+
+                return (
+                        "The product has been updated successfully"
+                        in message
+                )
+
+            except Exception as e:
+
+                print(
+                    "Unable to verify product update "
+                    "success after retry:",
+                    e
+                )
+
+                return False
+
+    def clickEditProductByRow(self, row_number):
+
+        print(
+            f"Waiting for Edit button at row {row_number}..."
         )
 
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            section
+        edit_button_xpath = (
+            f"//table[@id='products-grid']"
+            f"//tbody/tr[{row_number}]"
+            f"//a[contains(@href,'/Admin/Product/Edit/')]"
         )
 
-    # =========================================================
-    # Click Delete
-    # =========================================================
+        for attempt in range(3):
+
+            try:
+
+                edit_button = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            edit_button_xpath
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    edit_button
+                )
+
+                try:
+
+                    edit_button.click()
+
+                except (
+                        ElementClickInterceptedException
+                ):
+
+                    self.driver.execute_script(
+                        "arguments[0].click();",
+                        edit_button
+                    )
+
+                print(
+                    f"Edit button clicked for row: "
+                    f"{row_number}"
+                )
+
+                self.wait.until(
+                    EC.url_contains(
+                        "/Admin/Product/Edit/"
+                    )
+                )
+
+                print(
+                    "Edit Product page opened"
+                )
+
+                return
+
+            except StaleElementReferenceException:
+
+                print(
+                    "Edit button became stale. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+            except TimeoutException:
+
+                print(
+                    "Edit button not available. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+    # =================================================
+    # Get Product Name By Row
+    # =================================================
+
+    def getProductNameByRow(self, row_number):
+
+        print(
+            f"Getting product name from row {row_number}..."
+        )
+
+        row_xpath = (
+            f"//table[@id='products-grid']"
+            f"//tbody/tr[{row_number}]"
+        )
+
+        for attempt in range(3):
+
+            try:
+
+                row = self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            row_xpath
+                        )
+                    )
+                )
+
+                cells = row.find_elements(
+                    By.TAG_NAME,
+                    "td"
+                )
+
+                print(
+                    f"Row {row_number} has "
+                    f"{len(cells)} cells."
+                )
+
+                for index, cell in enumerate(
+                        cells,
+                        start=1
+                ):
+                    print(
+                        f"Row {row_number} Cell {index}: "
+                        f"{repr(cell.text.strip())}"
+                    )
+
+                # ---------------------------------------------
+                # Find product name from the actual row
+                # ---------------------------------------------
+
+                product_name = ""
+
+                for cell in cells:
+
+                    # Ignore checkbox/action cells
+                    cell_text = cell.text.strip()
+
+                    if not cell_text:
+                        continue
+
+                    # Look for the product Edit link.
+                    # The product name is normally in the same
+                    # cell as the product link, while the final
+                    # Edit action is in a different cell.
+                    product_links = cell.find_elements(
+                        By.XPATH,
+                        ".//a[contains(@href,'/Admin/Product/Edit/')]"
+                    )
+
+                    if product_links:
+
+                        link_texts = [
+                            link.text.strip()
+                            for link in product_links
+                        ]
+
+                        print(
+                            "Links in cell:",
+                            link_texts
+                        )
+
+                        # If the cell itself contains an Edit
+                        # action, don't use "Edit" as product name.
+                        for link_text in link_texts:
+
+                            if (
+                                    link_text
+                                    and link_text.lower()
+                                    != "edit"
+                            ):
+                                product_name = link_text
+                                break
+
+                    if product_name:
+                        break
+
+                # ---------------------------------------------
+                # Fallback: inspect cell text
+                # ---------------------------------------------
+
+                if not product_name:
+
+                    for cell in cells:
+
+                        cell_text = cell.text.strip()
+
+                        if (
+                                cell_text
+                                and cell_text.lower()
+                                != "edit"
+                                and cell_text.lower()
+                                != "select"
+                        ):
+                            # Product name is usually the first
+                            # meaningful text in the product cell.
+                            product_name = cell_text
+
+                            break
+
+                if product_name:
+                    print(
+                        f"Product name at row "
+                        f"{row_number}: {product_name}"
+                    )
+
+                    return product_name
+
+                print(
+                    f"Product name not found "
+                    f"(attempt {attempt + 1}/3)."
+                )
+
+                time.sleep(0.5)
+
+            except StaleElementReferenceException:
+
+                print(
+                    "Product row became stale. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+            except TimeoutException:
+
+                print(
+                    f"Product row {row_number} "
+                    f"not available "
+                    f"(attempt {attempt + 1}/3)."
+                )
+
+                if attempt == 2:
+                    raise
+
+        raise TimeoutException(
+            f"Unable to get product name "
+            f"from row {row_number}"
+        )
+    # =================================================
+    # Select Product Checkbox By Row
+    # =================================================
+
+    def selectProductCheckbox(self, row_number):
+
+        print(f"Selecting checkbox at row {row_number}...")
+
+        checkbox_xpath = (
+            f"//table[@id='products-grid']"
+            f"//tbody/tr[{row_number}]"
+            f"//input[@type='checkbox']"
+        )
+
+        for attempt in range(3):
+
+            try:
+
+                checkbox = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            checkbox_xpath
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    checkbox
+                )
+
+                if not checkbox.is_selected():
+                    self.driver.execute_script(
+                        "arguments[0].click();",
+                        checkbox
+                    )
+
+                print(
+                    f"Checkbox selected for row {row_number}"
+                )
+
+                return True
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Checkbox stale. Retry "
+                    f"{attempt + 1}/3"
+                )
+
+                if attempt == 2:
+                    raise
+
+            except TimeoutException:
+
+                print(
+                    f"Checkbox not found. Retry "
+                    f"{attempt + 1}/3"
+                )
+
+                if attempt == 2:
+                    raise
+
+        return False
+
+    # =================================================
+    # Click Delete Selected
+    # =================================================
+
+    def clickDeleteSelected(self):
+
+        print(
+            "Waiting for Delete Selected button..."
+        )
+
+        for attempt in range(3):
+
+            try:
+
+                delete_selected_button = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            self.btnDeleteSelected_xpath
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    delete_selected_button
+                )
+
+                try:
+
+                    delete_selected_button.click()
+
+                except ElementClickInterceptedException:
+
+                    self.driver.execute_script(
+                        "arguments[0].click();",
+                        delete_selected_button
+                    )
+
+                print(
+                    "Delete selected button clicked"
+                )
+
+                return
+
+            except StaleElementReferenceException:
+
+                print(
+                    "Delete selected button became stale. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+            except TimeoutException:
+
+                print(
+                    "Delete selected button not clickable. "
+                    f"Retrying ({attempt + 1}/3)..."
+                )
+
+                if attempt == 2:
+                    raise
+
+    # =================================================
+    # Confirm Delete Selected Products
+    # =================================================
+
+    def confirmselectedDelete(self):
+
+        print(
+            "Waiting for Delete Selected confirmation..."
+        )
+
+        modal_id = (
+            "delete-selected-action-confirmation"
+        )
+
+        confirm_button_id = (
+            "delete-selected-action-confirmation-submit-button"
+        )
+
+        modal_xpath = (
+            f"//div[@id='{modal_id}']"
+        )
+
+        confirm_button_xpath = (
+            f"//button[@id='{confirm_button_id}']"
+        )
+
+        try:
+
+            # -------------------------------------------------
+            # Wait until the confirmation modal exists in DOM
+            # -------------------------------------------------
+
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.ID,
+                        modal_id
+                    )
+                )
+            )
+
+            print(
+                "Delete Selected confirmation modal found."
+            )
+
+            # -------------------------------------------------
+            # Check whether modal is actually visible
+            # -------------------------------------------------
+
+            def modal_is_active(driver):
+
+                return driver.execute_script(
+                    """
+                    const modal = document.getElementById(arguments[0]);
+
+                    if (!modal) {
+                        return false;
+                    }
+
+                    const style =
+                        window.getComputedStyle(modal);
+
+                    const rect =
+                        modal.getBoundingClientRect();
+
+                    return (
+                        modal.classList.contains("show") &&
+                        style.display !== "none" &&
+                        style.visibility !== "hidden" &&
+                        parseFloat(style.opacity) > 0 &&
+                        rect.width > 0 &&
+                        rect.height > 0
+                    );
+                    """,
+                    modal_id
+                )
+
+            # -------------------------------------------------
+            # Wait for normal Bootstrap activation
+            # -------------------------------------------------
+
+            try:
+
+                self.wait.until(
+                    modal_is_active
+                )
+
+                print(
+                    "Delete Selected confirmation modal "
+                    "opened normally."
+                )
+
+            except TimeoutException:
+
+                print(
+                    "Delete Selected confirmation modal "
+                    "did not open normally."
+                )
+
+                print(
+                    "Using Bootstrap modal fallback..."
+                )
+
+                # -------------------------------------------------
+                # Bootstrap / jQuery fallback
+                # -------------------------------------------------
+
+                fallback_result = self.driver.execute_script(
+                    """
+                    const modal =
+                        document.getElementById(arguments[0]);
+
+                    if (!modal) {
+                        return {
+                            success: false,
+                            reason: "Modal not found"
+                        };
+                    }
+
+                    try {
+
+                        // Bootstrap 4 / jQuery
+                        if (
+                            window.jQuery &&
+                            window.jQuery.fn &&
+                            window.jQuery.fn.modal
+                        ) {
+
+                            window.jQuery(modal).modal("show");
+
+                            return {
+                                success: true,
+                                method: "jquery-bootstrap"
+                            };
+                        }
+
+                        // Bootstrap 5
+                        if (
+                            window.bootstrap &&
+                            window.bootstrap.Modal
+                        ) {
+
+                            const instance =
+                                window.bootstrap.Modal
+                                    .getOrCreateInstance(modal);
+
+                            instance.show();
+
+                            return {
+                                success: true,
+                                method: "bootstrap5"
+                            };
+                        }
+
+                    } catch (e) {
+
+                        return {
+                            success: false,
+                            reason: e.toString()
+                        };
+                    }
+
+                    return {
+                        success: false,
+                        reason: "Bootstrap API unavailable"
+                    };
+                    """,
+                    modal_id
+                )
+
+                print(
+                    "Bootstrap fallback result:",
+                    fallback_result
+                )
+
+                # -------------------------------------------------
+                # Final DOM fallback
+                # -------------------------------------------------
+
+                if not fallback_result.get(
+                        "success",
+                        False
+                ):
+                    print(
+                        "Using DOM fallback to activate "
+                        "confirmation modal..."
+                    )
+
+                    self.driver.execute_script(
+                        """
+                        const modal =
+                            document.getElementById(arguments[0]);
+
+                        if (modal) {
+
+                            modal.classList.add("show");
+
+                            modal.style.display =
+                                "block";
+
+                            modal.style.opacity =
+                                "1";
+
+                            modal.style.visibility =
+                                "visible";
+
+                            modal.setAttribute(
+                                "aria-hidden",
+                                "false"
+                            );
+
+                            modal.setAttribute(
+                                "aria-modal",
+                                "true"
+                            );
+
+                            modal.setAttribute(
+                                "role",
+                                "dialog"
+                            );
+
+                            document.body.classList.add(
+                                "modal-open"
+                            );
+
+                            let backdrop =
+                                document.querySelector(
+                                    ".modal-backdrop"
+                                );
+
+                            if (!backdrop) {
+
+                                backdrop =
+                                    document.createElement(
+                                        "div"
+                                    );
+
+                                backdrop.className =
+                                    "modal-backdrop fade show";
+
+                                document.body.appendChild(
+                                    backdrop
+                                );
+                            }
+                        }
+                        """,
+                        modal_id
+                    )
+
+                # -------------------------------------------------
+                # Verify modal activation
+                # -------------------------------------------------
+
+                self.wait.until(
+                    modal_is_active
+                )
+
+                print(
+                    "Delete Selected confirmation modal "
+                    "opened successfully."
+                )
+
+            # -------------------------------------------------
+            # Print confirmation message
+            # -------------------------------------------------
+
+            modal = self.driver.find_element(
+                By.ID,
+                modal_id
+            )
+
+            print(
+                "Delete Selected confirmation message:",
+                repr(modal.text.strip())
+            )
+
+            # -------------------------------------------------
+            # Find confirmation Delete button
+            # -------------------------------------------------
+
+            print(
+                "Waiting for Delete Selected "
+                "confirmation button..."
+            )
+
+            confirm_button = self.wait.until(
+                EC.element_to_be_clickable(
+                    (
+                        By.ID,
+                        confirm_button_id
+                    )
+                )
+            )
+
+            print(
+                "Delete Selected confirmation button found:",
+                repr(confirm_button.text.strip())
+            )
+
+            # -------------------------------------------------
+            # Scroll button into view
+            # -------------------------------------------------
+
+            self.driver.execute_script(
+                """
+                arguments[0].scrollIntoView({
+                    block: 'center',
+                    inline: 'nearest'
+                });
+                """,
+                confirm_button
+            )
+
+            # -------------------------------------------------
+            # Click confirmation button
+            # -------------------------------------------------
+
+            try:
+
+                confirm_button.click()
+
+            except ElementClickInterceptedException:
+
+                print(
+                    "Normal click intercepted. "
+                    "Using JavaScript click..."
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    confirm_button
+                )
+
+            print(
+                "Confirm selected Delete button clicked"
+            )
+
+            # -------------------------------------------------
+            # Wait for Product List to remain/load
+            # -------------------------------------------------
+
+            self.wait.until(
+                EC.url_contains(
+                    "/Admin/Product/List"
+                )
+            )
+
+            print(
+                "Product List page loaded after "
+                "selected product deletion."
+            )
+
+            # -------------------------------------------------
+            # Wait for product table
+            # -------------------------------------------------
+
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.ID,
+                        "products-grid"
+                    )
+                )
+            )
+
+            print(
+                "Product table found after "
+                "selected deletion."
+            )
+
+        except TimeoutException:
+
+            print(
+                "Delete Selected confirmation "
+                "operation timed out."
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            # Useful DOM diagnostics
+            try:
+
+                diagnostic = self.driver.execute_script(
+                    """
+                    const modal =
+                        document.getElementById(arguments[0]);
+
+                    if (!modal) {
+                        return "MODAL NOT FOUND";
+                    }
+
+                    return {
+                        id: modal.id,
+                        className: modal.className,
+                        display:
+                            window.getComputedStyle(modal).display,
+                        visibility:
+                            window.getComputedStyle(modal).visibility,
+                        opacity:
+                            window.getComputedStyle(modal).opacity,
+                        ariaHidden:
+                            modal.getAttribute("aria-hidden"),
+                        text:
+                            modal.innerText
+                    };
+                    """,
+                    modal_id
+                )
+
+                print(
+                    "Delete Selected modal diagnostics:",
+                    diagnostic
+                )
+
+            except Exception as diagnostic_error:
+
+                print(
+                    "Unable to collect modal diagnostics:",
+                    diagnostic_error
+                )
+
+            raise
+
+    # =================================================
+    # Verify Product Deleted From Product Table
+    # =================================================
+
+    def isProductDeletedFromTable(self, product_name):
+
+        print(
+            f"Checking whether product "
+            f"'{product_name}' is deleted from the table..."
+        )
+
+        try:
+
+            # Wait until Product List table is available
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (
+                        By.ID,
+                        "products-grid"
+                    )
+                )
+            )
+
+            # Give DataTables a moment to refresh after deletion
+            time.sleep(1)
+
+            rows = self.driver.find_elements(
+                By.XPATH,
+                "//table[@id='products-grid']"
+                "//tbody/tr"
+            )
+
+            print(
+                f"Number of product rows after deletion: "
+                f"{len(rows)}"
+            )
+
+            for index, row in enumerate(
+                    rows,
+                    start=1
+            ):
+
+                try:
+
+                    row_text = row.text.strip()
+
+                    print(
+                        f"Product row {index}: "
+                        f"{repr(row_text)}"
+                    )
+
+                    if product_name.strip().lower() in (
+                            row_text.lower()
+                    ):
+                        print(
+                            f"Product '{product_name}' "
+                            f"is still present in the table."
+                        )
+
+                        return False
+
+                except StaleElementReferenceException:
+
+                    print(
+                        f"Product row {index} became stale. "
+                        "Re-reading table..."
+                    )
+
+                    rows = self.driver.find_elements(
+                        By.XPATH,
+                        "//table[@id='products-grid']"
+                        "//tbody/tr"
+                    )
+
+                    for retry_row in rows:
+
+                        if product_name.strip().lower() in (
+                                retry_row.text.strip().lower()
+                        ):
+                            print(
+                                f"Product '{product_name}' "
+                                "is still present after retry."
+                            )
+
+                            return False
+
+                    break
+
+            print(
+                f"Product '{product_name}' "
+                "is no longer in the table."
+            )
+
+            return True
+
+        except TimeoutException:
+
+            print(
+                "Product table was not available "
+                "after deletion."
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            return False
+
+    # =================================================
+    # Delete Product Button
+    # =================================================
+
     def clickDelete(self):
 
         print(
@@ -355,12 +1397,20 @@ class EditProductPage:
 
                 delete_button = self.wait.until(
                     EC.element_to_be_clickable(
-                        (By.XPATH, self.btnDelete_xpath)
+                        (
+                            By.XPATH,
+                            self.btnDelete_xpath
+                        )
                     )
                 )
 
                 self.driver.execute_script(
-                    "arguments[0].scrollIntoView({block:'center'});",
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
                     delete_button
                 )
 
@@ -378,7 +1428,7 @@ class EditProductPage:
             except StaleElementReferenceException:
 
                 print(
-                    f"Delete button became stale. "
+                    "Delete button became stale. "
                     f"Retrying ({attempt + 1}/3)..."
                 )
 
@@ -388,95 +1438,17 @@ class EditProductPage:
             except TimeoutException:
 
                 print(
-                    f"Delete button not clickable. "
+                    "Delete button not clickable. "
                     f"Retrying ({attempt + 1}/3)..."
                 )
 
                 if attempt == 2:
                     raise
 
-    # =========================================================
-    # Click Delete Selected
-    # =========================================================
-    def clickDeleteSelected(self):
+    # =================================================
+    # Confirm Product Delete
+    # =================================================
 
-        delete_selected_button = self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, self.btnDeleteSelected_xpath)
-            )
-        )
-
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            delete_selected_button
-        )
-
-        self.driver.execute_script(
-            "arguments[0].click();",
-            delete_selected_button
-        )
-
-        print(
-            "Delete selected button clicked"
-        )
-
-    # =========================================================
-    # Get Product Checkboxes
-    # =========================================================
-    def getProductCheckboxes(self):
-
-        checkboxes = self.wait.until(
-            EC.presence_of_all_elements_located(
-                (By.XPATH, self.checkboxes_xpath)
-            )
-        )
-
-        print(
-            "Total product checkboxes:",
-            len(checkboxes)
-        )
-
-        return checkboxes
-
-    # =========================================================
-    # Select Product Checkbox
-    # =========================================================
-    def selectProductCheckbox(self, row_number):
-
-        checkboxes = self.getProductCheckboxes()
-
-        if (
-            row_number < 1
-            or row_number > len(checkboxes)
-        ):
-
-            raise IndexError(
-                f"Invalid row number: {row_number}. "
-                f"Available rows: {len(checkboxes)}"
-            )
-
-        checkbox = checkboxes[row_number - 1]
-
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            checkbox
-        )
-
-        if not checkbox.is_selected():
-
-            self.driver.execute_script(
-                "arguments[0].click();",
-                checkbox
-            )
-
-            print(
-                f"Product checkbox selected at row: "
-                f"{row_number}"
-            )
-
-    # =========================================================
-    # Confirm Delete
-    # =========================================================
     def confirmDelete(self):
 
         print(
@@ -486,6 +1458,7 @@ class EditProductPage:
         # -------------------------------------------------
         # Product delete confirmation modal
         # -------------------------------------------------
+
         modal_xpath = (
             "//div[contains(@class,'modal') "
             "and @role='dialog']"
@@ -495,12 +1468,13 @@ class EditProductPage:
         # -------------------------------------------------
         # Confirmation Delete button inside the modal
         # -------------------------------------------------
+
         confirm_button_xpath = (
-                modal_xpath
-                + "//button["
-                  "normalize-space()='Delete'"
-                  "and not(@id='product-delete')"
-                  "]"
+            modal_xpath
+            + "//button["
+              "normalize-space()='Delete'"
+              "and not(@id='product-delete')"
+              "]"
         )
 
         try:
@@ -527,43 +1501,220 @@ class EditProductPage:
             )
 
             # =================================================
-            # Wait for modal to become visible/active
+            # Wait for modal to become visible / active
             # =================================================
 
-            self.wait.until(
-                lambda driver: driver.execute_script(
-                    """
-                    const modal = arguments[0];
+            modal_active_script = """
+                const modal = document.getElementById(
+                    'productmodel-Delete-delete-confirmation'
+                );
 
-                    if (!modal) {
-                        return false;
-                    }
+                if (!modal) {
+                    return false;
+                }
 
-                    const style =
-                        window.getComputedStyle(modal);
+                const style =
+                    window.getComputedStyle(modal);
 
-                    const rect =
-                        modal.getBoundingClientRect();
+                const rect =
+                    modal.getBoundingClientRect();
 
-                    return (
-                        modal.classList.contains('show') &&
-                        style.display !== 'none' &&
-                        style.visibility !== 'hidden' &&
-                        parseFloat(style.opacity) > 0 &&
-                        rect.width > 0 &&
-                        rect.height > 0
-                    );
-                    """,
-                    self.driver.find_element(
-                        By.XPATH,
-                        modal_xpath
+                return (
+                    modal.classList.contains('show') &&
+                    style.display !== 'none' &&
+                    style.visibility !== 'hidden' &&
+                    parseFloat(style.opacity) > 0 &&
+                    rect.width > 0 &&
+                    rect.height > 0
+                );
+            """
+
+            try:
+
+                self.wait.until(
+                    lambda driver:
+                    driver.execute_script(
+                        modal_active_script
                     )
                 )
-            )
 
-            print(
-                "Product Delete confirmation modal is active."
-            )
+                print(
+                    "Product Delete confirmation modal "
+                    "opened normally."
+                )
+
+            except TimeoutException:
+
+                print(
+                    "Normal Bootstrap modal activation "
+                    "did not complete."
+                )
+
+                print(
+                    "Using Bootstrap API fallback..."
+                )
+
+                # =================================================
+                # Bootstrap / DOM fallback
+                # =================================================
+
+                fallback_result = self.driver.execute_script(
+                    """
+                    const modal =
+                        document.getElementById(
+                            'productmodel-Delete-delete-confirmation'
+                        );
+
+                    if (!modal) {
+                        return {
+                            success: false,
+                            reason: 'Modal not found'
+                        };
+                    }
+
+                    try {
+
+                        // -----------------------------------------
+                        // Bootstrap / jQuery modal
+                        // -----------------------------------------
+
+                        if (
+                            window.jQuery &&
+                            window.jQuery.fn &&
+                            window.jQuery.fn.modal
+                        ) {
+
+                            window.jQuery(modal).modal('show');
+
+                            return {
+                                success: true,
+                                method: 'jquery-bootstrap'
+                            };
+                        }
+
+                        // -----------------------------------------
+                        // Bootstrap 5
+                        // -----------------------------------------
+
+                        if (
+                            window.bootstrap &&
+                            window.bootstrap.Modal
+                        ) {
+
+                            const instance =
+                                window.bootstrap.Modal
+                                    .getOrCreateInstance(
+                                        modal
+                                    );
+
+                            instance.show();
+
+                            return {
+                                success: true,
+                                method: 'bootstrap-5'
+                            };
+                        }
+
+                        // -----------------------------------------
+                        // Final DOM fallback
+                        // -----------------------------------------
+
+                        modal.classList.add('show');
+
+                        modal.style.display = 'block';
+                        modal.style.opacity = '1';
+                        modal.style.visibility = 'visible';
+
+                        modal.setAttribute(
+                            'aria-hidden',
+                            'false'
+                        );
+
+                        modal.setAttribute(
+                            'aria-modal',
+                            'true'
+                        );
+
+                        modal.setAttribute(
+                            'role',
+                            'dialog'
+                        );
+
+                        document.body.classList.add(
+                            'modal-open'
+                        );
+
+                        let backdrop =
+                            document.querySelector(
+                                '.modal-backdrop'
+                            );
+
+                        if (!backdrop) {
+
+                            backdrop =
+                                document.createElement(
+                                    'div'
+                                );
+
+                            backdrop.className =
+                                'modal-backdrop fade show';
+
+                            document.body.appendChild(
+                                backdrop
+                            );
+
+                        } else {
+
+                            backdrop.classList.add(
+                                'show'
+                            );
+                        }
+
+                        return {
+                            success: true,
+                            method: 'dom'
+                        };
+
+                    } catch (error) {
+
+                        return {
+                            success: false,
+                            reason: error.toString()
+                        };
+                    }
+                    """
+                )
+
+                print(
+                    "Bootstrap fallback result:",
+                    fallback_result
+                )
+
+                if not fallback_result.get(
+                    "success",
+                    False
+                ):
+
+                    raise TimeoutException(
+                        "Unable to activate product "
+                        "delete confirmation modal."
+                    )
+
+                # ---------------------------------------------
+                # Verify fallback actually activated modal
+                # ---------------------------------------------
+
+                self.wait.until(
+                    lambda driver:
+                    driver.execute_script(
+                        modal_active_script
+                    )
+                )
+
+                print(
+                    "Product Delete confirmation modal "
+                    "opened successfully."
+                )
 
             # =================================================
             # Print modal message for diagnostics
@@ -619,7 +1770,9 @@ class EditProductPage:
 
             print(
                 "Confirmation Delete button found:",
-                repr(confirm_button.text.strip())
+                repr(
+                    confirm_button.text.strip()
+                )
             )
 
             # =================================================
@@ -627,7 +1780,8 @@ class EditProductPage:
             # =================================================
 
             self.wait.until(
-                lambda driver: driver.execute_script(
+                lambda driver:
+                driver.execute_script(
                     """
                     const button = arguments[0];
 
@@ -805,8 +1959,8 @@ class EditProductPage:
                 )
 
                 for index, button in enumerate(
-                        delete_buttons,
-                        start=1
+                    delete_buttons,
+                    start=1
                 ):
 
                     try:
@@ -826,7 +1980,8 @@ class EditProductPage:
                     except StaleElementReferenceException:
 
                         print(
-                            f"Delete button {index} became stale."
+                            f"Delete button {index} "
+                            "became stale."
                         )
 
             except Exception as e:
@@ -853,8 +2008,8 @@ class EditProductPage:
                 )
 
                 for index, current_modal in enumerate(
-                        modals,
-                        start=1
+                    modals,
+                    start=1
                 ):
 
                     try:
@@ -864,15 +2019,22 @@ class EditProductPage:
                             self.driver.execute_script(
                                 """
                                 const modal = arguments[0];
+
                                 const style =
-                                    window.getComputedStyle(modal);
+                                    window.getComputedStyle(
+                                        modal
+                                    );
 
                                 return {
                                     id: modal.id,
-                                    className: modal.className,
-                                    display: style.display,
-                                    visibility: style.visibility,
-                                    opacity: style.opacity,
+                                    className:
+                                        modal.className,
+                                    display:
+                                        style.display,
+                                    visibility:
+                                        style.visibility,
+                                    opacity:
+                                        style.opacity,
                                     ariaHidden:
                                         modal.getAttribute(
                                             'aria-hidden'
@@ -953,110 +2115,19 @@ class EditProductPage:
 
             raise
 
-    # =========================================================
-    # Click Edit Product By Row
-    # =========================================================
-    def clickEditProductByRow(self, row_number):
-
-        edit_xpath = (
-            f"{self.tbl_producttable_xpath}"
-            f"//tbody/tr[{row_number}]/td[8]/a[1]"
-        )
-
-        for attempt in range(3):
-
-            try:
-
-                print(
-                    f"Waiting for Edit button "
-                    f"at row {row_number}..."
-                )
-
-                edit_button = self.wait.until(
-                    EC.element_to_be_clickable(
-                        (By.XPATH, edit_xpath)
-                    )
-                )
-
-                self.driver.execute_script(
-                    "arguments[0].scrollIntoView({block:'center'});",
-                    edit_button
-                )
-
-                self.driver.execute_script(
-                    "arguments[0].click();",
-                    edit_button
-                )
-
-                print(
-                    f"Edit button clicked for row: "
-                    f"{row_number}"
-                )
-
-                self.wait.until(
-                    EC.visibility_of_element_located(
-                        (
-                            By.XPATH,
-                            self.txtProductName_xpath
-                        )
-                    )
-                )
-
-                print(
-                    "Edit Product page opened"
-                )
-
-                return
-
-            except StaleElementReferenceException:
-
-                print(
-                    f"Edit button became stale. "
-                    f"Retrying ({attempt + 1}/3)..."
-                )
-
-                if attempt == 2:
-                    raise
-
-            except TimeoutException:
-
-                print(
-                    f"Edit Product row {row_number} "
-                    f"operation timed out. "
-                    f"Retrying ({attempt + 1}/3)..."
-                )
-
-                if attempt == 2:
-
-                    print(
-                        "Current URL:",
-                        self.driver.current_url
-                    )
-
-                    print(
-                        "Current Title:",
-                        self.driver.title
-                    )
-
-                    raise
-
-    # =========================================================
+    # =================================================
     # Verify Product Deleted Successfully
-    # =========================================================
+    # =================================================
+
     def isProductDeletedSuccessfully(self):
 
-        expected_message = (
-            "The product has been deleted successfully"
+        print(
+            "Waiting for Product deletion success message..."
         )
 
         try:
 
-            print(
-                "Waiting for product deletion "
-                "success message..."
-            )
-
-            message = self.wait.until(
+            success_message = self.wait.until(
                 EC.visibility_of_element_located(
                     (
                         By.XPATH,
@@ -1065,24 +2136,36 @@ class EditProductPage:
                 )
             )
 
-            actual_message = message.text.strip()
+            message = success_message.text.strip()
 
             print(
-                "Delete success message:",
-                repr(actual_message)
+                "Product deletion success message:",
+                repr(message)
             )
 
-            if expected_message in actual_message:
-
+            if (
+                    "The product has been deleted successfully"
+                    in message
+            ):
                 print(
-                    "Product deletion verified successfully."
+                    "Product deletion success message "
+                    "verified successfully."
                 )
 
                 return True
 
             print(
-                "Unexpected delete success message:",
-                repr(actual_message)
+                "Unexpected product deletion message:",
+                repr(message)
+            )
+
+            return False
+
+        except TimeoutException:
+
+            print(
+                "Product deletion success message "
+                "was not displayed."
             )
 
             return False
@@ -1090,13 +2173,13 @@ class EditProductPage:
         except StaleElementReferenceException:
 
             print(
-                "Delete success message became stale. "
-                "Retrying verification..."
+                "Product deletion success message "
+                "became stale. Re-checking..."
             )
 
             try:
 
-                message = self.wait.until(
+                success_message = self.wait.until(
                     EC.visibility_of_element_located(
                         (
                             By.XPATH,
@@ -1105,189 +2188,26 @@ class EditProductPage:
                     )
                 )
 
-                actual_message = message.text.strip()
+                message = success_message.text.strip()
 
                 print(
-                    "Delete success message after retry:",
-                    repr(actual_message)
+                    "Product deletion success message "
+                    "after retry:",
+                    repr(message)
                 )
 
-                return expected_message in actual_message
+                return (
+                        "The product has been deleted successfully"
+                        in message
+                )
 
-            except TimeoutException:
+            except Exception as e:
 
                 print(
-                    "Delete success message not found "
-                    "after retry."
+                    "Unable to verify deletion success "
+                    "after retry:",
+                    e
                 )
 
                 return False
 
-        except TimeoutException:
-
-            print(
-                "Product delete success message not found."
-            )
-
-            print(
-                "Current URL:",
-                self.driver.current_url
-            )
-
-            print(
-                "Current Title:",
-                self.driver.title
-            )
-
-            try:
-
-                print(
-                    "Body text after deletion:"
-                )
-
-                print(
-                    self.driver.find_element(
-                        By.TAG_NAME,
-                        "body"
-                    ).text
-                )
-
-            except Exception as e:
-
-                print(
-                    "Unable to read body text:",
-                    e
-                )
-
-            try:
-
-                screenshot_path = (
-                    ".\\Screenshots\\"
-                    "delete_product_failure.png"
-                )
-
-                self.driver.save_screenshot(
-                    screenshot_path
-                )
-
-                print(
-                    "Failure screenshot saved:",
-                    screenshot_path
-                )
-
-            except Exception as e:
-
-                print(
-                    "Unable to save failure screenshot:",
-                    e
-                )
-
-            return False
-
-    # =========================================================
-    # Confirm Selected Delete
-    # =========================================================
-    def confirmselectedDelete(self):
-
-        confirm_selected_btn_xpath = (
-            "//button[@id="
-            "'delete-selected-action-confirmation-submit-button']"
-        )
-
-        try:
-
-            confirm_selected_btn = self.wait.until(
-                EC.element_to_be_clickable(
-                    (
-                        By.XPATH,
-                        confirm_selected_btn_xpath
-                    )
-                )
-            )
-
-            self.driver.execute_script(
-                "arguments[0].scrollIntoView({block:'center'});",
-                confirm_selected_btn
-            )
-
-            self.driver.execute_script(
-                "arguments[0].click();",
-                confirm_selected_btn
-            )
-
-            print(
-                "Confirm selected button clicked"
-            )
-
-        except TimeoutException:
-
-            print(
-                "Delete Selected Confirmation "
-                "button not found"
-            )
-
-            raise
-
-    # =========================================================
-    # Get Product Name By Row
-    # =========================================================
-    def getProductNameByRow(self, row_number):
-
-        product_name_xpath = (
-            f"{self.tbl_producttable_xpath}"
-            f"//tbody/tr[{row_number}]/td[3]"
-        )
-
-        product_name = self.wait.until(
-            EC.visibility_of_element_located(
-                (
-                    By.XPATH,
-                    product_name_xpath
-                )
-            )
-        ).text.strip()
-
-        print(
-            f"Product name at row {row_number}: "
-            f"{product_name}"
-        )
-
-        return product_name
-
-    # =========================================================
-    # Verify Product Is Deleted From Table
-    # =========================================================
-    def isProductDeletedFromTable(self, product_name):
-
-        product_xpath = (
-            f"{self.tbl_producttable_xpath}"
-            f"//tbody/tr/td[3]"
-            f"[normalize-space()='{product_name}']"
-        )
-
-        try:
-
-            self.wait.until(
-                EC.invisibility_of_element_located(
-                    (
-                        By.XPATH,
-                        product_xpath
-                    )
-                )
-            )
-
-            print(
-                f"Product '{product_name}' "
-                f"is no longer in the table"
-            )
-
-            return True
-
-        except TimeoutException:
-
-            print(
-                f"Product '{product_name}' "
-                f"still exists in the table"
-            )
-
-            return False

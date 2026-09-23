@@ -1408,42 +1408,17 @@ class BulkEditProductPage:
     def clickBacktoProductsList(self):
 
         print(
-            "\n========== "
-            "BACK TO PRODUCT LIST "
-            "=========="
+            "\n========== BACK TO PRODUCT LIST =========="
         )
 
-        # --------------------------------------------------------
-        # Wait for modal backdrop to disappear
-        # --------------------------------------------------------
-
-        try:
-
-            WebDriverWait(
-                self.driver,
-                10
-            ).until(
-                EC.invisibility_of_element_located(
-                    (
-                        By.CSS_SELECTOR,
-                        ".modal-backdrop"
-                    )
-                )
-            )
-
-        except TimeoutException:
-
-            print(
-                "Modal backdrop still present."
-            )
-
-        # --------------------------------------------------------
-        # Try normal navigation
-        # --------------------------------------------------------
-
-        for attempt in range(3):
+        for attempt in range(1, 4):
 
             try:
+
+                print(
+                    f"Opening Product List "
+                    f"(attempt {attempt}/3)"
+                )
 
                 back_link = self.wait.until(
                     EC.presence_of_element_located(
@@ -1457,51 +1432,76 @@ class BulkEditProductPage:
                 self.jsClick(back_link)
 
                 self.wait.until(
-                    EC.url_contains(
-                        "/Admin/Product/List"
+                    EC.url_contains("/Admin/Product/List")
+                )
+
+                print(
+                    "Product List URL reached:",
+                    self.driver.current_url
+                )
+
+                # ---------------------------------------------
+                # Wait for normal Product List table
+                # ---------------------------------------------
+
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.product_list_table_xpath
+                        )
                     )
                 )
 
                 print(
-                    f"Current URL: "
-                    f"{self.driver.current_url}"
+                    "Product List table is available."
                 )
+
+                # ---------------------------------------------
+                # Wait for DataTables processing to finish
+                # ---------------------------------------------
+
+                try:
+
+                    self.wait.until(
+                        EC.invisibility_of_element_located(
+                            (
+                                By.CSS_SELECTOR,
+                                "#products-grid_processing"
+                            )
+                        )
+                    )
+
+                    print(
+                        "Product List processing completed."
+                    )
+
+                except TimeoutException:
+
+                    print(
+                        "Product List processing indicator "
+                        "was not detected or did not disappear."
+                    )
 
                 return True
 
             except (
-                StaleElementReferenceException,
-                ElementClickInterceptedException,
-                TimeoutException
+                    StaleElementReferenceException,
+                    ElementClickInterceptedException,
+                    TimeoutException
             ):
 
                 print(
                     f"Back navigation retry "
-                    f"{attempt + 1}/3"
+                    f"{attempt}/3"
                 )
 
-                time.sleep(0.5)
+                if attempt < 3:
+                    time.sleep(1)
+                else:
+                    raise
 
-        # --------------------------------------------------------
-        # Fallback navigation
-        # --------------------------------------------------------
-
-        self.driver.get(
-            "https://localhost:59579/Admin/Product/List"
-        )
-
-        self.wait.until(
-            EC.url_contains(
-                "/Admin/Product/List"
-            )
-        )
-
-        print(
-            "Navigated to Product List "
-            "using fallback."
-        )
-
-        return True
+        return False
 
     # ============================================================
     # WAIT FOR PRODUCT IN NORMAL PRODUCT LIST

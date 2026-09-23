@@ -37,9 +37,7 @@ class AddCategory:
         "//input[@id='Name']"
     )
 
-    txtCategoryDesc = (
-        "//div[@role='textbox']"
-    )
+    txtCategoryDesc = "//div[@role='textbox']"
 
     btnSave = (
         "//button[@name='save']"
@@ -385,28 +383,68 @@ class AddCategory:
 
     def setCategoryName(self, category_name):
 
-        print(
-            f"Entering category name: {category_name}"
-        )
+        print(f"Entering category name: {category_name}")
 
-        category_name_field = self.wait.until(
-            EC.visibility_of_element_located(
-                (
-                    By.XPATH,
-                    self.txtCategoryName
+        for attempt in range(1, 4):
+
+            try:
+
+                print(f"Category name entry attempt {attempt}/3")
+
+                category_name_field = self.wait.until(
+                    EC.presence_of_element_located(
+                        (By.ID, "Name")
+                    )
                 )
-            )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block: 'center'});",
+                    category_name_field
+                )
+
+                self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.ID, "Name")
+                    )
+                )
+
+                category_name_field.click()
+                category_name_field.clear()
+                category_name_field.send_keys(category_name)
+
+                # Verify the actual input value
+                actual_value = self.driver.execute_script(
+                    "return arguments[0].value;",
+                    category_name_field
+                )
+
+                print(
+                    f"Category Name DOM value: {actual_value!r}"
+                )
+
+                if actual_value == category_name:
+                    print("Category name entered successfully.")
+                    return True
+
+                print(
+                    "Category name value mismatch. Retrying..."
+                )
+
+            except StaleElementReferenceException:
+
+                print(
+                    "Category Name field became stale. Retrying..."
+                )
+
+            except Exception as e:
+
+                print(
+                    f"Category name entry attempt {attempt} failed: {e}"
+                )
+
+        raise AssertionError(
+            f"Unable to enter category name: {category_name}"
         )
-
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block: 'center'});",
-            category_name_field
-        )
-
-        category_name_field.clear()
-        category_name_field.send_keys(category_name)
-
-        print("Category name entered")
 
     # -------------------------------------------------
     # Enter Category Description
@@ -430,11 +468,44 @@ class AddCategory:
             description_field
         )
 
+        # Click the actual editor container
         description_field.click()
 
-        description_field.send_keys(description)
+        # Set the editor content using JavaScript
+        self.driver.execute_script(
+            """
+            const editor = arguments[0];
+            const text = arguments[1];
+
+            editor.focus();
+
+            editor.innerHTML = '<p>' + text + '</p>';
+
+            editor.dispatchEvent(
+                new InputEvent('input', {
+                    bubbles: true,
+                    inputType: 'insertText',
+                    data: text
+                })
+            );
+
+            editor.dispatchEvent(
+                new Event('change', {
+                    bubbles: true
+                })
+            );
+            """,
+            description_field,
+            description
+        )
 
         print("Category description entered")
+
+        # Verify text was actually inserted
+        print(
+            "Description text:",
+            repr(description_field.text)
+        )
 
     # -------------------------------------------------
     # Save Category
@@ -444,36 +515,266 @@ class AddCategory:
 
         print("\n========== SAVE CATEGORY ==========")
 
-        save_button = self.wait.until(
-            EC.element_to_be_clickable(
-                (
-                    By.XPATH,
-                    self.btnSave
+        try:
+
+            # -------------------------------------------------
+            # Locate Save button
+            # -------------------------------------------------
+
+            save_button = self.wait.until(
+                EC.element_to_be_clickable(
+                    (
+                        By.XPATH,
+                        self.btnSave
+                    )
                 )
             )
-        )
 
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block: 'center'});",
-            save_button
-        )
+            print("Save button found.")
+            print("Save button text:", repr(save_button.text))
+            print("Save button enabled:", save_button.is_enabled())
+            print("Save button displayed:", save_button.is_displayed())
 
-        try:
-            save_button.click()
-
-        except ElementClickInterceptedException:
-
-            print(
-                "Save button click intercepted. "
-                "Using JavaScript click..."
-            )
+            # -------------------------------------------------
+            # Scroll Save button into view
+            # -------------------------------------------------
 
             self.driver.execute_script(
-                "arguments[0].click();",
+                "arguments[0].scrollIntoView({block: 'center'});",
                 save_button
             )
 
-        print("Save button clicked")
+            # -------------------------------------------------
+            # Capture current values before Save
+            # -------------------------------------------------
+
+            name_value = self.driver.find_element(
+                By.ID,
+                "Name"
+            ).get_attribute("value")
+
+            print(
+                "Category Name before Save:",
+                repr(name_value)
+            )
+
+            # -------------------------------------------------
+            # Click Save
+            # -------------------------------------------------
+
+            try:
+
+                save_button.click()
+
+                print(
+                    "Normal Selenium Save click executed"
+                )
+
+            except ElementClickInterceptedException:
+
+                print(
+                    "Save click intercepted. "
+                    "Using JavaScript click..."
+                )
+
+                save_button = self.driver.find_element(
+                    By.XPATH,
+                    self.btnSave
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    save_button
+                )
+
+                print(
+                    "JavaScript Save click executed"
+                )
+
+            # -------------------------------------------------
+            # Give server time to process POST
+            # -------------------------------------------------
+
+            time.sleep(2)
+
+            print(
+                "\n========== AFTER SAVE =========="
+            )
+
+            print(
+                "Current URL:",
+                self.driver.current_url
+            )
+
+            print(
+                "Page title:",
+                self.driver.title
+            )
+
+            # -------------------------------------------------
+            # Check success alerts
+            # -------------------------------------------------
+
+            success_alerts = self.driver.find_elements(
+                By.CSS_SELECTOR,
+                ".alert-success"
+            )
+
+            print(
+                "Success alert count:",
+                len(success_alerts)
+            )
+
+            for alert in success_alerts:
+
+                if alert.is_displayed():
+                    print(
+                        "SUCCESS ALERT:",
+                        repr(alert.text)
+                    )
+
+            # -------------------------------------------------
+            # Check ALL alerts
+            # -------------------------------------------------
+
+            alerts = self.driver.find_elements(
+                By.CSS_SELECTOR,
+                ".alert"
+            )
+
+            print(
+                "Total alert elements:",
+                len(alerts)
+            )
+
+            for alert in alerts:
+
+                if alert.is_displayed():
+                    print(
+                        "ALERT:",
+                        repr(alert.text)
+                    )
+
+            # -------------------------------------------------
+            # Check field validation errors
+            # -------------------------------------------------
+
+            validation_errors = self.driver.find_elements(
+                By.CSS_SELECTOR,
+                ".field-validation-error"
+            )
+
+            print(
+                "Field validation error count:",
+                len(validation_errors)
+            )
+
+            for error in validation_errors:
+
+                if error.is_displayed():
+                    print(
+                        "FIELD VALIDATION ERROR:",
+                        repr(error.text)
+                    )
+
+            # -------------------------------------------------
+            # Check validation summary
+            # -------------------------------------------------
+
+            validation_summaries = self.driver.find_elements(
+                By.CSS_SELECTOR,
+                ".validation-summary-errors"
+            )
+
+            print(
+                "Validation summary count:",
+                len(validation_summaries)
+            )
+
+            for summary in validation_summaries:
+
+                if summary.is_displayed():
+                    print(
+                        "VALIDATION SUMMARY:",
+                        repr(summary.text)
+                    )
+
+            # -------------------------------------------------
+            # Check Category Name value after POST
+            # -------------------------------------------------
+
+            try:
+
+                name_after_save = self.driver.find_element(
+                    By.ID,
+                    "Name"
+                ).get_attribute("value")
+
+                print(
+                    "Category Name after Save:",
+                    repr(name_after_save)
+                )
+
+            except Exception:
+
+                print(
+                    "Category Name field no longer exists."
+                )
+
+            # -------------------------------------------------
+            # Check URL
+            # -------------------------------------------------
+
+            if "/Admin/Category/List" in self.driver.current_url:
+                print(
+                    "Category save navigation completed."
+                )
+
+                return True
+
+            # -------------------------------------------------
+            # Success alert may exist without immediate URL
+            # -------------------------------------------------
+
+            for alert in success_alerts:
+
+                if alert.is_displayed():
+                    print(
+                        "Category save appears successful."
+                    )
+
+                    return True
+
+            # -------------------------------------------------
+            # Save did not complete
+            # -------------------------------------------------
+
+            print(
+                "\nCategory was NOT saved."
+            )
+
+            print(
+                "The page remained on:",
+                self.driver.current_url
+            )
+
+            return False
+
+        except StaleElementReferenceException:
+
+            print(
+                "Save button became stale."
+            )
+
+            return False
+
+        except TimeoutException:
+
+            print(
+                "Timed out locating Save button."
+            )
+
+            return False
 
     # -------------------------------------------------
     # Validate Success Message

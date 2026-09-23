@@ -55,10 +55,15 @@ foreach ($package in $packages) {
 
     if ($package.InstallLocation) {
 
-        Write-Output $package.InstallLocation
+        Write-Output (
+            $package.Version.ToString() + "|" +
+            $package.InstallLocation
+        )
     }
 }
 '''
+
+    candidates = []
 
     try:
 
@@ -77,25 +82,27 @@ foreach ($package in $packages) {
             timeout=15
         )
 
-        install_locations = [
-            line.strip()
-            for line in result.stdout.splitlines()
-            if line.strip()
-        ]
+        # -------------------------------------------------
+        # Read version + installation location
+        # -------------------------------------------------
 
-        print(
-            "Firefox MSIX InstallLocations:"
-        )
+        for line in result.stdout.splitlines():
 
-        for install_location in install_locations:
+            line = line.strip()
 
-            print(
-                install_location
+            if not line or "|" not in line:
+                continue
+
+            version_text, install_location = line.split(
+                "|",
+                1
             )
 
-            # ---------------------------------------------
-            # Known Firefox MSIX executable location
-            # ---------------------------------------------
+            version_text = version_text.strip()
+            install_location = install_location.strip()
+
+            if not install_location:
+                continue
 
             firefox_path = os.path.join(
                 install_location,
@@ -105,25 +112,13 @@ foreach ($package in $packages) {
                 "firefox.exe"
             )
 
-            print(
-                "Checking Firefox executable:"
-            )
-
-            print(
-                firefox_path
-            )
-
-            if os.path.isfile(firefox_path):
-
-                print(
-                    "Firefox MSIX executable found:"
-                )
-
-                print(
+            candidates.append(
+                (
+                    version_text,
+                    install_location,
                     firefox_path
                 )
-
-                return firefox_path
+            )
 
     except subprocess.TimeoutExpired:
 
@@ -140,6 +135,113 @@ foreach ($package in $packages) {
         )
 
     # =====================================================
+    # DISPLAY DISCOVERED MSIX INSTALLATIONS
+    # =====================================================
+
+    print(
+        "========================================"
+    )
+
+    print(
+        "Firefox MSIX installations discovered:"
+    )
+
+    if not candidates:
+
+        print(
+            "No Firefox MSIX installations were discovered."
+        )
+
+    for version, location, firefox_path in candidates:
+
+        print(
+            f"Version: {version}"
+        )
+
+        print(
+            f"Install Location: {location}"
+        )
+
+        print(
+            f"Executable: {firefox_path}"
+        )
+
+        print(
+            f"Executable Exists: "
+            f"{os.path.isfile(firefox_path)}"
+        )
+
+        print(
+            "----------------------------------------"
+        )
+
+    # =====================================================
+    # SORT BY REAL VERSION NUMBER
+    # =====================================================
+
+    def version_key(candidate):
+
+        version_text = candidate[0]
+
+        try:
+
+            return tuple(
+                int(part)
+                for part in version_text.split(".")
+            )
+
+        except ValueError:
+
+            return (0,)
+
+    candidates.sort(
+        key=version_key,
+        reverse=True
+    )
+
+    # =====================================================
+    # SELECT NEWEST VALID FIREFOX EXECUTABLE
+    # =====================================================
+
+    for version, install_location, firefox_path in candidates:
+
+        print(
+            "Checking Firefox executable:"
+        )
+
+        print(
+            f"Version: {version}"
+        )
+
+        print(
+            firefox_path
+        )
+
+        if os.path.isfile(firefox_path):
+
+            print(
+                "========================================"
+            )
+
+            print(
+                "Firefox MSIX executable found:"
+            )
+
+            print(
+                f"Version: {version}"
+            )
+
+            print(
+                firefox_path
+            )
+
+            print(
+                "========================================"
+            )
+
+            return firefox_path
+
+    # =====================================================
     # FALLBACK: SEARCH WINDOWSAPPS
     # =====================================================
 
@@ -152,16 +254,44 @@ foreach ($package in $packages) {
 
         try:
 
-            firefox_folders = sorted(
-                [
-                    folder
-                    for folder in os.listdir(windows_apps)
-                    if folder.lower().startswith(
-                        "mozilla.firefox_"
+            firefox_folders = [
+                folder
+                for folder in os.listdir(windows_apps)
+                if folder.lower().startswith(
+                    "mozilla.firefox_"
+                )
+            ]
+
+            # -------------------------------------------------
+            # Sort folders using numeric version components
+            # -------------------------------------------------
+
+            def folder_version_key(folder):
+
+                try:
+
+                    version_part = folder.split(
+                        "_",
+                        2
+                    )[1]
+
+                    return tuple(
+                        int(part)
+                        for part in version_part.split(".")
                     )
-                ],
+
+                except (IndexError, ValueError):
+
+                    return (0,)
+
+            firefox_folders.sort(
+                key=folder_version_key,
                 reverse=True
             )
+
+            # -------------------------------------------------
+            # Check every candidate
+            # -------------------------------------------------
 
             for folder in firefox_folders:
 
@@ -185,7 +315,8 @@ foreach ($package in $packages) {
                 if os.path.isfile(firefox_path):
 
                     print(
-                        "Firefox executable found using fallback:"
+                        "Firefox executable found "
+                        "using fallback:"
                     )
 
                     print(

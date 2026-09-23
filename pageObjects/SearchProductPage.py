@@ -325,20 +325,113 @@ class SearchProduct:
 
     def setProductName(self, product_name):
 
-        product_name_field = self.wait.until(
-            EC.visibility_of_element_located(
-                (By.XPATH, self.txtproductname_xpath)
-            )
+        print("\n========== SET PRODUCT NAME ==========")
+        print("Entering product name:", product_name)
+
+        for attempt in range(1, 4):
+
+            try:
+
+                product_name_field = self.wait.until(
+                    EC.presence_of_element_located(
+                        (By.XPATH, self.txtproductname_xpath)
+                    )
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    product_name_field
+                )
+
+                self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.XPATH, self.txtproductname_xpath)
+                    )
+                )
+
+                product_name_field.click()
+                product_name_field.clear()
+
+                product_name_field.send_keys(product_name)
+
+                # -------------------------------------------------
+                # Verify actual DOM value
+                # -------------------------------------------------
+
+                actual_value = self.driver.execute_script(
+                    """
+                    const element = arguments[0];
+                    return element ? element.value : '';
+                    """,
+                    product_name_field
+                )
+
+                print(
+                    f"Product Name DOM value "
+                    f"(attempt {attempt}/3):",
+                    repr(actual_value)
+                )
+
+                if actual_value.strip() == product_name.strip():
+                    print(
+                        "Product name entered successfully."
+                    )
+
+                    # -------------------------------------------------
+                    # Notify page JavaScript that the field changed
+                    # -------------------------------------------------
+
+                    self.driver.execute_script(
+                        """
+                        const element = arguments[0];
+
+                        element.dispatchEvent(
+                            new Event('input', {
+                                bubbles: true
+                            })
+                        );
+
+                        element.dispatchEvent(
+                            new Event('change', {
+                                bubbles: true
+                            })
+                        );
+                        """,
+                        product_name_field
+                    )
+
+                    # Remove focus from the field
+                    self.driver.execute_script(
+                        "arguments[0].blur();",
+                        product_name_field
+                    )
+
+                    return True
+
+                print(
+                    "Product name value mismatch. Retrying..."
+                )
+
+            except StaleElementReferenceException:
+
+                print(
+                    f"Product Name field became stale. "
+                    f"Retrying ({attempt}/3)..."
+                )
+
+            except TimeoutException:
+
+                print(
+                    f"Product Name field timeout. "
+                    f"Retrying ({attempt}/3)..."
+                )
+
+            if attempt < 3:
+                time.sleep(1)
+
+        raise AssertionError(
+            f"Unable to enter product name: {product_name}"
         )
-
-        product_name_field.clear()
-        product_name_field.send_keys(product_name)
-
-        print(
-            "Product name entered:",
-            product_name
-        )
-
     # ---------------------------------------------------------
     # Clear Product Name
     # ---------------------------------------------------------
@@ -363,6 +456,27 @@ class SearchProduct:
 
         print("\n========== CLICK SEARCH ==========")
 
+        # ---------------------------------------------------------
+        # Verify search field contains the expected value
+        # ---------------------------------------------------------
+
+        search_field = self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, self.txtproductname_xpath)
+            )
+        )
+
+        search_value_before = search_field.get_attribute("value")
+
+        print(
+            "Product Name before Search:",
+            repr(search_value_before)
+        )
+
+        # ---------------------------------------------------------
+        # Find Search button
+        # ---------------------------------------------------------
+
         search_button = self.wait.until(
             EC.element_to_be_clickable(
                 (By.XPATH, self.btnSearch_xpath)
@@ -374,59 +488,96 @@ class SearchProduct:
             search_button
         )
 
-        self.driver.execute_script(
-            "arguments[0].click();",
-            search_button
+        print(
+            "Search button found."
         )
 
-        print("Search button clicked")
+        print(
+            "Search button text:",
+            repr(search_button.text)
+        )
 
-        # -----------------------------------------------------
-        # Wait for Product List table
-        # -----------------------------------------------------
+        print(
+            "Search button enabled:",
+            search_button.is_enabled()
+        )
 
-        try:
+        # ---------------------------------------------------------
+        # Capture current table state BEFORE search
+        # ---------------------------------------------------------
 
-            self.wait.until(
-                EC.presence_of_element_located(
-                    (
-                        By.XPATH,
-                        self.tbl_producttable_xpath
-                    )
+        rows_xpath = (
+                self.tbl_producttable_xpath
+                + "//tbody//tr"
+        )
+
+        before_rows = self.driver.find_elements(
+            By.XPATH,
+            rows_xpath
+        )
+
+        print(
+            "Rows before Search:",
+            len(before_rows)
+        )
+
+        # ---------------------------------------------------------
+        # IMPORTANT:
+        # Use Selenium click instead of JavaScript click.
+        # ---------------------------------------------------------
+
+        search_button.click()
+
+        print(
+            "Search button clicked using Selenium."
+        )
+
+        # ---------------------------------------------------------
+        # Wait until table is present
+        # ---------------------------------------------------------
+
+        self.wait.until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    self.tbl_producttable_xpath
                 )
             )
-
-            print("Product table found")
-
-        except TimeoutException:
-
-            print(
-                "Product table was not found after search"
-            )
-
-            print(
-                "Current URL:",
-                self.driver.current_url
-            )
-
-            print(
-                "Current Title:",
-                self.driver.title
-            )
-
-            raise
-
-        # -----------------------------------------------------
-        # DataTables processing
-        # -----------------------------------------------------
-
-        processing_xpath = (
-            self.tbl_producttable_xpath
-            + "//ancestor::div[contains(@class,"
-              "'dataTables_wrapper')]"
-            + "//div[contains(@class,"
-              "'dataTables_processing')]"
         )
+
+        print(
+            "Product table found after Search."
+        )
+
+        # ---------------------------------------------------------
+        # Give the DataTables request a chance to start.
+        #
+        # Do NOT require the processing indicator because it can
+        # appear and disappear too quickly.
+        # ---------------------------------------------------------
+
+        time.sleep(0.5)
+
+        # ---------------------------------------------------------
+        # Wait until tbody exists
+        # ---------------------------------------------------------
+
+        self.wait.until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    self.tbl_producttable_xpath
+                    + "//tbody"
+                )
+            )
+        )
+
+        # ---------------------------------------------------------
+        # Wait for table to settle.
+        #
+        # We deliberately do NOT require a row-count change.
+        # A valid search can return the same number of rows.
+        # ---------------------------------------------------------
 
         try:
 
@@ -434,91 +585,98 @@ class SearchProduct:
                 self.driver,
                 5
             ).until(
-                EC.visibility_of_element_located(
-                    (
-                        By.XPATH,
-                        processing_xpath
-                    )
+                lambda driver: (
+                        driver.find_elements(
+                            By.XPATH,
+                            rows_xpath
+                        )
+                        is not None
                 )
-            )
-
-            print(
-                "DataTables processing started"
-            )
-
-            WebDriverWait(
-                self.driver,
-                20
-            ).until(
-                EC.invisibility_of_element_located(
-                    (
-                        By.XPATH,
-                        processing_xpath
-                    )
-                )
-            )
-
-            print(
-                "DataTables processing completed"
             )
 
         except TimeoutException:
 
             print(
-                "DataTables processing indicator "
-                "was not observed"
+                "Table stabilization wait timed out."
             )
 
-        # -----------------------------------------------------
-        # IMPORTANT
-        #
-        # Do NOT require an actual product row.
-        #
-        # A valid search may return:
-        #
-        # No data available in table
-        #
-        # which is itself rendered as a table row.
-        # -----------------------------------------------------
+        # ---------------------------------------------------------
+        # Check processing indicator AFTER search.
+        # It may already be gone.
+        # ---------------------------------------------------------
 
-        tbody_xpath = (
-            self.tbl_producttable_xpath
-            + "//tbody"
+        processing_xpath = (
+                self.tbl_producttable_xpath
+                + "//ancestor::div[contains(@class,"
+                  "'dataTables_wrapper')]"
+                + "//div[contains(@class,"
+                  "'dataTables_processing')]"
         )
 
         try:
 
-            self.wait.until(
-                EC.presence_of_element_located(
-                    (
-                        By.XPATH,
-                        tbody_xpath
+            processing_elements = self.driver.find_elements(
+                By.XPATH,
+                processing_xpath
+            )
+
+            processing_visible = any(
+                element.is_displayed()
+                for element in processing_elements
+            )
+
+            print(
+                "DataTables processing visible:",
+                processing_visible
+            )
+
+            if processing_visible:
+
+                WebDriverWait(
+                    self.driver,
+                    20
+                ).until(
+                    EC.invisibility_of_element_located(
+                        (
+                            By.XPATH,
+                            processing_xpath
+                        )
                     )
                 )
-            )
+
+                print(
+                    "DataTables processing completed."
+                )
+
+            else:
+
+                print(
+                    "DataTables processing already completed "
+                    "or was too fast to observe."
+                )
+
+        except (
+                TimeoutException,
+                StaleElementReferenceException
+        ):
 
             print(
-                "Product table tbody rendered"
+                "Processing indicator could not be verified."
             )
 
-        except TimeoutException:
-
-            print(
-                "Product table tbody was not rendered"
-            )
-
-            raise
-
-        # -----------------------------------------------------
-        # Print table state for debugging
-        # -----------------------------------------------------
+        # ---------------------------------------------------------
+        # Read final table
+        # ---------------------------------------------------------
 
         try:
 
             rows = self.driver.find_elements(
                 By.XPATH,
-                self.tbl_producttable_xpath
-                + "//tbody//tr"
+                rows_xpath
+            )
+
+            print(
+                "\n========== SEARCH RESULT TABLE =========="
             )
 
             print(
@@ -527,15 +685,17 @@ class SearchProduct:
             )
 
             for index, row in enumerate(
-                rows,
-                start=1
+                    rows,
+                    start=1
             ):
 
                 try:
 
+                    row_text = row.text.strip()
+
                     print(
                         f"Search Row {index}:",
-                        row.text.strip()
+                        row_text
                     )
 
                 except StaleElementReferenceException:
@@ -544,18 +704,23 @@ class SearchProduct:
                         f"Search Row {index}: STALE"
                     )
 
+            print(
+                "========== END SEARCH RESULT TABLE ==========\n"
+            )
+
         except Exception as e:
 
             print(
-                "Unable to inspect search rows:",
+                "Unable to inspect search result table:",
                 type(e).__name__,
                 str(e)
             )
 
-        print(
-            "Search results table loaded"
-        )
+            raise
 
+        print(
+            "Search results table loaded."
+        )
     # =========================================================
     # PRODUCT PRESENT
     # =========================================================
@@ -619,8 +784,11 @@ class SearchProduct:
                         if len(cells) < 3:
                             continue
 
-                        actual_product_name = (
-                            cells[2].text.strip()
+                        actual_product_name = cells[2].text.strip()
+
+                        print(
+                            f"Product column value: "
+                            f"{actual_product_name!r}"
                         )
 
                         actual_product_name_normalized = (
