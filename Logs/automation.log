@@ -21343,3 +21343,18 @@ The new customer has been added successfully.
 09/23/2026 10:52:27 AM: INFO: ********Starting_SearchVendor_Role_025******
 09/23/2026 10:52:31 AM: INFO: Normal table customer count: 15
 09/23/2026 10:52:32 AM: INFO: Vendor search result count: 0
+09/23/2026 03:18:04 PM: INFO: **********Test_002_DDT_Login********
+09/23/2026 03:18:04 PM: INFO: ********Verify Login DDT Test********
+09/23/2026 03:18:17 PM: INFO: Row 2: *****Test Passed*****
+09/23/2026 03:18:48 PM: INFO: Row 3: *****Test Passed*****
+09/23/2026 03:18:51 PM: INFO: Row 4: *****Test Passed*****
+09/23/2026 03:18:54 PM: INFO: Row 5: *****Test Passed*****
+09/23/2026 03:19:00 PM: INFO: Row 6: *****Test Passed*****
+09/23/2026 03:19:00 PM: INFO: ****Login DDT Test Passed****
+09/23/2026 03:19:00 PM: INFO: ****End of Login DDT Test****
+09/23/2026 03:19:00 PM: INFO: *****Completed TC_LoginDDT_002******
+09/23/2026 03:53:40 PM: INFO: *****SearchVendorByName_013*****
+09/23/2026 03:53:53 PM: INFO: ***********Login Successful**********
+09/23/2026 03:53:53 PM: INFO: **********Starting SearchVendorByName_013**********
+09/23/2026 03:53:59 PM: INFO: ******** searching vendor by Email***********
+09/23/2026 03:54:05 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
