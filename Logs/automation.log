@@ -21406,3 +21406,174 @@ The new customer has been added successfully.
 09/24/2026 06:10:18 PM: INFO: ***** Login Successful *****
 09/24/2026 06:10:18 PM: INFO: ***** Starting Search Category Publish = Unpublished Only Test *****
 09/24/2026 06:10:22 PM: INFO: ***** No unpublished categories exist. No data available in table displayed. *****
+09/24/2026 07:33:42 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 07:33:53 PM: INFO: ***** Login Successful *****
+09/24/2026 07:33:53 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 07:33:56 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 07:33:56 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 07:39:26 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 07:39:30 PM: INFO: ***** Login Successful *****
+09/24/2026 07:39:30 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 07:39:33 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 07:39:33 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 07:40:57 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 07:41:04 PM: INFO: ***** Login Successful *****
+09/24/2026 07:41:04 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 07:41:06 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 07:41:06 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 07:41:06 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 07:41:06 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 07:42:51 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 07:42:57 PM: INFO: ***** Login Successful *****
+09/24/2026 07:42:57 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 07:43:00 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 07:43:00 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 07:43:00 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 07:43:00 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 07:44:44 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 07:44:49 PM: INFO: ***** Login Successful *****
+09/24/2026 07:44:49 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 07:44:52 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 07:44:52 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 07:44:52 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 07:44:52 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 07:46:19 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 07:46:24 PM: INFO: ***** Login Successful *****
+09/24/2026 07:46:24 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 07:46:26 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 07:46:26 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 07:46:26 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 07:46:26 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 07:48:07 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 07:48:13 PM: INFO: ***** Login Successful *****
+09/24/2026 07:48:13 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 07:48:15 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 07:48:15 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 07:48:15 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 07:48:15 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 07:48:18 PM: INFO: ***** Export Category to XML clicked *****
+09/24/2026 07:55:28 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 07:55:35 PM: INFO: ***** Login Successful *****
+09/24/2026 07:55:35 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 07:55:38 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 07:55:38 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 07:55:38 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 07:55:38 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 07:55:42 PM: INFO: ***** Export Category to XML clicked *****
+09/24/2026 07:57:49 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 07:57:55 PM: INFO: ***** Login Successful *****
+09/24/2026 07:57:55 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 07:57:57 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 07:57:57 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 07:57:57 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 07:57:57 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 07:57:58 PM: INFO: ***** Export Category to XML clicked *****
+09/24/2026 08:12:32 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 08:12:36 PM: INFO: ***** Login Successful *****
+09/24/2026 08:12:36 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 08:12:39 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 08:12:39 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 08:12:39 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 08:12:39 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 08:12:39 PM: INFO: ***** Export Category to XML clicked *****
+09/24/2026 08:12:41 PM: INFO: ***** Category XML file downloaded successfully: categories.xml *****
+09/24/2026 08:14:25 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 08:14:29 PM: INFO: ***** Login Successful *****
+09/24/2026 08:14:29 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 08:14:33 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 08:14:33 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 08:14:33 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 08:14:33 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 08:14:34 PM: INFO: ***** Export Category to XML clicked *****
+09/24/2026 08:14:36 PM: INFO: ***** Category XML file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\categories.xml *****
+09/24/2026 08:14:36 PM: INFO: ***** Test_ExportCategory_XML_055 Passed *****
+09/24/2026 08:16:08 PM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/24/2026 08:16:13 PM: INFO: ***** Login Successful *****
+09/24/2026 08:16:13 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 08:16:15 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 08:16:15 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 08:16:15 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 08:16:15 PM: INFO: ***** Starting Category XML Export *****
+09/24/2026 08:16:21 PM: INFO: ***** Export Category to XML clicked *****
+09/24/2026 08:16:22 PM: INFO: ***** Category XML file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\categories.xml *****
+09/24/2026 08:16:22 PM: INFO: ***** Test_ExportCategory_XML_055 Passed *****
+09/24/2026 08:20:52 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 08:20:58 PM: INFO: ***** Login Successful *****
+09/24/2026 08:20:58 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 08:21:00 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 08:21:00 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 08:21:00 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 08:21:00 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 08:21:01 PM: INFO: ***** Export Category to Excel clicked *****
+09/24/2026 08:25:52 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 08:25:58 PM: INFO: ***** Login Successful *****
+09/24/2026 08:25:58 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 08:26:00 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 08:26:00 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 08:26:00 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 08:26:00 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 08:26:01 PM: INFO: ***** Export Category to Excel clicked *****
+09/24/2026 08:26:03 PM: INFO: ***** Category Excel file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\categories.xlsx *****
+09/24/2026 08:26:03 PM: INFO: ***** Test_ExportCategory_Excel_056 Passed *****
+09/24/2026 08:26:48 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 08:26:56 PM: INFO: ***** Login Successful *****
+09/24/2026 08:26:56 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 08:27:00 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 08:27:00 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 08:27:00 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 08:27:00 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 08:28:36 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 08:28:42 PM: INFO: ***** Login Successful *****
+09/24/2026 08:28:42 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 08:28:48 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 08:28:48 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 08:28:48 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 08:28:48 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 08:31:23 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 08:31:30 PM: INFO: ***** Login Successful *****
+09/24/2026 08:31:30 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 08:31:31 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 08:31:31 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 08:31:31 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 08:31:31 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 08:33:52 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 08:33:58 PM: INFO: ***** Login Successful *****
+09/24/2026 08:33:58 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 08:34:00 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 08:34:00 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 08:34:00 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 08:34:00 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 09:02:30 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 09:03:00 PM: INFO: ***** Login Successful *****
+09/24/2026 09:03:00 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 09:03:05 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 09:03:05 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 09:03:05 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 09:03:05 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 09:08:25 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 09:09:05 PM: INFO: ***** Login Successful *****
+09/24/2026 09:09:05 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 09:09:11 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 09:09:11 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 09:09:11 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 09:09:11 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 09:12:28 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 09:12:46 PM: INFO: ***** Login Successful *****
+09/24/2026 09:12:46 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 09:12:53 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 09:12:53 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 09:12:53 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 09:12:53 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 09:12:54 PM: INFO: ***** Export Category to Excel clicked *****
+09/24/2026 09:12:58 PM: INFO: ***** Category Excel file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\categories.xlsx *****
+09/24/2026 09:12:58 PM: INFO: ***** Test_ExportCategory_Excel_056 Passed *****
+09/24/2026 09:15:40 PM: INFO: ***** Test_ExportCategory_Excel_056 Started *****
+09/24/2026 09:15:45 PM: INFO: ***** Login Successful *****
+09/24/2026 09:15:45 PM: INFO: ***** Navigating to Categories *****
+09/24/2026 09:15:49 PM: INFO: ***** Categories Page Opened *****
+09/24/2026 09:15:49 PM: INFO: ***** Clearing previous downloaded files *****
+09/24/2026 09:15:49 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/24/2026 09:15:49 PM: INFO: ***** Starting Category Excel Export *****
+09/24/2026 09:15:49 PM: INFO: ***** Export Category to Excel clicked *****
+09/24/2026 09:15:51 PM: INFO: ***** Category Excel file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\categories.xlsx *****
+09/24/2026 09:15:51 PM: INFO: ***** Test_ExportCategory_Excel_056 Passed *****
