@@ -21358,3 +21358,51 @@ The new customer has been added successfully.
 09/23/2026 03:53:53 PM: INFO: **********Starting SearchVendorByName_013**********
 09/23/2026 03:53:59 PM: INFO: ******** searching vendor by Email***********
 09/23/2026 03:54:05 PM: INFO: ********TC_SearchvendorrByEmail_014 Finished**********
+09/24/2026 11:49:34 AM: INFO: ***** Test_SearchCategoryByName_051 *****
+09/24/2026 11:49:50 AM: INFO: ***** Login Successful *****
+09/24/2026 11:49:50 AM: INFO: ***** Starting Search Category By Name Test *****
+09/24/2026 11:49:55 AM: INFO: ***** Category selected for search: Test Category 3583 *****
+09/24/2026 11:49:56 AM: INFO: ***** Category 'Test Category 3583' found successfully *****
+09/24/2026 11:50:59 AM: INFO: ***** Test_SearchCategoryByName_051 *****
+09/24/2026 11:51:07 AM: INFO: ***** Login Successful *****
+09/24/2026 11:51:07 AM: INFO: ***** Starting Search Category By Name Test *****
+09/24/2026 11:51:56 AM: INFO: ***** Test_SearchCategoryByName_051 *****
+09/24/2026 11:52:01 AM: INFO: ***** Login Successful *****
+09/24/2026 11:52:01 AM: INFO: ***** Starting Search Category By Name Test *****
+09/24/2026 11:58:16 AM: INFO: ***** Test_SearchCategoryByName_051 *****
+09/24/2026 11:58:21 AM: INFO: ***** Login Successful *****
+09/24/2026 11:58:21 AM: INFO: ***** Starting Search Category By Name Test *****
+09/24/2026 11:58:27 AM: INFO: ***** Category selected for search: Test Category 3583 *****
+09/24/2026 11:58:28 AM: INFO: ***** Category 'Test Category 3583' found successfully *****
+09/24/2026 12:02:44 PM: INFO: ***** Test_SearchCategoryByName_051 *****
+09/24/2026 12:02:49 PM: INFO: ***** Login Successful *****
+09/24/2026 12:02:49 PM: INFO: ***** Starting Search Category By Name Test *****
+09/24/2026 12:02:53 PM: INFO: ***** Category selected for search: Test Category 3583 *****
+09/24/2026 12:02:54 PM: INFO: ***** Category 'Test Category 3583' found successfully *****
+09/24/2026 05:23:55 PM: INFO: ***** Test_SearchCategoryPublish_All_052 *****
+09/24/2026 05:24:05 PM: INFO: ***** Login Successful *****
+09/24/2026 05:24:05 PM: INFO: ***** Starting Search Category Publish = All Test *****
+09/24/2026 05:28:29 PM: INFO: ***** Test_SearchCategoryPublish_All_052 *****
+09/24/2026 05:28:36 PM: INFO: ***** Login Successful *****
+09/24/2026 05:28:36 PM: INFO: ***** Starting Search Category Publish = All Test *****
+09/24/2026 05:28:39 PM: INFO: ***** Published = All returned 15 category rows *****
+09/24/2026 05:29:40 PM: INFO: ***** Test_SearchCategoryPublish_All_052 *****
+09/24/2026 05:29:45 PM: INFO: ***** Login Successful *****
+09/24/2026 05:29:45 PM: INFO: ***** Starting Search Category Publish = All Test *****
+09/24/2026 05:29:51 PM: INFO: ***** Published = All returned 15 category rows *****
+09/24/2026 05:34:40 PM: INFO: ***** Test_SearchCategoryPublish_Published_053 *****
+09/24/2026 05:34:44 PM: INFO: ***** Login Successful *****
+09/24/2026 05:34:44 PM: INFO: ***** Starting Search Category Publish = All Test *****
+09/24/2026 05:34:50 PM: INFO: ***** Published = Published Only  returned 15 category rows *****
+09/24/2026 06:02:35 PM: INFO: ***** Test_SearchCategoryPublish_Published_053 *****
+09/24/2026 06:02:41 PM: INFO: ***** Login Successful *****
+09/24/2026 06:02:41 PM: INFO: ***** Starting Search Category Publish = All Test *****
+09/24/2026 06:02:48 PM: INFO: ***** Published = Published Only  returned 15 category rows *****
+09/24/2026 06:09:07 PM: INFO: ***** Test_SearchCategoryPublish_Unpublished_054 *****
+09/24/2026 06:09:11 PM: INFO: ***** Login Successful *****
+09/24/2026 06:09:11 PM: INFO: ***** Starting Search Category Publish = Unpublished Only Test *****
+09/24/2026 06:09:16 PM: INFO: ***** No unpublished categories exist. No data available in table displayed. *****
+09/24/2026 06:10:13 PM: INFO: ***** Test_SearchCategoryPublish_Unpublished_054 *****
+09/24/2026 06:10:18 PM: INFO: ***** Login Successful *****
+09/24/2026 06:10:18 PM: INFO: ***** Starting Search Category Publish = Unpublished Only Test *****
+09/24/2026 06:10:22 PM: INFO: ***** No unpublished categories exist. No data available in table displayed. *****

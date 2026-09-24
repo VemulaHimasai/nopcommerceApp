@@ -960,3 +960,58 @@ class SearchCategory:
             print("Current URL:", self.driver.current_url)
             print("Page title:", self.driver.title)
             return None
+
+    def getCategoryRowCount(self):
+
+        rows_xpath = (
+            "//table[@id='categories-grid']"
+            "//tbody//tr"
+        )
+
+        try:
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (By.XPATH, self.tblcategory)
+                )
+            )
+
+            rows = self.driver.find_elements(
+                By.XPATH,
+                rows_xpath
+            )
+
+            valid_row_count = 0
+
+            for row in rows:
+                try:
+                    cells = row.find_elements(
+                        By.TAG_NAME,
+                        "td"
+                    )
+
+                    if len(cells) < 2:
+                        continue
+
+                    category_name = cells[1].text.strip()
+
+                    if not category_name:
+                        continue
+
+                    if "No data available in table" in category_name:
+                        continue
+
+                    valid_row_count += 1
+
+                except StaleElementReferenceException:
+                    continue
+
+            print(
+                "Valid category rows found:",
+                valid_row_count
+            )
+
+            return valid_row_count
+
+        except TimeoutException:
+            print("Category table was not found.")
+            return 0
