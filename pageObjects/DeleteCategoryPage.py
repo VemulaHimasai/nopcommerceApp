@@ -89,18 +89,22 @@ class DeleteCategory:
             )
 
             # -------------------------------------------------
-            # Wait for DataTables loading row to disappear
+            # Wait until real category rows are loaded
             # -------------------------------------------------
 
             try:
 
                 self.wait.until(
-                    EC.invisibility_of_element_located(
+                    lambda driver: any(
                         (
+                                "loading..." not in
+                                " ".join(row.text.split()).lower()
+                                and
+                                row.text.strip()
+                        )
+                        for row in driver.find_elements(
                             By.XPATH,
-                            "//table[@id='categories-grid']"
-                            "//tbody//tr"
-                            "[normalize-space()='Loading...']"
+                            self.category_rows_xpath
                         )
                     )
                 )
@@ -108,9 +112,49 @@ class DeleteCategory:
             except TimeoutException:
 
                 print(
-                    "Loading row did not disappear "
+                    "Category rows did not load "
                     "within the expected time."
                 )
+
+                # Try refreshing the current Categories page
+                # before giving up on this page.
+
+                self.driver.refresh()
+
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.categories_table_xpath
+                        )
+                    )
+                )
+
+                try:
+
+                    self.wait.until(
+                        lambda driver: any(
+                            (
+                                    "loading..." not in
+                                    " ".join(row.text.split()).lower()
+                                    and
+                                    row.text.strip()
+                            )
+                            for row in driver.find_elements(
+                                By.XPATH,
+                                self.category_rows_xpath
+                            )
+                        )
+                    )
+
+                except TimeoutException:
+
+                    print(
+                        "Category rows still not loaded "
+                        "after refresh."
+                    )
+
+                    continue
 
             # -------------------------------------------------
             # Get current page rows
@@ -127,7 +171,7 @@ class DeleteCategory:
             )
 
             # -------------------------------------------------
-            # Check current page
+            # Search current page
             # -------------------------------------------------
 
             for index, row in enumerate(
@@ -146,13 +190,10 @@ class DeleteCategory:
                         f"{row_text!r}"
                     )
 
-                    # Ignore DataTables loading row
-                    if row_text.lower() == "loading...":
-                        print(
-                            f"ROW {index}: "
-                            f"DataTables still loading."
-                        )
+                    if not row_text:
+                        continue
 
+                    if row_text.lower() == "loading...":
                         continue
 
                     if expected_name in row_text.lower():
@@ -173,17 +214,13 @@ class DeleteCategory:
 
                     continue
 
-            # -------------------------------------------------
-            # Category not found on current page
-            # -------------------------------------------------
-
             print(
                 f"Category not found on "
                 f"page {page}."
             )
 
             # -------------------------------------------------
-            # Check whether Next is available
+            # Check Next button
             # -------------------------------------------------
 
             next_buttons = self.driver.find_elements(
@@ -213,10 +250,6 @@ class DeleteCategory:
                     f"{next_class!r}"
                 )
 
-                # -------------------------------------------------
-                # Stop if Next is disabled
-                # -------------------------------------------------
-
                 if "disabled" in next_class.lower():
                     print(
                         "Next button is disabled. "
@@ -224,6 +257,21 @@ class DeleteCategory:
                     )
 
                     break
+
+                # Save current row text so we can detect
+                # that DataTables actually changed pages.
+
+                old_first_row_text = ""
+
+                if rows:
+
+                    try:
+                        old_first_row_text = " ".join(
+                            rows[0].text.split()
+                        ).strip()
+
+                    except StaleElementReferenceException:
+                        pass
 
             except StaleElementReferenceException:
 
@@ -234,13 +282,44 @@ class DeleteCategory:
                 continue
 
             # -------------------------------------------------
-            # Move to next page
+            # Click Next
             # -------------------------------------------------
 
             self.clickNextPage()
 
-            # Give DataTables time to refresh
-            time.sleep(1)
+            # -------------------------------------------------
+            # Wait for DataTables to refresh
+            # -------------------------------------------------
+
+            try:
+
+                self.wait.until(
+                    lambda driver: (
+                        any(
+                            (
+                                    "loading..." not in
+                                    " ".join(row.text.split()).lower()
+                                    and
+                                    row.text.strip()
+                            )
+                            for row in driver.find_elements(
+                                By.XPATH,
+                                self.category_rows_xpath
+                            )
+                        )
+                    )
+                )
+
+            except TimeoutException:
+
+                print(
+                    "New category page did not finish "
+                    "loading within the expected time."
+                )
+
+                continue
+
+            time.sleep(0.5)
 
         raise AssertionError(
             f"Category not found after searching "
