@@ -1276,6 +1276,7 @@ class EditProductPage:
     # Verify Product Deleted From Product Table
     # =================================================
 
+
     def isProductDeletedFromTable(self, product_name):
 
         print(
@@ -1283,9 +1284,16 @@ class EditProductPage:
             f"'{product_name}' is deleted from the table..."
         )
 
+        expected_product = " ".join(
+            product_name.split()
+        ).strip().lower()
+
         try:
 
-            # Wait until Product List table is available
+            # -------------------------------------------------
+            # Wait for Product List table
+            # -------------------------------------------------
+
             self.wait.until(
                 EC.presence_of_element_located(
                     (
@@ -1295,74 +1303,68 @@ class EditProductPage:
                 )
             )
 
-            # Give DataTables a moment to refresh after deletion
-            time.sleep(1)
+            # -------------------------------------------------
+            # Wait until the exact product disappears
+            # -------------------------------------------------
 
-            rows = self.driver.find_elements(
-                By.XPATH,
-                "//table[@id='products-grid']"
-                "//tbody/tr"
-            )
+            def product_is_removed(driver):
 
-            print(
-                f"Number of product rows after deletion: "
-                f"{len(rows)}"
-            )
+                rows = driver.find_elements(
+                    By.XPATH,
+                    "//table[@id='products-grid']"
+                    "//tbody/tr"
+                )
 
-            for index, row in enumerate(
-                    rows,
-                    start=1
-            ):
+                print(
+                    f"Checking product table. "
+                    f"Rows currently displayed: {len(rows)}"
+                )
 
-                try:
+                for index, row in enumerate(
+                        rows,
+                        start=1
+                ):
 
-                    row_text = row.text.strip()
+                    try:
 
-                    print(
-                        f"Product row {index}: "
-                        f"{repr(row_text)}"
-                    )
+                        row_text = " ".join(
+                            row.text.split()
+                        ).strip().lower()
 
-                    if product_name.strip().lower() in (
-                            row_text.lower()
-                    ):
                         print(
-                            f"Product '{product_name}' "
-                            f"is still present in the table."
+                            f"Product row {index}: "
+                            f"{row_text!r}"
                         )
 
-                        return False
-
-                except StaleElementReferenceException:
-
-                    print(
-                        f"Product row {index} became stale. "
-                        "Re-reading table..."
-                    )
-
-                    rows = self.driver.find_elements(
-                        By.XPATH,
-                        "//table[@id='products-grid']"
-                        "//tbody/tr"
-                    )
-
-                    for retry_row in rows:
-
-                        if product_name.strip().lower() in (
-                                retry_row.text.strip().lower()
-                        ):
+                        if expected_product in row_text:
                             print(
                                 f"Product '{product_name}' "
-                                "is still present after retry."
+                                f"is still present."
                             )
 
                             return False
 
-                    break
+                    except StaleElementReferenceException:
+
+                        print(
+                            f"Product row {index} became stale. "
+                            "Waiting for grid refresh..."
+                        )
+
+                        return False
+
+                print(
+                    f"Product '{product_name}' "
+                    "is no longer present in the table."
+                )
+
+                return True
+
+            self.wait.until(product_is_removed)
 
             print(
                 f"Product '{product_name}' "
-                "is no longer in the table."
+                "was successfully removed from the table."
             )
 
             return True
@@ -1370,8 +1372,9 @@ class EditProductPage:
         except TimeoutException:
 
             print(
-                "Product table was not available "
-                "after deletion."
+                f"Product '{product_name}' "
+                "was still present after waiting for the "
+                "Product List to refresh."
             )
 
             print(
@@ -1379,7 +1382,47 @@ class EditProductPage:
                 self.driver.current_url
             )
 
+            # Final diagnostic check
+            try:
+
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    "//table[@id='products-grid']"
+                    "//tbody/tr"
+                )
+
+                print(
+                    f"Final product row count: {len(rows)}"
+                )
+
+                for index, row in enumerate(
+                        rows,
+                        start=1
+                ):
+
+                    try:
+
+                        print(
+                            f"Final row {index}: "
+                            f"{row.text.strip()!r}"
+                        )
+
+                    except StaleElementReferenceException:
+
+                        print(
+                            f"Final row {index} became stale."
+                        )
+
+            except Exception as diagnostic_error:
+
+                print(
+                    "Unable to perform final table diagnostic:",
+                    diagnostic_error
+                )
+
             return False
+
+
 
     # =================================================
     # Delete Product Button
