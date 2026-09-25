@@ -80,33 +80,130 @@ class OnlineCustomersPage:
 
     def clickonOnlineCustomerMenuItem(self):
 
-        online_customers_menu_item = self.wait.until(
-            EC.element_to_be_clickable(
-                (
-                    By.XPATH,
-                    self.lnkonlinecustomers_menuitem_xpath
+        print(
+            "\n========== OPEN ONLINE CUSTOMERS =========="
+        )
+
+        menu_item_xpath = (
+            "//a[@href='/Admin/OnlineCustomer/List']"
+        )
+
+        for attempt in range(1, 4):
+
+            try:
+
+                print(
+                    f"Waiting for Online Customers menu "
+                    f"(attempt {attempt}/3)..."
                 )
-            )
-        )
 
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});",
-            online_customers_menu_item
-        )
+                # -------------------------------------------------
+                # Wait until element exists
+                # -------------------------------------------------
 
-        self.driver.execute_script(
-            "arguments[0].click();",
-            online_customers_menu_item
-        )
-
-        # Wait for Online Customers table
-        self.wait.until(
-            EC.presence_of_element_located(
-                (
-                    By.XPATH,
-                    self.table_xpath
+                menu_item = self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            menu_item_xpath
+                        )
+                    )
                 )
-            )
+
+                print(
+                    "Online Customers menu item found."
+                )
+
+                # -------------------------------------------------
+                # Scroll into view
+                # -------------------------------------------------
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    menu_item
+                )
+
+                time.sleep(0.5)
+
+                # -------------------------------------------------
+                # Verify element is displayed
+                # -------------------------------------------------
+
+                if not menu_item.is_displayed():
+                    print(
+                        "Online Customers menu item is not "
+                        "displayed yet."
+                    )
+
+                    continue
+
+                # -------------------------------------------------
+                # Click using JavaScript
+                # -------------------------------------------------
+
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    menu_item
+                )
+
+                print(
+                    "Online Customers menu item clicked."
+                )
+
+                # -------------------------------------------------
+                # Wait for URL
+                # -------------------------------------------------
+
+                self.wait.until(
+                    EC.url_contains(
+                        "/Admin/OnlineCustomer/List"
+                    )
+                )
+
+                print(
+                    "Online Customers page URL confirmed."
+                )
+
+                # -------------------------------------------------
+                # Wait for table
+                # -------------------------------------------------
+
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.table_xpath
+                        )
+                    )
+                )
+
+                print(
+                    "Online Customers table loaded successfully."
+                )
+
+                return True
+
+            except (
+                    StaleElementReferenceException,
+                    TimeoutException
+            ) as exc:
+
+                print(
+                    f"Unable to open Online Customers "
+                    f"on attempt {attempt}: {exc}"
+                )
+
+                if attempt < 3:
+                    time.sleep(1)
+
+        raise AssertionError(
+            "Unable to open Online Customers page "
+            "after 3 attempts."
         )
 
     # -------------------------------------------------
