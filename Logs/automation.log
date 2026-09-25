@@ -21591,3 +21591,64 @@ The new customer has been added successfully.
 09/25/2026 12:31:24 PM: INFO: *****Login Successful******
 09/25/2026 12:31:24 PM: INFO: *****Starting Delete Selected Product test*****
 09/25/2026 12:31:33 PM: INFO: ***** Product 'Test Product 9153' was deleted successfully *****
+09/25/2026 01:51:29 PM: INFO: *****SearchCustomer_Role_Vendors_025*****
+09/25/2026 01:51:37 PM: INFO: ***********Login Successful**********
+09/25/2026 01:51:37 PM: INFO: ********Starting_SearchVendor_Role_025******
+09/25/2026 01:51:40 PM: INFO: Normal table customer count: 15
+09/25/2026 01:51:40 PM: INFO: Vendor search result count: 0
+09/25/2026 01:53:05 PM: INFO: ******* SearchCustomerByName_005 *********
+09/25/2026 01:53:11 PM: INFO: *********** Login Successful **********
+09/25/2026 01:53:11 PM: INFO: ********** Starting SearchCustomerByName_005 **********
+09/25/2026 01:53:13 PM: INFO: ******** Customers page opened ********
+09/25/2026 01:53:13 PM: INFO: ******** Searching customer by Name ***********
+09/25/2026 01:53:15 PM: INFO: ******** TC_SearchCustomerByName_005 Finished **********
+09/25/2026 05:08:11 PM: INFO: *****Test_DeleteCategory_Selected_057*****
+09/25/2026 05:08:24 PM: INFO: *****Login Successful******
+09/25/2026 05:08:24 PM: INFO: *****Starting Delete Selected Category test*****
+09/25/2026 05:08:30 PM: INFO: *****Categories page opened*****
+09/25/2026 05:09:45 PM: INFO: *****Test_DeleteCategory_Selected_057*****
+09/25/2026 05:09:53 PM: INFO: *****Login Successful******
+09/25/2026 05:09:53 PM: INFO: *****Starting Delete Selected Category test*****
+09/25/2026 05:09:55 PM: INFO: *****Categories page opened*****
+09/25/2026 05:10:02 PM: INFO: *****Category created: Test Category 057*****
+09/25/2026 05:13:14 PM: INFO: *****Test_DeleteCategory_Selected_057*****
+09/25/2026 05:13:21 PM: INFO: *****Login Successful******
+09/25/2026 05:13:21 PM: INFO: *****Starting Delete Selected Category test*****
+09/25/2026 05:13:23 PM: INFO: *****Categories page opened*****
+09/25/2026 05:13:27 PM: INFO: *****Category created: Test Category 057*****
+09/25/2026 05:24:57 PM: INFO: *****Test_DeleteCategory_Selected_057*****
+09/25/2026 05:25:07 PM: INFO: *****Login Successful******
+09/25/2026 05:25:07 PM: INFO: *****Starting Delete Selected Category test*****
+09/25/2026 05:25:09 PM: INFO: *****Categories page opened*****
+09/25/2026 05:25:14 PM: INFO: *****Category created: Test Category 057*****
+09/25/2026 05:25:20 PM: INFO: *****Category selected: Test Category 057*****
+09/25/2026 05:25:20 PM: INFO: *****Delete Selected clicked*****
+09/25/2026 05:25:21 PM: INFO: *****Category deletion confirmed*****
+09/25/2026 05:25:21 PM: INFO: *****Category deleted successfully: Test Category 057*****
+09/25/2026 05:36:09 PM: INFO: *****Test_DeleteCategory_Selected_057*****
+09/25/2026 05:36:20 PM: INFO: *****Login Successful******
+09/25/2026 05:36:20 PM: INFO: *****Starting Delete Selected Category test*****
+09/25/2026 05:36:26 PM: INFO: *****Categories page opened*****
+09/25/2026 05:37:19 PM: INFO: *****Category created: Test Category 057*****
+09/25/2026 05:37:32 PM: INFO: *****Category selected: Test Category 057*****
+09/25/2026 05:37:32 PM: INFO: *****Delete Selected clicked*****
+09/25/2026 05:37:33 PM: INFO: *****Category deletion confirmed*****
+09/25/2026 05:37:35 PM: INFO: *****Category deleted successfully: Test Category 057*****
+09/25/2026 05:48:40 PM: INFO: *****Test_DeleteCategory_Selected_057*****
+09/25/2026 05:48:49 PM: INFO: *****Login Successful******
+09/25/2026 05:48:49 PM: INFO: *****Starting Delete Selected Category test*****
+09/25/2026 05:48:50 PM: INFO: *****Categories page opened*****
+09/25/2026 05:48:55 PM: INFO: *****Category created: Test Category 057*****
+09/25/2026 05:49:00 PM: INFO: *****Category selected: Test Category 057*****
+09/25/2026 05:49:00 PM: INFO: *****Delete Selected clicked*****
+09/25/2026 05:49:01 PM: INFO: *****Category deletion confirmed*****
+09/25/2026 05:49:01 PM: INFO: *****Category deleted successfully: Test Category 057*****
+09/25/2026 05:49:43 PM: INFO: *****Test_DeleteCategory_Selected_057*****
+09/25/2026 05:49:55 PM: INFO: *****Login Successful******
+09/25/2026 05:49:55 PM: INFO: *****Starting Delete Selected Category test*****
+09/25/2026 05:49:58 PM: INFO: *****Categories page opened*****
+09/25/2026 05:50:04 PM: INFO: *****Category created: Test Category 057*****
+09/25/2026 05:50:10 PM: INFO: *****Category selected: Test Category 057*****
+09/25/2026 05:50:11 PM: INFO: *****Delete Selected clicked*****
+09/25/2026 05:50:11 PM: INFO: *****Category deletion confirmed*****
+09/25/2026 05:50:13 PM: INFO: *****Category deleted successfully: Test Category 057*****

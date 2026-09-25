@@ -1,6 +1,5 @@
 import pytest
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 
 from pageObjects.LoginPage import LoginPage
 from pageObjects.AddProductPage import AddProduct
