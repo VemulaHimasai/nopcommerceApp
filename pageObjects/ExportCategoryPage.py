@@ -114,12 +114,15 @@ class ExportCategory:
     # Export Category to XML
     # -------------------------------------------------
 
-    def exportCategoryToXML(self):
 
-        self.clickExportDropdown()
+
+    def exportCategoryToXML(self):
+        print(
+            "\n========== EXPORT CATEGORY TO XML =========="
+        )
 
         export_xml = self.wait.until(
-            EC.element_to_be_clickable(
+            EC.presence_of_element_located(
                 (
                     By.XPATH,
                     self.lstExport_xml
@@ -127,7 +130,30 @@ class ExportCategory:
             )
         )
 
-        export_xml.click()
+        print(
+            "XML export link found."
+        )
+
+        self.driver.execute_script(
+            """
+            arguments[0].scrollIntoView({
+                block: 'center',
+                inline: 'nearest'
+            });
+            """,
+            export_xml
+        )
+
+        self.driver.execute_script(
+            "arguments[0].click();",
+            export_xml
+        )
+
+        print(
+            "XML export link clicked."
+        )
+
+
 
     # -------------------------------------------------
     # Export Category to Excel

@@ -21577,3 +21577,13 @@ The new customer has been added successfully.
 09/24/2026 09:15:49 PM: INFO: ***** Export Category to Excel clicked *****
 09/24/2026 09:15:51 PM: INFO: ***** Category Excel file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\categories.xlsx *****
 09/24/2026 09:15:51 PM: INFO: ***** Test_ExportCategory_Excel_056 Passed *****
+09/25/2026 11:44:32 AM: INFO: ***** Test_ExportCategory_XML_055 Started *****
+09/25/2026 11:44:51 AM: INFO: ***** Login Successful *****
+09/25/2026 11:44:51 AM: INFO: ***** Navigating to Categories *****
+09/25/2026 11:45:02 AM: INFO: ***** Categories Page Opened *****
+09/25/2026 11:45:02 AM: INFO: ***** Clearing previous downloaded files *****
+09/25/2026 11:45:02 AM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+09/25/2026 11:45:02 AM: INFO: ***** Starting Category XML Export *****
+09/25/2026 11:45:02 AM: INFO: ***** Export Category to XML clicked *****
+09/25/2026 11:45:05 AM: INFO: ***** Category XML file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\categories.xml *****
+09/25/2026 11:45:05 AM: INFO: ***** Test_ExportCategory_XML_055 Passed *****
