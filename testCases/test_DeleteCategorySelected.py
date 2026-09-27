@@ -125,7 +125,7 @@ class Test_DeleteCategorySelected_057:
         # Confirm deletion
         # -------------------------------------------------
 
-        self.deletecategory.confirmDelete()
+        self.deletecategory.confirmDelete(category_name)
 
         self.logger.info(
             "*****Category deletion confirmed*****"

@@ -1,3 +1,4 @@
+import time
 from selenium.common.exceptions import (
     StaleElementReferenceException,
     TimeoutException
@@ -43,26 +44,280 @@ class ActivityPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 15)
 
+
+
     def clickActivityPageMenuItem(self):
-        activity_page = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH, self.lnkActivityLog_menu_item_xpath)
-        ))
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", activity_page)
-        self.driver.execute_script("arguments[0].click();", activity_page)
 
-    def setCreatedFrom(self,date):
-        created_from = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH, self.created_from_xpath)
-        ))
-        created_from.clear()
-        created_from.send_keys(date)
+        for attempt in range(1, 4):
 
-    def setCreatedTo(self,date):
-        created_to = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH, self.created_to_xpath)
-        ))
-        created_to.clear()
-        created_to.send_keys(date)
+            try:
+
+                print(
+                    f"Opening Activity Log page "
+                    f"(attempt {attempt}/3)..."
+                )
+
+                activity_page = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            self.lnkActivityLog_menu_item_xpath
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    activity_page
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    activity_page
+                )
+
+                # Wait until the Activity Log URL is loaded.
+                self.wait.until(
+                    lambda driver:
+                    "/Admin/ActivityLog/ActivityLogs"
+                    in driver.current_url
+                )
+
+                # Wait for the Activity Log page controls.
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            self.created_from_xpath
+                        )
+                    )
+                )
+
+                print(
+                    "Activity Log page opened successfully."
+                )
+
+                print(
+                    f"Current URL: "
+                    f"{self.driver.current_url}"
+                )
+
+                return True
+
+            except (
+                    StaleElementReferenceException,
+                    TimeoutException
+            ) as exc:
+
+                print(
+                    f"Unable to open Activity Log page "
+                    f"on attempt {attempt}: {exc}"
+                )
+
+                if attempt < 3:
+                    time.sleep(1)
+
+        raise AssertionError(
+            "Unable to open Activity Log page."
+        )
+
+    def setCreatedFrom(self, date):
+
+        for attempt in range(1, 4):
+
+            try:
+
+                print(
+                    f"Setting Created From date: {date} "
+                    f"(attempt {attempt}/3)"
+                )
+
+                self.wait.until(
+                    lambda driver:
+                    "/Admin/ActivityLog/ActivityLogs"
+                    in driver.current_url
+                )
+
+                created_from = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            self.created_from_xpath
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    created_from
+                )
+
+                # Click the date field first so the date-picker is initialized.
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    created_from
+                )
+
+                time.sleep(0.5)
+
+                # Clear existing value.
+                created_from.clear()
+
+                # Enter date using normal Selenium keyboard input.
+                created_from.send_keys(date)
+
+                # Trigger the change event used by the date-picker.
+                self.driver.execute_script(
+                    """
+                    arguments[0].dispatchEvent(
+                        new Event('change', {bubbles: true})
+                    );
+                    """,
+                    created_from
+                )
+
+                actual_value = created_from.get_attribute("value")
+
+                print(
+                    f"Created From DOM value: "
+                    f"{actual_value!r}"
+                )
+
+                if actual_value == date:
+                    print(
+                        "Created From date entered successfully."
+                    )
+
+                    return True
+
+                raise AssertionError(
+                    f"Created From date was not set. "
+                    f"Expected {date!r}, "
+                    f"but got {actual_value!r}"
+                )
+
+            except (
+                    StaleElementReferenceException,
+                    TimeoutException,
+                    AssertionError
+            ) as exc:
+
+                print(
+                    f"Unable to set Created From date "
+                    f"on attempt {attempt}: {exc}"
+                )
+
+                if attempt < 3:
+                    time.sleep(1)
+
+        raise AssertionError(
+            f"Unable to set Created From date: {date}"
+        )
+
+    def setCreatedTo(self, date):
+
+        for attempt in range(1, 4):
+
+            try:
+
+                print(
+                    f"Setting Created To date: {date} "
+                    f"(attempt {attempt}/3)"
+                )
+
+                self.wait.until(
+                    lambda driver:
+                    "/Admin/ActivityLog/ActivityLogs"
+                    in driver.current_url
+                )
+
+                created_to = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            self.created_to_xpath
+                        )
+                    )
+                )
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    created_to
+                )
+
+                self.driver.execute_script(
+                    "arguments[0].click();",
+                    created_to
+                )
+
+                time.sleep(0.5)
+
+                created_to.clear()
+
+                created_to.send_keys(date)
+
+                self.driver.execute_script(
+                    """
+                    arguments[0].dispatchEvent(
+                        new Event('change', {bubbles: true})
+                    );
+                    """,
+                    created_to
+                )
+
+                actual_value = created_to.get_attribute("value")
+
+                print(
+                    f"Created To DOM value: "
+                    f"{actual_value!r}"
+                )
+
+                if actual_value == date:
+                    print(
+                        "Created To date entered successfully."
+                    )
+
+                    return True
+
+                raise AssertionError(
+                    f"Created To date was not set. "
+                    f"Expected {date!r}, "
+                    f"but got {actual_value!r}"
+                )
+
+            except (
+                    StaleElementReferenceException,
+                    TimeoutException,
+                    AssertionError
+            ) as exc:
+
+                print(
+                    f"Unable to set Created To date "
+                    f"on attempt {attempt}: {exc}"
+                )
+
+                if attempt < 3:
+                    time.sleep(1)
+
+        raise AssertionError(
+            f"Unable to set Created To date: {date}"
+        )
+
 
     def clickActivityLogType(self):
         activity_type = self.wait.until(EC.visibility_of_element_located(
@@ -265,7 +520,6 @@ class ActivityPage:
 
         except TimeoutException:
             return False
-
 
 
 

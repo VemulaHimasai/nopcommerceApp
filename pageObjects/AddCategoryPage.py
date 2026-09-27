@@ -383,67 +383,127 @@ class AddCategory:
 
     def setCategoryName(self, category_name):
 
-        print(f"Entering category name: {category_name}")
+        print(
+            f"\n========== SET CATEGORY NAME =========="
+        )
+        print(
+            f"Entering category name: {category_name}"
+        )
+
+        name_locator = (By.ID, "Name")
 
         for attempt in range(1, 4):
 
             try:
 
-                print(f"Category name entry attempt {attempt}/3")
+                print(
+                    f"Category name entry attempt "
+                    f"{attempt}/3"
+                )
+
+                # -------------------------------------------------
+                # Re-find the element on every attempt
+                # -------------------------------------------------
 
                 category_name_field = self.wait.until(
-                    EC.presence_of_element_located(
-                        (By.ID, "Name")
+                    EC.element_to_be_clickable(
+                        name_locator
                     )
                 )
+
+                # -------------------------------------------------
+                # Scroll into view
+                # -------------------------------------------------
 
                 self.driver.execute_script(
-                    "arguments[0].scrollIntoView({block: 'center'});",
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
                     category_name_field
                 )
 
-                self.wait.until(
-                    EC.visibility_of_element_located(
-                        (By.ID, "Name")
+                # -------------------------------------------------
+                # Re-find after scrolling
+                # -------------------------------------------------
+
+                category_name_field = self.wait.until(
+                    EC.element_to_be_clickable(
+                        name_locator
                     )
                 )
 
-                category_name_field.click()
-                category_name_field.clear()
-                category_name_field.send_keys(category_name)
+                # -------------------------------------------------
+                # Clear existing value
+                # -------------------------------------------------
 
-                # Verify the actual input value
+                category_name_field.click()
+
+                category_name_field.clear()
+
+                # -------------------------------------------------
+                # Enter category name
+                # -------------------------------------------------
+
+                category_name_field.send_keys(
+                    category_name
+                )
+
+                # -------------------------------------------------
+                # Verify using fresh DOM lookup
+                # -------------------------------------------------
+
                 actual_value = self.driver.execute_script(
-                    "return arguments[0].value;",
-                    category_name_field
+                    """
+                    return document.getElementById('Name').value;
+                    """
                 )
 
                 print(
-                    f"Category Name DOM value: {actual_value!r}"
+                    f"Category Name DOM value: "
+                    f"{actual_value!r}"
                 )
 
+                # -------------------------------------------------
+                # Exact verification
+                # -------------------------------------------------
+
                 if actual_value == category_name:
-                    print("Category name entered successfully.")
+                    print(
+                        "Category name entered successfully."
+                    )
+
                     return True
 
                 print(
-                    "Category name value mismatch. Retrying..."
+                    f"Category name value mismatch."
+                    f"\nExpected: {category_name!r}"
+                    f"\nActual:   {actual_value!r}"
                 )
 
             except StaleElementReferenceException:
 
                 print(
-                    "Category Name field became stale. Retrying..."
+                    "Category Name field became stale. "
+                    "Retrying..."
                 )
 
             except Exception as e:
 
                 print(
-                    f"Category name entry attempt {attempt} failed: {e}"
+                    f"Category name entry attempt "
+                    f"{attempt} failed: "
+                    f"{type(e).__name__}: {e}"
                 )
 
+            if attempt < 3:
+                time.sleep(1)
+
         raise AssertionError(
-            f"Unable to enter category name: {category_name}"
+            f"Unable to enter category name: "
+            f"{category_name}"
         )
 
     # -------------------------------------------------

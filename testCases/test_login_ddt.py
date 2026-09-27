@@ -1,16 +1,13 @@
-
 import os
 
 import pytest
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 from selenium.common.exceptions import (
     TimeoutException,
     WebDriverException
 )
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from pageObjects.LoginPage import LoginPage
 from utilities.readproperties import ReadConfig
@@ -18,92 +15,127 @@ from utilities.customLogger import LogGen
 from utilities import XLUtils
 
 
-# =========================================================
-# TEST CASE - LOGIN DDT
-# =========================================================
-
 class Test_002_DDT_Login:
-
     baseURL = ReadConfig.getApplicationURL()
     path = ".\\TestData\\LoginData.xlsx"
-
     logger = LogGen.loggen()
 
-    # =====================================================
-    # OPEN LOGIN PAGE
-    # =====================================================
-
     def open_login_page(self):
-
-        print("\n========================================")
-        print("OPEN LOGIN PAGE")
-        print("========================================")
-
         last_exception = None
 
-        # -------------------------------------------------
-        # Try loading login page maximum 2 times
-        # -------------------------------------------------
-
         for attempt in range(1, 3):
-
             try:
+                print(f"\nOpening login page - Attempt {attempt}")
 
-                print(
-                    f"Opening login page - attempt "
-                    f"{attempt}/2"
-                )
+                self.driver.get(self.baseURL)
 
-                # -------------------------------------------------
-                # Navigate to application
-                # -------------------------------------------------
-
-                self.driver.get(
-                    self.baseURL
-                )
-
-                # -------------------------------------------------
-                # Wait until browser finishes loading page
-                # -------------------------------------------------
-
-                WebDriverWait(
-                    self.driver,
-                    20
-                ).until(
-                    lambda driver:
-                    driver.execute_script(
+                WebDriverWait(self.driver, 20).until(
+                    lambda driver: driver.execute_script(
                         "return document.readyState"
                     ) == "complete"
                 )
 
-                print(
-                    "Current URL:",
-                    self.driver.current_url
-                )
+                print(f"Current URL: {self.driver.current_url}")
+                print(f"Current Title: {self.driver.title}")
 
-                print(
-                    "Current Title:",
-                    self.driver.title
-                )
+                # Check if already logged in
+                if (
+                    "dashboard / nopcommerce administration"
+                    in self.driver.title.lower()
+                ):
+                    print("Already logged in. Logging out first.")
 
-                # -------------------------------------------------
-                # Wait for Email field
-                # -------------------------------------------------
+                    try:
+                        logout_link = WebDriverWait(
+                            self.driver,
+                            10
+                        ).until(
+                            EC.element_to_be_clickable(
+                                (By.XPATH, "//a[@href='/logout']")
+                            )
+                        )
+
+                        self.driver.execute_script(
+                            "arguments[0].scrollIntoView({block:'center'});",
+                            logout_link
+                        )
+
+                        logout_link = self.driver.find_element(
+                            By.XPATH,
+                            "//a[@href='/logout']"
+                        )
+
+                        self.driver.execute_script(
+                            "arguments[0].click();",
+                            logout_link
+                        )
+
+                        WebDriverWait(
+                            self.driver,
+                            15
+                        ).until(
+                            EC.presence_of_element_located(
+                                (By.ID, "Email")
+                            )
+                        )
+
+                        print("Successfully logged out.")
+
+                    except Exception as logout_error:
+                        print(
+                            f"Logout failed: {logout_error}"
+                        )
+
+                        admin_url = self.baseURL.rstrip("/")
+
+                        if admin_url.lower().endswith("/admin"):
+                            login_url = (
+                                admin_url[:-len("/admin")]
+                                + "/login"
+                            )
+                        else:
+                            login_url = admin_url + "/login"
+
+                        print(
+                            f"Navigating directly to login URL: "
+                            f"{login_url}"
+                        )
+
+                        self.driver.get(login_url)
+
+                # If login page is not detected, navigate directly
+                if not self.driver.find_elements(By.ID, "Email"):
+                    admin_url = self.baseURL.rstrip("/")
+
+                    if admin_url.lower().endswith("/admin"):
+                        login_url = (
+                            admin_url[:-len("/admin")]
+                            + "/login"
+                        )
+                    else:
+                        login_url = admin_url + "/login"
+
+                    print(
+                        f"Login page not detected."
+                    )
+                    print(
+                        f"Navigating directly to: {login_url}"
+                    )
+
+                    self.driver.get(login_url)
 
                 WebDriverWait(
                     self.driver,
                     20
                 ).until(
                     EC.visibility_of_element_located(
-                        (
-                            By.ID,
-                            "Email"
-                        )
+                        (By.ID, "Email")
                     )
                 )
 
+                print("Login page opened successfully.")
                 print(
-                    "Login Email field found."
+                    f"Login URL: {self.driver.current_url}"
                 )
 
                 return True
@@ -116,305 +148,127 @@ class Test_002_DDT_Login:
                 last_exception = e
 
                 print(
-                    f"Login page attempt {attempt} failed."
+                    f"Login page attempt {attempt} failed: "
+                    f"{type(e).__name__}: {e}"
                 )
-
-                print(
-                    "Current URL:",
-                    self.driver.current_url
-                )
-
-                print(
-                    "Current Title:",
-                    self.driver.title
-                )
-
-                # -------------------------------------------------
-                # Save screenshot for debugging
-                # -------------------------------------------------
 
                 try:
-
                     os.makedirs(
                         "Screenshots",
                         exist_ok=True
                     )
 
-                    screenshot_path = (
-                        "Screenshots/"
+                    self.driver.save_screenshot(
+                        f"Screenshots/"
                         f"login_page_attempt_{attempt}.png"
                     )
 
-                    self.driver.save_screenshot(
-                        screenshot_path
-                    )
-
-                    print(
-                        "Screenshot saved:",
-                        screenshot_path
-                    )
-
-                except Exception as screenshot_error:
-
-                    print(
-                        "Screenshot failed:",
-                        screenshot_error
-                    )
-
-                # -------------------------------------------------
-                # Retry
-                # -------------------------------------------------
+                except Exception:
+                    pass
 
                 if attempt < 2:
-
                     try:
-
                         self.driver.refresh()
-
                     except Exception:
                         pass
 
-        # ---------------------------------------------------------
-        # Both attempts failed
-        # ---------------------------------------------------------
+        if last_exception:
+            raise last_exception
 
-        print(
-            "\nLogin page could not be opened."
+        raise Exception(
+            "Unable to open login page."
         )
-
-        print(
-            "Final URL:",
-            self.driver.current_url
-        )
-
-        print(
-            "Final Title:",
-            self.driver.title
-        )
-
-        raise last_exception
-
-    # =====================================================
-    # LOGOUT
-    # =====================================================
 
     def logout(self, wait):
-
-        print(
-            "\n========================================"
-        )
-
-        print(
-            "LOGOUT"
-        )
-
-        print(
-            "========================================"
-        )
-
         try:
-
-            # -------------------------------------------------
-            # Wait for Logout link to become clickable
-            # -------------------------------------------------
+            print("Attempting logout...")
 
             logout_link = wait.until(
                 EC.element_to_be_clickable(
-                    (
-                        By.XPATH,
-                        "//a[@href='/logout']"
-                    )
+                    (By.XPATH, "//a[@href='/logout']")
                 )
             )
 
-            # -------------------------------------------------
-            # Scroll Logout link into view
-            # -------------------------------------------------
-
             self.driver.execute_script(
-                """
-                arguments[0].scrollIntoView({
-                    block: 'center'
-                });
-                """,
+                "arguments[0].scrollIntoView({block:'center'});",
                 logout_link
             )
 
-            # -------------------------------------------------
-            # Re-fetch Logout link
-            # -------------------------------------------------
-
-            logout_link = wait.until(
-                EC.element_to_be_clickable(
-                    (
-                        By.XPATH,
-                        "//a[@href='/logout']"
-                    )
-                )
+            logout_link = self.driver.find_element(
+                By.XPATH,
+                "//a[@href='/logout']"
             )
-
-            # -------------------------------------------------
-            # Click Logout
-            # -------------------------------------------------
 
             self.driver.execute_script(
                 "arguments[0].click();",
                 logout_link
             )
 
-            print(
-                "Logout clicked."
-            )
-
-            # =================================================
-            # VERIFY LOGOUT
-            # =================================================
-
             def logout_completed(driver):
-
                 try:
-
-                    current_url = (
-                        driver.current_url
-                        .rstrip("/")
-                        .lower()
-                    )
-
-                    current_title = (
-                        driver.title
-                        .strip()
-                        .lower()
-                    )
-
-                    # -------------------------------------------------
-                    # IMPORTANT:
-                    # Dashboard means logout has NOT completed.
-                    # -------------------------------------------------
+                    current_url = driver.current_url.lower()
+                    current_title = driver.title.strip().lower()
 
                     if (
-                        current_url.endswith("/admin")
+                        current_url.rstrip("/").endswith("/admin")
                         and
                         "dashboard / nopcommerce administration"
                         in current_title
                     ):
-
                         return False
 
-                    # -------------------------------------------------
-                    # Login page
-                    # -------------------------------------------------
+                    if "/login" in current_url:
+                        try:
+                            return driver.find_element(
+                                By.ID,
+                                "Email"
+                            ).is_displayed()
+                        except Exception:
+                            return False
 
-                    email_fields = driver.find_elements(
-                        By.ID,
-                        "Email"
-                    )
-
-                    if (
-                        "/login" in current_url
-                        and
-                        len(email_fields) > 0
-                    ):
-
+                    if "your store" in current_title:
                         return True
 
-                    # -------------------------------------------------
-                    # Storefront home page by title
-                    # -------------------------------------------------
+                    admin_url = self.baseURL.rstrip("/")
 
-                    if (
-                        current_title
-                        == "your store. home page title"
-                    ):
+                    if admin_url.lower().endswith("/admin"):
+                        storefront_url = (
+                            admin_url[:-len("/admin")]
+                        )
+                    else:
+                        storefront_url = admin_url
 
-                        return True
-
-                    # -------------------------------------------------
-                    # Storefront URL
-                    #
-                    # baseURL normally contains /admin.
-                    # Remove /admin before comparing.
-                    # -------------------------------------------------
-
-                    admin_url = (
-                        self.baseURL
-                        .rstrip("/")
-                        .lower()
+                    return (
+                        current_url.rstrip("/")
+                        == storefront_url.lower().rstrip("/")
                     )
-
-                    if admin_url.endswith("/admin"):
-
-                        storefront_url = admin_url[
-                            :-len("/admin")
-                        ]
-
-                        if current_url == storefront_url:
-
-                            return True
-
-                    return False
 
                 except Exception:
-
                     return False
 
-            # -------------------------------------------------
-            # Wait for actual logout
-            # -------------------------------------------------
-
-            WebDriverWait(
+            result = WebDriverWait(
                 self.driver,
                 20
-            ).until(
-                logout_completed
-            )
-
-            # =================================================
-            # LOGOUT SUCCESS
-            # =================================================
+            ).until(logout_completed)
 
             print(
-                "Logout completed successfully."
-            )
-
-            print(
-                "Current URL after logout:",
-                self.driver.current_url
-            )
-
-            print(
-                "Current Title after logout:",
-                self.driver.title
+                f"Logout completed: {result}"
             )
 
             return True
 
         except Exception as e:
-
             self.logger.error(
-                f"Logout failed: {e}"
+                f"Logout failed: "
+                f"{type(e).__name__}: {e}"
             )
 
             print(
-                "Logout failed:",
-                e
+                f"Logout failed: "
+                f"{type(e).__name__}: {e}"
             )
-
-            print(
-                "Current URL:",
-                self.driver.current_url
-            )
-
-            print(
-                "Current Title:",
-                self.driver.title
-            )
-
-            # -------------------------------------------------
-            # Save screenshot
-            # -------------------------------------------------
 
             try:
-
                 os.makedirs(
                     "Screenshots",
                     exist_ok=True
@@ -424,50 +278,30 @@ class Test_002_DDT_Login:
                     "Screenshots/logout_failed.png"
                 )
 
-                print(
-                    "Logout failure screenshot saved."
-                )
-
             except Exception:
                 pass
 
             return False
 
-    # =====================================================
-    # LOGIN DDT TEST
-    # =====================================================
-
     @pytest.mark.regression
     def test_login_ddt(self, setup):
-
-        self.logger.info(
-            "**********Test_002_DDT_Login********"
-        )
-
-        self.logger.info(
-            "********Verify Login DDT Test********"
-        )
-
         self.driver = setup
 
-        # -------------------------------------------------
-        # Maximize browser
-        # -------------------------------------------------
-
-        self.driver.maximize_window()
-
-        # -------------------------------------------------
-        # Create explicit wait
-        # -------------------------------------------------
+        try:
+            self.driver.maximize_window()
+        except Exception:
+            pass
 
         wait = WebDriverWait(
             self.driver,
             20
         )
 
-        # =================================================
-        # GET NUMBER OF EXCEL ROWS
-        # =================================================
+        self.logger.info(
+            "****Login DDT Test Started****"
+        )
+
+        lst_status = []
 
         self.rows = XLUtils.getRowCount(
             self.path,
@@ -475,346 +309,221 @@ class Test_002_DDT_Login:
         )
 
         print(
-            "Number of rows in Excel:",
-            self.rows
+            f"Total Excel Rows: {self.rows}"
         )
 
-        # -------------------------------------------------
-        # Store Pass / Fail result for every row
-        # -------------------------------------------------
+        for r in range(2, self.rows + 1):
 
-        lst_status = []
+            row_status = "Fail"
 
-        # =================================================
-        # READ EXCEL DATA
-        # =================================================
-
-        for r in range(
-            2,
-            self.rows + 1
-        ):
-
-            self.user = XLUtils.readData(
+            username = XLUtils.readData(
                 self.path,
                 "Sheet1",
                 r,
                 1
             )
 
-            self.password = XLUtils.readData(
+            password = XLUtils.readData(
                 self.path,
                 "Sheet1",
                 r,
                 2
             )
 
-            self.exp = XLUtils.readData(
+            expected_result = XLUtils.readData(
                 self.path,
                 "Sheet1",
                 r,
                 3
             )
 
-            print(
-                "\n========================================"
-            )
+            username = str(username).strip()
+            password = str(password).strip()
+            expected_result = str(
+                expected_result
+            ).strip()
 
+            print("\n" + "=" * 70)
+            print(f"Row {r}")
+            print(f"Username: {username}")
             print(
-                f"Row {r}: Username={self.user}, "
-                f"Expected={self.exp}"
+                f"Expected Result: "
+                f"{expected_result}"
             )
-
-            print(
-                "========================================"
-            )
-
-            # =================================================
-            # OPEN LOGIN PAGE
-            # =================================================
 
             try:
-
                 self.open_login_page()
 
             except Exception as e:
+                self.logger.error(
+                    f"Row {r}: Login page could not "
+                    f"be opened: {e}"
+                )
+
+                print(
+                    f"Row {r}: Login page could not "
+                    f"be opened: "
+                    f"{type(e).__name__}: {e}"
+                )
+
+                lst_status.append(row_status)
+                continue
+
+            try:
+                lp = LoginPage(self.driver)
+
+                lp.setUserName(username)
+                lp.setPassword(password)
+                lp.clickLogin()
+
+                print(
+                    "Login button clicked."
+                )
+
+                def login_state(driver):
+                    try:
+                        title = driver.title.strip().lower()
+
+                        if (
+                            "dashboard / nopcommerce administration"
+                            in title
+                        ):
+                            return "success"
+
+                        email_elements = driver.find_elements(
+                            By.ID,
+                            "Email"
+                        )
+
+                        if email_elements:
+                            try:
+                                if email_elements[0].is_displayed():
+                                    return "failed"
+                            except Exception:
+                                pass
+
+                        return False
+
+                    except Exception:
+                        return False
+
+                login_result = WebDriverWait(
+                    self.driver,
+                    20
+                ).until(login_state)
+
+                login_success = (
+                    login_result == "success"
+                )
+
+                actual_title = (
+                    self.driver.title.strip()
+                )
+
+                print(
+                    f"Actual Title: "
+                    f"{actual_title}"
+                )
+
+                print(
+                    f"Login Success: "
+                    f"{login_success}"
+                )
+
+                expected_pass = (
+                    expected_result.lower()
+                    == "pass"
+                )
+
+                if login_success == expected_pass:
+                    row_status = "Pass"
+                else:
+                    row_status = "Fail"
+
+                # Logout is cleanup only.
+                # It does not create another DDT result.
+                if login_success:
+                    logout_result = self.logout(
+                        wait
+                    )
+
+                    if not logout_result:
+                        self.logger.warning(
+                            f"Row {r}: Logout failed "
+                            f"after login."
+                        )
+
+                        print(
+                            f"Row {r}: Logout failed "
+                            f"after login."
+                        )
+
+            except Exception as e:
+                row_status = "Fail"
 
                 self.logger.error(
-                    f"Row {r}: Login page could not be opened: {e}"
+                    f"Row {r}: Login test failed: "
+                    f"{type(e).__name__}: {e}"
                 )
 
                 print(
-                    f"Row {r}: Login page could not be opened."
+                    f"Row {r}: Login test failed: "
+                    f"{type(e).__name__}: {e}"
                 )
 
-                print(
-                    "Current URL:",
-                    self.driver.current_url
-                )
-
-                print(
-                    "Current Title:",
-                    self.driver.title
-                )
-
-                lst_status.append(
-                    "Fail"
-                )
-
-                # -------------------------------------------------
-                # Do not continue with unknown page
-                # -------------------------------------------------
-
-                break
-
-            # =================================================
-            # CREATE LOGIN PAGE OBJECT
-            # =================================================
-
-            self.lp = LoginPage(
-                self.driver
-            )
-
-            # =================================================
-            # ENTER USERNAME
-            # =================================================
-
-            self.lp.setUserName(
-                self.user
-            )
-
-            # =================================================
-            # ENTER PASSWORD
-            # =================================================
-
-            self.lp.setPassword(
-                self.password
-            )
-
-            # =================================================
-            # CLICK LOGIN
-            # =================================================
-
-            self.lp.clickLogin()
-
-            # =================================================
-            # WAIT FOR LOGIN RESULT
-            # =================================================
-
-            try:
-
-                wait.until(
-                    lambda driver:
-                    driver.execute_script(
-                        "return document.readyState"
-                    ) == "complete"
-                )
-
-            except TimeoutException:
-
-                print(
-                    f"Row {r}: "
-                    "Page did not reach complete state."
-                )
-
-            # -------------------------------------------------
-            # Wait until either:
-            #
-            # 1. Dashboard is displayed
-            #
-            # OR
-            #
-            # 2. Login page remains displayed
-            # -------------------------------------------------
-
-            try:
-
-                wait.until(
-                    lambda driver:
-                    (
-                        "Dashboard / nopCommerce administration"
-                        in driver.title
+                try:
+                    os.makedirs(
+                        "Screenshots",
+                        exist_ok=True
                     )
-                    or
-                    (
-                        len(
-                            driver.find_elements(
-                                By.ID,
-                                "Email"
-                            )
-                        ) > 0
+
+                    self.driver.save_screenshot(
+                        f"Screenshots/"
+                        f"login_ddt_row_{r}.png"
                     )
-                )
 
-            except TimeoutException:
+                except Exception:
+                    pass
 
-                print(
-                    f"Row {r}: "
-                    "Login result could not be determined."
-                )
-
-            # =================================================
-            # GET ACTUAL TITLE
-            # =================================================
-
-            act_title = (
-                self.driver.title.strip()
-            )
-
-            exp_title = (
-                "Dashboard / nopCommerce administration"
-            )
+            lst_status.append(row_status)
 
             print(
-                f"Row {r}: Actual Title={act_title}, "
-                f"Expected Result={self.exp}"
+                f"Row {r}: "
+                f"{'*' * 5}"
+                f"Test {row_status}"
+                f"{'*' * 5}"
             )
 
-            # =================================================
-            # LOGIN VALIDATION
-            # =================================================
+        expected_rows = self.rows - 1
+        processed_rows = len(lst_status)
 
-            if act_title == exp_title:
-
-                # =================================================
-                # LOGIN SUCCESSFUL
-                # =================================================
-
-                if self.exp == "Pass":
-
-                    self.logger.info(
-                        f"Row {r}: *****Test Passed*****"
-                    )
-
-                    print(
-                        f"Row {r}: *****Test Passed*****"
-                    )
-
-                    lst_status.append(
-                        "Pass"
-                    )
-
-                elif self.exp == "Fail":
-
-                    self.logger.error(
-                        f"Row {r}: *****Test Failed*****"
-                    )
-
-                    print(
-                        f"Row {r}: *****Test Failed*****"
-                    )
-
-                    lst_status.append(
-                        "Fail"
-                    )
-
-                # =================================================
-                # LOGOUT AFTER SUCCESSFUL LOGIN
-                # =================================================
-
-                logout_result = self.logout(
-                    wait
-                )
-
-                if not logout_result:
-
-                    lst_status.append(
-                        "Fail"
-                    )
-
-            else:
-
-                # =================================================
-                # LOGIN UNSUCCESSFUL
-                # =================================================
-
-                if self.exp == "Fail":
-
-                    self.logger.info(
-                        f"Row {r}: *****Test Passed*****"
-                    )
-
-                    print(
-                        f"Row {r}: *****Test Passed*****"
-                    )
-
-                    lst_status.append(
-                        "Pass"
-                    )
-
-                elif self.exp == "Pass":
-
-                    self.logger.error(
-                        f"Row {r}: *****Test Failed*****"
-                    )
-
-                    print(
-                        f"Row {r}: *****Test Failed*****"
-                    )
-
-                    lst_status.append(
-                        "Fail"
-                    )
-
-        # =========================================================
-        # FINAL TEST RESULT
-        # =========================================================
-
+        print("\n" + "=" * 70)
+        print("Login DDT Test Summary")
         print(
-            "\n========================================"
+            f"Expected Data Rows : "
+            f"{expected_rows}"
         )
-
         print(
-            "FINAL DDT STATUS:",
-            lst_status
+            f"Processed Rows     : "
+            f"{processed_rows}"
         )
-
         print(
-            "========================================"
+            f"Status List        : "
+            f"{lst_status}"
         )
-
-        # ---------------------------------------------------------
-        # Make sure at least one Excel row was processed
-        # ---------------------------------------------------------
 
         if (
-            lst_status
-            and
-            "Fail" not in lst_status
+            processed_rows == expected_rows
+            and lst_status
+            and "Fail" not in lst_status
         ):
-
             self.logger.info(
                 "****Login DDT Test Passed****"
             )
-
-            self.logger.info(
-                "****End of Login DDT Test****"
-            )
-
-            self.logger.info(
-                "*****Completed TC_LoginDDT_002******"
-            )
-
             assert True
 
         else:
-
             self.logger.error(
                 "****Login DDT Test Failed****"
             )
-
-            self.logger.error(
-                "****End of Login DDT Test****"
-            )
-
-            self.logger.error(
-                "*****Completed TC_LoginDDT_002******"
-            )
-
             assert False
-
-        # ---------------------------------------------------------
-        # Do NOT use driver.close() here.
-        #
-        # The setup fixture should handle browser cleanup.
-        # ---------------------------------------------------------
-

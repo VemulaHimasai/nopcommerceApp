@@ -43,9 +43,10 @@ class Test_SearchActivityDate_017:
         self.activity = ActivityPage(self.driver)
         self.activity.clickActivityPageMenuItem()
 
-        today = datetime.now().strftime("%d-%m-%Y")
 
-        # Set date range
+
+        today = datetime.now().strftime("%Y-%m-%d")
+
         self.activity.setCreatedFrom(today)
         self.activity.setCreatedTo(today)
 

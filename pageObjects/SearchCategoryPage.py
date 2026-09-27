@@ -66,39 +66,111 @@ class SearchCategory:
 
     def enterCategoryName(self, category):
 
-        print(
-            "\n========== ENTER CATEGORY NAME =========="
-        )
+        print("\n========== ENTER CATEGORY NAME ==========")
+        print("Category:", category)
 
-        print(
-            "Category:",
-            category
-        )
+        for attempt in range(1, 4):
 
-        category_name = self.wait.until(
-            EC.visibility_of_element_located(
-                (
-                    By.XPATH,
-                    self.txtcategoryname_xpath
+            try:
+                category_name = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            self.txtcategoryname_xpath
+                        )
+                    )
                 )
-            )
-        )
 
-        self.driver.execute_script(
-            """
-            arguments[0].scrollIntoView({
-                block: 'center',
-                inline: 'nearest'
-            });
-            """,
-            category_name
-        )
+                self.driver.execute_script(
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
+                    category_name
+                )
 
-        category_name.clear()
-        category_name.send_keys(category)
+                # Re-find the element after scrolling
+                category_name = self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            self.txtcategoryname_xpath
+                        )
+                    )
+                )
 
-        print(
-            "Category name entered successfully."
+                category_name.click()
+                category_name.clear()
+                category_name.send_keys(category)
+
+                actual_value = category_name.get_attribute("value")
+
+                print(
+                    "Category value entered:",
+                    repr(actual_value)
+                )
+
+                if actual_value == category:
+                    print(
+                        "Category name entered successfully."
+                    )
+                    return True
+
+                # Firefox can occasionally leave the field empty
+                # after a normal send_keys operation.
+                self.driver.execute_script(
+                    """
+                    arguments[0].value = arguments[1];
+                    arguments[0].dispatchEvent(
+                        new Event('input', {bubbles: true})
+                    );
+                    arguments[0].dispatchEvent(
+                        new Event('change', {bubbles: true})
+                    );
+                    """,
+                    category_name,
+                    category
+                )
+
+                actual_value = category_name.get_attribute("value")
+
+                print(
+                    "Category value after JS fallback:",
+                    repr(actual_value)
+                )
+
+                if actual_value == category:
+                    print(
+                        "Category name entered successfully "
+                        "using JS fallback."
+                    )
+                    return True
+
+                print(
+                    f"Category value mismatch "
+                    f"(attempt {attempt}/3)"
+                )
+
+            except (
+                    StaleElementReferenceException,
+                    TimeoutException
+            ) as e:
+
+                print(
+                    f"Unable to enter category name "
+                    f"(attempt {attempt}/3): "
+                    f"{type(e).__name__}: {e}"
+                )
+
+                if attempt == 3:
+                    raise
+
+                time.sleep(1)
+
+        raise AssertionError(
+            f"Unable to enter category name: {category}"
         )
 
     # =========================================================

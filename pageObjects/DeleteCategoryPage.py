@@ -464,7 +464,9 @@ class DeleteCategory:
     # Confirm deletion
     # -------------------------------------------------
 
-    def confirmDelete(self):
+
+
+    def confirmDelete(self, category_name=None):
 
         for attempt in range(1, 4):
 
@@ -494,21 +496,120 @@ class DeleteCategory:
                     button
                 )
 
+                time.sleep(0.5)
+
                 self.driver.execute_script(
                     "arguments[0].click();",
                     button
                 )
 
                 print(
-                    "Category deletion confirmed."
+                    "Category deletion confirmation clicked."
+                )
+
+                # -------------------------------------------------
+                # Wait for confirmation modal to disappear
+                # -------------------------------------------------
+
+                try:
+
+                    self.wait.until(
+                        EC.invisibility_of_element_located(
+                            (
+                                By.XPATH,
+                                self.btnDeleteConfirm
+                            )
+                        )
+                    )
+
+                    print(
+                        "Delete confirmation dialog closed."
+                    )
+
+                except TimeoutException:
+
+                    print(
+                        "Delete confirmation dialog did not "
+                        "disappear within the expected time."
+                    )
+
+                # -------------------------------------------------
+                # Give DataTables/AJAX time to process deletion
+                # -------------------------------------------------
+
+                time.sleep(1)
+
+                # -------------------------------------------------
+                # If category name was supplied, wait until the
+                # deleted category disappears from the current
+                # category grid.
+                # -------------------------------------------------
+
+                if category_name:
+
+                    expected_name = " ".join(
+                        category_name.split()
+                    ).strip().lower()
+
+                    def category_removed(driver):
+
+                        rows = driver.find_elements(
+                            By.XPATH,
+                            self.category_rows_xpath
+                        )
+
+                        for row in rows:
+
+                            try:
+
+                                row_text = " ".join(
+                                    row.text.split()
+                                ).strip().lower()
+
+                                if expected_name in row_text:
+                                    print(
+                                        "Deleted category is still "
+                                        "present in the grid."
+                                    )
+
+                                    return False
+
+                            except StaleElementReferenceException:
+
+                                # DataTables is refreshing.
+                                return False
+
+                        return True
+
+                    try:
+
+                        self.wait.until(
+                            category_removed
+                        )
+
+                        print(
+                            f"Category removed from grid: "
+                            f"{category_name}"
+                        )
+
+                    except TimeoutException:
+
+                        print(
+                            f"Category still appears in grid "
+                            f"after deletion wait: "
+                            f"{category_name}"
+                        )
+
+                print(
+                    "Category deletion completed."
                 )
 
                 return True
 
             except (
-                StaleElementReferenceException,
-                TimeoutException,
-                ElementClickInterceptedException
+                    StaleElementReferenceException,
+                    TimeoutException,
+                    ElementClickInterceptedException
             ) as exc:
 
                 print(
@@ -522,6 +623,8 @@ class DeleteCategory:
         raise AssertionError(
             "Unable to confirm category deletion."
         )
+
+
 
     def isCategoryPresent(self, category_name):
 
