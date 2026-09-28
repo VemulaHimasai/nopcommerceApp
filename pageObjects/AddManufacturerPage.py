@@ -1,3 +1,4 @@
+import os
 import random
 import time
 
@@ -7,12 +8,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import (
     StaleElementReferenceException,
     TimeoutException,
-    ElementClickInterceptedException
+    ElementClickInterceptedException, WebDriverException
 )
 
-
-class AddCategory:
-
+class AddManufacturer:
     # -------------------------------------------------
     # Catalog / Categories menu
     # -------------------------------------------------
@@ -21,23 +20,22 @@ class AddCategory:
         "//a[@href='#']//p[contains(text(),'Catalog')]"
     )
 
-    lnkCategories_menuitem_xpath = (
-        "//a[@href='/Admin/Category/List']"
+    lnkManufacturers_menuitem_xpath = (
+        "//a[@href='/Admin/Manufacturer/List']"
     )
 
-    # -------------------------------------------------
-    # Category page
-    # -------------------------------------------------
-
-    btnAddNew_Category = (
+    # Manufacturer Page
+    btnAddNew_Manufacturer = (
         "//a[normalize-space()='Add new']"
     )
 
-    txtCategoryName = (
+    txtManufacturer_Name = (
         "//input[@id='Name']"
     )
 
-    txtCategoryDesc = "//div[@role='textbox']"
+    txtManufacturerDesc = (
+        "//div[@role='textbox']"
+    )
 
     btnSave = (
         "//button[@name='save']"
@@ -47,17 +45,14 @@ class AddCategory:
         "//div[contains(@class,'alert-success')]"
     )
 
-    # -------------------------------------------------
-    # Constructor
-    # -------------------------------------------------
-
+    #constructor
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 15)
 
-    # -------------------------------------------------
-    # Click Catalog menu
-    # -------------------------------------------------
+        # -------------------------------------------------
+        # Click Catalog menu
+        # -------------------------------------------------
 
     def clickonCatalogmenu(self):
 
@@ -125,122 +120,219 @@ class AddCategory:
 
         return False
 
-    # -------------------------------------------------
-    # Click Categories submenu
-    # -------------------------------------------------
+    # click Manufacturers SubMenu
 
-    def clickonCategoriesmenuItem(self):
+    def clickonManufacturersmenuItem(self):
+        print("\n========== OPEN MANUFACTURERS MENU ITEM ==========")
 
-        print("\n========== OPEN CATEGORIES MENU ITEM ==========")
+        manufacturers_xpath = (
+            "//a[@href='/Admin/Manufacturer/List'"
+            " and normalize-space()='Manufacturers']"
+        )
 
         for attempt in range(1, 4):
-
             try:
-
                 print(
-                    f"Opening Categories Menu Item "
+                    f"Opening Manufacturer menu Item "
                     f"(attempt {attempt}/3)"
                 )
 
-                categories_menu = self.wait.until(
-                    EC.element_to_be_clickable(
+                manufacturers = self.wait.until(
+                    EC.presence_of_element_located(
                         (
                             By.XPATH,
-                            self.lnkCategories_menuitem_xpath
+                            manufacturers_xpath
                         )
                     )
                 )
 
+                print("Manufacturers menu item found.")
+
                 self.driver.execute_script(
                     "arguments[0].scrollIntoView({block: 'center'});",
-                    categories_menu
+                    manufacturers
+                )
+
+                self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            manufacturers_xpath
+                        )
+                    )
                 )
 
                 try:
-                    categories_menu.click()
+                    manufacturers = self.driver.find_element(
+                        By.XPATH,
+                        manufacturers_xpath
+                    )
 
-                except ElementClickInterceptedException:
+                    manufacturers.click()
 
                     print(
-                        "Categories menu click intercepted. "
+                        "Manufacturers menu item clicked "
+                        "using normal Selenium click."
+                    )
+
+                except ElementClickInterceptedException:
+                    print(
+                        "Manufacturers click intercepted. "
                         "Using JavaScript click..."
+                    )
+
+                    manufacturers = self.driver.find_element(
+                        By.XPATH,
+                        manufacturers_xpath
                     )
 
                     self.driver.execute_script(
                         "arguments[0].click();",
-                        categories_menu
+                        manufacturers
                     )
 
-                print("Categories menu item opened")
+                    print(
+                        "Manufacturers menu item clicked "
+                        "using JavaScript."
+                    )
 
-                # Verify navigation
+                except StaleElementReferenceException:
+                    print(
+                        "Manufacturers element became stale. "
+                        "Refetching..."
+                    )
+
+                    manufacturers = self.wait.until(
+                        EC.element_to_be_clickable(
+                            (
+                                By.XPATH,
+                                manufacturers_xpath
+                            )
+                        )
+                    )
+
+                    self.driver.execute_script(
+                        "arguments[0].click();",
+                        manufacturers
+                    )
+
+                    print(
+                        "Manufacturers menu item clicked "
+                        "after refetching."
+                    )
+
                 self.wait.until(
-                    EC.url_contains("/Admin/Category/List")
+                    EC.url_contains(
+                        "/Admin/Manufacturer/List"
+                    )
                 )
 
+                print(
+                    "Manufacturer List page opened successfully."
+                )
                 print(
                     "Current URL:",
                     self.driver.current_url
                 )
+                print(
+                    "Page title:",
+                    self.driver.title
+                )
 
                 return True
 
-            except StaleElementReferenceException:
-
+            except TimeoutException as e:
                 print(
-                    "Categories menu item became stale. "
-                    "Retrying..."
+                    "Timeout while opening Manufacturer menu item."
                 )
-
-                time.sleep(1)
-
-            except TimeoutException:
-
                 print(
-                    "Timed out waiting for Categories menu item"
+                    "Current URL:",
+                    self.driver.current_url
+                )
+                print(
+                    "Page title:",
+                    self.driver.title
+                )
+                print(
+                    "Error:",
+                    str(e)
                 )
 
                 if attempt == 3:
                     raise
 
+                print("Retrying Manufacturer menu item...")
+                time.sleep(1)
+
+            except StaleElementReferenceException as e:
+                print(
+                    "Manufacturer menu item became stale."
+                )
+                print(
+                    "Error:",
+                    str(e)
+                )
+
+                if attempt == 3:
+                    raise
+
+                print("Retrying Manufacturer menu item...")
+                time.sleep(1)
+
+            except WebDriverException as e:
+                print(
+                    "WebDriver error while opening "
+                    "Manufacturer menu item:"
+                )
+                print(
+                    type(e).__name__,
+                    str(e)
+                )
+
+                if attempt == 3:
+                    raise
+
+                print("Retrying Manufacturer menu item...")
                 time.sleep(1)
 
         return False
 
-    # -------------------------------------------------
-    # Click Add New
-    # -------------------------------------------------
-
-
-
+    # Add New
     def clickAddNew(self):
-
         print(
-            "\n========== CLICK ADD NEW CATEGORY =========="
+            "\n========== CLICK ADD NEW MANUFACTURER =========="
         )
 
         for attempt in range(1, 4):
-
             try:
-
                 print(
-                    f"Opening Category Create page "
+                    f"Opening Manufacturer Create page "
                     f"(attempt {attempt}/3)"
                 )
 
                 # -------------------------------------------------
-                # Locate exact Category Add New link
+                # Locate exact Manufacturer Add New link
                 # -------------------------------------------------
+
+                add_new_xpath = (
+                    "//a[@href='/Admin/Manufacturer/Create'"
+                    " and normalize-space()='Add new']"
+                )
 
                 add_new = self.wait.until(
                     EC.presence_of_element_located(
                         (
                             By.XPATH,
-                            "//a[@href='/Admin/Category/Create'"
-                            " and normalize-space()='Add new']"
+                            add_new_xpath
                         )
                     )
                 )
+
+                print("Add New link found.")
+
+                # -------------------------------------------------
+                # Scroll Add New link into view
+                # -------------------------------------------------
 
                 self.driver.execute_script(
                     "arguments[0].scrollIntoView({block: 'center'});",
@@ -254,8 +346,21 @@ class AddCategory:
                 href = add_new.get_attribute("href")
 
                 print(
-                    "Add new href:",
+                    "Add New href:",
                     href
+                )
+
+                # -------------------------------------------------
+                # Wait until clickable
+                # -------------------------------------------------
+
+                self.wait.until(
+                    EC.element_to_be_clickable(
+                        (
+                            By.XPATH,
+                            add_new_xpath
+                        )
+                    )
                 )
 
                 # -------------------------------------------------
@@ -263,31 +368,27 @@ class AddCategory:
                 # -------------------------------------------------
 
                 try:
-
-                    self.wait.until(
-                        EC.element_to_be_clickable(
-                            (
-                                By.XPATH,
-                                "//a[@href='/Admin/Category/Create'"
-                                " and normalize-space()='Add new']"
-                            )
-                        )
+                    add_new = self.driver.find_element(
+                        By.XPATH,
+                        add_new_xpath
                     )
+
                     add_new.click()
 
                     print(
                         "Normal Selenium click executed"
                     )
 
-                except (
-                        ElementClickInterceptedException,
-                        StaleElementReferenceException
-                ):
+                except ElementClickInterceptedException:
+
+                    print(
+                        "Add New click intercepted. "
+                        "Using JavaScript click..."
+                    )
 
                     add_new = self.driver.find_element(
                         By.XPATH,
-                        "//a[@href='/Admin/Category/Create'"
-                        " and normalize-space()='Add new']"
+                        add_new_xpath
                     )
 
                     self.driver.execute_script(
@@ -299,16 +400,44 @@ class AddCategory:
                         "JavaScript click executed"
                     )
 
+                except StaleElementReferenceException:
+
+                    print(
+                        "Add New element became stale. "
+                        "Refetching element..."
+                    )
+
+                    add_new = self.wait.until(
+                        EC.element_to_be_clickable(
+                            (
+                                By.XPATH,
+                                add_new_xpath
+                            )
+                        )
+                    )
+
+                    self.driver.execute_script(
+                        "arguments[0].click();",
+                        add_new
+                    )
+
+                    print(
+                        "JavaScript click executed "
+                        "after refetching"
+                    )
+
                 # -------------------------------------------------
                 # Wait for navigation
                 # -------------------------------------------------
 
                 self.wait.until(
-                    EC.url_contains("/Admin/Category/Create")
+                    EC.url_contains(
+                        "/Admin/Manufacturer/Create"
+                    )
                 )
 
                 print(
-                    "Category Create page opened successfully"
+                    "Manufacturer Create page opened successfully."
                 )
 
                 print(
@@ -316,8 +445,13 @@ class AddCategory:
                     self.driver.current_url
                 )
 
+                print(
+                    "Page title:",
+                    self.driver.title
+                )
+
                 # -------------------------------------------------
-                # Wait for Category Name field
+                # Wait for Manufacturer Name field
                 # -------------------------------------------------
 
                 self.wait.until(
@@ -330,7 +464,7 @@ class AddCategory:
                 )
 
                 print(
-                    "Category Name field is visible"
+                    "Manufacturer Name field is visible."
                 )
 
                 return True
@@ -338,7 +472,7 @@ class AddCategory:
             except TimeoutException:
 
                 print(
-                    "Category Create page did not open."
+                    "Manufacturer Create page did not open."
                 )
 
                 print(
@@ -354,12 +488,34 @@ class AddCategory:
                 if attempt == 3:
                     raise
 
+                print(
+                    "Retrying Manufacturer Add New..."
+                )
+
                 time.sleep(1)
 
             except StaleElementReferenceException:
 
                 print(
-                    "Add New element became stale. Retrying..."
+                    "Add New element became stale. "
+                    "Retrying..."
+                )
+
+                if attempt == 3:
+                    raise
+
+                time.sleep(1)
+
+            except WebDriverException as e:
+
+                print(
+                    "WebDriver error while opening "
+                    "Manufacturer Create page:"
+                )
+
+                print(
+                    type(e).__name__,
+                    str(e)
                 )
 
                 if attempt == 3:
@@ -370,45 +526,37 @@ class AddCategory:
         return False
 
 
-
     # -------------------------------------------------
-    # Enter Category Name
+    # Enter Manufacturer Name
     # -------------------------------------------------
 
-    def setCategoryName(self, category_name):
-
+    def setManufacturerName(self, manufacturer_name):
         print(
-            f"\n========== SET CATEGORY NAME =========="
+            "\n========== SET MANUFACTURER NAME =========="
         )
         print(
-            f"Entering category name: {category_name}"
+            f"Entering manufacturer name: {manufacturer_name}"
         )
 
         name_locator = (By.ID, "Name")
 
         for attempt in range(1, 4):
-
             try:
-
                 print(
-                    f"Category name entry attempt "
+                    f"Manufacturer name entry attempt "
                     f"{attempt}/3"
                 )
 
                 # -------------------------------------------------
                 # Re-find the element on every attempt
                 # -------------------------------------------------
-
-                category_name_field = self.wait.until(
-                    EC.element_to_be_clickable(
-                        name_locator
-                    )
+                manufacturer_name_field = self.wait.until(
+                    EC.element_to_be_clickable(name_locator)
                 )
 
                 # -------------------------------------------------
                 # Scroll into view
                 # -------------------------------------------------
-
                 self.driver.execute_script(
                     """
                     arguments[0].scrollIntoView({
@@ -416,39 +564,32 @@ class AddCategory:
                         inline: 'nearest'
                     });
                     """,
-                    category_name_field
+                    manufacturer_name_field
                 )
 
                 # -------------------------------------------------
                 # Re-find after scrolling
                 # -------------------------------------------------
-
-                category_name_field = self.wait.until(
-                    EC.element_to_be_clickable(
-                        name_locator
-                    )
+                manufacturer_name_field = self.wait.until(
+                    EC.element_to_be_clickable(name_locator)
                 )
 
                 # -------------------------------------------------
                 # Clear existing value
                 # -------------------------------------------------
-
-                category_name_field.click()
-
-                category_name_field.clear()
+                manufacturer_name_field.click()
+                manufacturer_name_field.clear()
 
                 # -------------------------------------------------
-                # Enter category name
+                # Enter manufacturer name
                 # -------------------------------------------------
-
-                category_name_field.send_keys(
-                    category_name
+                manufacturer_name_field.send_keys(
+                    manufacturer_name
                 )
 
                 # -------------------------------------------------
                 # Verify using fresh DOM lookup
                 # -------------------------------------------------
-
                 actual_value = self.driver.execute_script(
                     """
                     return document.getElementById('Name').value;
@@ -456,38 +597,35 @@ class AddCategory:
                 )
 
                 print(
-                    f"Category Name DOM value: "
+                    f"Manufacturer Name DOM value: "
                     f"{actual_value!r}"
                 )
 
                 # -------------------------------------------------
                 # Exact verification
                 # -------------------------------------------------
-
-                if actual_value == category_name:
+                if actual_value == manufacturer_name:
                     print(
-                        "Category name entered successfully."
+                        "Manufacturer Name entered "
+                        "successfully."
                     )
-
                     return True
 
                 print(
-                    f"Category name value mismatch."
-                    f"\nExpected: {category_name!r}"
+                    "Manufacturer name value mismatch."
+                    f"\nExpected: {manufacturer_name!r}"
                     f"\nActual:   {actual_value!r}"
                 )
 
             except StaleElementReferenceException:
-
                 print(
-                    "Category Name field became stale. "
+                    "Manufacturer Name field became stale. "
                     "Retrying..."
                 )
 
             except Exception as e:
-
                 print(
-                    f"Category name entry attempt "
+                    f"Manufacturer name entry attempt "
                     f"{attempt} failed: "
                     f"{type(e).__name__}: {e}"
                 )
@@ -496,27 +634,22 @@ class AddCategory:
                 time.sleep(1)
 
         raise AssertionError(
-            f"Unable to enter category name: "
-            f"{category_name}"
+            "Unable to enter manufacturer name: "
+            f"{manufacturer_name}"
         )
 
     # -------------------------------------------------
-    # Enter Category Description
+    # Enter Manufacturer Description
     # -------------------------------------------------
 
-    def setCategoryDescription(self, description):
-
-        print("Entering category description...")
-
-        description_field = self.wait.until(
-            EC.visibility_of_element_located(
-                (
-                    By.XPATH,
-                    self.txtCategoryDesc
-                )
+    def setManufacturerDescription(self,description):
+        print("Entering manufacturer description...")
+        description_field =self.wait.until(EC.visibility_of_element_located(
+            (
+                By.XPATH,
+                self.txtManufacturerDesc
             )
-        )
-
+        ))
         self.driver.execute_script(
             "arguments[0].scrollIntoView({block: 'center'});",
             description_field
@@ -524,7 +657,6 @@ class AddCategory:
 
         # Click the actual editor container
         description_field.click()
-
         # Set the editor content using JavaScript
         self.driver.execute_script(
             """
@@ -552,9 +684,7 @@ class AddCategory:
             description_field,
             description
         )
-
-        print("Category description entered")
-
+        print("Manufacturer description entered")
         # Verify text was actually inserted
         print(
             "Description text:",
@@ -562,15 +692,13 @@ class AddCategory:
         )
 
     # -------------------------------------------------
-    # Save Category
+    # Save Manufacturer
     # -------------------------------------------------
 
     def clickSave(self):
-
-        print("\n========== SAVE CATEGORY ==========")
+        print("\n========== SAVE MANUFACTURER ==========")
 
         try:
-
             # -------------------------------------------------
             # Locate Save button
             # -------------------------------------------------
@@ -585,9 +713,18 @@ class AddCategory:
             )
 
             print("Save button found.")
-            print("Save button text:", repr(save_button.text))
-            print("Save button enabled:", save_button.is_enabled())
-            print("Save button displayed:", save_button.is_displayed())
+            print(
+                "Save button text:",
+                repr(save_button.text)
+            )
+            print(
+                "Save button enabled:",
+                save_button.is_enabled()
+            )
+            print(
+                "Save button displayed:",
+                save_button.is_displayed()
+            )
 
             # -------------------------------------------------
             # Scroll Save button into view
@@ -599,7 +736,7 @@ class AddCategory:
             )
 
             # -------------------------------------------------
-            # Capture current values before Save
+            # Capture current Manufacturer Name before Save
             # -------------------------------------------------
 
             name_value = self.driver.find_element(
@@ -608,7 +745,7 @@ class AddCategory:
             ).get_attribute("value")
 
             print(
-                "Category Name before Save:",
+                "Manufacturer Name before Save:",
                 repr(name_value)
             )
 
@@ -617,11 +754,10 @@ class AddCategory:
             # -------------------------------------------------
 
             try:
-
                 save_button.click()
 
                 print(
-                    "Normal Selenium Save click executed"
+                    "Normal Selenium save click executed"
                 )
 
             except ElementClickInterceptedException:
@@ -681,11 +817,15 @@ class AddCategory:
 
             for alert in success_alerts:
 
-                if alert.is_displayed():
-                    print(
-                        "SUCCESS ALERT:",
-                        repr(alert.text)
-                    )
+                try:
+                    if alert.is_displayed():
+                        print(
+                            "SUCCESS ALERT:",
+                            repr(alert.text)
+                        )
+
+                except Exception:
+                    pass
 
             # -------------------------------------------------
             # Check ALL alerts
@@ -703,11 +843,15 @@ class AddCategory:
 
             for alert in alerts:
 
-                if alert.is_displayed():
-                    print(
-                        "ALERT:",
-                        repr(alert.text)
-                    )
+                try:
+                    if alert.is_displayed():
+                        print(
+                            "ALERT:",
+                            repr(alert.text)
+                        )
+
+                except Exception:
+                    pass
 
             # -------------------------------------------------
             # Check field validation errors
@@ -725,11 +869,15 @@ class AddCategory:
 
             for error in validation_errors:
 
-                if error.is_displayed():
-                    print(
-                        "FIELD VALIDATION ERROR:",
-                        repr(error.text)
-                    )
+                try:
+                    if error.is_displayed():
+                        print(
+                            "FIELD VALIDATION ERROR:",
+                            repr(error.text)
+                        )
+
+                except Exception:
+                    pass
 
             # -------------------------------------------------
             # Check validation summary
@@ -747,14 +895,18 @@ class AddCategory:
 
             for summary in validation_summaries:
 
-                if summary.is_displayed():
-                    print(
-                        "VALIDATION SUMMARY:",
-                        repr(summary.text)
-                    )
+                try:
+                    if summary.is_displayed():
+                        print(
+                            "VALIDATION SUMMARY:",
+                            repr(summary.text)
+                        )
+
+                except Exception:
+                    pass
 
             # -------------------------------------------------
-            # Check Category Name value after POST
+            # Check Manufacturer Name after POST
             # -------------------------------------------------
 
             try:
@@ -765,23 +917,25 @@ class AddCategory:
                 ).get_attribute("value")
 
                 print(
-                    "Category Name after Save:",
+                    "Manufacturer Name after Save:",
                     repr(name_after_save)
                 )
 
             except Exception:
 
                 print(
-                    "Category Name field no longer exists."
+                    "Manufacturer Name field no longer exists."
                 )
 
             # -------------------------------------------------
-            # Check URL
+            # Check navigation to Manufacturer List
             # -------------------------------------------------
 
-            if "/Admin/Category/List" in self.driver.current_url:
+            current_url = self.driver.current_url
+
+            if "/Admin/Manufacturer/List" in current_url:
                 print(
-                    "Category save navigation completed."
+                    "Manufacturer save navigation completed."
                 )
 
                 return True
@@ -792,19 +946,24 @@ class AddCategory:
 
             for alert in success_alerts:
 
-                if alert.is_displayed():
-                    print(
-                        "Category save appears successful."
-                    )
+                try:
 
-                    return True
+                    if alert.is_displayed():
+                        print(
+                            "Manufacturer save appears successful."
+                        )
+
+                        return True
+
+                except Exception:
+                    pass
 
             # -------------------------------------------------
             # Save did not complete
             # -------------------------------------------------
 
             print(
-                "\nCategory was NOT saved."
+                "\nManufacturer was NOT saved."
             )
 
             print(
@@ -814,43 +973,54 @@ class AddCategory:
 
             return False
 
-        except StaleElementReferenceException:
+        except Exception as e:
 
             print(
-                "Save button became stale."
+                "\nManufacturer Save failed."
             )
+
+            print(
+                "Exception:",
+                type(e).__name__,
+                str(e)
+            )
+
+            try:
+                os.makedirs(
+                    "Screenshots",
+                    exist_ok=True
+                )
+
+                self.driver.save_screenshot(
+                    "Screenshots/manufacturer_save_failed.png"
+                )
+
+                print(
+                    "Screenshot saved:"
+                    " Screenshots/manufacturer_save_failed.png"
+                )
+
+            except Exception:
+                pass
 
             return False
 
-        except TimeoutException:
 
-            print(
-                "Timed out locating Save button."
-            )
-
-            return False
-
-    # -------------------------------------------------
     # Validate Success Message
-    # -------------------------------------------------
-
-
     id = "x1m8q4"
-
-    def isCategoryCreatedSuccessfully(self):
-
+    def isManufacturerCreatedSuccessfully(self):
         print(
-            "\n========== VERIFY CATEGORY CREATION =========="
+            "\n========== VERIFY MANUFACTURER CREATION =========="
         )
 
         try:
 
             # -------------------------------------------------
-            # Wait for navigation back to Category List
+            # Wait for navigation back to Manufacturer List
             # -------------------------------------------------
 
             self.wait.until(
-                EC.url_contains("/Admin/Category/List")
+                EC.url_contains("/Admin/Manufacturer/List")
             )
 
             print(
@@ -879,7 +1049,7 @@ class AddCategory:
             message = success_message.text.strip()
 
             print(
-                "Category success message:",
+                "Manufacturer success message:",
                 repr(message)
             )
 
@@ -888,14 +1058,14 @@ class AddCategory:
             # -------------------------------------------------
 
             return (
-                    "the new category has been added successfully"
+                    "the new manufacturer has been added successfully"
                     in message.lower()
             )
 
         except TimeoutException:
 
             print(
-                "Category creation success message "
+                "Manufacturer creation success message "
                 "was not found"
             )
 
@@ -912,12 +1082,17 @@ class AddCategory:
             return False
 
 
-
-    def generateCategoryName(self):
-        category_name = (
-            f"Test Category {random.randint(1000,9999)}"
+    def generateManufacturerName(self):
+        manufacturer_name = (
+            f"Test Manufacturer {random.randint(1000, 9999)}"
         )
-        print("Generated Category Name: ",category_name)
-        return category_name
+        print("Generated Manufacturer Name: ",manufacturer_name)
+        return manufacturer_name
+
+
+
+
+
+
 
 
