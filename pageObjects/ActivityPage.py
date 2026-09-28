@@ -131,7 +131,6 @@ class ActivityPage:
         for attempt in range(1, 4):
 
             try:
-
                 print(
                     f"Setting Created From date: {date} "
                     f"(attempt {attempt}/3)"
@@ -162,31 +161,43 @@ class ActivityPage:
                     created_from
                 )
 
-                # Click the date field first so the date-picker is initialized.
-                self.driver.execute_script(
-                    "arguments[0].click();",
-                    created_from
-                )
-
-                time.sleep(0.5)
-
-                # Clear existing value.
-                created_from.clear()
-
-                # Enter date using normal Selenium keyboard input.
-                created_from.send_keys(date)
-
-                # Trigger the change event used by the date-picker.
+                # Set the HTML date input directly.
                 self.driver.execute_script(
                     """
-                    arguments[0].dispatchEvent(
-                        new Event('change', {bubbles: true})
+                    const element = arguments[0];
+                    const value = arguments[1];
+
+                    element.focus();
+
+                    const setter =
+                        Object.getOwnPropertyDescriptor(
+                            HTMLInputElement.prototype,
+                            'value'
+                        ).set;
+
+                    setter.call(element, value);
+
+                    element.dispatchEvent(
+                        new Event('input', {
+                            bubbles: true
+                        })
                     );
+
+                    element.dispatchEvent(
+                        new Event('change', {
+                            bubbles: true
+                        })
+                    );
+
+                    element.blur();
                     """,
-                    created_from
+                    created_from,
+                    date
                 )
 
-                actual_value = created_from.get_attribute("value")
+                actual_value = created_from.get_attribute(
+                    "value"
+                )
 
                 print(
                     f"Created From DOM value: "
@@ -229,7 +240,6 @@ class ActivityPage:
         for attempt in range(1, 4):
 
             try:
-
                 print(
                     f"Setting Created To date: {date} "
                     f"(attempt {attempt}/3)"
@@ -260,27 +270,43 @@ class ActivityPage:
                     created_to
                 )
 
-                self.driver.execute_script(
-                    "arguments[0].click();",
-                    created_to
-                )
-
-                time.sleep(0.5)
-
-                created_to.clear()
-
-                created_to.send_keys(date)
-
+                # Set the HTML date input directly.
                 self.driver.execute_script(
                     """
-                    arguments[0].dispatchEvent(
-                        new Event('change', {bubbles: true})
+                    const element = arguments[0];
+                    const value = arguments[1];
+
+                    element.focus();
+
+                    const setter =
+                        Object.getOwnPropertyDescriptor(
+                            HTMLInputElement.prototype,
+                            'value'
+                        ).set;
+
+                    setter.call(element, value);
+
+                    element.dispatchEvent(
+                        new Event('input', {
+                            bubbles: true
+                        })
                     );
+
+                    element.dispatchEvent(
+                        new Event('change', {
+                            bubbles: true
+                        })
+                    );
+
+                    element.blur();
                     """,
-                    created_to
+                    created_to,
+                    date
                 )
 
-                actual_value = created_to.get_attribute("value")
+                actual_value = created_to.get_attribute(
+                    "value"
+                )
 
                 print(
                     f"Created To DOM value: "
