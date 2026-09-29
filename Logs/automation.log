@@ -27298,3 +27298,12 @@ The new customer has been added successfully.
 09/29/2026 01:42:06 PM: INFO: ********Starting_SearchVendor_Role_025******
 09/29/2026 01:42:10 PM: INFO: Normal table customer count: 15
 09/29/2026 01:42:10 PM: INFO: Vendor search result count: 0
+09/29/2026 04:22:08 PM: INFO: ******* SearchCustomerByEmail_004 *********
+09/29/2026 04:22:19 PM: INFO: *********** Login Successful **********
+09/29/2026 04:22:19 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+09/29/2026 04:22:22 PM: INFO: ******** Searching customer by email ID ***********
+09/29/2026 04:22:24 PM: INFO: ******** Customer found successfully ********
+09/29/2026 04:22:24 PM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+09/29/2026 04:22:31 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=50186): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/63bfd1d877b85f1ec34144a0019e1750
+09/29/2026 04:22:35 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=50186): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/63bfd1d877b85f1ec34144a0019e1750
+09/29/2026 04:22:39 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=50186): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/63bfd1d877b85f1ec34144a0019e1750
