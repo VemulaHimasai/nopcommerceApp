@@ -143,7 +143,7 @@ class AddCategory:
                 )
 
                 categories_menu = self.wait.until(
-                    EC.element_to_be_clickable(
+                    EC.presence_of_element_located(
                         (
                             By.XPATH,
                             self.lnkCategories_menuitem_xpath
@@ -152,9 +152,17 @@ class AddCategory:
                 )
 
                 self.driver.execute_script(
-                    "arguments[0].scrollIntoView({block: 'center'});",
+                    """
+                    arguments[0].scrollIntoView({
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    """,
                     categories_menu
                 )
+
+                # Allow the Catalog submenu to finish opening.
+                time.sleep(0.5)
 
                 try:
                     categories_menu.click()
