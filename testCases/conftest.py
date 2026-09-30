@@ -1,4 +1,3 @@
-
 import os
 import subprocess
 import pytest
@@ -342,6 +341,8 @@ foreach ($package in $packages) {
         "Firefox may be installed through Microsoft Store "
         "but the firefox.exe executable could not be located."
     )
+
+
 # =========================================================
 # BROWSER FIXTURE
 # =========================================================
@@ -929,8 +930,23 @@ def setup(browser):
             "download.directory_upgrade":
                 True,
 
+            "download.restrictions":
+                0,
+
+            "download.open_pdf_in_system_reader":
+                False,
+
+            "download.extensions_to_open":
+                "",
+
             "safebrowsing.enabled":
-                True
+                True,
+
+            "safebrowsing.disable_download_protection":
+                True,
+
+            "savefile.default_directory":
+                download_dir
         }
 
         options.add_experimental_option(
@@ -966,6 +982,10 @@ def setup(browser):
                 "Edge Download directory:",
                 download_dir
             )
+
+            # -----------------------------------------
+            # GIVE DRIVER TO TEST
+            # -----------------------------------------
 
             yield driver
 
@@ -1070,6 +1090,7 @@ def browser(request):
 # =========================================================
 
 def pytest_configure(config):
+
     pass
 
 
@@ -1082,6 +1103,7 @@ def pytest_configure(config):
     autouse=True
 )
 def metadata(request):
+
     pass
 
 
@@ -1110,4 +1132,3 @@ def pytest_metadata(metadata):
         "Plugins",
         None
     )
-

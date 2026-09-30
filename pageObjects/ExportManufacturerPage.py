@@ -3,11 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class ExportCategory:
-
-    # -------------------------------------------------
-    # Export
-    # -------------------------------------------------
+class ExportManufacturer:
 
     btnExport = "//button[normalize-space()='Export']"
 
@@ -15,32 +11,20 @@ class ExportCategory:
         "//button[@class='btn btn-success dropdown-toggle']"
     )
 
-    # -------------------------------------------------
-    # Export Dropdown Items
-    # -------------------------------------------------
-
     lstExport_xml = (
-        "//div[contains(@class, 'content-header')]"
-        "//li[contains(@class, 'dropdown-item')]"
         "//a[normalize-space()='Export to XML']"
     )
 
     lstExport_excel = (
-        "//div[contains(@class, 'content-header')]"
-        "//li[contains(@class, 'dropdown-item')]"
         "//a[normalize-space()='Export to Excel']"
     )
-
-    # -------------------------------------------------
-    # Constructor
-    # -------------------------------------------------
 
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 15)
 
     # -------------------------------------------------
-    # Click Export Dropdown
+    # Open Export Dropdown
     # -------------------------------------------------
 
     def clickExportDropdown(self):
@@ -73,27 +57,16 @@ class ExportCategory:
             export_dropdown
         )
 
-        # Wait for Bootstrap dropdown to become visible
-        self.wait.until(
-            EC.visibility_of_element_located(
-                (
-                    By.XPATH,
-                    "//div[contains(@class,'dropdown-menu') "
-                    "and contains(@class,'show')]"
-                )
-            )
-        )
-
-        print("Export dropdown opened.")
+        print("Export dropdown clicked.")
 
     # -------------------------------------------------
-    # Export Category to XML
+    # Export Manufacturer to XML
     # -------------------------------------------------
 
-    def exportCategoryToXML(self):
+    def exportManufacturerToXML(self):
 
         print(
-            "\n========== EXPORT CATEGORY TO XML =========="
+            "\n========== EXPORT MANUFACTURER TO XML =========="
         )
 
         self.clickExportDropdown()
@@ -109,6 +82,27 @@ class ExportCategory:
 
         print(
             "XML export link found."
+        )
+        print("\n========== XML LINK DEBUG ==========")
+
+        print(
+            "XML href:",
+            export_xml.get_attribute("href")
+        )
+
+        print(
+            "XML download:",
+            export_xml.get_attribute("download")
+        )
+
+        print(
+            "XML target:",
+            export_xml.get_attribute("target")
+        )
+
+        print(
+            "XML outerHTML:",
+            export_xml.get_attribute("outerHTML")
         )
 
         self.driver.execute_script(
@@ -131,13 +125,13 @@ class ExportCategory:
         )
 
     # -------------------------------------------------
-    # Export Category to Excel
+    # Export Manufacturer to Excel
     # -------------------------------------------------
 
-    def exportCategoryToExcel(self):
+    def exportManufacturerToExcel(self):
 
         print(
-            "\n========== EXPORT CATEGORY TO EXCEL =========="
+            "\n========== EXPORT MANUFACTURER TO EXCEL =========="
         )
 
         self.clickExportDropdown()
