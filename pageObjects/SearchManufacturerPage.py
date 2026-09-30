@@ -590,7 +590,7 @@ class SearchManufacturer:
                 except StaleElementReferenceException:
                     continue
 
-            print("Valid category rows found: ",valid_row_count)
+            print("Valid manufacturer rows found: ",valid_row_count)
             return valid_row_count
         except TimeoutException:
             print("Manufacturer table was not found.")
