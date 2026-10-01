@@ -12,7 +12,8 @@ class ExportCategory:
     btnExport = "//button[normalize-space()='Export']"
 
     btnExportDropdown = (
-        "//button[@class='btn btn-success dropdown-toggle']"
+        "//button[contains(@class,'btn-success') "
+        "and contains(@class,'dropdown-toggle')]"
     )
 
     # -------------------------------------------------
@@ -20,14 +21,10 @@ class ExportCategory:
     # -------------------------------------------------
 
     lstExport_xml = (
-        "//div[contains(@class, 'content-header')]"
-        "//li[contains(@class, 'dropdown-item')]"
         "//a[normalize-space()='Export to XML']"
     )
 
     lstExport_excel = (
-        "//div[contains(@class, 'content-header')]"
-        "//li[contains(@class, 'dropdown-item')]"
         "//a[normalize-space()='Export to Excel']"
     )
 
@@ -73,18 +70,7 @@ class ExportCategory:
             export_dropdown
         )
 
-        # Wait for Bootstrap dropdown to become visible
-        self.wait.until(
-            EC.visibility_of_element_located(
-                (
-                    By.XPATH,
-                    "//div[contains(@class,'dropdown-menu') "
-                    "and contains(@class,'show')]"
-                )
-            )
-        )
-
-        print("Export dropdown opened.")
+        print("Export dropdown clicked.")
 
     # -------------------------------------------------
     # Export Category to XML
