@@ -973,6 +973,14 @@ def setup(browser):
             driver = webdriver.Edge(
                 options=options
             )
+            driver.execute_cdp_cmd(
+                "Browser.setDownloadBehavior",
+                {
+                    "behavior":"allow",
+                    "downloadPath":download_dir,
+                    "eventsEnabled":True
+                }
+            )
 
             print(
                 "Edge Browser launched successfully."
