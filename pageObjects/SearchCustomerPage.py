@@ -944,69 +944,63 @@ class SearchCustomer:
     # =================================================
     def searchCustomerByName(self, full_name):
 
-        print(
-            f"Checking search results for customer name: {full_name}"
-        )
+        print(f"Checking search results for customer name: {full_name}")
 
-        customer_rows_xpath = (
-            "//table[@id='customers-grid']//tbody/tr"
-        )
+        customer_rows_xpath = "//table[@id='customers-grid']//tbody/tr"
+        expected_name = " ".join(full_name.split()).casefold()
 
-        try:
+        for attempt in range(1, 4):
+            try:
+                self.waitForCustomerRows()
 
-            self.waitForCustomerRows()
+                # Re-fetch rows on every attempt because the grid may refresh.
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    customer_rows_xpath
+                )
 
-            rows = self.driver.find_elements(
-                By.XPATH,
-                customer_rows_xpath
-            )
+                print(
+                    f"Customer rows found: {len(rows)} "
+                    f"(attempt {attempt}/3)"
+                )
 
-            print(
-                f"Customer rows found: {len(rows)}"
-            )
-
-            for row in rows:
-
-                try:
-
-                    row_text = row.text.strip()
-
-                    print(
-                        "Checking customer row:",
-                        repr(row_text)
+                for index in range(len(rows)):
+                    # Reacquire the current row instead of using a
+                    # previously stored WebElement.
+                    current_rows = self.driver.find_elements(
+                        By.XPATH,
+                        customer_rows_xpath
                     )
 
-                    if full_name.lower() in row_text.lower():
-                        print(
-                            f"Customer found with name: {full_name}"
-                        )
+                    if index >= len(current_rows):
+                        break
 
+                    row_text = current_rows[index].text.strip()
+
+                    print("Checking customer row:", repr(row_text))
+
+                    normalized_row_text = " ".join(
+                        row_text.split()
+                    ).casefold()
+
+                    if expected_name in normalized_row_text:
+                        print(f"Customer found: {full_name}")
                         return True
 
-                except StaleElementReferenceException:
+                print(
+                    f"Customer not found on attempt {attempt}; "
+                    "checking whether the grid has refreshed."
+                )
 
-                    print(
-                        "Customer row became stale. "
-                        "Skipping row..."
-                    )
+            except StaleElementReferenceException:
+                print(
+                    f"Customer grid became stale. "
+                    f"Retrying ({attempt}/3)."
+                )
 
-                    continue
+        print(f"Customer '{full_name}' was not found in the search results.")
+        return False
 
-            print(
-                f"Customer with name '{full_name}' "
-                "was not found in the current results."
-            )
-
-            return False
-
-        except TimeoutException:
-
-            print(
-                "Customer search results did not load "
-                "within the expected time."
-            )
-
-            return False
     # =================================================
     # GET CHECKBOXES
     # =================================================
