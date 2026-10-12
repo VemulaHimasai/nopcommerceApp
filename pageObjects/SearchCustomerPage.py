@@ -832,6 +832,8 @@ class SearchCustomer:
     # =================================================
     def searchCustomerByEmail(self, email):
 
+        email = email.strip().lower()
+
         print(
             f"Checking search results for customer email: {email}"
         )
@@ -841,60 +843,102 @@ class SearchCustomer:
         )
 
         try:
+            self.waitForTable()
 
-            self.waitForCustomerRows()
-
-            rows = self.driver.find_elements(
-                By.XPATH,
-                customer_rows_xpath
-            )
-
-            print(
-                f"Customer rows found: {len(rows)}"
-            )
-
-            for row in rows:
+            # Retry if Firefox refreshes the grid while reading rows.
+            for attempt in range(1, 4):
 
                 try:
+                    self.waitForCustomerRows()
 
-                    row_text = row.text.strip()
-
-                    print(
-                        "Checking customer row:",
-                        repr(row_text)
+                    rows = self.driver.find_elements(
+                        By.XPATH,
+                        customer_rows_xpath
                     )
 
-                    if email.lower() in row_text.lower():
-                        print(
-                            f"Customer found with email: {email}"
+                    print(
+                        f"Attempt {attempt}: "
+                        f"Customer rows found: {len(rows)}"
+                    )
+
+                    for index in range(len(rows)):
+
+                        # Re-fetch the row every time.
+                        row_xpath = (
+                            f"({customer_rows_xpath})"
+                            f"[{index + 1}]"
                         )
 
-                        return True
+                        try:
+                            row = self.driver.find_element(
+                                By.XPATH,
+                                row_xpath
+                            )
+
+                            columns = row.find_elements(
+                                By.TAG_NAME,
+                                "td"
+                            )
+
+                            # nopCommerce customer grid:
+                            # checkbox, email, name, role, ...
+                            if len(columns) < 2:
+                                continue
+
+                            actual_email = (
+                                columns[1].text.strip().lower()
+                            )
+
+                            print(
+                                f"Row {index + 1} email: "
+                                f"{actual_email}"
+                            )
+
+                            if actual_email == email:
+                                print(
+                                    "Customer found successfully: "
+                                    f"{actual_email}"
+                                )
+
+                                return True
+
+                        except StaleElementReferenceException:
+                            print(
+                                f"Row {index + 1} became stale. "
+                                "Restarting the search..."
+                            )
+                            break
+
+                    else:
+                        # All rows were checked without a stale element.
+                        print(
+                            f"Customer '{email}' was not found "
+                            "in the current results."
+                        )
+                        return False
 
                 except StaleElementReferenceException:
-
                     print(
-                        "Customer row became stale. "
-                        "Skipping row..."
+                        f"Customer grid became stale "
+                        f"on attempt {attempt}."
                     )
 
-                    continue
+                if attempt < 3:
+                    time.sleep(1)
 
             print(
-                f"Customer with email '{email}' "
-                "was not found in the current results."
+                "Unable to verify customer because the grid "
+                "kept refreshing."
             )
-
             return False
 
         except TimeoutException:
-
             print(
                 "Customer search results did not load "
                 "within the expected time."
             )
-
             return False
+
     # =================================================
     # SEARCH CUSTOMER BY NAME
     # =================================================

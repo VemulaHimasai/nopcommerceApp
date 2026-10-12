@@ -30166,3 +30166,29 @@ The new customer has been added successfully.
 10/09/2026 10:22:50 AM: INFO: ********Starting_SearchVendor_Role_025******
 10/09/2026 10:22:55 AM: INFO: Normal table customer count: 15
 10/09/2026 10:22:55 AM: INFO: Vendor search result count: 0
+10/12/2026 04:31:06 PM: INFO: ******* SearchCustomerByEmail_004 *********
+10/12/2026 04:31:15 PM: INFO: *********** Login Successful **********
+10/12/2026 04:31:15 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+10/12/2026 04:31:34 PM: INFO: ******** Searching customer by email ID ***********
+10/12/2026 05:22:35 PM: INFO: ******* SearchCustomerByEmail_004 *********
+10/12/2026 05:22:41 PM: INFO: *********** Login Successful **********
+10/12/2026 05:22:41 PM: INFO: ********** Starting SearchCustomerByEmail_004 **********
+10/12/2026 05:22:43 PM: INFO: ******** Searching customer by email ID ***********
+10/12/2026 05:22:43 PM: INFO: ******** Customer found successfully ********
+10/12/2026 05:22:43 PM: INFO: ******** TC_SearchCustomerByEmail_004 Finished **********
+10/12/2026 05:22:51 PM: WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=50344): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/5ffc8b47-6435-4da2-b439-8240a811b083
+10/12/2026 05:22:56 PM: WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=50344): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/5ffc8b47-6435-4da2-b439-8240a811b083
+10/12/2026 05:23:00 PM: WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=50344): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /session/5ffc8b47-6435-4da2-b439-8240a811b083
+10/12/2026 05:29:43 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+10/12/2026 05:29:48 PM: INFO: ***********Login Successful**********
+10/12/2026 05:40:37 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+10/12/2026 05:40:46 PM: INFO: ***********Login Successful**********
+10/12/2026 05:40:52 PM: INFO: Forum Moderator search result count: 0
+10/12/2026 05:45:47 PM: INFO: *****SearchCustomer_RoleForumModerator_023*****
+10/12/2026 05:46:03 PM: INFO: ***********Login Successful**********
+10/12/2026 05:46:11 PM: INFO: Forum Moderator search result count: 1
+10/12/2026 05:52:53 PM: INFO: *****SearchCustomer_Role_Guests_024*****
+10/12/2026 05:53:10 PM: INFO: ***********Login Successful**********
+10/12/2026 05:53:10 PM: INFO: ********Starting_SearchGuest_Role_024******
+10/12/2026 05:53:18 PM: INFO: Normal table customer count: 4
+10/12/2026 05:53:20 PM: INFO: Guests search result count: 3

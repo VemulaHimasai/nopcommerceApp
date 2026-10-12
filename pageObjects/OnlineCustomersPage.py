@@ -675,6 +675,8 @@ class OnlineCustomersPage:
             )
         )
 
+
+
     # -------------------------------------------------
     # Get Search Results
     # -------------------------------------------------
@@ -684,26 +686,54 @@ class OnlineCustomersPage:
         for attempt in range(3):
 
             try:
-
-                results = self.getCustomerNames()
-
-                print(
-                    "Search result customer names:",
-                    results
+                # Wait for the Online Customers table
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (By.XPATH, self.table_xpath)
+                    )
                 )
+
+                # Read customer emails from the first column
+                rows = self.driver.find_elements(
+                    By.XPATH,
+                    self.table_rows_xpath
+                )
+
+                results = []
+
+                for row in rows:
+                    columns = row.find_elements(
+                        By.TAG_NAME,
+                        "td"
+                    )
+
+                    if not columns:
+                        continue
+
+                    # First column contains Customer info
+                    email = columns[0].text.strip()
+
+                    if (
+                        email
+                        and "No data available" not in email
+                        and email != "Loading..."
+                    ):
+                        results.append(email)
+
+                print("Search result customer emails:", results)
 
                 return results
 
             except StaleElementReferenceException:
 
                 print(
-                    f"Search result table refreshed. "
-                    f"Retrying... Attempt {attempt + 1}/3"
+                    f"Online Customers table refreshed. "
+                    f"Retry {attempt + 1}/3"
                 )
 
                 time.sleep(1)
 
-        raise Exception(
-            "Search results table remained stale "
+        raise AssertionError(
+            "Unable to read Online Customers search results "
             "after 3 attempts."
         )
