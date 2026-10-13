@@ -78,45 +78,39 @@ class OnlineCustomersPage:
     # Open Online Customers
     # -------------------------------------------------
 
+
+
     def clickonOnlineCustomerMenuItem(self):
 
-        print(
-            "\n========== OPEN ONLINE CUSTOMERS =========="
-        )
+        print("\n========== OPEN ONLINE CUSTOMERS ==========")
 
-        menu_item_xpath = (
-            "//a[@href='/Admin/OnlineCustomer/List']"
-        )
+        menu_item_xpath = self.lnkonlinecustomers_menuitem_xpath
+        page_url = "/Admin/OnlineCustomer/List"
 
         for attempt in range(1, 4):
-
             try:
+                print(f"\nNavigation attempt {attempt}/3")
+                print(f"Current URL before navigation: {self.driver.current_url}")
 
-                print(
-                    f"Waiting for Online Customers menu "
-                    f"(attempt {attempt}/3)..."
-                )
+                # If already on the page, wait for its table.
+                if page_url in self.driver.current_url:
+                    try:
+                        self.wait.until(
+                            EC.visibility_of_element_located(
+                                (By.XPATH, self.table_xpath)
+                            )
+                        )
+                        print("Online Customers page is already open.")
+                        return True
+                    except TimeoutException:
+                        print("Table is not visible yet; retrying navigation.")
 
-                # -------------------------------------------------
-                # Wait until element exists
-                # -------------------------------------------------
-
+                # Find the menu item again on every attempt.
                 menu_item = self.wait.until(
                     EC.presence_of_element_located(
-                        (
-                            By.XPATH,
-                            menu_item_xpath
-                        )
+                        (By.XPATH, menu_item_xpath)
                     )
                 )
-
-                print(
-                    "Online Customers menu item found."
-                )
-
-                # -------------------------------------------------
-                # Scroll into view
-                # -------------------------------------------------
 
                 self.driver.execute_script(
                     """
@@ -128,63 +122,34 @@ class OnlineCustomersPage:
                     menu_item
                 )
 
-                time.sleep(0.5)
+                # Re-fetch the element after scrolling.
+                menu_item = self.driver.find_element(
+                    By.XPATH, menu_item_xpath
+                )
 
-                # -------------------------------------------------
-                # Verify element is displayed
-                # -------------------------------------------------
-
-                if not menu_item.is_displayed():
-                    print(
-                        "Online Customers menu item is not "
-                        "displayed yet."
-                    )
-
-                    continue
-
-                # -------------------------------------------------
-                # Click using JavaScript
-                # -------------------------------------------------
+                self.wait.until(
+                    lambda driver: menu_item.is_displayed()
+                )
 
                 self.driver.execute_script(
                     "arguments[0].click();",
                     menu_item
                 )
 
-                print(
-                    "Online Customers menu item clicked."
-                )
-
-                # -------------------------------------------------
-                # Wait for URL
-                # -------------------------------------------------
+                print("Online Customers menu item clicked.")
 
                 self.wait.until(
-                    EC.url_contains(
-                        "/Admin/OnlineCustomer/List"
+                    EC.url_contains(page_url)
+                )
+
+                self.wait.until(
+                    EC.visibility_of_element_located(
+                        (By.XPATH, self.table_xpath)
                     )
                 )
 
-                print(
-                    "Online Customers page URL confirmed."
-                )
-
-                # -------------------------------------------------
-                # Wait for table
-                # -------------------------------------------------
-
-                self.wait.until(
-                    EC.presence_of_element_located(
-                        (
-                            By.XPATH,
-                            self.table_xpath
-                        )
-                    )
-                )
-
-                print(
-                    "Online Customers table loaded successfully."
-                )
+                print("Online Customers page opened successfully.")
+                print(f"Current URL: {self.driver.current_url}")
 
                 return True
 
@@ -192,19 +157,37 @@ class OnlineCustomersPage:
                     StaleElementReferenceException,
                     TimeoutException
             ) as exc:
-
                 print(
-                    f"Unable to open Online Customers "
-                    f"on attempt {attempt}: {exc}"
+                    f"Attempt {attempt} failed: "
+                    f"{type(exc).__name__}: {exc}"
                 )
+                print(f"Current URL: {self.driver.current_url}")
+
+                try:
+                    print(f"Browser title: {self.driver.title}")
+                    print(
+                        "Online Customers table count:",
+                        len(
+                            self.driver.find_elements(
+                                By.XPATH, self.table_xpath
+                            )
+                        )
+                    )
+                except Exception as diagnostic_error:
+                    print(
+                        "Diagnostic error:",
+                        type(diagnostic_error).__name__
+                    )
 
                 if attempt < 3:
                     time.sleep(1)
 
         raise AssertionError(
-            "Unable to open Online Customers page "
-            "after 3 attempts."
+            "Unable to open Online Customers page after 3 attempts. "
+            f"Current URL: {self.driver.current_url}"
         )
+
+
 
     # -------------------------------------------------
     # Get complete table data
