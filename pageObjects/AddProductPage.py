@@ -103,12 +103,17 @@ class AddProduct:
                     catalog_menu
                 )
 
-                # Wait for Products submenu to exist
+                # Wait until the Manufacturers submenu is visible
+                manufacturers_xpath = (
+                    "//a[@href='/Admin/Manufacturer/List'"
+                    " and normalize-space()='Manufacturers']"
+                )
+
                 self.wait.until(
-                    EC.presence_of_element_located(
+                    EC.visibility_of_element_located(
                         (
                             By.XPATH,
-                            self.lnkProducts_menuitem_xpath
+                            manufacturers_xpath
                         )
                     )
                 )

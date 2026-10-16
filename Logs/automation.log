@@ -30608,3 +30608,36 @@ The new customer has been added successfully.
 10/13/2026 10:55:50 AM: INFO: ********Starting_SearchVendor_Role_025******
 10/13/2026 10:55:52 AM: INFO: Normal table customer count: 15
 10/13/2026 10:55:52 AM: INFO: Vendor search result count: 0
+10/13/2026 06:25:55 PM: INFO: ***** Test_ExportManufacturer_EXCEL_064 Started *****
+10/13/2026 06:26:02 PM: INFO: ***** Login Successful *****
+10/13/2026 06:26:02 PM: INFO: ***** Navigating to Manufacturers *****
+10/13/2026 06:26:04 PM: INFO: ***** Manufacturers Page Opened *****
+10/13/2026 06:26:04 PM: INFO: ***** Clearing previous downloaded files *****
+10/13/2026 06:26:04 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+10/13/2026 06:26:04 PM: INFO: ***** Starting Manufacturer EXCEL Export *****
+10/13/2026 06:26:04 PM: INFO: ***** Export Manufacturer to EXCEL clicked *****
+10/13/2026 06:26:06 PM: INFO: ***** Manufacturer EXCEL file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\manufacturers.xlsx *****
+10/13/2026 06:26:06 PM: INFO: ***** Test_ExportManufacturer_EXCEL_064 Passed *****
+10/16/2026 07:53:57 PM: INFO: ***** Test_ExportManufacturer_EXCEL_064 Started *****
+10/16/2026 07:54:09 PM: INFO: ***** Login Successful *****
+10/16/2026 07:54:09 PM: INFO: ***** Navigating to Manufacturers *****
+10/16/2026 07:59:40 PM: INFO: ***** Test_ExportManufacturer_EXCEL_064 Started *****
+10/16/2026 07:59:54 PM: INFO: ***** Login Successful *****
+10/16/2026 07:59:54 PM: INFO: ***** Navigating to Manufacturers *****
+10/16/2026 08:00:17 PM: INFO: ***** Manufacturers Page Opened *****
+10/16/2026 08:00:17 PM: INFO: ***** Clearing previous downloaded files *****
+10/16/2026 08:00:17 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+10/16/2026 08:00:17 PM: INFO: ***** Starting Manufacturer EXCEL Export *****
+10/16/2026 08:00:17 PM: INFO: ***** Export Manufacturer to EXCEL clicked *****
+10/16/2026 08:00:20 PM: INFO: ***** Manufacturer EXCEL file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\manufacturers.xlsx *****
+10/16/2026 08:00:20 PM: INFO: ***** Test_ExportManufacturer_EXCEL_064 Passed *****
+10/16/2026 08:03:40 PM: INFO: ***** Test_ExportManufacturer_EXCEL_064 Started *****
+10/16/2026 08:03:43 PM: INFO: ***** Login Successful *****
+10/16/2026 08:03:43 PM: INFO: ***** Navigating to Manufacturers *****
+10/16/2026 08:03:45 PM: INFO: ***** Manufacturers Page Opened *****
+10/16/2026 08:03:45 PM: INFO: ***** Clearing previous downloaded files *****
+10/16/2026 08:03:45 PM: INFO: ***** Download directory cleared: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads *****
+10/16/2026 08:03:45 PM: INFO: ***** Starting Manufacturer EXCEL Export *****
+10/16/2026 08:03:45 PM: INFO: ***** Export Manufacturer to EXCEL clicked *****
+10/16/2026 08:03:47 PM: INFO: ***** Manufacturer EXCEL file downloaded successfully: C:\Users\hp\PycharmProjects\Python_Selenium_Hybrid\downloads\manufacturers.xlsx *****
+10/16/2026 08:03:47 PM: INFO: ***** Test_ExportManufacturer_EXCEL_064 Passed *****
